@@ -1,0 +1,29 @@
+Actions
+
+Choose a character
+
+Use a character’s ability
+Assassin - kill character
+Thief - steal from character
+Magician - swap district cards
+King - get crown
+Bishop - districts can’t be destroyed
+Merchant - gain gold for taking an action
+Architect - can build three districts in a turn
+Warlord - can destroy a district
+
+View rules
+Draw district cards
+Draw gold from bank
+Build a district
+Use district ability
+Collect gold from built districts based on character
+View other players’ districts
+End turn
+Pause game
+Quit game
+View who has the crown
+View your score
+View other players’ score
+View your gold
+View other players’ gold
