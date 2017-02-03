@@ -139,8 +139,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/Player4"
-                        android:elevation="0dp" />
+                        android:id="@+id/player4_Card1"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/ic_launcher"
+                        android:id="@+id/player4_Card2"
+                        android:elevation="0dp"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -490,7 +498,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/Player2" />
+                        android:id="@+id/player2_Card1"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/ic_launcher"
+                        android:id="@+id/player2_Card2"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -837,7 +853,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/Player3" />
+                        android:layout_weight="1"
+                        android:id="@+id/player3_card1" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/ic_launcher"
+                        android:id="@+id/player3_card2"
+                        android:layout_weight="1" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -1323,8 +1347,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/Character_Card"
-                        android:elevation="14dp" />
+                        android:id="@+id/player1_Card1"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@mipmap/ic_launcher"
+                        android:id="@+id/player1_Card2"
+                        android:elevation="14dp"
+                        android:layout_weight="1" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
