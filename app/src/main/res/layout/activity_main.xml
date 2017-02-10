@@ -10,7 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.up.citadels.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F4E6CA">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -125,7 +126,6 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/star_big_on"
                         android:id="@+id/p4_Crown" />
                 </LinearLayout>
 
@@ -135,20 +135,26 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageButton
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player4_Card1"
-                        android:layout_weight="1" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player4_Card2"
-                        android:elevation="0dp"
-                        android:layout_weight="1" />
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/player4_Card2"
+                            android:elevation="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/player4_Card1"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -200,14 +206,12 @@
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D1"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D2"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -227,14 +231,12 @@
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D3"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D4"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -254,14 +256,12 @@
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D5"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D6"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -294,14 +294,12 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D7"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p4_D8"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -440,7 +438,6 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/star_big_on"
                         android:id="@+id/p2_Crown" />
                 </LinearLayout>
 
@@ -459,14 +456,14 @@
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/fortress"
                             android:id="@+id/p2_D1"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/mansion"
                             android:id="@+id/p2_D2"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -494,19 +491,27 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageButton
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player2_Card1"
-                        android:layout_weight="1" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player2_Card2"
-                        android:layout_weight="1" />
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@mipmap/warlord"
+                            android:id="@+id/player2_Card2"
+                            android:layout_weight="1" />
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@mipmap/magician"
+                            android:id="@+id/player2_Card1"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -523,14 +528,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/monastery"
                             android:id="@+id/p2_D3"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/docks"
                             android:id="@+id/p2_D4"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -550,14 +555,12 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p2_D7"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p2_D8"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -613,14 +616,12 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p2_D5"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p2_D6"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -751,14 +752,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/monastery"
                             android:id="@+id/p3_D1"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/watchtower"
                             android:id="@+id/p3_D2"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -778,7 +779,6 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/star_big_on"
                         android:id="@+id/p3_Crown" />
                 </LinearLayout>
             </LinearLayout>
@@ -803,14 +803,12 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p3_D7"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p3_D8"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -830,14 +828,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/cathedral"
                             android:id="@+id/p3_D3"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/market"
                             android:id="@+id/p3_D4"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -849,19 +847,25 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageButton
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:layout_weight="1"
-                        android:id="@+id/player3_card1" />
+                        android:layout_height="match_parent">
 
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player3_card2"
-                        android:layout_weight="1" />
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@mipmap/king"
+                            android:id="@+id/player3_card2"
+                            android:layout_weight="1" />
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@mipmap/thief"
+                            android:layout_weight="1"
+                            android:id="@+id/player3_card1" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -875,7 +879,9 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"></LinearLayout>
+                    android:layout_weight="1">
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -891,14 +897,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/market"
                             android:id="@+id/p3_D5"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/tavern"
                             android:id="@+id/p3_D6"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -993,14 +999,14 @@
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/merchant"
                             android:id="@+id/face1_Up"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/assassin"
                             android:id="@+id/face2_Up"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -1093,14 +1099,12 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p1_D7"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
                             android:id="@+id/p1_D8"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -1133,14 +1137,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/mansion"
                             android:id="@+id/p1_D1"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/town_house"
                             android:id="@+id/p1_D2"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -1160,14 +1164,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/church"
                             android:id="@+id/p1_D3"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/battlefield"
                             android:id="@+id/p1_D4"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -1187,14 +1191,14 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/cathedral"
                             android:id="@+id/p1_D5"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@mipmap/ic_launcher"
+                            app:srcCompat="@mipmap/mansion"
                             android:id="@+id/p1_D6"
                             android:layout_weight="1" />
                     </LinearLayout>
@@ -1219,12 +1223,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageButton
+                    <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/District_Cards"
+                        android:id="@+id/player1HandSpinner"
                         android:layout_weight="4" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -1330,11 +1334,12 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/P1_Score" />
 
-                    <Button
-                        android:text="Action"
+                    <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/Action" />
+                        android:id="@+id/actionSpinner"
+                        android:layout_weight="1" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -1343,21 +1348,31 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageButton
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player1_Card1"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        android:id="@+id/player1_Card2"
-                        android:elevation="14dp"
-                        android:layout_weight="1" />
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@mipmap/architect"
+                            android:id="@+id/player1_Card2"
+                            android:elevation="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@mipmap/bishop"
+
+                            android:id="@+id/player1_Card1"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="false"
+                            android:elevation="0dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
