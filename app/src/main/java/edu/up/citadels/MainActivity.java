@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     private ImageButton p1_D8;
     private boolean p = true;
 
+    private Spinner actionSpinner;
     private Spinner player1HandSpinner;
 
     List<String> player1DistrictsCards = new ArrayList<String>();
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity{
         String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
 
         player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
+        actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
 
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
@@ -87,15 +89,39 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view)
             {
-                
+
+            }
+        });
+
+        p1_D2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
+
+        p1_D3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
+
+        p1_D4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
             }
         });
 
 
-
     }
-
-
 
     private class SpinnerLister implements View.OnClickListener {
 
