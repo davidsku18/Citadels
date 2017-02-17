@@ -1083,7 +1083,15 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"></LinearLayout>
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/helpText"
+                        android:paddingTop="75dp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
