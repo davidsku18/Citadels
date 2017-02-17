@@ -144,14 +144,14 @@
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/player4_Card2"
+                            android:id="@+id/player4_Card1"
                             android:elevation="0dp"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/player4_Card1"
+                            android:id="@+id/player4_Card2"
                             android:layout_weight="1" />
                     </LinearLayout>
 
@@ -501,14 +501,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:srcCompat="@mipmap/warlord"
-                            android:id="@+id/player2_Card2"
+                            android:id="@+id/player2_Card1"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:srcCompat="@mipmap/magician"
-                            android:id="@+id/player2_Card1"
+                            android:id="@+id/player2_Card2"
                             android:layout_weight="1" />
                     </LinearLayout>
 
@@ -856,7 +856,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:srcCompat="@mipmap/king"
-                            android:id="@+id/player3_card2"
+                            android:id="@+id/player3_card1"
                             android:layout_weight="1" />
 
                         <ImageButton
@@ -864,7 +864,7 @@
                             android:layout_height="wrap_content"
                             app:srcCompat="@mipmap/thief"
                             android:layout_weight="1"
-                            android:id="@+id/player3_card1" />
+                            android:id="@+id/player3_card2" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -1358,7 +1358,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:srcCompat="@mipmap/architect"
-                            android:id="@+id/player1_Card2"
+                            android:id="@+id/player1_Card1"
                             android:elevation="0dp"
                             android:layout_weight="1" />
 
@@ -1367,7 +1367,7 @@
                             android:layout_height="wrap_content"
                             app:srcCompat="@mipmap/bishop"
 
-                            android:id="@+id/player1_Card1"
+                            android:id="@+id/player1_Card2"
                             android:layout_weight="1"
                             android:adjustViewBounds="false"
                             android:elevation="0dp" />
