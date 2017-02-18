@@ -1039,7 +1039,7 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:text="10 Gold"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/Gold_Count" />
