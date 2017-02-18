@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
 
         //get values for the spinner
-        String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
+       // String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
 
         //set initial value for the p1 gold to 2
         p1Gold = 2;
