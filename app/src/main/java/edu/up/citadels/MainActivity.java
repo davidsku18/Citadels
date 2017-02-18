@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
 
         //get values for the spinner
-       // String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
+       String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
 
         //set initial value for the p1 gold to 2
         p1Gold = 2;
@@ -114,7 +114,8 @@ public class MainActivity extends AppCompatActivity
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                                                    android.R.id.text1, p1Action);
+                                                    android.R.id.text1, p1ActionSpinnerNames);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //connect spinner to the adapter
