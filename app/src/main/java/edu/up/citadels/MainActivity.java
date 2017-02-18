@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                                                    android.R.id.text1, p1ActionSpinnerNames);
+                                                    android.R.id.text1, p1Action);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //connect spinner to the adapter
