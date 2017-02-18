@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity
     private ImageButton p1_D8;
     private TextView player1GoldCount;
     private int p1Gold = 2;
+    private TextView cardInfo; //initializes cardInfo TextView
+    private boolean d1_Info = false; //initializes d1_Info Boolean
+    private boolean d2_Info = false; //initializes d2_Info Boolean
+    private boolean d3_Info = false; //initializes d3_Info Boolean
+    private boolean d4_Info = false; //initializes d4_Info Boolean
 
     private ArrayList<Bitmap> p1HandImages;
 
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity
         p1_D3 = (ImageButton) findViewById(R.id.p1_D3);
         p1_D4 = (ImageButton) findViewById(R.id.p1_D4);
 
+        cardInfo = (TextView)findViewById(R.id.helpText); //sets cardInfo to the helpText TextView
+
+        //String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1GoldCount = (TextView)findViewById(R.id.Gold_Count);
 
         player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
@@ -133,12 +141,27 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+//////////////////////District Card Info Text Views///////////////////////////////////
+        //Click on the card to display useful info about the card
+        //Click on the card again to remove displayed information
+        //The card with the displayed information must be clicked to show the next card's information
         p1_D1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                if(cardInfo.getText() == "")
+                {
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
+                    d1_Info = true;
 
+                }
+               else if(d1_Info == true)
+                {
+                    cardInfo.setText("");
+                    d1_Info = false;
+                }
             }
         });
 
@@ -147,6 +170,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                if(cardInfo.getText() == "")
+                {
+                    cardInfo.setText("Town Hall\nValue: 3\nColor: Gold");
+                    d2_Info = true;
+                }
+                else if( d2_Info == true)
+                {
+                    cardInfo.setText("");
+                    d2_Info = false;
+                }
 
             }
         });
@@ -156,7 +189,17 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                if(cardInfo.getText() == "")
+                {
+                    cardInfo.setText("Church\nValue: 2\nColor: Blue");
+                    d3_Info = true;
 
+                }
+                else if( d3_Info == true)
+                {
+                    cardInfo.setText("");
+                    d3_Info = false;
+                }
             }
         });
 
@@ -165,7 +208,17 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                if(cardInfo.getText() == "")
+                {
+                    cardInfo.setText("Battlefield\nValue: 3\nColor: Red");
+                    d4_Info = true;
 
+                }
+                else if(d4_Info == true)
+                {
+                    cardInfo.setText("");
+                    d4_Info = false;
+                }
             }
         });
 
