@@ -1,3 +1,11 @@
+/*
+ *
+ * @Authors: Bryce Amato, Gavin Low, Victor Nguyen, Kurtis Davidson
+ * Version: 1.1
+ * Date: 02/17/2017
+ *
+ */
+
 package edu.up.citadels;
 
 import java.util.ArrayList;
@@ -115,14 +123,13 @@ public class MainActivity extends AppCompatActivity
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                                                     android.R.id.text1, p1ActionSpinnerNames);
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
 
         /*
-         * Author: Kurtis Davidson
+         * @Author: Kurtis Davidson
          *
          * Listens to when user clicks on player 1's district card 1 and changes the background color
          * to black, when pressed again it reverts its color
@@ -145,7 +152,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         /*
-         * Author: Kurtis Davidson
+         * @Author: Kurtis Davidson
          *
          * Listens to when user clicks on player 1's district card 2 and changes the background color
          * to black, when pressed again it reverts its color
@@ -170,9 +177,12 @@ public class MainActivity extends AppCompatActivity
 
 
 //////////////////////District Card Info Text Views///////////////////////////////////
-        //Click on the card to display useful info about the card
-        //Click on the card again to remove displayed information
-        //The card with the displayed information must be clicked to show the next card's information
+        /*
+        * @Author: Gavin Low
+        *Click on the card to display useful info about the card
+        *Click on the card again to remove displayed information
+        *The card with the displayed information must be clicked to show the next card's information
+        */
         p1_D1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -252,7 +262,7 @@ public class MainActivity extends AppCompatActivity
 
     }
     /*
-    * Author: Bryce Amato
+    * @Author: Bryce Amato
     *
     * This listener will keep track of what is selected in the player 1 action listener
     * and respond accordingly.
