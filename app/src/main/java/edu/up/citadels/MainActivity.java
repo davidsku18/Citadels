@@ -6,6 +6,8 @@ import java.util.List;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,10 +30,9 @@ public class MainActivity extends AppCompatActivity{
     private ImageButton p1_D7;
     private ImageButton p1_D8;
     private boolean p = true;
-
+    private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
-
     List<String> player1DistrictsCards = new ArrayList<String>();
 
     @Override
@@ -47,7 +48,30 @@ public class MainActivity extends AppCompatActivity{
         p1_D3 = (ImageButton) findViewById(R.id.p1_D3);
         p1_D4 = (ImageButton) findViewById(R.id.p1_D4);
 
-        String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
+
+       /*
+        *   @author Victor Nguyen
+        *   Creates the floating menu
+        *   Must long press to open the menu
+        *
+        *
+        */
+        menu_Button = (Button) findViewById(R.id.Menu);
+        menu_Button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                registerForContextMenu(menu_Button);
+
+
+            }
+
+
+        });
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
 
         player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
@@ -131,4 +155,19 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+
+    /*
+     *   @author Victor Nguyen
+     *   Implementing the method to create the floating menu
+     *
+     *   Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
+     *
+     *
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_ingame, menu);
+    }
 }
