@@ -6,16 +6,16 @@ package edu.up.citadels;
 
 public class Card
 {
-    private String card_Name;
+    private String cardName;
 
 
     public void setCard_Name(String cardName)
     {
-        this.card_Name = cardName;
+        this.cardName = cardName;
     }
 
     public String getCard_Name()
     {
-        return this.card_Name;
+        return this.cardName;
     }
 }

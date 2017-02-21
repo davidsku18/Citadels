@@ -4,31 +4,40 @@ package edu.up.citadels;
  * Created by Victor on 2/20/2017.
  */
 
+
 public class Player
 {
-    private String player_Name;
-    private int player_Score;
+    private String playerName;
+    private int playerScore;
     private int gold;
     private boolean hasCrown;
 
-    public void setPlayer_Name(String newName)
+    public void init(String initplayer_Name, int initplayer_Score, int initgold, boolean inithasCrown)
     {
-        this.player_Name = newName;
+        this.playerName = initplayer_Name;
+        this.playerScore = initplayer_Score;
+        this.gold = initgold;
+        this.hasCrown = inithasCrown;
     }
 
-    public String getPlayer_Name()
+    public void setPlayername(String newName)
     {
-        return this.player_Name;
+        this.playerName = newName;
     }
 
-    public void setPlayer_Score(int x)
+    public String getPlayername()
     {
-        this.player_Score = x;
+        return this.playerName;
     }
 
-    public int getPlayer_Score()
+    public void setScore(int x)
     {
-        return this.player_Score;
+        this.playerScore = x;
+    }
+
+    public int getScore()
+    {
+        return this.playerScore;
     }
 
     public void setGold(int new_Gold)
@@ -37,6 +46,7 @@ public class Player
     }
 
     public int getGold()
+
     {
         return this.gold;
     }
