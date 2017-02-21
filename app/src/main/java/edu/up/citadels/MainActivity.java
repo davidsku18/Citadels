@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<Bitmap> p1HandImages;
 
     private String[] p1Action;
-    private boolean p = true;
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
@@ -76,17 +75,16 @@ public class MainActivity extends AppCompatActivity
         p1_D3 = (ImageButton) findViewById(R.id.p1_D3);
         p1_D4 = (ImageButton) findViewById(R.id.p1_D4);
 
-        cardInfo = (TextView)findViewById(R.id.helpText); //sets cardInfo to the helpText TextView
+        cardInfo = (TextView)findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
-        //String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
+        // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1GoldCount = (TextView)findViewById(R.id.Gold_Count);
 
        /*
-        *   @author Victor Nguyen
-        *   Creates the floating menu
-        *   Must long press to open the menu
+        * @Author Victor Nguyen
         *
-        *
+        * Creates the floating menu
+        * Must long press to open the menu
         */
         menu_Button = (Button) findViewById(R.id.Menu);
         menu_Button.setOnClickListener(new View.OnClickListener()
@@ -95,7 +93,6 @@ public class MainActivity extends AppCompatActivity
             {
                 registerForContextMenu(menu_Button);
 
-
             }
 
 
@@ -103,19 +100,16 @@ public class MainActivity extends AppCompatActivity
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-
+        // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
 
-        //get values for the spinner
+        // get values for the spinner
        String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
 
-        //set initial value for the p1 gold to 2
+        // set initial value for the p1 gold to 2
         p1Gold = 2;
         player1GoldCount.setText("Gold: " + p1Gold);
-
-
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
@@ -175,13 +169,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
 //////////////////////District Card Info Text Views///////////////////////////////////
         /*
         * @Author: Gavin Low
-        *Click on the card to display useful info about the card
-        *Click on the card again to remove displayed information
-        *The card with the displayed information must be clicked to show the next card's information
+        *
+        * Click on the card to display useful info about the card
+        * Click on the card again to remove displayed information
+        * The card with the displayed information must be clicked to show the next card's information
         */
         p1_D1.setOnClickListener(new View.OnClickListener()
         {
@@ -301,19 +295,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     /*
-     *   @author Victor Nguyen
-     *   Implementing the method to create the floating menu
+     * @Author Victor Nguyen
      *
-     *   Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
+     * Implementing the method to create the floating menu
      *
-     *
+     * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
      */
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
+    }
+
+    public class GameState{
+        
     }
 }
