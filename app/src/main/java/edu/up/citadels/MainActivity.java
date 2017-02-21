@@ -327,9 +327,33 @@ public class MainActivity extends AppCompatActivity
         private DistrictCard[] p1BuiltDistricts = new DistrictCard[8];
         private DistrictCard[] p2BuiltDistricts = new DistrictCard[8];
         private DistrictCard[] p3BuiltDistricts = new DistrictCard[8];
+        private DistrictCard[] deckOrderDistricts = new DistrictCards[52];
 
-        private Character isKing;
+        private Player isKing;
 
+        private Character p1Character1;
+        private Character p1Character2;
+        private Character p2Character1;
+        private Character p2Character2;
+        private Character p3Character1;
+        private Character p3Character2;
+
+        private boolean p1Alive;
+
+
+        private Character whoseTurn;
+
+        private DistrictCard cardUp;
+
+
+        public GameState()
+        {
+            p1Gold = 2;
+            p2Gold = 2;
+            p3Gold = 2;
+
+            for(int i = 0; i <p1BuiltDistricts
+        }
 
     }
 }
