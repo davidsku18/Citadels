@@ -367,6 +367,12 @@ public class MainActivity extends AppCompatActivity
             p2.setGold(2);
             p3.setGold(2);
 
+            p1.setScore(0);
+            p2.setScore(0);
+            p3.setScore(0);
+
+            //sets all of the built districts for each player to null because no one will start
+            //with a district
             for(int i = 0; i < p1BuiltDistricts.length; ++i)
             {
                 p1BuiltDistricts[i] = null;
@@ -379,6 +385,61 @@ public class MainActivity extends AppCompatActivity
             {
                 p3BuiltDistricts[i] = null;
             }
+
+            //initializes the district cards for each player. Everyone starts with 4 cards
+            int count = 0;
+            while(count < 4)
+            {
+                for(int i = 0; i < deckOrderDistricts.length; ++i)
+                {
+                    if(deckOrderDistricts[i] != null)
+                    {
+                        p1HandDistricts.add(deckOrderDistricts[i]);
+                        deckOrderDistricts[i] = null;
+                        ++count;
+                    }
+                    else if(deckOrderDistricts[i] == null)
+                    {
+                        //skip it
+                    }
+                }
+            }
+            //player 2's starting district cards
+            while(count < 4)
+            {
+                for(int i = 0; i < deckOrderDistricts.length; ++i)
+                {
+                    if(deckOrderDistricts[i] != null)
+                    {
+                        p2HandDistricts.add(deckOrderDistricts[i]);
+                        deckOrderDistricts[i] = null;
+                        ++count;
+                    }
+                    else if(deckOrderDistricts[i] == null)
+                    {
+                        //skip it
+                    }
+                }
+            }
+            //player 3's starting district cards
+            while(count < 4)
+            {
+                for(int i = 0; i < deckOrderDistricts.length; ++i)
+                {
+                    if(deckOrderDistricts[i] != null)
+                    {
+                        p3HandDistricts.add(deckOrderDistricts[i]);
+                        deckOrderDistricts[i] = null;
+                        ++count;
+                    }
+                    else if(deckOrderDistricts[i] == null)
+                    {
+                        //skip it
+                    }
+                }
+            }
+
+
         }
 
     }
