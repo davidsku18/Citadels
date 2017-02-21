@@ -328,6 +328,8 @@ public class MainActivity extends AppCompatActivity
         private DistrictCard[] p2BuiltDistricts = new DistrictCard[8];
         private DistrictCard[] p3BuiltDistricts = new DistrictCard[8];
 
+        private Character isKing;
+
 
     }
 }
