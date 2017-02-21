@@ -310,7 +310,24 @@ public class MainActivity extends AppCompatActivity
         inflater.inflate(R.menu.menu_ingame, menu);
     }
 
-    public class GameState{
-        
+    public class GameState
+    {
+        private int p1Score;
+        private int p2Score;
+        private int p3Score;
+
+        private int p1Gold;
+        private int p2Gold;
+        private int p3Gold;
+
+        private List<DistrictCard> p1HandDistricts = new ArrayList<DistrictCard>;
+        private List<DistrictCard> p2HandDistricts = new ArrayList<DistrictCard>;
+        private List<DistrictCard> p3HandDistricts = new ArrayList<DistrictCard>;
+
+        private DistrictCard[] p1BuiltDistricts = new DistrictCard[8];
+        private DistrictCard[] p2BuiltDistricts = new DistrictCard[8];
+        private DistrictCard[] p3BuiltDistricts = new DistrictCard[8];
+
+
     }
 }
