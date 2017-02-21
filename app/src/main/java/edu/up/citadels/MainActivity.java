@@ -312,6 +312,10 @@ public class MainActivity extends AppCompatActivity
 
     public class GameState
     {
+        private Player p1;
+        private Player p2;
+        private Player p3;
+
         private int p1Score;
         private int p2Score;
         private int p3Score;
@@ -327,9 +331,10 @@ public class MainActivity extends AppCompatActivity
         private DistrictCard[] p1BuiltDistricts = new DistrictCard[8];
         private DistrictCard[] p2BuiltDistricts = new DistrictCard[8];
         private DistrictCard[] p3BuiltDistricts = new DistrictCard[8];
+
         private DistrictCard[] deckOrderDistricts = new DistrictCards[52];
 
-        private Player isKing;
+        private boolean isKing;
 
         private Character p1Character1;
         private Character p1Character2;
@@ -338,21 +343,42 @@ public class MainActivity extends AppCompatActivity
         private Character p3Character1;
         private Character p3Character2;
 
-        private boolean p1Alive;
+        private boolean characterIsAlive;
 
+        private boolean playerIsStolen;
+
+        private boolean swapDistricts;
+
+        private boolean destroyDistrict;
 
         private Character whoseTurn;
 
-        private DistrictCard cardUp;
+        private CharacterCard cardUp1;
+        private CharacterCard cardUp2;
+
+        private CharacterCard[] cardsInCharacterDeck = new CharacterCard[8];
+
+
 
 
         public GameState()
         {
-            p1Gold = 2;
-            p2Gold = 2;
-            p3Gold = 2;
+            p1.setGold(2);
+            p2.setGold(2);
+            p3.setGold(2);
 
-            for(int i = 0; i <p1BuiltDistricts
+            for(int i = 0; i < p1BuiltDistricts.length; ++i)
+            {
+                p1BuiltDistricts[i] = null;
+            }
+            for(int i = 0; i < p2BuiltDistricts.length; ++i)
+            {
+                p2BuiltDistricts[i] = null;
+            }
+            for(int i = 0; i < p3BuiltDistricts.length; ++i)
+            {
+                p3BuiltDistricts[i] = null;
+            }
         }
 
     }
