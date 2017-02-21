@@ -10,14 +10,14 @@ public class Player
     private String playerName;
     private int playerScore;
     private int gold;
-    private boolean hasCrown;
+    private boolean isKing;
 
-    public void init(String initplayer_Name, int initplayer_Score, int initgold, boolean inithasCrown)
+    public void init(String initplayer_Name, int initplayer_Score, int initgold, boolean initisKing)
     {
         this.playerName = initplayer_Name;
         this.playerScore = initplayer_Score;
         this.gold = initgold;
-        this.hasCrown = inithasCrown;
+        this.isKing = initisKing;
     }
 
     public void setPlayername(String newName)
@@ -51,7 +51,12 @@ public class Player
         return this.gold;
     }
 
-    public boolean isHasCrown() {
-        return this.hasCrown;
+    public void setKing(boolean x)
+    {
+        isKing = x;
+    }
+
+    public boolean isKing() {
+        return this.isKing;
     }
 }
