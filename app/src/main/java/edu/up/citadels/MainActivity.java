@@ -363,13 +363,18 @@ public class MainActivity extends AppCompatActivity
 
         public GameState()
         {
+            //each player starts with 2 gold
             p1.setGold(2);
             p2.setGold(2);
             p3.setGold(2);
 
+            //each player starts with a score of 0
             p1.setScore(0);
             p2.setScore(0);
             p3.setScore(0);
+
+            double king = Math.random();
+
 
             //sets all of the built districts for each player to null because no one will start
             //with a district
