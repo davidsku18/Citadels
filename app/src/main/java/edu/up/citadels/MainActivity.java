@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity implements GameState extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
 {
 
     private ImageButton player1_Card1;
@@ -101,8 +101,8 @@ public class MainActivity implements GameState extends AppCompatActivity
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-        player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
-        actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
+        player1HandSpinner = (Spinner)findViewById(R.id.player1HandSpinner);
+        actionSpinner = (Spinner)findViewById(R.id.actionSpinner);
 
         // get values for the spinner
        String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
