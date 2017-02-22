@@ -53,7 +53,7 @@ public class Player
 
     public void setKing(boolean x)
     {
-        isKing = x;
+        this.isKing = x;
     }
 
     public boolean isKing() {
