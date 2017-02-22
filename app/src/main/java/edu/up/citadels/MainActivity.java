@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity{
         p1_D3 = (ImageButton) findViewById(R.id.p1_D3);
         p1_D4 = (ImageButton) findViewById(R.id.p1_D4);
 
-        String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
+        //String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
 
         player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
