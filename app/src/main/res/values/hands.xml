@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="imageIdArray">
+        <item>@mipmap/palace</item>
+        <item>@mipmap/mansion</item>
+        <item>@mipmap/merchant</item>
+        <item>@mipmap/prison</item>
+        <item>@mipmap/trading_post</item>
+        <item>@mipmap/town_house</item>
+    </array>
+
+    <string-array name="p1HandImages">
+        <item>Palace</item>
+        <item>Mansion</item>
+        <item>Merchant</item>
+        <item>Prison</item>
+        <item>Trading Post</item>
+        <item>Town House</item>
+    </string-array>
+
+    <string-array name="p1Action">
+        <item>Choose Action:</item>
+        <item>Take Gold</item>
+        <item>Take District Card</item>
+        <item>Use Character Ability</item>
+    </string-array>
+
+
+</resources>
