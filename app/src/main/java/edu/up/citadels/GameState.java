@@ -2,11 +2,16 @@ package edu.up.citadels;
 
 /**
  * Created by Victor on 2/20/2017.
- *
- *    @Author Bryce Amato
  */
 
+import java.util.ArrayList;
+import java.util.List;
 
+
+/*
+
+@Author Bryce Amato
+ */
 
 public class GameState
 {
@@ -26,9 +31,9 @@ public class GameState
     private int p3Gold;
 
     //List of all cards in each player's hand
-    private List<DistrictCard> p1HandDistricts = new ArrayList<DistrictCard>;
-    private List<DistrictCard> p2HandDistricts = new ArrayList<DistrictCard>;
-    private List<DistrictCard> p3HandDistricts = new ArrayList<DistrictCard>;
+    private List<DistrictCard> p1HandDistricts = new ArrayList<DistrictCard>();
+    private List<DistrictCard> p2HandDistricts = new ArrayList<DistrictCard>();
+    private List<DistrictCard> p3HandDistricts = new ArrayList<DistrictCard>();
 
     //which districts have been built by each player, maximum of 8
     private DistrictCard[] p1BuiltDistricts = new DistrictCard[8];
@@ -36,7 +41,7 @@ public class GameState
     private DistrictCard[] p3BuiltDistricts = new DistrictCard[8];
 
     //there are 52 district cards in the deck
-    private DistrictCard[] deckOrderDistricts = new DistrictCards[52];
+    private DistrictCard[] deckOrderDistricts = new DistrictCard[52];
 
     //tells us which player is the king
     private boolean isKing;

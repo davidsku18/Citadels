@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-        player1HandSpinner = (Spinner) findViewById(R.id.player1HandSpinner);
-        actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
+        player1HandSpinner = (Spinner)findViewById(R.id.player1HandSpinner);
+        actionSpinner = (Spinner)findViewById(R.id.actionSpinner);
 
         // get values for the spinner
        String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
