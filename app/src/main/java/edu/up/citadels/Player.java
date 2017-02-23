@@ -1,5 +1,7 @@
 package edu.up.citadels;
 
+import java.util.ArrayList;
+
 /**
  * Created by Victor on 2/20/2017.
  */
@@ -11,6 +13,8 @@ public class Player
     private int playerScore;
     private int gold;
     private boolean isKing;
+    private ArrayList<DistrictCard> playerHand = new ArrayList<DistrictCard>();
+    private ArrayList<DistrictCard> playerCity = new ArrayList<DistrictCard>();
 
     // Creates the Player
     public Player(String initplayer_Name, int initplayer_Score, int initgold, boolean initisKing)
@@ -30,6 +34,31 @@ public class Player
         this.isKing = orig.isKing;
     }
 
+    // Adds district from hand to city
+    public void buildDistrict(DistrictCard card)
+    {
+            this.playerCity.add(card);
+            this.playerHand.remove(card);
+    }
+
+    // Removes card from city
+    public void destroyDistrict(DistrictCard card)
+    {
+            this.playerCity.remove(card);
+    }
+
+
+    // Add card to hand
+    public void addDistrict(DistrictCard card)
+    {
+            this.playerHand.add(card);
+    }
+
+    // Removes card from hand
+    public void removeDistrict(DistrictCard card)
+    {
+            this.playerHand.remove(card);
+    }
 
     // Getters and Setters for player variables
     public void setPlayername(String newName)

@@ -5,7 +5,6 @@ package edu.up.citadels;
  */
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /*
@@ -42,14 +41,29 @@ public class GameState
     private int p3Gold;
 
     //List of all cards in each player's hand
-    private List<DistrictCard> p1HandDistricts = new ArrayList<DistrictCard>();
-    private List<DistrictCard> p2HandDistricts = new ArrayList<DistrictCard>();
-    private List<DistrictCard> p3HandDistricts = new ArrayList<DistrictCard>();
+    private ArrayList<DistrictCard> p1HandDistricts = new ArrayList<DistrictCard>();
+    private ArrayList<DistrictCard> p2HandDistricts = new ArrayList<DistrictCard>();
+    private ArrayList<DistrictCard> p3HandDistricts = new ArrayList<DistrictCard>();
+
+    // Copy of player's hand
+    private ArrayList<DistrictCard> p1HandDistrictsCopy = new ArrayList<DistrictCard>();
+    private ArrayList<DistrictCard> p2HandDistrictsCopy = new ArrayList<DistrictCard>();
+    private ArrayList<DistrictCard> p3HandDistrictsCopy = new ArrayList<DistrictCard>();
+
+
+
 
     //which districts have been built by each player, maximum of 8
     private DistrictCard[] p1BuiltDistricts = new DistrictCard[8];
     private DistrictCard[] p2BuiltDistricts = new DistrictCard[8];
     private DistrictCard[] p3BuiltDistricts = new DistrictCard[8];
+
+    // copy of player's city
+    private DistrictCard[] p1BuiltDistrictsCopy = new DistrictCard[8];
+    private DistrictCard[] p2BuiltDistrictsCopy = new DistrictCard[8];
+    private DistrictCard[] p3BuiltDistrictsCopy = new DistrictCard[8];
+
+
 
     //there are 52 district cards in the deck
     private DistrictCard[] deckOrderDistricts = new DistrictCard[52];
@@ -93,6 +107,8 @@ public class GameState
     public GameState()
     {
 
+
+
         p1 = new Player(p1Name, 0, 2, p1.isKing());
         p1Copy = new Player(p1);
 
@@ -114,71 +130,122 @@ public class GameState
 
         //sets all of the built districts for each player to null because no one will start
         //with a district
+
+        // Player 1's city
         for(int i = 0; i < p1BuiltDistricts.length; ++i)
         {
             p1BuiltDistricts[i] = null;
         }
+        // Copy of player 1's city
+        for (int i = 0; i<p1BuiltDistricts.length; ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p1BuiltDistrictsCopy[i] = new DistrictCard(p1BuiltDistricts[i]);
+        }
+
+        // Player 2's city
         for(int i = 0; i < p2BuiltDistricts.length; ++i)
         {
             p2BuiltDistricts[i] = null;
         }
+        // Copy of player 2's city
+        for (int i = 0; i<p2BuiltDistricts.length; ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p2BuiltDistrictsCopy[i] = new DistrictCard(p2BuiltDistricts[i]);
+        }
+
+        // Player 3's city
         for(int i = 0; i < p3BuiltDistricts.length; ++i)
         {
             p3BuiltDistricts[i] = null;
         }
+        // Copy of player 3's city
+        for (int i = 0; i<p3BuiltDistricts.length; ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p3BuiltDistrictsCopy[i] = new DistrictCard(p3BuiltDistricts[i]);
+        }
+
 
         //initializes the district cards for each player. Everyone starts with 4 cards
-        int count = 0;
-        while(count < 4)
+        for(int i = 0; i<4; ++i)
         {
-            for(int i = 0; i < deckOrderDistricts.length; ++i)
+            for (int x = 0; x < deckOrderDistricts.length; ++x)
             {
-                if(deckOrderDistricts[i] != null)
+                if (deckOrderDistricts[x] != null)
                 {
-                    p1HandDistricts.add(deckOrderDistricts[i]);
-                    deckOrderDistricts[i] = null;
-                    ++count;
+                    p1HandDistricts.add(deckOrderDistricts[x]);
+                    deckOrderDistricts[x] = null;
                 }
-                else if(deckOrderDistricts[i] == null)
+                else if (deckOrderDistricts[x] == null)
                 {
                     //skip it
                 }
             }
         }
+
+     for (int i = 0; i<p1HandDistricts.size(); ++i)
+     {
+         // Makes a new District Card of the same spot i, and then adds it to the copy
+         p1HandDistrictsCopy.add(new DistrictCard(p1HandDistricts.get(i)));
+     }
+
+
+
+
+
+
         //player 2's starting district cards
-        while(count < 4)
+        for(int i = 0; i<4; ++i)
         {
-            for(int i = 0; i < deckOrderDistricts.length; ++i)
+            for(int x = 0; x < deckOrderDistricts.length; ++x)
             {
-                if(deckOrderDistricts[i] != null)
+                if(deckOrderDistricts[x] != null)
                 {
-                    p2HandDistricts.add(deckOrderDistricts[i]);
-                    deckOrderDistricts[i] = null;
-                    ++count;
+                    p2HandDistricts.add(deckOrderDistricts[x]);
+                    deckOrderDistricts[x] = null;
                 }
-                else if(deckOrderDistricts[i] == null)
+                else if(deckOrderDistricts[x] == null)
                 {
                     //skip it
                 }
             }
         }
+        // Player's 2 hand copy
+        for (int i = 0; i<p2HandDistricts.size(); ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p2HandDistrictsCopy.add(new DistrictCard(p2HandDistricts.get(i)));
+        }
+
+
+
         //player 3's starting district cards
-        while(count < 4)
+        for(int i = 0; i<4; ++i)
         {
-            for(int i = 0; i < deckOrderDistricts.length; ++i)
+            for(int x = 0; x < deckOrderDistricts.length; ++x)
             {
-                if(deckOrderDistricts[i] != null)
+                if(deckOrderDistricts[x] != null)
                 {
-                    p3HandDistricts.add(deckOrderDistricts[i]);
-                    deckOrderDistricts[i] = null;
-                    ++count;
+                    p3HandDistricts.add(deckOrderDistricts[x]);
+                    deckOrderDistricts[x] = null;
+
                 }
-                else if(deckOrderDistricts[i] == null)
+                else if(deckOrderDistricts[x] == null)
                 {
                     //skip it
                 }
             }
         }
+
+        // Player 3's hand copy
+        for (int i = 0; i<p3HandDistricts.size(); ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p3HandDistrictsCopy.add(new DistrictCard(p3HandDistricts.get(i)));
+        }
+
 
 
     }
