@@ -2,6 +2,9 @@ package edu.up.citadels;
 
 /**
  * Created by kurtisdavidson on 2/12/17.
+ * Modified by Gavin Low
+ * Created copy constructor
+ * Created Getter Methods
  */
 
 public class DistrictCard {
@@ -40,12 +43,14 @@ public class DistrictCard {
     protected final int university = 8;
     protected final int dragonGate = 8;
 
-    private final int card;
+    private final String name;
     private final int color;
     private final int cost;
 
-    public DistrictCard(int theCard, int theColor, int theCost){
-        card = theCard;
+    //original constructor
+    public DistrictCard(String theCard, int theColor, int theCost)
+    {
+        name = theCard;
         color = theColor;
         cost = theCost;
     }
@@ -53,7 +58,28 @@ public class DistrictCard {
     //copy constructor
     public DistrictCard(DistrictCard orig)
     {
-        this(orig.card, orig.color, orig.cost);
+        this(orig.name, orig.color, orig.cost);
+    }
+
+
+    //Getter Methods
+
+    //Get Card Name
+    public String getName()
+    {
+        return name;
+    }
+
+    //Get Card Color
+    public int getColor()
+    {
+        return color;
+    }
+
+    //Get Card Cost
+    public int getCost()
+    {
+        return cost;
     }
 
 
