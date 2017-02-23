@@ -50,6 +50,11 @@ public class DistrictCard {
         cost = theCost;
     }
 
+    //copy constructor
+    public DistrictCard(DistrictCard orig)
+    {
+        this(orig.card, orig.color, orig.cost);
+    }
 
 
 
