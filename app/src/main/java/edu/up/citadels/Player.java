@@ -97,7 +97,8 @@ public class Player
         this.isKing = x;
     }
 
-    public boolean isKing() {
+    public boolean isKing()
+    {
         return this.isKing;
     }
 }

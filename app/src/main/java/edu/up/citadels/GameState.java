@@ -212,7 +212,7 @@ public class GameState
                 }
             }
         }
-        // Player's 2 hand copy
+        // Player 2's hand copy
         for (int i = 0; i<p2HandDistricts.size(); ++i)
         {
             // Makes a new District Card of the same spot i, and then adds it to the copy
