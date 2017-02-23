@@ -12,7 +12,8 @@ public class Player
     private int gold;
     private boolean isKing;
 
-    public void init(String initplayer_Name, int initplayer_Score, int initgold, boolean initisKing)
+    // Creates the Player
+    public Player(String initplayer_Name, int initplayer_Score, int initgold, boolean initisKing)
     {
         this.playerName = initplayer_Name;
         this.playerScore = initplayer_Score;
@@ -20,6 +21,17 @@ public class Player
         this.isKing = initisKing;
     }
 
+    // Copies the player
+    public Player (Player orig)
+    {
+        this.playerName = orig.playerName;
+        this.playerScore = orig.playerScore;
+        this.gold = orig.gold;
+        this.isKing = orig.isKing;
+    }
+
+
+    // Getters and Setters for player variables
     public void setPlayername(String newName)
     {
         this.playerName = newName;

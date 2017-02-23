@@ -20,6 +20,17 @@ public class GameState
     private Player p2;
     private Player p3;
 
+    // Copy of the players
+    private Player p1Copy;
+    private Player p2Copy;
+    private Player p3Copy;
+
+    // Player Names
+    private String p1Name;
+    private String p2Name;
+    private String p3Name;
+
+
     //scores
     private int p1Score;
     private int p2Score;
@@ -81,6 +92,7 @@ public class GameState
 
     public GameState()
     {
+        /*
         //each player starts with 2 gold
         p1.setGold(2);
         p2.setGold(2);
@@ -90,6 +102,23 @@ public class GameState
         p1.setScore(0);
         p2.setScore(0);
         p3.setScore(0);
+        */
+
+        p1 = new Player(p1Name, 0, 2, p1.isKing());
+        p1Copy = new Player(p1);
+
+        p2 = new Player(p2Name, 0, 2, p2.isKing());
+        p2Copy = new Player(p2);
+
+        p3 = new Player(p3Name, 0, 2, p3.isKing());
+        p3Copy = new Player(p3);
+
+
+
+
+
+
+
 
         double king = Math.random();
 
