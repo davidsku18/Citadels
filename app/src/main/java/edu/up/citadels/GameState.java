@@ -92,17 +92,6 @@ public class GameState
 
     public GameState()
     {
-        /*
-        //each player starts with 2 gold
-        p1.setGold(2);
-        p2.setGold(2);
-        p3.setGold(2);
-
-        //each player starts with a score of 0
-        p1.setScore(0);
-        p2.setScore(0);
-        p3.setScore(0);
-        */
 
         p1 = new Player(p1Name, 0, 2, p1.isKing());
         p1Copy = new Player(p1);
