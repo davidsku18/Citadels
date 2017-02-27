@@ -17,10 +17,10 @@ public class Player
     private ArrayList<DistrictCard> playerCity = new ArrayList<DistrictCard>();
 
     // Creates the Player
-    public Player(String initplayer_Name, int initplayer_Score, int initgold, boolean initisKing)
+    public Player(String initplayerName, int initplayerScore, int initgold, boolean initisKing)
     {
-        this.playerName = initplayer_Name;
-        this.playerScore = initplayer_Score;
+        this.playerName = initplayerName;
+        this.playerScore = initplayerScore;
         this.gold = initgold;
         this.isKing = initisKing;
     }
@@ -61,12 +61,12 @@ public class Player
     }
 
     // Getters and Setters for player variables
-    public void setPlayername(String newName)
+    public void setplayerName(String newName)
     {
         this.playerName = newName;
     }
 
-    public String getPlayername()
+    public String getplayerName()
     {
         return this.playerName;
     }
@@ -81,9 +81,9 @@ public class Player
         return this.playerScore;
     }
 
-    public void setGold(int new_Gold)
+    public void setGold(int newGold)
     {
-        this.gold = new_Gold;
+        this.gold = newGold;
     }
 
     public int getGold()
