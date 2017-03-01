@@ -9,12 +9,12 @@ public class Card
     private String cardName;
 
 
-    public void setCard_Name(String cardName)
+    public void setcardName(String cardName)
     {
         this.cardName = cardName;
     }
 
-    public String getCard_Name()
+    public String getcardName()
     {
         return this.cardName;
     }
