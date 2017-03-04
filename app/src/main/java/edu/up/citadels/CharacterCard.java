@@ -36,16 +36,16 @@ public class CharacterCard
     private int whichCharacter;
 
     //regular constructor
-    public CharacterCard(int initColor, int initCharacter)
+    public CharacterCard(int initCharacter, int initColor)
     {
-        this.color = initColor;
         this.whichCharacter = initCharacter;
+        this.color = initColor;
     }
 
     //copy constructor
     public CharacterCard(CharacterCard orig)
     {
-        this(orig.color, orig.whichCharacter);
+        this(orig.whichCharacter, orig.color);
     }
 
     /*
