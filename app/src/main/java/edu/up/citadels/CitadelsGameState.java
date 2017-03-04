@@ -1,10 +1,12 @@
 package edu.up.citadels;
 
+import java.util.ArrayList;
+
 /**
  * Created by Victor on 2/20/2017.
  */
 
-import java.util.ArrayList;
+import Info.GameState;
 
 
 /*
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 @Author Bryce Amato
  */
 
-public class GameState
+public class CitadelsGameState extends GameState
 {
     //who is playing
     private Player p1;
@@ -104,7 +106,7 @@ public class GameState
 
 
 
-    public GameState()
+    public CitadelsGameState()
     {
 
 
@@ -185,11 +187,11 @@ public class GameState
             }
         }
 
-     for (int i = 0; i<p1HandDistricts.size(); ++i)
-     {
-         // Makes a new District Card of the same spot i, and then adds it to the copy
-         p1HandDistrictsCopy.add(new DistrictCard(p1HandDistricts.get(i)));
-     }
+        for (int i = 0; i<p1HandDistricts.size(); ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p1HandDistrictsCopy.add(new DistrictCard(p1HandDistricts.get(i)));
+        }
 
 
 
