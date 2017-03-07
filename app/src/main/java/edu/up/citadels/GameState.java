@@ -58,7 +58,7 @@ public class GameState
     private DistrictCard[] p1BuiltDistrictsCopy = new DistrictCard[8];
     private DistrictCard[] p2BuiltDistrictsCopy = new DistrictCard[8];
     private DistrictCard[] p3BuiltDistrictsCopy = new DistrictCard[8];
-    
+
 
     //there are 52 district cards in the deck
     private DistrictCard[] deckOrderDistricts = new DistrictCard[52];
