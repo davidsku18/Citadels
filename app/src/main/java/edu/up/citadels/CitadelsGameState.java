@@ -5,6 +5,13 @@ package edu.up.citadels;
  */
 
 import java.util.ArrayList;
+
+/**
+ * Created by Victor on 2/20/2017.
+ */
+
+import Info.GameState;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Author Bryce Amato
  */
 
-public class GameState
+public class CitadelsGameState extends GameState
 {
     //who is playing
     private Player p1;
@@ -25,6 +32,7 @@ public class GameState
     private Player p2Copy;
     private Player p3Copy;
 
+    // Player Names
     private String p1Name;
     private String p2Name;
     private String p3Name;
@@ -98,7 +106,7 @@ public class GameState
     private CharacterCard[] characterDeck = new CharacterCard[8];
     private CharacterCard[] characterDeckcopy = new CharacterCard[8];
 
-    public GameState()
+    public CitadelsGameState()
     {
         p1 = new Player(p1Name, 0, 2, p1.isKing());
         p1Copy = new Player(p1);
@@ -272,6 +280,11 @@ public class GameState
             }
         }
 
+        for (int i = 0; i<p1HandDistricts.size(); ++i)
+        {
+            // Makes a new District Card of the same spot i, and then adds it to the copy
+            p1HandDistrictsCopy.add(new DistrictCard(p1HandDistricts.get(i)));
+        }
         for (int i = 0; i<p1HandDistricts.size(); ++i)
         {
              // Makes a new District Card of the same spot i, and then adds it to the copy

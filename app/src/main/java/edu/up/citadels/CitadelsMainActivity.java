@@ -9,9 +9,9 @@
 package edu.up.citadels;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -25,8 +25,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import game.GameMainActivity;
+import Info.GameConfig;
+import game.LocalGame;
+import player.CitadelsComputerPlayer;
+import player.CitadelsHumanPlayer;
+import player.GameHumanPlayer;
+import player.GamePlayer;
+import player.GamePlayerType;
 
-public class MainActivity extends AppCompatActivity
+
+public class CitadelsMainActivity extends GameMainActivity
 {
 
     private ImageButton player1_Card1;
@@ -102,7 +111,7 @@ public class MainActivity extends AppCompatActivity
         actionSpinner = (Spinner)findViewById(R.id.actionSpinner);
 
         // get values for the spinner
-       String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
+        String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
 
         // set initial value for the p1 gold to 2
         p1Gold = 2;
@@ -113,7 +122,7 @@ public class MainActivity extends AppCompatActivity
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                                                    android.R.id.text1, p1ActionSpinnerNames);
+                android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //connect spinner to the adapter
@@ -185,7 +194,7 @@ public class MainActivity extends AppCompatActivity
                     d1_Info = true;
 
                 }
-               else if(d1_Info == true)
+                else if(d1_Info == true)
                 {
                     cardInfo.setText("");
                     d1_Info = false;
@@ -265,20 +274,20 @@ public class MainActivity extends AppCompatActivity
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id)
         {
-                if(position == 0)
-                {
-                    //do nothing
-                }else if(position == 1)
-                {
-                    p1Gold = p1Gold + 2;
-                    player1GoldCount.setText("Gold: " + p1Gold);
-                }else if(position == 2)
-                {
-                    //do nothing yet
-                }else if(position == 3)
-                {
-                    //do nothing yet
-                }
+            if(position == 0)
+            {
+                //do nothing
+            }else if(position == 1)
+            {
+                p1Gold = p1Gold + 2;
+                player1GoldCount.setText("Gold: " + p1Gold);
+            }else if(position == 2)
+            {
+                //do nothing yet
+            }else if(position == 3)
+            {
+                //do nothing yet
+            }
         }
 
         /**
@@ -307,5 +316,69 @@ public class MainActivity extends AppCompatActivity
         inflater.inflate(R.menu.menu_ingame, menu);
     }
 
+    public GameConfig createDefaultConfig();
+    {
+        // Define the allowed player types
+        ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
+        playerTypes.add(new GamePlayerType("human player (green)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsHumanPlayer(name);
+            }});
+        playerTypes.add(new GamePlayerType("human player (yellow)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsHumanPlayer(name);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (normal)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayer(name);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (fast)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayer(name);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (slow)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayer(name);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (very fast)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayer(name);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (very slow)")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayer(name);
+            }
+        });
+
+        // Create a game configuration class for SlapJack
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Citadels", 2017);
+
+        // Add the default players
+        defaultConfig.addPlayer("Human", 0);
+        defaultConfig.addPlayer("Computer", 2);
+
+        // Set the initial information for the remote player
+        defaultConfig.setRemoteData("Guest", "", 1);
+
+        //done!
+        return defaultConfig;
+    }
+
+    @Override
+    public LocalGame createLocalGame() {
+        return new CitadelsLocalGame();
+    }
 }
