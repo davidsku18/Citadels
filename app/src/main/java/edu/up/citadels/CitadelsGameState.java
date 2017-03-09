@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 
 import Info.GameState;
+import edu.up.citadels.Actions.TakeGold;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -385,4 +386,5 @@ public class CitadelsGameState extends GameState
             deck[i] = a;
         }
     }
+
 }
