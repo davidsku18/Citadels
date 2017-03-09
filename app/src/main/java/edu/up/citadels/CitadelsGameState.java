@@ -371,7 +371,6 @@ public class CitadelsGameState extends GameState
             characterDeckcopy[i] = new CharacterCard(characterDeck[i]);
         }
 
-
     }
 
     public static void shuffleDeck(DistrictCard[] deck)
