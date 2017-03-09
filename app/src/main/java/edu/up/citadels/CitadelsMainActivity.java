@@ -316,7 +316,7 @@ public class CitadelsMainActivity extends GameMainActivity
         inflater.inflate(R.menu.menu_ingame, menu);
     }
 
-    public GameConfig createDefaultConfig();
+    public GameConfig createDefaultConfig()
     {
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
