@@ -81,6 +81,44 @@ public class CitadelsGameState extends GameState
     private CharacterCard[] characterDeck = new CharacterCard[8];
 
 
+    public void p1drawCard()
+    {
+        p1Hand.add(deckOrderDistricts[0]);
+        deckOrderDistricts[0] = null;
+    }
+
+    public void setp1Score(int newScore)
+    {
+        p1Score = newScore;
+    }
+
+    public void setp2Score(int newScore)
+    {
+        p2Score = newScore;
+    }
+
+    public void setp3Score(int newScore)
+    {
+        p3Score = newScore;
+    }
+
+
+
+    public void setp1Gold(int newGold)
+    {
+        p1Gold = newGold;
+    }
+
+    public void setp2Gold(int newGold)
+    {
+        p2Gold = newGold;
+    }
+
+    public void setp3Gold(int newGold)
+    {
+        p3Gold = newGold;
+    }
+
     public CitadelsGameState()
     {
 
