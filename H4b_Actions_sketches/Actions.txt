@@ -20,8 +20,8 @@ Use district ability
 Collect gold from built districts based on character
 View other players’ districts
 End turn
-Pause game
-Quit game
+Pause edu.up.citadels.game
+Quit edu.up.citadels.game
 View who has the crown
 View your score
 View other players’ score
