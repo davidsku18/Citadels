@@ -4,7 +4,6 @@ package edu.up.citadels.citadels;
  * Created by Victor on 2/20/2017.
  */
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -84,30 +83,37 @@ public class CitadelsGameState extends GameState
     private CharacterCard[] characterDeck = new CharacterCard[8];
 
 
-    public void P1DrawCard()
+    public void setP1Character1(int x)
     {
-        p1Hand.add(deckOrderDistricts.get(0));
-        deckOrderDistricts.remove(0);
+        this.p1Character1 = x;
     }
 
-    public void P2DrawCard()
+    public CitadelsDistrictCard drawCard()
     {
-        p2Hand.add(deckOrderDistricts.get(0));
-        deckOrderDistricts.remove(0);
+        return this.deckOrderDistricts.get(0);
     }
 
-    public void p3DrawCard()
+
+
+    public int p1FindCard(int card)
     {
-        p3Hand.add(deckOrderDistricts.get(0));
-        deckOrderDistricts.remove(0);
+        return this.p1Hand.indexOf(card);
+
+    }
+    public int p2FindCard(int card)
+    {
+        return this.p2Hand.indexOf(card);
+
+    }
+    public int p3FindCard(int card)
+    {
+        return this.p3Hand.indexOf(card);
+
     }
 
-    public void p1BuildCard(int card)
-    {
-        p1Hand.remove(card);
-        p1City.add(p1Hand.get(card));
-    }
-    public void p2BuildCard(int card)
+
+
+    /*public void p2BuildCard(int card)
     {
         p2Hand.remove(card);
         p2City.add(p2Hand.get(card));
@@ -118,38 +124,38 @@ public class CitadelsGameState extends GameState
         p3Hand.remove(card);
         p3City.add(p3Hand.get(card));
     }
-
+    */
 
     public void setP1Score(int newScore)
     {
-        p1Score = newScore;
+        this.p1Score = newScore;
     }
 
     public void setP2Score(int newScore)
     {
-        p2Score = newScore;
+        this.p2Score = newScore;
     }
 
     public void setP3Score(int newScore)
     {
-        p3Score = newScore;
+        this.p3Score = newScore;
     }
 
 
 
     public void setP1Gold(int newGold)
     {
-        p1Gold = newGold;
+        this.p1Gold = newGold;
     }
 
     public void setP2Gold(int newGold)
     {
-        p2Gold = newGold;
+        this.p2Gold = newGold;
     }
 
     public void setP3Gold(int newGold)
     {
-        p3Gold = newGold;
+        this.p3Gold = newGold;
     }
 
     public CitadelsGameState()
@@ -161,24 +167,7 @@ public class CitadelsGameState extends GameState
         //sets all of the built districts for each player to null because no one will start
         //with a district built
 
-        // CitadelsPlayer 1's city
-        for(int i = 0; i < p1City.length; ++i)
-        {
-            p1City[i] = null;
-        }
 
-        // CitadelsPlayer 2's city
-        for(int i = 0; i < p2City.length; ++i)
-        {
-            p2City[i] = null;
-        }
-
-
-        // CitadelsPlayer 3's city
-        for(int i = 0; i < p3City.length; ++i)
-        {
-            p3City[i] = null;
-        }
 
 
         // Making Watchtower district cards and adding them to deck
@@ -454,33 +443,56 @@ public class CitadelsGameState extends GameState
     }
 
     //Get P1 City
-    public CitadelsDistrictCard[] getP1City()
+    public ArrayList<CitadelsDistrictCard> getP1City()
     {
-        return p1City;
+        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
+        for (int i = 0; i < p1City.size(); ++i)
+        {
+            returnList.add(p1City.get(i));
+
+        }
+        return returnList;
     }
 
     //Get P2 City
-    public CitadelsDistrictCard[] getP2City()
+    public ArrayList<CitadelsDistrictCard> getP2City()
     {
-        return p2City;
+        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
+        for (int i = 0; i < p2City.size(); ++i)
+        {
+            returnList.add(p2City.get(i));
+
+        }
+        return returnList;
     }
 
     //Get P3 City
-    public CitadelsDistrictCard[] getP3City()
+    public ArrayList<CitadelsDistrictCard> getP3City()
     {
-        return p3City;
+        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
+        for (int i = 0; i < p3City.size(); ++i)
+        {
+            returnList.add(p3City.get(i));
+
+        }
+        return returnList;
     }
 
     //Get District Deck
-    public CitadelsDistrictCard[] getDeckOrderDistricts()
+    public ArrayList<CitadelsDistrictCard> getDeckOrderDistricts()
     {
-        return deckOrderDistricts;
-    }
+        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
+        for (int i = 0; i < deckOrderDistricts.size(); ++i)
+        {
+            returnList.add(deckOrderDistricts.get(i));
 
+        }
+        return returnList;
+    }
     //Get turn
     public int getTurn()
     {
-        return Turn;
+        return turn;
     }
 
     //Returns if the player is king or not
