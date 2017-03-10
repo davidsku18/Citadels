@@ -6,6 +6,7 @@ package edu.up.citadels.citadels;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import edu.up.citadels.game.infoMsg.GameState;
@@ -37,13 +38,13 @@ public class CitadelsGameState extends GameState
 
 
     //which districts have been built by each player, maximum of 8
-    private CitadelsDistrictCard[] p1City = new CitadelsDistrictCard[8];
-    private CitadelsDistrictCard[] p2City = new CitadelsDistrictCard[8];
-    private CitadelsDistrictCard[] p3City = new CitadelsDistrictCard[8];
+    private ArrayList<CitadelsDistrictCard> p1City = new ArrayList<CitadelsDistrictCard>();
+    private ArrayList<CitadelsDistrictCard> p2City = new ArrayList<CitadelsDistrictCard>();
+    private ArrayList<CitadelsDistrictCard> p3City = new ArrayList<CitadelsDistrictCard>();
 
 
     //there are 52 district cards in the deck
-    private CitadelsDistrictCard[] deckOrderDistricts = new CitadelsDistrictCard[52];
+    private ArrayList<CitadelsDistrictCard> deckOrderDistricts = new ArrayList<CitadelsDistrictCard>();
 
     //tells us which player is the king
     private boolean isKing;
@@ -69,7 +70,8 @@ public class CitadelsGameState extends GameState
     private boolean destroyDistrict;
 
     //whose turn is it
-    private int Turn;
+
+    private int turn;
 
     //shows which cards were not drawn, are face up on table
     private CharacterCard cardUp1;
@@ -78,6 +80,74 @@ public class CitadelsGameState extends GameState
     //list of character cards, there are 8 total
     private CharacterCard[] characterDeck = new CharacterCard[8];
 
+
+    public void P1DrawCard()
+    {
+        p1Hand.add(deckOrderDistricts.get(0));
+        deckOrderDistricts.remove(0);
+    }
+
+    public void P2DrawCard()
+    {
+        p2Hand.add(deckOrderDistricts.get(0));
+        deckOrderDistricts.remove(0);
+    }
+
+    public void p3DrawCard()
+    {
+        p3Hand.add(deckOrderDistricts.get(0));
+        deckOrderDistricts.remove(0);
+    }
+
+    public void p1BuildCard(int card)
+    {
+        p1Hand.remove(card);
+        p1City.add(p1Hand.get(card));
+    }
+    public void p2BuildCard(int card)
+    {
+        p2Hand.remove(card);
+        p2City.add(p2Hand.get(card));
+    }
+
+    public void p3BuildCard(int card)
+    {
+        p3Hand.remove(card);
+        p3City.add(p3Hand.get(card));
+    }
+
+
+    public void setP1Score(int newScore)
+    {
+        p1Score = newScore;
+    }
+
+    public void setP2Score(int newScore)
+    {
+        p2Score = newScore;
+    }
+
+    public void setP3Score(int newScore)
+    {
+        p3Score = newScore;
+    }
+
+
+
+    public void setP1Gold(int newGold)
+    {
+        p1Gold = newGold;
+    }
+
+    public void setP2Gold(int newGold)
+    {
+        p2Gold = newGold;
+    }
+
+    public void setP3Gold(int newGold)
+    {
+        p3Gold = newGold;
+    }
 
     public CitadelsGameState()
     {
@@ -111,153 +181,114 @@ public class CitadelsGameState extends GameState
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Watchtower", 0, 1);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Watchtower", 0, 1));
         }
 
         // Making Prison district cards and adding them to deck
         for (int i = 3; i < 6; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Prison", 0, 2);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Prison", 0, 2));
         }
 
         // Making Battlefield district cards and adding them to deck
         for (int i = 6; i < 9; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Battlefield", 0, 3);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Battlefield", 0, 3));
         }
 
         // Making Fortress district cards and adding them to deck
         for (int i = 9; i < 11; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Fortress", 0, 5);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Fortress", 0, 5));
         }
 
         // Making Tavern district cards and adding them to deck
         for (int i = 11; i < 16; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Tavern", 1, 1);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Tavern", 1, 1));
         }
 
         // Making Market district cards and adding them to deck
         for (int i = 16; i < 20; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Market", 1, 2);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Market", 1, 2));
         }
 
         // Making Trading Post district cards and adding them to deck
         for (int i = 20; i < 23; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Trading Post", 1, 2);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Trading Post", 1, 2));
         }
 
         // Making Docks district cards and adding them to deck
         for (int i = 23; i < 26; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Docks", 1, 3);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Docks", 1, 3));
         }
 
         // Making Harbour district cards and adding them to deck
         for (int i = 26; i < 29; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Harbour", 1, 4);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Harbour", 1, 4));
         }
 
         // Making City Hall district cards and adding them to deck
         for (int i = 29; i < 31; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("City Hall", 1, 5);
+            deckOrderDistricts.add(new CitadelsDistrictCard("City Hall", 1, 5));
         }
 
         // Making Temple district cards and adding them to deck
         for (int i = 31; i < 34; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Temple", 2, 1);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Temple", 2, 1));
         }
 
         // Making Church district cards and adding them to deck
         for (int i = 34; i < 37; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Church", 2, 2);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Church", 2, 2));
         }
 
         // Making Monastery district cards and adding them to deck
         for (int i = 37; i < 40; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Monastery", 2, 3);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Monastery", 2, 3));
         }
 
         // Making Manor district cards and adding them to deck
         for ( int i = 40; i < 45; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Manor", 3, 3);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Manor", 3, 3));
         }
 
         // Making Castle district cards and adding them to deck
         for (int i = 45; i < 49; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Castle", 3, 4);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Castle", 3, 4));
         }
 
         // Making Palace district cards and adding them to deck
         for (int i = 49; i < 52; ++i)
         {
-            deckOrderDistricts[i] = new CitadelsDistrictCard("Palace", 3, 5);
+            deckOrderDistricts.add(new CitadelsDistrictCard("Palace", 3, 5));
         }
 
-        shuffleDeck(deckOrderDistricts);
-
-
-
-        //initializes the district cards for each player. Everyone starts with 4 cards
-        for(int i = 0; i<4; ++i)
-        {
-            for (int x = 0; x < deckOrderDistricts.length; ++x)
-            {
-                if (deckOrderDistricts[x] != null)
-                {
-                    p1Hand.add(deckOrderDistricts[x]);
-                    deckOrderDistricts[x] = null;
-                }
-                else if (deckOrderDistricts[x] == null)
-                {
-                    //skip it
-                }
-            }
-        }
+        Collections.shuffle(deckOrderDistricts);
 
         //player 1's starting district cards
         for (int i = 0; i<4; ++i)
         {
-            for(int x = 0; x < deckOrderDistricts.length; ++x)
-            {
-                if(deckOrderDistricts[x] != null)
-                {
-                    p1Hand.add(deckOrderDistricts[x]);
-                    deckOrderDistricts[x] = null;
-                }
-                else if(deckOrderDistricts[x] == null)
-                {
-                    //skip it
-                }
-            }
+            p1Hand.add(deckOrderDistricts.get(0));
+            deckOrderDistricts.remove(0);
         }
 
 
         //player 2's starting district cards
         for (int i = 0; i<4; ++i)
         {
-            for(int x = 0; x < deckOrderDistricts.length; ++x)
-            {
-                if(deckOrderDistricts[x] != null)
-                {
-                    p2Hand.add(deckOrderDistricts[x]);
-                    deckOrderDistricts[x] = null;
-                }
-                else if(deckOrderDistricts[x] == null)
-                {
-                    //skip it
-                }
-            }
+            p2Hand.add(deckOrderDistricts.get(0));
+            deckOrderDistricts.remove(0);
         }
 
 
@@ -265,19 +296,8 @@ public class CitadelsGameState extends GameState
         //player 3's starting district cards
         for (int i = 0; i<4; ++i)
         {
-            for(int x = 0; x < deckOrderDistricts.length; ++x)
-            {
-                if(deckOrderDistricts[x] != null)
-                {
-                    p3Hand.add(deckOrderDistricts[x]);
-                    deckOrderDistricts[x] = null;
-
-                }
-                else if(deckOrderDistricts[x] == null)
-                {
-                    //skip it
-                }
-            }
+            p3Hand.add(deckOrderDistricts.get(0));
+            deckOrderDistricts.remove(0);
         }
 
 
@@ -345,15 +365,31 @@ public class CitadelsGameState extends GameState
             this.p3Hand.add(new CitadelsDistrictCard(orig.p3Hand.get(i)));
         }
 
+        for (int i = 0; i<p1City.size(); ++i)
+        {
+            this.p1City.add(new CitadelsDistrictCard(orig.p1City.get(i)));
+        }
+
+        for (int i = 0; i<p2City.size(); ++i)
+        {
+            this.p2City.add(new CitadelsDistrictCard(orig.p2City.get(i)));
+        }
+
+
+        for (int i = 0; i<p3City.size(); ++i)
+        {
+            this.p3City.add(new CitadelsDistrictCard(orig.p3City.get(i)));
+        }
+
 
         for (int i = 0; i<9; ++ i)
         {
             this.characterDeck[i] = new CharacterCard(orig.characterDeck[i]);
         }
 
-        for (int i = 0; i<52; ++i)
+        for (int i = 0; i<deckOrderDistricts.size(); ++i)
         {
-            this.deckOrderDistricts[i] = new CitadelsDistrictCard(orig.deckOrderDistricts[i]);
+            this.deckOrderDistricts.add(new CitadelsDistrictCard(orig.deckOrderDistricts.get(i)));
         }
     }
 
