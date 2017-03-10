@@ -5,7 +5,6 @@ package edu.up.citadels.game.infoMsg;
  */
 
 
-import edu.up.citadels.game.config.GameInfo;
 import edu.up.citadels.game.Game;
 
 /**

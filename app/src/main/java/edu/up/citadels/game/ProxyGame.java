@@ -10,7 +10,7 @@ import java.util.Queue;
 import android.util.Log;
 
 import edu.up.citadels.game.actionMsg.GameAction;
-import edu.up.citadels.game.config.GameInfo;
+import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.util.IPCoder;
 import edu.up.citadels.game.util.NetworkObjectPasser;
 

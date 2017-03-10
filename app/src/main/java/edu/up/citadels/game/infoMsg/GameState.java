@@ -4,8 +4,6 @@ package edu.up.citadels.game.infoMsg;
  * Created by bryce on 3/3/2017.
  */
 
-import edu.up.citadels.game.config.GameInfo;
-
 /**
  * The state of the edu.up.citadels.game. This class should be subclassed so that it holds
  * all state information for the particular edu.up.citadels.game being implemented. For

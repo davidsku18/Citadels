@@ -1,4 +1,4 @@
-package edu.up.citadels.game.config;
+package edu.up.citadels.game.infoMsg;
 
 /**
  * Created by bryce on 3/3/2017.

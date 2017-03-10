@@ -5,7 +5,7 @@ package edu.up.citadels.game;
  */
 import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.infoMsg.BindGameInfo;
-import edu.up.citadels.game.config.GameInfo;
+import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.util.NetworkObjectPasser;
 
 import android.util.Log;
