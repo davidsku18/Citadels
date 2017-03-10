@@ -112,7 +112,7 @@ public class GameConfig {
      * <P>
      * This is the version of the constructor that is expected to be called
      * when the edu.up.citadels.game activity starts. It therefore automatically adds a "Network
-     * Player" player-type option, which always becomes the last element in the
+     * CitadelsPlayer" player-type option, which always becomes the last element in the
      * available-player list.
      * <P>
      * This constructor leave the list of local players empty, and sets the
@@ -136,7 +136,7 @@ public class GameConfig {
                       int maxPlayers, String gameName, int portNum) {
 
         // create an array to hold the available player types, including
-        // the "Network Player" that will be added
+        // the "Network CitadelsPlayer" that will be added
         int arrayLength = availTypes.size()+1;
         GamePlayerType[] availArray = new GamePlayerType[arrayLength];
 
@@ -144,7 +144,7 @@ public class GameConfig {
         availTypes.toArray(availArray);
 
         // add the network player
-        availArray[arrayLength-1] = new GamePlayerType("Network Player") {
+        availArray[arrayLength-1] = new GamePlayerType("Network CitadelsPlayer") {
             public GamePlayer createPlayer(String name) {
                 int portNum = getPortNum();
                 return new ProxyPlayer(portNum);

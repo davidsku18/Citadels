@@ -17,7 +17,7 @@ import edu.up.citadels.game.util.NetworkObjectPasser;
 /**
  * A Game object that is used as a proxy for the real edu.up.citadels.game that is on another
  * machine on the network.  Each ProxyGame is associated with exactly one
- * Player object.  Whenever a message is sent to the ProxyGame object,
+ * CitadelsPlayer object.  Whenever a message is sent to the ProxyGame object,
  * it serializes the message and sends it across the network; when
  * the ProxyGame object receives a message from the network, it
  * unserializes the message and sends it to its player.

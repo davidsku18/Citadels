@@ -7,17 +7,17 @@ import java.util.ArrayList;
  */
 
 
-public class Player
+public class CitadelsPlayer
 {
     private String playerName;
     private int playerScore;
     private int gold;
     private boolean isKing;
-    private ArrayList<DistrictCard> playerHand = new ArrayList<DistrictCard>();
-    private ArrayList<DistrictCard> playerCity = new ArrayList<DistrictCard>();
+    private ArrayList<CitadelsDistrictCard> playerHand = new ArrayList<CitadelsDistrictCard>();
+    private ArrayList<CitadelsDistrictCard> playerCity = new ArrayList<CitadelsDistrictCard>();
 
-    // Creates the Player
-    public Player(String initplayerName, int initplayerScore, int initgold, boolean initisKing)
+    // Creates the CitadelsPlayer
+    public CitadelsPlayer(String initplayerName, int initplayerScore, int initgold, boolean initisKing)
     {
         this.playerName = initplayerName;
         this.playerScore = initplayerScore;
@@ -26,7 +26,7 @@ public class Player
     }
 
     // Copies the player
-    public Player (Player orig)
+    public CitadelsPlayer(CitadelsPlayer orig)
     {
         this.playerName = orig.playerName;
         this.playerScore = orig.playerScore;
@@ -35,27 +35,27 @@ public class Player
     }
 
     // Adds district from hand to city
-    public void buildDistrict(DistrictCard card)
+    public void buildDistrict(CitadelsDistrictCard card)
     {
             this.playerCity.add(card);
             this.playerHand.remove(card);
     }
 
     // Removes card from city
-    public void destroyDistrict(DistrictCard card)
+    public void destroyDistrict(CitadelsDistrictCard card)
     {
             this.playerCity.remove(card);
     }
 
 
     // Add card to hand
-    public void addDistrict(DistrictCard card)
+    public void addDistrict(CitadelsDistrictCard card)
     {
             this.playerHand.add(card);
     }
 
     // Removes card from hand
-    public void removeDistrict(DistrictCard card)
+    public void removeDistrict(CitadelsDistrictCard card)
     {
             this.playerHand.remove(card);
     }

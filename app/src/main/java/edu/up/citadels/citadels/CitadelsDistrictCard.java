@@ -2,39 +2,19 @@ package edu.up.citadels.citadels;
 
 /**
  * Created by kurtisdavidson on 2/12/17.
+ * Modified by Gavin Low
+ * Created copy constructor
+ * Created Getter Methods
  */
 
-public class DistrictCardCost{
+public class CitadelsDistrictCard {
 
-    // 5 Tavern	1 green
-    // 4 Market	2 green
-    // 3 Trading Post	2 green
-    // 3 Docks	3 green
-    // 3 Harbor	4 green
-    // 2 Town Hall	5 green
-    // 3 Temple	1 blue
-    // 3 Church	2 blue
-    // 3 Monastery	3 blue
-    // 2 Cathedral	5 blue
-    // 3 Watchtower	1 red
-    // 3 Prison	2 red
-    // 3 Battlefield	3 red
-    // 2 Fortress	5 red
-    // 5 Manor	3 yellow
-    // 4 Castle	4 yellow
-    // 3 Palace	5 yellow
-    // 1 Haunted City2 purple
-    // 2 Keep	3 purple
-    // 1 Laboratory	5 purple
-    // 1 Smithy	5 purple
-    // 1 Graveyard	5 purple
-    // 1 Observatory	5 purple
-    // 1 School of Magic	6 purple
-    // 1 Library	6 purple
-    // 1 Great Wall	6 purple
-    // 1 University	8 purple
-    // 1 Dragon Gate	8 purple
-    protected final int tavern = 1;
+    private int red = 0;    // Codes for the 4 colors
+    private int green = 1;
+    private int blue = 2;
+    private int yellow = 3;
+
+    protected final int tavern = 1;     // Codes for the cost of each card
     protected final int market = 2;
     protected final int tradingPost = 2;
     protected final int docks = 3;
@@ -62,4 +42,44 @@ public class DistrictCardCost{
     protected final int greatWall = 6;
     protected final int university = 8;
     protected final int dragonGate = 8;
+
+    private final String name;
+    private final int color;
+    private final int cost;
+
+    //original constructor
+    public CitadelsDistrictCard(String theCard, int theColor, int theCost)
+    {
+        name = theCard;
+        color = theColor;
+        cost = theCost;
+    }
+
+    //copy constructor
+    public CitadelsDistrictCard(CitadelsDistrictCard orig)
+    {
+        this(orig.name, orig.color, orig.cost);
+    }
+
+
+    //Getter Methods
+
+    //Get CitadelsCard Name
+    public String getName()
+    {
+        return name;
+    }
+
+    //Get CitadelsCard Color
+    public int getColor()
+    {
+        return color;
+    }
+
+    //Get CitadelsCard Cost
+    public int getCost()
+    {
+        return cost;
+    }
+
 }
