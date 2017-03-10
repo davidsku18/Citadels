@@ -4,6 +4,7 @@ package edu.up.citadels.citadels;
  * Created by Victor on 2/20/2017.
  */
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -63,7 +64,7 @@ public class CitadelsGameState extends GameState
     private boolean characterIsAlive;
 
     //is a player has been robbed
-    private boolean playerIsStolen;
+    private boolean characterIsStolen;
 
     //if a player has had their district cards swapped
     private boolean swapDistricts;
@@ -72,6 +73,7 @@ public class CitadelsGameState extends GameState
     private boolean destroyDistrict;
 
     //whose turn is it
+
     private int turn;
 
     //shows which cards were not drawn, are face up on table
@@ -155,6 +157,28 @@ public class CitadelsGameState extends GameState
 
         double king = Math.random();
 
+
+        //sets all of the built districts for each player to null because no one will start
+        //with a district built
+
+        // CitadelsPlayer 1's city
+        for(int i = 0; i < p1City.length; ++i)
+        {
+            p1City[i] = null;
+        }
+
+        // CitadelsPlayer 2's city
+        for(int i = 0; i < p2City.length; ++i)
+        {
+            p2City[i] = null;
+        }
+
+
+        // CitadelsPlayer 3's city
+        for(int i = 0; i < p3City.length; ++i)
+        {
+            p3City[i] = null;
+        }
 
 
         // Making Watchtower district cards and adding them to deck
@@ -374,4 +398,167 @@ public class CitadelsGameState extends GameState
             this.deckOrderDistricts.add(new CitadelsDistrictCard(orig.deckOrderDistricts.get(i)));
         }
     }
+
+    //Get P1 Score
+    public int getP1Score()
+    {
+        return p1Score;
+    }
+
+    //Get P2 Score
+    public int getP2Score()
+    {
+        return p2Score;
+    }
+
+    //Get P3 Score
+    public int getP3Score()
+    {
+        return p3Score;
+    }
+
+    //Get P1 Gold
+    public int getP1Gold()
+    {
+        return p1Gold;
+    }
+
+    //Get P2 Gold
+    public int getP2Gold()
+    {
+        return p2Gold;
+    }
+
+    //Get P3 Gold
+    public int getP3Gold()
+    {
+        return p3Gold;
+    }
+
+    //Get P1 Hand
+    public ArrayList getP1Hand()
+    {
+        return p1Hand;
+    }
+
+    //Get P2 Hand
+    public ArrayList getP2Hand()
+    {
+        return p2Hand;
+    }
+
+    //Get P3 Hand
+    public ArrayList getP3Hand()
+    {
+        return p3Hand;
+    }
+
+    //Get P1 City
+    public CitadelsDistrictCard[] getP1City()
+    {
+        return p1City;
+    }
+
+    //Get P2 City
+    public CitadelsDistrictCard[] getP2City()
+    {
+        return p2City;
+    }
+
+    //Get P3 City
+    public CitadelsDistrictCard[] getP3City()
+    {
+        return p3City;
+    }
+
+    //Get District Deck
+    public CitadelsDistrictCard[] getDeckOrderDistricts()
+    {
+        return deckOrderDistricts;
+    }
+
+    //Get turn
+    public int getTurn()
+    {
+        return Turn;
+    }
+
+    //Returns if the player is king or not
+    public boolean getIsKing()
+    {
+        return isKing;
+    }
+
+    //Get P1Character 1
+    public int getP1Character1()
+    {
+        return p1Character1;
+    }
+
+    //Get P1Character 2
+    public int getP1Character2()
+    {
+        return p1Character2;
+    }
+
+    //Get P2Character 1
+    public int getP2Character1()
+    {
+        return p2Character1;
+    }
+
+    //Get P2Character 2
+    public int getP2Character2()
+    {
+        return p2Character2;
+    }
+
+    //Get P3Character 1
+    public int getP3Character1()
+    {
+        return p3Character1;
+    }
+
+    //Get P3Character 2
+    public int getP3Character2()
+    {
+        return p3Character2;
+    }
+
+    //Returns if Character is alive
+    public boolean getCharacterIsAlive()
+    {
+        return characterIsAlive;
+    }
+
+    //Returns if Character has been stolen from
+    public boolean getCharacterIsStolen()
+    {
+        return characterIsStolen;
+    }
+
+    //Returns if districts are swapped
+    public boolean getSwapDistricts()
+    {
+        return swapDistricts;
+    }
+
+    //Get face up card 1
+    public CharacterCard getCardUp1()
+    {
+        return cardUp1;
+    }
+
+    //Get face up card 2
+    public CharacterCard getCardUp2()
+    {
+        return cardUp2;
+    }
+
+    //Get character card deck
+    public CharacterCard[] getCharacterDeck()
+    {
+        return characterDeck;
+    }
+
 }
