@@ -19,8 +19,87 @@ public class UseSpecialAbility extends GameAction
         super(player);
     }
 
-    public boolean isUseSpecialAbility()
+    /**
+     * return whether this ability is the assassin's special ability
+     *
+     * @return boolean
+     */
+    public boolean isAssassinSpecialAbility()
     {
-        return false;
+        return true;
     }
+
+    /**
+     * return whether this ability is the thief's special ability
+     *
+     * @return boolean
+     */
+    public boolean isThiefSpecialAability()
+    {
+        return true;
+    }
+
+    /**
+     * return whether this ability is the magician's special ability
+     *
+     * @return boolean
+     */
+    public  boolean isMagicianSpecialAbiity()
+    {
+        return true;
+    }
+
+    /**
+     * return whether this ability is the king's special ability
+     *
+     * @return boolean
+     */
+    public boolean isKingSpecialAbility()
+    {
+        return true;
+    }
+
+    /**
+     * return whether this ability is the bishop's special ability
+     *
+     * @return boolean
+     */
+    public boolean isBishopSpecialAbility()
+    {
+        return true;
+    }
+
+    /**
+     * return whether this ability is the merchant's special ability
+     *
+     * @return boolean
+     */
+    public boolean isMerchantSpecialAbility()
+    {
+        return true;
+    }
+
+    /**
+     * return whether this ability is the architect's special ability
+     *
+     * @return boolean
+     */
+    public boolean isArchitectSpecialAbility()
+    {
+        return true;
+    }
+
+    /**
+     * return whether this ability is the warlord's special ability
+     *
+     * @return boolean
+     */
+    public boolean isWarlordSpecialAbility()
+    {
+        return true;
+    }
+
+
+
+
 }

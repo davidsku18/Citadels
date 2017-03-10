@@ -21,9 +21,6 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsGameState extends GameState
 {
-
-
-
     private int p1Score;
     private int p2Score;
     private int p3Score;
@@ -318,9 +315,6 @@ public class CitadelsGameState extends GameState
                 characterDeck[i] = new CharacterCard(i, 0); // Warlord
             }
         }
-
-
-
     }
 
     public static void shuffleDeck(CitadelsDistrictCard[] deck)
