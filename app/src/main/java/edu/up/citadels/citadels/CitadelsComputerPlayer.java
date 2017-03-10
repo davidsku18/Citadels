@@ -1,7 +1,7 @@
 package edu.up.citadels.citadels;
 
 import edu.up.citadels.game.GameComputerPlayer;
-import edu.up.citadels.game.config.GameInfo;
+import edu.up.citadels.game.infoMsg.GameInfo;
 
 /**
  * Created by bryce on 3/3/2017.

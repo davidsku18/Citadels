@@ -5,8 +5,6 @@ package edu.up.citadels.game.infoMsg;
  */
 
 
-import edu.up.citadels.game.config.GameInfo;
-
 /**
  * The a message from the edu.up.citadels.game to a player that the move just attempted
  * was made at a time when they were not allowed to move.

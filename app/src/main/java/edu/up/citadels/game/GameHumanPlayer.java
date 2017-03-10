@@ -4,7 +4,7 @@ package edu.up.citadels.game;
  * Created by bryce on 3/3/2017.
  */
 
-import edu.up.citadels.game.config.GameInfo;
+import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.actionMsg.GameOverAckAction;
 import edu.up.citadels.game.actionMsg.MyNameIsAction;
 import edu.up.citadels.game.actionMsg.ReadyAction;
