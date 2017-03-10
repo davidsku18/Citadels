@@ -3,7 +3,6 @@ package edu.up.citadels.citadels;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -18,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.up.citadels.game.GameHumanPlayer;
-import edu.up.citadels.game.config.GameInfo;
-import edu.up.citadels.citadels.CitadelsGameState;
+import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 

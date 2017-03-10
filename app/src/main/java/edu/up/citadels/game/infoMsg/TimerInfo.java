@@ -6,7 +6,6 @@ package edu.up.citadels.game.infoMsg;
 
 
 import edu.up.citadels.game.util.GameTimer;
-import edu.up.citadels.game.config.GameInfo;
 
 /**
  * The a message from to a player (typically sent by a timer) that the timer's

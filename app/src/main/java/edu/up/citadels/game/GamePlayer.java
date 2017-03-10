@@ -4,8 +4,7 @@ package edu.up.citadels.game;
  * Created by bryce on 3/3/2017.
  */
 
-        import edu.up.citadels.game.GameMainActivity;
-        import edu.up.citadels.game.config.GameInfo;
+        import edu.up.citadels.game.infoMsg.GameInfo;
 
 /**
  * A player who plays a (generic) edu.up.citadels.game. Each class that implements a player for

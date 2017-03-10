@@ -5,8 +5,6 @@ package edu.up.citadels.game.infoMsg;
  */
 
 
-import edu.up.citadels.game.config.GameInfo;
-
 /**
  * A message from the edu.up.citadels.game to a player that tells the player that
  * the edu.up.citadels.game is over.
