@@ -66,21 +66,37 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
 
     List<String> player1DistrictsCards = new ArrayList<String>();
 
+    /**
+     * constructor
+     *
+     * @param initName
+     * 		the player's name
+     *
+     */
     public CitadelsHumanPlayer(String initName)
     {
-           super(initName);
+        super(initName);
     }
 
+    /**
+     * callback method: we have received a message from the game
+     *
+     * @param info
+     * 		the message we have received from the game
+     */
     @Override
-    public View getTopView() {
-        return null;
-    }
-
-    @Override
-    public void receiveInfo(GameInfo info) {
+    public void receiveInfo(GameInfo info)
+    {
 
     }
 
+    /**
+     * call-back method: called whenever the GUI has changed (e.g., at the beginning
+     * of the game, or when the screen orientation changes).
+     *
+     * @param activity
+     * 		the current activity
+     */
     @Override
     public void setAsGui(GameMainActivity activity) {
 
@@ -88,31 +104,31 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         myActivity = activity;
 
         activity.setContentView(R.layout.activity_main);
-        player1_Card1 = (ImageButton) findViewById(R.id.player1_Card1);
-        player1_Card2 = (ImageButton) findViewById(R.id.player1_Card2);
+        player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);
+        player1_Card2 = (ImageButton) myActivity.findViewById(R.id.player1_Card2);
 
-        p1_D1 = (ImageButton) findViewById(R.id.p1_D1);
-        p1_D2 = (ImageButton) findViewById(R.id.p1_D2);
-        p1_D3 = (ImageButton) findViewById(R.id.p1_D3);
-        p1_D4 = (ImageButton) findViewById(R.id.p1_D4);
+        p1_D1 = (ImageButton) myActivity.findViewById(R.id.p1_D1);
+        p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
+        p1_D3 = (ImageButton) myActivity.findViewById(R.id.p1_D3);
+        p1_D4 = (ImageButton) myActivity.findViewById(R.id.p1_D4);
 
-        cardInfo = (TextView)findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
+        cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-        player1GoldCount = (TextView)findViewById(R.id.Gold_Count);
+        player1GoldCount = (TextView) myActivity.findViewById(R.id.Gold_Count);
 
-       /*
+       /**
         * @Author Victor Nguyen
         *
         * Creates the floating menu
         * Must long press to open the menu
         */
-        menu_Button = (Button) findViewById(R.id.Menu);
+        menu_Button = (Button) myActivity.findViewById(R.id.Menu);
         menu_Button.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                registerForContextMenu(menu_Button);
+                myActivity.registerForContextMenu(menu_Button);
 
             }
 
@@ -120,11 +136,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         });
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-        player1HandSpinner = (Spinner)findViewById(R.id.player1HandSpinner);
-        actionSpinner = (Spinner)findViewById(R.id.actionSpinner);
+        player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
+        actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
         // get values for the spinner
-        String[] p1ActionSpinnerNames = getResources().getStringArray(R.array.p1Action);
+        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(R.array.p1Action);
 
         // set initial value for the p1 gold to 2
         p1Gold = 2;
@@ -141,7 +157,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
 
-        /*
+        /**
          * @Author: Kurtis Davidson
          *
          * Listens to when user clicks on player 1's district card 1 and changes the background color
@@ -155,7 +171,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             {
                 if(p1_Card1Bool)
                 {
-                    player1_Card1.setBackgroundColor(getResources().getColor(R.color.blackButtonPressColor));
+                    player1_Card1.setBackgroundColor(myActivity.getResources().getColor(R.color.blackButtonPressColor));
                 }
                 else
                 {
@@ -164,7 +180,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
                 p1_Card1Bool=!p1_Card1Bool;
             }
         });
-        /*
+        /**
          * @Author: Kurtis Davidson
          *
          * Listens to when user clicks on player 1's district card 2 and changes the background color
@@ -178,7 +194,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             {
                 if(p1_Card2Bool)
                 {
-                    player1_Card2.setBackgroundColor(getResources().getColor(R.color.blackButtonPressColor));
+                    player1_Card2.setBackgroundColor(myActivity.getResources().getColor(R.color.blackButtonPressColor));
                 }
                 else
                 {
@@ -273,17 +289,18 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
 
     }
 
+    /**
+     * returns the GUI's top view
+     *
+     * @return
+     * 		the GUI's top view
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
-
-
-
-
+    public View getTopView() {
+        return myActivity.findViewById(R.id.top_gui_layout);
     }
-    /*
+
+    /**
     * @Author: Bryce Amato
     *
     * This listener will keep track of what is selected in the player 1 action listener
@@ -323,19 +340,22 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         }
     }
 
-    /*
+    /**
      * @Author Victor Nguyen
      *
      * Implementing the method to create the floating menu
      *
      * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
      */
-    @Override
+
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
+        myActivity.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = myActivity.getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
     }
+
+
+
 
 }
