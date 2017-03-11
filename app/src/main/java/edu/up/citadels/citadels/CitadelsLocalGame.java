@@ -2,6 +2,8 @@ package edu.up.citadels.citadels;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import edu.up.citadels.citadels.actions.BuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -56,22 +58,22 @@ public class CitadelsLocalGame extends LocalGame
     @Override
     protected String checkIfGameOver()
     {
-        int p1Districts = state.getP1City().length;
-        int p2Districts = state.getP2City().length;
-        int p3Districts = state.getP3City().length;
+        int p1Districts = state.getP1City().size();
+        int p2Districts = state.getP2City().size();
+        int p3Districts = state.getP3City().size();
 
         /*
         Keep in mind that this is just signaling the end of the game and does not declare a
         winner yet, this is just for the most basic functionality
          */
 
-        if(state.getP1City().length >= 8)
+        if(p1Districts >= 8)
         {
             return "Player 1 has built 8 districts. Game over.";
-        }else if(state.getP2City().length >= 8)
+        }else if(p2Districts >= 8)
         {
             return "Player 2 has built 8 districts. Game over.";
-        }else if(state.getP3City().length >= 8)
+        }else if(p3Districts >= 8)
         {
             return "Player 3 has built 8 districts. Game over.";
         }else
@@ -154,7 +156,7 @@ public class CitadelsLocalGame extends LocalGame
             //we will implement fuller functionality later
             if(player == 1)
             {
-                p1City.add(p1Hand.get(1));
+                state.getP1City().add(state.getP1Hand(1));
                 p1Hand.remove(1);
                 return true;
             }else if(player == 2)
@@ -186,7 +188,7 @@ public class CitadelsLocalGame extends LocalGame
             return true;
         }else if(action instanceof UseSpecialAbility)
         {
-            if(player == 8)
+            if(state.getTurn() == 8)
             {
 
             }else if(player == 2)
