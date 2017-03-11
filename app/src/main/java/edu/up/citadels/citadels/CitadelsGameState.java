@@ -119,6 +119,11 @@ public class CitadelsGameState extends GameState
 
 
 
+    public void setTurn(int x)
+    {
+        this.turn = x;
+    }
+
     public int p1FindCard(int card)
     {
         return this.p1Hand.indexOf(card);
