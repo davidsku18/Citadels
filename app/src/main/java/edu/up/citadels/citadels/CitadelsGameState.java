@@ -84,6 +84,33 @@ public class CitadelsGameState extends GameState
     {
         this.p1Character1 = x;
     }
+    public void setP1Character2(int x)
+    {
+        this.p1Character2 = x;
+    }
+    public void setP2Character1(int x)
+    {
+        this.p2Character1 = x;
+    }
+
+    public void setP2Character2(int x)
+    {
+        this.p2Character2 = x;
+    }
+
+    public void setP3Character1(int x)
+    {
+        this.p3Character1 = x;
+    }
+
+    public void setP3Character2(int x)
+    {
+        this.p3Character2 = x;
+    }
+
+
+
+
 
     public CitadelsDistrictCard drawCard()
     {
