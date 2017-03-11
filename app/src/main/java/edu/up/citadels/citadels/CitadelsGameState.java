@@ -428,16 +428,34 @@ public class CitadelsGameState extends GameState
         return p1Hand;
     }
 
+    //Get P1 Card at specific index
+    public CitadelsDistrictCard getP1Card(int x)
+    {
+        return p1Hand.get(x);
+    }
+
     //Get P2 Hand
     public ArrayList getP2Hand()
     {
         return p2Hand;
     }
 
+    //Get P2 Card at specific index
+    public CitadelsDistrictCard getP2Card(int x)
+    {
+        return p2Hand.get(x);
+    }
+
     //Get P3 Hand
     public ArrayList getP3Hand()
     {
         return p3Hand;
+    }
+
+    //Get P3 Card at specific index
+    public CitadelsDistrictCard getP3Card(int x)
+    {
+        return p3Hand.get(x);
     }
 
     //Get P1 City
