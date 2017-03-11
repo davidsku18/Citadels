@@ -666,4 +666,57 @@ public class CitadelsGameState extends GameState
     {
         this.p3Hand.remove(card);
     }
+
+    public void isCharacterDead(boolean kill)
+    {
+        this.isCharacterDead(kill);
+    }
+
+    public void setP1Hand(ArrayList<CitadelsDistrictCard> arrayCD)
+    {
+        this.p1Hand = arrayCD;
+    }
+
+    public void setP2Hand(ArrayList<CitadelsDistrictCard> arrayCD)
+    {
+        this.p2Hand = arrayCD;
+    }
+
+    public void setP3Hand(ArrayList<CitadelsDistrictCard> arrayCD)
+    {
+        this.p3Hand = arrayCD;
+    }
+
+    public void removeP1BuiltDistrict()
+    {
+        if(this.p1City.size() > 0)
+        {
+            p1City.remove(0);
+        }else
+        {
+            //do nothing
+        }
+    }
+
+    public void removeP2BuiltDistrict()
+    {
+        if(this.p2City.size() > 0)
+        {
+            p2City.remove(0);
+        }else
+        {
+            //do nothing
+        }
+    }
+
+    public void removeP3BuiltDistrict()
+    {
+        if(this.p3City.size() > 0)
+        {
+            p3City.remove(0);
+        }else
+        {
+            //do nothing
+        }
+    }
 }

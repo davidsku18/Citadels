@@ -4,10 +4,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import edu.up.citadels.citadels.actions.BuildDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
-import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -88,100 +87,100 @@ public class CitadelsLocalGame extends LocalGame
     {
         int turn = state.getTurn();
         int player;
-        if((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
+        if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
         {
             player = 1;         //character belongs to player 1
-        }else if((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
+        } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
         {
             player = 2;         //character belongs to player 2
-        }else if((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
+        } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
         {
             player = 3;         //character belongs to player 3
-        }else
+        } else
         {
             player = 4;        //this is if no one owns this character
         }
 
-        if(action instanceof TakeGold)
+        if (action instanceof TakeGold)
         {
             //this will add 2 gold to whoever the player is
-            if(player == 1)
+            if (player == 1)
             {
                 state.setP1Score(state.getP1Score() + 2);
                 return true;
-            }else if(player == 2)
+            } else if (player == 2)
             {
                 state.setP2Score(state.getP2Score() + 2);
                 return true;
-            }else if(player == 3)
+            } else if (player == 3)
             {
                 state.setP3Score(state.getP3Score() + 2);
                 return true;
-            }else if(player == 4)
+            } else
             {
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        }else if(action instanceof EndTurn)
+        } else if (action instanceof EndTurn)
         {
-            if(state.getTurn() != 8)
-            {
+            if (state.getTurn() != 8) {
                 state.setTurn(state.getTurn() + 1);
-            }else if(state.getTurn() == 8)
+                return true;
+            } else if (state.getTurn() == 8)
             {
                 state.setTurn(1);
+                return true;
             }
-            return true;
-        }else if(action instanceof ChooseDistrictCard)
+        } else if (action instanceof ChooseDistrictCard)
         {
-            if(player == 1)
+            if (player == 1)
             {
                 state.addToP1Hand(state.drawCard());
                 state.removeCard();
                 return true;
-            }else if(player == 2)
+            } else if (player == 2)
             {
                 state.addToP2Hand(state.drawCard());
                 state.removeCard();
                 return true;
-            }else if(player == 3)
+            } else if (player == 3)
             {
                 state.addToP3Hand(state.drawCard());
                 state.removeCard();
                 return true;
-            }else if(player == 4)
+            } else
             {
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        }else if(action instanceof CitadelsBuildDistrictCard)
-        {
+        } else if (action instanceof CitadelsBuildDistrictCard) {
             //this will build the first district card in the hand
             //we will implement fuller functionality later
-            if(player == 1)
+            if (player == 1)
             {
                 state.addToP1City(state.getP1Card(1));
                 state.removeFromP1Hand(1);
                 return true;
-            }else if(player == 2)
+            } else if (player == 2)
             {
                 state.addToP2City(state.getP2Card(1));
                 state.removeFromP2Hand(1);
                 return true;
-            }else if(player == 3)
+            } else if (player == 3)
             {
                 state.addToP3City(state.getP3Card(1));
                 state.removeFromP3Hand(1);
                 return true;
-            }else if(player == 4)
+            } else
             {
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        }else if(action instanceof ChooseCharacterCard)
+        } else if (action instanceof ChooseCharacterCard)
         {
             //this is just setting them to arbitrary values, we will set more later
             //for basic functionality
+            //TODO
             state.setP1Character1(1);
             state.setP1Character2(2);
             state.setP2Character1(3);
@@ -190,14 +189,80 @@ public class CitadelsLocalGame extends LocalGame
             state.setP3Character2(6);
             state.setTurn(1);
             return true;
-        }else if(action instanceof UseSpecialAbility)
+        } else if (action instanceof UseSpecialAbility)
         {
-            if(state.getTurn() == 8)
+            if (state.getTurn() == 1)
             {
+                if(player == 1)
+                {
+                    state.isCharacterDead(true);
+                    return true;
+                }else
+                {
+                    state.isCharacterDead(true);
+                    return true;
+                    //TODO
+                }
+            } else if (state.getTurn() == 2)
+            {
+                if(player == 1)
+                {
+                    state.setP1Gold(state.getP1Gold() + state.getP2Gold());
+                    state.setP2Gold(0);
+                    return true;
+                }else if (player == 2)
+                {
+                    state.setP2Gold(state.getP1Gold() + state.getP2Gold());
+                    state.setP1Gold(0);
+                    return true;
+                }else
+                {
+                    state.setP3Gold(state.getP1Gold() + state.getP3Gold());
+                    state.setP1Gold(0);
+                    return true;
+                }//TODO implement fuller method
+            } else if (state.getTurn() == 3)
+            {
+                ArrayList<CitadelsDistrictCard> p1Hand = state.getP1Hand();
+                ArrayList<CitadelsDistrictCard> p2Hand = state.getP2Hand();
+                ArrayList<CitadelsDistrictCard> p3Hand = state.getP3Hand();
+                if(player == 1)
+                {
+                    state.setP1Hand(p2Hand);
+                    state.setP2Hand(p1Hand);
+                    return true;
+                }else if(player == 2)
+                {
+                    state.setP1Hand(p2Hand);
+                    state.setP2Hand(p1Hand);
+                    return true;
+                }else if(player == 3)
+                {
+                    state.setP1Hand(p3Hand);
+                    state.setP3Hand(p1Hand);
+                    return true;
+                }
+            } else if (state.getTurn() == 8)
+            {
+                if(player == 1)
+                {
+                    state.removeP2BuiltDistrict();
+                    return true;
+                }else
+                {
+                    state.removeP1BuiltDistrict();
+                    return true;
+                }
 
-            }else if(player == 2)
+            } else
             {
+                return true;
             }
+        }else
+        {
+            return false;
         }
+        return false;
     }
 }
+
