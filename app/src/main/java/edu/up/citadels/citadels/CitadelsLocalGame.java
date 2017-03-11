@@ -16,8 +16,8 @@ public class CitadelsLocalGame extends LocalGame
     CitadelsGameState state;
 
     public CitadelsLocalGame() {
-        Log.i("SJLocalGame", "creating edu.up.citadels.game");
-        // create the state for the beginning of the edu.up.citadels.game
+        Log.i("Citadels", "creating edu.up.citadels");
+        // create the state for the beginning of the edu.up.citadels
         state = new CitadelsGameState();
     }
 
