@@ -117,7 +117,10 @@ public class CitadelsGameState extends GameState
         return this.deckOrderDistricts.get(0);
     }
 
-
+    public void removeCard()
+    {
+        this.deckOrderDistricts.remove(0);
+    }
 
     public int p1FindCard(int card)
     {
@@ -135,7 +138,35 @@ public class CitadelsGameState extends GameState
 
     }
 
+    public void addToP1Hand(CitadelsDistrictCard dc)
+    {
+        this.p1Hand.add(dc);
+    }
 
+    public void addToP2Hand(CitadelsDistrictCard dc)
+    {
+        this.p2Hand.add(dc);
+    }
+
+    public void addToP3Hand(CitadelsDistrictCard dc)
+    {
+        this.p3Hand.add(dc);
+    }
+
+    public void addToP1City(CitadelsDistrictCard dc)
+    {
+        this.p1City.add(dc);
+    }
+
+    public void addToP2City(CitadelsDistrictCard dc)
+    {
+        this.p2City.add(dc);
+    }
+
+    public void addToP3City(CitadelsDistrictCard dc)
+    {
+        this.p3City.add(dc);
+    }
 
     /*public void p2BuildCard(int card)
     {
@@ -594,4 +625,18 @@ public class CitadelsGameState extends GameState
         return characterDeck;
     }
 
+    public void removeFromP1Hand(int card)
+    {
+        this.p1Hand.remove(card);
+    }
+
+    public void removeFromP2Hand(int card)
+    {
+        this.p2Hand.remove(card);
+    }
+
+    public void removeFromP3Hand(int card)
+    {
+        this.p3Hand.remove(card);
+    }
 }

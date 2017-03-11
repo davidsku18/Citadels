@@ -7,19 +7,19 @@ import edu.up.citadels.game.GamePlayer;
  * Created by gavinlow on 3/6/17.
  */
 
-public class DrawDistrictCard extends GameAction
+public class ChooseDistrictCard extends GameAction
 {
     /**
      * constructor for edu.up.citadels.game.GameAction
      *
      * @param player the player who created the action
      */
-    public DrawDistrictCard(GamePlayer player)
+    public ChooseDistrictCard(GamePlayer player)
     {
         super(player);
     }
 
-    public boolean isDrawn()
+    public boolean isChooseDistrictCard()
     {
         return true;
     }

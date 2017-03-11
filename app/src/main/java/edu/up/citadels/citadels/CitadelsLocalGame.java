@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.up.citadels.citadels.actions.BuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -106,15 +107,15 @@ public class CitadelsLocalGame extends LocalGame
             //this will add 2 gold to whoever the player is
             if(player == 1)
             {
-                state.setP1Score(state.getP1Score + 2);
+                state.setP1Score(state.getP1Score() + 2);
                 return true;
             }else if(player == 2)
             {
-                state.setP2Score(state.getP2Score + 2);
+                state.setP2Score(state.getP2Score() + 2);
                 return true;
             }else if(player == 3)
             {
-                state.setP3Score(state.getP3Score + 2);
+                state.setP3Score(state.getP3Score() + 2);
                 return true;
             }else if(player == 4)
             {
@@ -135,39 +136,42 @@ public class CitadelsLocalGame extends LocalGame
         {
             if(player == 1)
             {
-                p1Hand.add(state.drawCard);
+                state.addToP1Hand(state.drawCard());
+                state.removeCard();
                 return true;
             }else if(player == 2)
             {
-                p2Hand.add(state.drawCard);
+                state.addToP2Hand(state.drawCard());
+                state.removeCard();
                 return true;
             }else if(player == 3)
             {
-                p3Hand.add(state.drawCard);
+                state.addToP3Hand(state.drawCard());
+                state.removeCard();
                 return true;
             }else if(player == 4)
             {
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        }else if(action instanceof BuildDistrictCard)
+        }else if(action instanceof CitadelsBuildDistrictCard)
         {
             //this will build the first district card in the hand
             //we will implement fuller functionality later
             if(player == 1)
             {
-                state.getP1City().add(state.getP1Hand(1));
-                p1Hand.remove(1);
+                state.addToP1City(state.getP1Card(1));
+                state.removeFromP1Hand(1);
                 return true;
             }else if(player == 2)
             {
-                p2City.add(p22Hand.get(1));
-                p2Hand.remove(1);
+                state.addToP2City(state.getP2Card(1));
+                state.removeFromP2Hand(1);
                 return true;
             }else if(player == 3)
             {
-                p3City.add(p3Hand.get(1));
-                p3Hand.remove(1);
+                state.addToP3City(state.getP3Card(1));
+                state.removeFromP3Hand(1);
                 return true;
             }else if(player == 4)
             {
