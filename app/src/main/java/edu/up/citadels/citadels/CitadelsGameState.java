@@ -69,8 +69,10 @@ public class CitadelsGameState extends GameState
     private boolean destroyDistrict;
 
     //whose turn is it
-
     private int turn;
+
+    //District Build Limit
+    private int buildLimit;
 
     //shows which cards were not drawn, are face up on table
     private CharacterCard cardUp1;
@@ -165,7 +167,7 @@ public class CitadelsGameState extends GameState
         //with a district built
 
 
-
+        buildLimit = 1;
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -330,6 +332,8 @@ public class CitadelsGameState extends GameState
     }
     public CitadelsGameState(CitadelsGameState orig)
     {
+        this.buildLimit = orig.buildLimit;
+
         this.p1Gold = orig.p1Gold;
         this.p2Gold = orig.p2Gold;
         this.p3Gold = orig.p3Gold;
