@@ -69,8 +69,10 @@ public class CitadelsGameState extends GameState
     private boolean destroyDistrict;
 
     //whose turn is it
-
     private int turn;
+
+    //District Build Limit
+    private int buildLimit;
 
     //shows which cards were not drawn, are face up on table
     private CharacterCard cardUp1;
@@ -120,6 +122,11 @@ public class CitadelsGameState extends GameState
     public void removeCard()
     {
         this.deckOrderDistricts.remove(0);
+    }
+
+    public void setTurn(int x)
+    {
+        this.turn = x;
     }
 
     public int p1FindCard(int card)
@@ -223,7 +230,7 @@ public class CitadelsGameState extends GameState
         //with a district built
 
 
-
+        buildLimit = 1;
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -388,6 +395,8 @@ public class CitadelsGameState extends GameState
     }
     public CitadelsGameState(CitadelsGameState orig)
     {
+        this.buildLimit = orig.buildLimit;
+
         this.p1Gold = orig.p1Gold;
         this.p2Gold = orig.p2Gold;
         this.p3Gold = orig.p3Gold;
@@ -482,16 +491,34 @@ public class CitadelsGameState extends GameState
         return p1Hand;
     }
 
+    //Get P1 Card at specific index
+    public CitadelsDistrictCard getP1Card(int x)
+    {
+        return p1Hand.get(x);
+    }
+
     //Get P2 Hand
     public ArrayList getP2Hand()
     {
         return p2Hand;
     }
 
+    //Get P2 Card at specific index
+    public CitadelsDistrictCard getP2Card(int x)
+    {
+        return p2Hand.get(x);
+    }
+
     //Get P3 Hand
     public ArrayList getP3Hand()
     {
         return p3Hand;
+    }
+
+    //Get P3 Card at specific index
+    public CitadelsDistrictCard getP3Card(int x)
+    {
+        return p3Hand.get(x);
     }
 
     //Get P1 City
