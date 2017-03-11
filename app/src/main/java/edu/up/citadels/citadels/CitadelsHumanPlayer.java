@@ -21,6 +21,8 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 
+import static edu.up.citadels.R.array.p1Action;
+
 /**
  * Created by bryce on 3/3/2017.
  */
@@ -138,7 +140,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
         // get values for the spinner
-        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(R.array.p1Action);
+        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
 
         // set initial value for the p1 gold to 2
         p1Gold = 2;
@@ -148,7 +150,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
 
         //initialize the array adapter
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+        ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
