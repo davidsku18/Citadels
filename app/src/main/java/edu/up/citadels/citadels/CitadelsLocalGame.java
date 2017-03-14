@@ -15,7 +15,12 @@ import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.GamePlayer;
 
 /**
- * Created by bryce on 3/3/2017.
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 3/10/2017.
  */
 
 public class CitadelsLocalGame extends LocalGame

@@ -22,7 +22,12 @@ import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 
 /**
- * Created by bryce on 3/3/2017.
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ *
+ * @version 3/10/2017.
  */
 
 public class CitadelsHumanPlayer extends GameHumanPlayer
@@ -345,7 +350,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
      *
      * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
      */
-
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         myActivity.onCreateContextMenu(menu, v, menuInfo);

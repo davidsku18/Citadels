@@ -1,7 +1,11 @@
 package edu.up.citadels.citadels;
 
 /**
- * Created by bryce on 2/22/2017.
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 2/22/2017
  */
 
 public class CharacterCard

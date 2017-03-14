@@ -4,7 +4,12 @@ import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
 /**
- * Created by bryce on 3/3/2017.
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 3/3/2017.
  */
 
 public class CitadelsComputerPlayer extends GameComputerPlayer
