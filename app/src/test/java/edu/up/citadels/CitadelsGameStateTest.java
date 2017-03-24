@@ -2,6 +2,9 @@ package edu.up.citadels;
 
 import org.junit.Test;
 
+import edu.up.citadels.citadels.CitadelsGameState;
+import edu.up.citadels.citadels.CitadelsLocalGame;
+
 import static org.junit.Assert.*;
 
 /**
@@ -9,10 +12,12 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class CitadelsLocalGameTest
+public class CitadelsGameStateTest
 {
-    public void testCharacterCard() throws Exception 
+    @Test
+    public void testCanMove() throws Exception
     {
-           
+        CitadelsGameState cgs = new CitadelsGameState();
+
     }
 }
