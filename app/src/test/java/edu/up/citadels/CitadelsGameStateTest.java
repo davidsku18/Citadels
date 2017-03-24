@@ -14,9 +14,18 @@ import static org.junit.Assert.*;
 public class CitadelsGameStateTest
 {
     @Test
-    public void testCanMove() throws Exception
+    public void testSetP2Gold() throws Exception
     {
         CitadelsGameState cgs = new CitadelsGameState();
+        cgs.setP2Gold(7);
+        assertEquals(cgs.getP2Gold(), 7);
+    }
 
+    @Test
+    public void testGetP1Character() throws Exception
+    {
+        CitadelsGameState cgs = new CitadelsGameState();
+        cgs.setP1Character1(4);
+        assertEquals(cgs.getP1Character1(), 4);
     }
 }
