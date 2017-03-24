@@ -9,9 +9,10 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class CitadelsGameStateTest
+public class CitadelsLocalGameTest
 {
-    public void testCharacterCard() throws Exception
+    public void testCharacterCard() throws Exception 
     {
+           
     }
 }
