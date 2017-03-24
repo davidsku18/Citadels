@@ -14,12 +14,6 @@ import static org.junit.Assert.*;
  */
 public class CitadelsGameStateTest
 {
-    @Test
-    public void testCanMove() throws Exception
-    {
-        CitadelsGameState cgs = new CitadelsGameState();
-
-    }
 
     @Test
     public void testGetPlayerScore() throws Exception
@@ -31,8 +25,6 @@ public class CitadelsGameStateTest
         assertEquals(testP1Score, 0, 0.00);
         assertEquals(testP2Score, 0, 0.00);
         assertEquals(testP3Score, 0, 0.00);
-
-
     }
 
     @Test
@@ -48,8 +40,6 @@ public class CitadelsGameStateTest
         assertEquals(testP1Score, 6, 0.00);
         assertEquals(testP2Score, 5, 0.00);
         assertEquals(testP3Score, 8, 0.00);
-
-
     }
 
 }
