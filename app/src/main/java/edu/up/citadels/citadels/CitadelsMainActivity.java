@@ -16,7 +16,13 @@ import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.GamePlayer;
 import edu.up.citadels.game.config.GamePlayerType;
 
-
+/**
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 3/10/2017
+ */
 public class CitadelsMainActivity extends GameMainActivity
 {
     public GameConfig createDefaultConfig()
