@@ -1,7 +1,11 @@
 package edu.up.citadels.citadels;
 
 /**
- * Created by kurtisdavidson on 2/12/17.
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 3/10/2017
  */
 
 public class CitadelsDistrictCardCost {

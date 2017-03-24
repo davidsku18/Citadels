@@ -24,7 +24,14 @@ import edu.up.citadels.game.GameMainActivity;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
- * Created by bryce on 3/3/2017.
+ * A GUI that allows a human to play Citadels.
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ *
+ * @version 3/10/2017
  */
 
 public class CitadelsHumanPlayer extends GameHumanPlayer
@@ -347,7 +354,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
      *
      * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
      */
-
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         myActivity.onCreateContextMenu(menu, v, menuInfo);

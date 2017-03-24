@@ -15,7 +15,14 @@ import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.GamePlayer;
 
 /**
- * Created by bryce on 3/3/2017.
+ * The LocalGame class for a Citadels game. Defines and enforces
+ * the game rules; handles interactions between players.
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 3/10/2017.
  */
 
 public class CitadelsLocalGame extends LocalGame
@@ -29,7 +36,15 @@ public class CitadelsLocalGame extends LocalGame
         // create the state for the beginning of the edu.up.citadels.game
         state = new CitadelsGameState();
     }
-
+    /**
+     * Notify the given player that its state has changed. This should involve sending
+     * a GameInfo object to the player. If the game is not a perfect-information game
+     * this method should remove any information from the game that the player is not
+     * allowed to know.
+     *
+     * @param p
+     * 			the player to notify
+     */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p)
     {
@@ -42,7 +57,14 @@ public class CitadelsLocalGame extends LocalGame
 
         p.sendInfo(stateForPlayer);
     }
-
+    /**
+     * return whether the specified player can move
+     *
+     * @param playerIdx
+     *          The player's ID
+     * @return boolean
+     *          Whether the specified player's ID can perform a move
+     */
     @Override
     protected boolean canMove(int playerIdx)
     {
@@ -55,6 +77,12 @@ public class CitadelsLocalGame extends LocalGame
         }
     }
 
+    /**
+     * Checks which player has 8 districts built and ends the game
+     *
+     * @return String
+     *          Specifies which player has 8 districts built
+     */
     @Override
     protected String checkIfGameOver()
     {
@@ -82,6 +110,14 @@ public class CitadelsLocalGame extends LocalGame
         }
     }
 
+    /**
+     * Makes a move on behalf the player
+     *
+     * @param action
+     *          The move that the player has sent to the game
+     * @return boolean
+     *          Tells whether the move was legal or not
+     */
     @Override
     protected boolean makeMove(GameAction action)
     {
@@ -133,6 +169,7 @@ public class CitadelsLocalGame extends LocalGame
             }
         } else if (action instanceof ChooseDistrictCard)
         {
+            //this will add a district card to whoever the player is
             if (player == 1)
             {
                 state.addToP1Hand(state.drawCard());
@@ -191,6 +228,7 @@ public class CitadelsLocalGame extends LocalGame
             return true;
         } else if (action instanceof UseSpecialAbility)
         {
+            // Assassin special ability
             if (state.getTurn() == 1)
             {
                 if(player == 1)
@@ -205,58 +243,69 @@ public class CitadelsLocalGame extends LocalGame
                 }
             } else if (state.getTurn() == 2)
             {
+                // Thief special ability
                 if(player == 1)
                 {
                     state.setP1Gold(state.getP1Gold() + state.getP2Gold());
                     state.setP2Gold(0);
                     return true;
-                }else if (player == 2)
+                } else if (player == 2)
                 {
                     state.setP2Gold(state.getP1Gold() + state.getP2Gold());
                     state.setP1Gold(0);
                     return true;
-                }else
+                } else
                 {
                     state.setP3Gold(state.getP1Gold() + state.getP3Gold());
                     state.setP1Gold(0);
                     return true;
                 }//TODO implement fuller method
-            } else if (state.getTurn() == 3)
-            {
+            } else if (state.getTurn() == 3) {
+                // Magician special ability
                 ArrayList<CitadelsDistrictCard> p1Hand = state.getP1Hand();
                 ArrayList<CitadelsDistrictCard> p2Hand = state.getP2Hand();
                 ArrayList<CitadelsDistrictCard> p3Hand = state.getP3Hand();
-                if(player == 1)
-                {
+                if (player == 1) {
                     state.setP1Hand(p2Hand);
                     state.setP2Hand(p1Hand);
                     return true;
-                }else if(player == 2)
-                {
+                } else if (player == 2) {
                     state.setP1Hand(p2Hand);
                     state.setP2Hand(p1Hand);
                     return true;
-                }else if(player == 3)
-                {
+                } else if (player == 3) {
                     state.setP1Hand(p3Hand);
                     state.setP3Hand(p1Hand);
                     return true;
                 }
             } else if (state.getTurn() == 8)
             {
+                // Warlord special ability
                 if(player == 1)
                 {
                     state.removeP2BuiltDistrict();
                     return true;
-                }else
+                } else
                 {
                     state.removeP1BuiltDistrict();
                     return true;
                 }
 
-            } else
+            } else if (state.getTurn() == 4)
             {
-                return true;
+                // TODO King special ability
+                if (player == 1) {
+                    return true;
+                } else if (player == 2)
+                {
+                    return true;
+                } else if (player == 3)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
             }
         }else
         {

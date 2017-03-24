@@ -3,7 +3,14 @@ package edu.up.citadels.citadels;
 import java.util.ArrayList;
 
 /**
- * Created by Victor on 2/20/2017.
+ *
+ *
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 2/20/2017.
  */
 
 

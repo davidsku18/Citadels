@@ -1,8 +1,5 @@
 package edu.up.citadels.citadels;
 
-/**
- * Created by Victor on 2/20/2017.
- */
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,12 +8,12 @@ import java.util.Random;
 import edu.up.citadels.game.infoMsg.GameState;
 
 /**
- * Created by Victor on 2/20/2017.
- */
-
-/*
-
-@Author Bryce Amato
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 3/10/2017
  */
 
 public class CitadelsGameState extends GameState
@@ -94,24 +91,18 @@ public class CitadelsGameState extends GameState
     {
         this.p2Character1 = x;
     }
-
     public void setP2Character2(int x)
     {
         this.p2Character2 = x;
     }
-
     public void setP3Character1(int x)
     {
         this.p3Character1 = x;
     }
-
     public void setP3Character2(int x)
     {
         this.p3Character2 = x;
     }
-
-
-
 
 
     public CitadelsDistrictCard drawCard()
@@ -225,10 +216,8 @@ public class CitadelsGameState extends GameState
 
         double king = Math.random();
 
-
         //sets all of the built districts for each player to null because no one will start
         //with a district built
-
 
         buildLimit = 1;
 
@@ -354,8 +343,6 @@ public class CitadelsGameState extends GameState
             deckOrderDistricts.remove(0);
         }
 
-
-
         // Making character cards
         for (int i = 1; i < 9; ++i)
         {
@@ -415,7 +402,6 @@ public class CitadelsGameState extends GameState
             this.p2Hand.add(new CitadelsDistrictCard(orig.p2Hand.get(i)));
         }
 
-
         for (int i = 0; i<p3Hand.size(); ++i)
         {
             this.p3Hand.add(new CitadelsDistrictCard(orig.p3Hand.get(i)));
@@ -431,12 +417,10 @@ public class CitadelsGameState extends GameState
             this.p2City.add(new CitadelsDistrictCard(orig.p2City.get(i)));
         }
 
-
         for (int i = 0; i<p3City.size(); ++i)
         {
             this.p3City.add(new CitadelsDistrictCard(orig.p3City.get(i)));
         }
-
 
         for (int i = 0; i<9; ++ i)
         {
@@ -578,7 +562,7 @@ public class CitadelsGameState extends GameState
     public boolean getIsKing()
     {
         return isKing;
-    }
+    } // TODO need to implement who is king and who has the king character card
 
     //Get P1Character 1
     public int getP1Character1()
