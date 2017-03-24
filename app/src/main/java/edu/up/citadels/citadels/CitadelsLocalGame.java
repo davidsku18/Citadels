@@ -218,12 +218,12 @@ public class CitadelsLocalGame extends LocalGame
             //this is just setting them to arbitrary values, we will set more later
             //for basic functionality
             //TODO
-            state.setP1Character1(1);
-            state.setP1Character2(2);
-            state.setP2Character1(3);
-            state.setP2Character2(4);
-            state.setP3Character1(5);
-            state.setP3Character2(6);
+            state.setP1Character1(0);
+            state.setP1Character2(1);
+            state.setP2Character1(2);
+            state.setP2Character2(3);
+            state.setP3Character1(4);
+            state.setP3Character2(5);
             state.setTurn(1);
             return true;
         } else if (action instanceof UseSpecialAbility)

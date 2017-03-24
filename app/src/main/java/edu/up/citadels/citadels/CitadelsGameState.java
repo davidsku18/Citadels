@@ -344,25 +344,25 @@ public class CitadelsGameState extends GameState
         }
 
         // Making character cards
-        for (int i = 1; i < 9; ++i)
+        for (int i = 0; i < 8; ++i)
         {
-            if (i < 4 || i == 7)
+            if (i < 3 || i == 6)
             {
                 characterDeck[i] = new CharacterCard(i,4); // non color characters
             }
-            else if (i == 4)
+            else if (i == 3)
             {
                 characterDeck[i] = new CharacterCard(i, 3); // King
             }
-            else if (i == 5 )
+            else if (i == 4)
             {
                 characterDeck[i] = new CharacterCard(i, 2); // Bishop
             }
-            else if (i == 6)
+            else if (i == 5)
             {
                 characterDeck[i] = new CharacterCard(i, 1); // Merchant
             }
-            else if (i == 8)
+            else if (i == 7)
             {
                 characterDeck[i] = new CharacterCard(i, 0); // Warlord
             }

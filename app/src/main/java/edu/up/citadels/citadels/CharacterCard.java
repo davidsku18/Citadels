@@ -16,14 +16,14 @@ public class CharacterCard
     private int yellow = 3;
     private int other = 4;
 
-    private int assassin = 1;
-    private int thief = 2;
-    private int magician = 3;
-    private int king = 4;
-    private int bishop = 5;
-    private int merchant = 6;
-    private int architect = 7;
-    private int warlord = 8;
+    private int assassin = 0;
+    private int thief = 1;
+    private int magician = 2;
+    private int king = 3;
+    private int bishop = 4;
+    private int merchant = 5;
+    private int architect = 6;
+    private int warlord = 7;
 
     /*
     private String char1 = "assassin";
