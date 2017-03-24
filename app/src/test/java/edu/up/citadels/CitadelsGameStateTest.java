@@ -3,7 +3,6 @@ package edu.up.citadels;
 import org.junit.Test;
 
 import edu.up.citadels.citadels.CitadelsGameState;
-import edu.up.citadels.citadels.CitadelsLocalGame;
 
 import static org.junit.Assert.*;
 
