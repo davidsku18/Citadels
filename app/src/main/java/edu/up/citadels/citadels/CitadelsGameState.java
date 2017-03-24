@@ -562,7 +562,7 @@ public class CitadelsGameState extends GameState
     public boolean getIsKing()
     {
         return isKing;
-    }
+    } // TODO need to implement who is king and who has the king character card
 
     //Get P1Character 1
     public int getP1Character1()

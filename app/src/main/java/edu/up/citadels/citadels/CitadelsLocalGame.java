@@ -15,6 +15,8 @@ import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.GamePlayer;
 
 /**
+ * The LocalGame class for a Citadels game. Defines and enforces
+ * the game rules; handles interactions between players.
  *
  * @author Bryce Amato
  * @author Gavin Low
@@ -247,12 +249,12 @@ public class CitadelsLocalGame extends LocalGame
                     state.setP1Gold(state.getP1Gold() + state.getP2Gold());
                     state.setP2Gold(0);
                     return true;
-                }else if (player == 2)
+                } else if (player == 2)
                 {
                     state.setP2Gold(state.getP1Gold() + state.getP2Gold());
                     state.setP1Gold(0);
                     return true;
-                }else
+                } else
                 {
                     state.setP3Gold(state.getP1Gold() + state.getP3Gold());
                     state.setP1Gold(0);
@@ -283,15 +285,27 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     state.removeP2BuiltDistrict();
                     return true;
-                }else
+                } else
                 {
                     state.removeP1BuiltDistrict();
                     return true;
                 }
 
-            } else
+            } else if (state.getTurn() == 4)
             {
-                return true;
+                // TODO King special ability
+                if (player == 1) {
+                    return true;
+                } else if (player == 2)
+                {
+                    return true;
+                } else if (player == 3)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
             }
         }else
         {

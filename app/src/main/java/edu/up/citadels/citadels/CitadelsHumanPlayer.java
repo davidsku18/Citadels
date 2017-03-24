@@ -22,12 +22,14 @@ import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 
 /**
+ * A GUI that allows a human to play Citadels.
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
  *
- * @version 3/10/2017.
+ * @version 3/10/2017
  */
 
 public class CitadelsHumanPlayer extends GameHumanPlayer
