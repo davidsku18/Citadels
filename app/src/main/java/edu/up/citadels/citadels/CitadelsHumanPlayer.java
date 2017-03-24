@@ -21,6 +21,8 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 
+import static edu.up.citadels.R.array.p1Action;
+
 /**
  * A GUI that allows a human to play Citadels.
  *
@@ -145,7 +147,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
         // get values for the spinner
-        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(R.array.p1Action);
+        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
 
         // set initial value for the p1 gold to 2
         p1Gold = 2;
