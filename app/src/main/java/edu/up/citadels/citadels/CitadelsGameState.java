@@ -354,7 +354,7 @@ public class CitadelsGameState extends GameState
             {
                 characterDeck[i] = new CharacterCard(i, 3); // King
             }
-            else if (i == 4)
+            else if (i == 4 )
             {
                 characterDeck[i] = new CharacterCard(i, 2); // Bishop
             }
