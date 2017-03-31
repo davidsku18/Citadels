@@ -110,9 +110,28 @@ public class CitadelsGameState extends GameState
         return this.deckOrderDistricts.get(0);
     }
 
+    //TODO should not be 0
     public void removeCard()
     {
         this.deckOrderDistricts.remove(0);
+    }
+
+    public void initializeCharacterDeck()
+    {
+        // Making character cards
+        for (int i = 0; i < 8; ++i) {
+            if (i < 3 || i == 6) {
+                characterDeck[i] = new CharacterCard(i, 4); // non color characters
+            } else if (i == 3) {
+                characterDeck[i] = new CharacterCard(i, 3); // King
+            } else if (i == 4) {
+                characterDeck[i] = new CharacterCard(i, 2); // Bishop
+            } else if (i == 5) {
+                characterDeck[i] = new CharacterCard(i, 1); // Merchant
+            } else if (i == 7) {
+                characterDeck[i] = new CharacterCard(i, 0); // Warlord
+            }
+        }
     }
 
     public void setTurn(int x)
@@ -343,30 +362,7 @@ public class CitadelsGameState extends GameState
             deckOrderDistricts.remove(0);
         }
 
-        // Making character cards
-        for (int i = 0; i < 8; ++i)
-        {
-            if (i < 3 || i == 6)
-            {
-                characterDeck[i] = new CharacterCard(i,4); // non color characters
-            }
-            else if (i == 3)
-            {
-                characterDeck[i] = new CharacterCard(i, 3); // King
-            }
-            else if (i == 4 )
-            {
-                characterDeck[i] = new CharacterCard(i, 2); // Bishop
-            }
-            else if (i == 5)
-            {
-                characterDeck[i] = new CharacterCard(i, 1); // Merchant
-            }
-            else if (i == 7)
-            {
-                characterDeck[i] = new CharacterCard(i, 0); // Warlord
-            }
-        }
+        this.initializeCharacterDeck();
     }
 
     public static void shuffleDeck(CitadelsDistrictCard[] deck)
