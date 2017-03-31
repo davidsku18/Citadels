@@ -82,19 +82,19 @@ public class CitadelsDistrictCard {
     {
         if(color == 0)
         {
-            return "red";
+            return "Red";
         }
         else if(color == 1)
         {
-            return "green";
+            return "Green";
         }
         else if(color == 2)
         {
-            return "blue";
+            return "Blue";
         }
         else
         {
-            return "yellow";
+            return "Yellow";
         }
 
     }
