@@ -95,13 +95,13 @@ public class CitadelsLocalGame extends LocalGame
         winner yet, this is just for the most basic functionality
          */
 
-        if(p1Districts >= 8)
+        if(p1Districts >= 7)
         {
             return "Player 1 has built 8 districts. Game over.";
-        }else if(p2Districts >= 8)
+        }else if(p2Districts >= 7)
         {
             return "Player 2 has built 8 districts. Game over.";
-        }else if(p3Districts >= 8)
+        }else if(p3Districts >= 7)
         {
             return "Player 3 has built 8 districts. Game over.";
         }else
@@ -191,10 +191,11 @@ public class CitadelsLocalGame extends LocalGame
                 return true;
             }
         } else if (action instanceof CitadelsBuildDistrictCard) {
-            //this will build the first district card in the hand
+            //TODO this will build the first district card in the hand
             //we will implement fuller functionality later
             if (player == 1)
             {
+                //TODO check and see if the player has enough gold
                 state.addToP1City(state.getP1Card(1));
                 state.removeFromP1Hand(1);
                 return true;
@@ -226,7 +227,7 @@ public class CitadelsLocalGame extends LocalGame
             state.setP3Character1(4);
             state.setP3Character2(5);
             */
-            state.setTurn(1);
+            state.setTurn(0);
 
             CharacterCard[] p1Characters = new CharacterCard[2];
             CharacterCard[] p2Characters = new CharacterCard[2];

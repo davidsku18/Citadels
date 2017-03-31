@@ -25,7 +25,7 @@ public class TakeGold extends GameAction
 
     /**
      *
-     * @return wether player has drawn gold or not
+     * @return whether player has drawn gold or not
      */
     public boolean drawnGold()
     {

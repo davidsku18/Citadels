@@ -30,49 +30,31 @@ public class CitadelsMainActivity extends GameMainActivity
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        playerTypes.add(new GamePlayerType("human player (green)")
+        playerTypes.add(new GamePlayerType("human player")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsHumanPlayer(name);
             }});
-        playerTypes.add(new GamePlayerType("human player (yellow)")
+        playerTypes.add(new GamePlayerType("human player")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsHumanPlayer(name);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (normal)")
+        playerTypes.add(new GamePlayerType("computer player (dumb)")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayer(name);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (fast)")
-        {
-            public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name);
-            }
-        });
-        playerTypes.add(new GamePlayerType("computer player (slow)")
-        {
-            public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name);
-            }
-        });
-        playerTypes.add(new GamePlayerType("computer player (very fast)")
-        {
-            public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name);
-            }
-        });
-        playerTypes.add(new GamePlayerType("computer player (very slow)")
+        playerTypes.add(new GamePlayerType("computer player (smart)")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayer(name);
             }
         });
 
-        // Create a edu.up.citadels.game configuration class for SlapJack
+        // Create a edu.up.citadels.game configuration class for Citadels
         GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Citadels", 2017);
 
         // Add the default players

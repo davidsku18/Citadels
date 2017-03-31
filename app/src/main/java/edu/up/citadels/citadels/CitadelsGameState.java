@@ -104,6 +104,7 @@ public class CitadelsGameState extends GameState
         this.p3Character2 = x;
     }
 
+
     public CitadelsDistrictCard drawCard()
     {
         return this.deckOrderDistricts.get(0);
@@ -115,6 +116,24 @@ public class CitadelsGameState extends GameState
     }
 
     public void removeCharacterCard(int i) { this.characterDeck[i] = null; }
+
+    public void initializeCharacterDeck()
+    {
+        // Making character cards
+        for (int i = 0; i < 8; ++i) {
+            if (i < 3 || i == 6) {
+                characterDeck[i] = new CharacterCard(i, 4); // non color characters
+            } else if (i == 3) {
+                characterDeck[i] = new CharacterCard(i, 3); // King
+            } else if (i == 4) {
+                characterDeck[i] = new CharacterCard(i, 2); // Bishop
+            } else if (i == 5) {
+                characterDeck[i] = new CharacterCard(i, 1); // Merchant
+            } else if (i == 7) {
+                characterDeck[i] = new CharacterCard(i, 0); // Warlord
+            }
+        }
+    }
 
     public void setTurn(int x)
     {
@@ -344,30 +363,7 @@ public class CitadelsGameState extends GameState
             deckOrderDistricts.remove(0);
         }
 
-        // Making character cards
-        for (int i = 0; i < 7; ++i)
-        {
-            if (i < 3 || i == 6)
-            {
-                characterDeck[i] = new CharacterCard(i,4); // non color characters
-            }
-            else if (i == 3)
-            {
-                characterDeck[i] = new CharacterCard(i, 3); // King
-            }
-            else if (i == 4 )
-            {
-                characterDeck[i] = new CharacterCard(i, 2); // Bishop
-            }
-            else if (i == 5)
-            {
-                characterDeck[i] = new CharacterCard(i, 1); // Merchant
-            }
-            else if (i == 7)
-            {
-                characterDeck[i] = new CharacterCard(i, 0); // Warlord
-            }
-        }
+        this.initializeCharacterDeck();
     }
 
     public static void shuffleDeck(CitadelsDistrictCard[] deck)
@@ -677,7 +673,7 @@ public class CitadelsGameState extends GameState
     {
         if(this.p1City.size() > 0)
         {
-            p1City.remove(0); // TODO
+            p1City.remove(0);
         }else
         {
             //do nothing
@@ -688,7 +684,7 @@ public class CitadelsGameState extends GameState
     {
         if(this.p2City.size() > 0)
         {
-            p2City.remove(0); // TODO
+            p2City.remove(0);
         }else
         {
             //do nothing
@@ -699,7 +695,7 @@ public class CitadelsGameState extends GameState
     {
         if(this.p3City.size() > 0)
         {
-            p3City.remove(0); // TODO
+            p3City.remove(0);
         }else
         {
             //do nothing

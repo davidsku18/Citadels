@@ -1,5 +1,6 @@
 package edu.up.citadels.citadels;
 
+import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.TakeGold;
@@ -20,9 +21,6 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsComputerPlayer extends GameComputerPlayer
 {
-
-    private CitadelsGameState savedState;
-
     public CitadelsComputerPlayer(String initName)
     {
         super(initName);
@@ -66,7 +64,13 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
 
 
 
+        // if we don't have a game-state, ignore
+        if (!(info instanceof CitadelsGameState)) {
+            return;
+        }
+
+        // update our state variable
+        savedState = (CitadelsGameState)info;
+
     }
-
-
 }
