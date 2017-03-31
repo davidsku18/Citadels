@@ -94,7 +94,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
     @Override
     public void receiveInfo(GameInfo info)
     {
-
+        //TODO
     }
 
     /**
@@ -325,6 +325,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
                 //do nothing
             }else if(position == 1)
             {
+                state.TakeGold(this);
                 p1Gold = p1Gold + 2;
                 player1GoldCount.setText("Gold: " + p1Gold);
             }else if(position == 2)
