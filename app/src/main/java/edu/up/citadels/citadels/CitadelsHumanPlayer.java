@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 
+import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
@@ -67,6 +69,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p2_D7;
     private ImageButton p2_D8;
 
+    private ImageButton p3_D1;
+    private ImageButton p3_D2;
+    private ImageButton p3_D3;
+    private ImageButton p3_D4;
+    private ImageButton p3_D5;
+    private ImageButton p3_D6;
+    private ImageButton p3_D7;
+    private ImageButton p3_D8;
+
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
@@ -85,6 +96,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
+    private Spinner characterCardSpinner;
 
     // Our activity
     private Activity myActivity;
@@ -155,6 +167,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p2_D7 = (ImageButton) myActivity.findViewById(R.id.p2_D7);
         p2_D8 = (ImageButton) myActivity.findViewById(R.id.p2_D8);
 
+        p3_D1 = (ImageButton) myActivity.findViewById(R.id.p3_D1);
+        p3_D2 = (ImageButton) myActivity.findViewById(R.id.p3_D2);
+        p3_D3 = (ImageButton) myActivity.findViewById(R.id.p3_D3);
+        p3_D4 = (ImageButton) myActivity.findViewById(R.id.p3_D4);
+        p3_D5 = (ImageButton) myActivity.findViewById(R.id.p3_D5);
+        p3_D6 = (ImageButton) myActivity.findViewById(R.id.p3_D6);
+        p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
+        p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
+
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
@@ -182,9 +203,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
+        characterCardSpinner = (Spinner) myActivity.findViewById(R.id.characterCardSpinner);
 
         // get values for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
+        String[] characterCardSpinnerNames = myActivity.getResources().getStringArray(characterCardSpinnerHandName);
 
         // set values for all players' gold
         player1GoldCount.setText("Gold: " + state.getP1Gold());
@@ -194,14 +217,21 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+        characterCardSpinner.setOnItemSelectedListener(new CharacterCardSpinnerListener());
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        //initialize the array adapter
+        ArrayAdapter characterAdapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, characterCardSpinnerNames);
+        characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
+        characterCardSpinner.setAdapter(characterAdapter);
     }
 
 
@@ -500,14 +530,149 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        p3_D1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(0);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(0));
+                }
+            }
+        });
+
+        p3_D2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(1);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(1));
+                }
+
+            }
+        });
+
+        p3_D3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(2);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(2));
+                }
+            }
+        });
+
+        p3_D4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(3);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(3));
+                }
+            }
+        });
+
+        p3_D5.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(4);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(4));
+                }
+            }
+        });
+
+        p3_D6.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(5);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(5));
+                }
+            }
+        });
+
+        p3_D7.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(6);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(6));
+                }
+            }
+        });
+
+        p3_D8.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(7);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(7));
+                }
+            }
+        });
     }
 
     /**
     * @Author: Bryce Amato
     *
-    * This listener will keep track of what is selected in the player 1 action listener
-    * and respond accordingly.
+    * This listener will keep track of what is selected in the character card spinner listener
+    * and respond accordingly
     */
+
+    private class CharacterCardSpinnerListener implements AdapterView.OnItemSelectedListener
+    {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            //this will allow the player to choose their characters TODO
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+    /**
+     * @Author: Bryce Amato
+     *
+     * This listener will keep track of what is selected in the player 1 action listener
+     * and respond accordingly
+     */
     private class P1ActionSpinnerListener implements AdapterView.OnItemSelectedListener
     {
 
