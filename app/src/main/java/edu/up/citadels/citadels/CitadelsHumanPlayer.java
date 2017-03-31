@@ -13,9 +13,15 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.up.citadels.citadels.actions.ChooseCharacterCard;
+import edu.up.citadels.citadels.actions.EndTurn;
+import edu.up.citadels.citadels.actions.TakeGold;
+import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
@@ -52,12 +58,16 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
     private ImageButton p1_D7;
     private ImageButton p1_D8;
     private TextView player1GoldCount;
+    private TextView player2GoldCount;
+    private TextView player3GoldCount;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
     private boolean d2_Info = false; //initializes d2_Info Boolean
     private boolean d3_Info = false; //initializes d3_Info Boolean
     private boolean d4_Info = false; //initializes d4_Info Boolean
+
+    private boolean hasGone = false;
 
     private ArrayList<Bitmap> p1HandImages;
 
@@ -70,6 +80,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
 
     // Our edu.up.citadels.game state
     protected CitadelsGameState state;
+
+    CitadelsDistrictCard card = null;
 
     List<String> player1DistrictsCards = new ArrayList<String>();
 
@@ -118,11 +130,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
         p1_D3 = (ImageButton) myActivity.findViewById(R.id.p1_D3);
         p1_D4 = (ImageButton) myActivity.findViewById(R.id.p1_D4);
+        p1_D5 = (ImageButton) myActivity.findViewById(R.id.p1_D5);
+        p1_D6 = (ImageButton) myActivity.findViewById(R.id.p1_D6);
+        p1_D7 = (ImageButton) myActivity.findViewById(R.id.p1_D7);
+        p1_D8 = (ImageButton) myActivity.findViewById(R.id.p1_D8);
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1GoldCount = (TextView) myActivity.findViewById(R.id.Gold_Count);
+        player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
+        player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
 
        /**
         * @Author Victor Nguyen
@@ -149,9 +167,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         // get values for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
 
-        // set initial value for the p1 gold to 2
-        p1Gold = 2;
-        player1GoldCount.setText("Gold: " + p1Gold);
+        // set values for all players' gold
+        player1GoldCount.setText("Gold: " + state.getP1Gold());
+        player2GoldCount.setText("Gold: " + state.getP2Gold());
+        player3GoldCount.setText("Gold: " + state.getP3Gold());
+
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
@@ -164,75 +184,47 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
 
-        /**
-         * @Author: Kurtis Davidson
-         *
-         * Listens to when user clicks on player 1's district card 1 and changes the background color
-         * to black, when pressed again it reverts its color
-         */
+
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
-            Drawable defaultImageColor = player1_Card1.getBackground(); // gets default background color
             @Override
             public void onClick(View view)
             {
-                if(p1_Card1Bool)
-                {
-                    player1_Card1.setBackgroundColor(myActivity.getResources().getColor(R.color.blackButtonPressColor));
-                }
-                else
-                {
-                    player1_Card1.setBackgroundDrawable(defaultImageColor);
-                }
-                p1_Card1Bool=!p1_Card1Bool;
+                //if it gets touched do something
             }
         });
-        /**
-         * @Author: Kurtis Davidson
-         *
-         * Listens to when user clicks on player 1's district card 2 and changes the background color
-         * to black, when pressed again it reverts its color
-         */
+
         player1_Card2.setOnClickListener(new View.OnClickListener()
         {
-            Drawable defaultImageColor = player1_Card2.getBackground(); // gets default background color
             @Override
             public void onClick(View view)
             {
-                if(p1_Card2Bool)
-                {
-                    player1_Card2.setBackgroundColor(myActivity.getResources().getColor(R.color.blackButtonPressColor));
-                }
-                else
-                {
-                    player1_Card2.setBackgroundDrawable(defaultImageColor);
-                }
-                p1_Card2Bool=!p1_Card2Bool;
+                //do something if it's touched
             }
         });
 
         /*
         * @Author: Gavin Low
+        * @Author: Bryce Amato
         *
         * Click on the card to display useful info about the card
         * Click on the card again to remove displayed information
         * The card with the displayed information must be clicked to show the next card's information
+        *
+        * EDIT--- It now will display information about the specific card
+        * NOTE--- Must make method that gets and returns information about the specific card
+        * TODO
         */
         p1_D1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                if(cardInfo.getText() == "")
+                card = state.getP1City().get(0);
+                if(card != null)
                 {
                     cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
-                    d1_Info = true;
 
-                }
-                else if(d1_Info == true)
-                {
-                    cardInfo.setText("");
-                    d1_Info = false;
                 }
             }
         });
@@ -242,15 +234,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             @Override
             public void onClick(View view)
             {
-                if(cardInfo.getText() == "")
+                card = state.getP1City().get(1);
+                if(card != null)
                 {
-                    cardInfo.setText("Town Hall\nValue: 3\nColor: Gold");
-                    d2_Info = true;
-                }
-                else if( d2_Info == true)
-                {
-                    cardInfo.setText("");
-                    d2_Info = false;
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
+
                 }
 
             }
@@ -261,16 +249,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             @Override
             public void onClick(View view)
             {
-                if(cardInfo.getText() == "")
+                card = state.getP1City().get(2);
+                if(card != null)
                 {
-                    cardInfo.setText("Church\nValue: 2\nColor: Blue");
-                    d3_Info = true;
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
 
-                }
-                else if( d3_Info == true)
-                {
-                    cardInfo.setText("");
-                    d3_Info = false;
                 }
             }
         });
@@ -280,20 +263,96 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             @Override
             public void onClick(View view)
             {
-                if(cardInfo.getText() == "")
+                card = state.getP1City().get(3);
+                if(card != null)
                 {
-                    cardInfo.setText("Battlefield\nValue: 3\nColor: Red");
-                    d4_Info = true;
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
 
-                }
-                else if(d4_Info == true)
-                {
-                    cardInfo.setText("");
-                    d4_Info = false;
                 }
             }
         });
 
+        p1_D5.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(4);
+                if(card != null)
+                {
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
+
+                }
+            }
+        });
+
+        p1_D6.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(5);
+                if(card != null)
+                {
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
+
+                }
+            }
+        });
+
+        p1_D7.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(6);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold");
+                }
+            }
+        });
+
+        p1_D8.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(7);
+                if(card != null)
+                {
+                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
+
+                }
+            }
+        });
+    }
+
+    /*
+    This makes this player make a take gold action
+     */
+    public void humanPlayerTakeGold()
+    {
+        game.sendAction(new TakeGold(this));
+    }
+
+    //This allows the player to take a district card
+    public void humanPlayerTakeDistrictCard()
+    {
+        game.sendAction(new ChooseCharacterCard(this));
+    }
+
+    //This allows a player to use their special ability
+    public void humanPlayerUseAbility()
+    {
+        game.sendAction(new UseSpecialAbility(this));
+    }
+
+    //This method allows the user to end their turn
+    public void humanPlayerEndTurn()
+    {
+        game.sendAction(new EndTurn(this));
     }
 
     /**
@@ -325,15 +384,47 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
                 //do nothing
             }else if(position == 1)
             {
-                state.TakeGold(this);
-                p1Gold = p1Gold + 2;
-                player1GoldCount.setText("Gold: " + p1Gold);
+                if (! hasGone)
+                {
+                    humanPlayerTakeGold();
+                    hasGone = true;
+                }else
+                {
+                    //do nothing because they are not allowed to go
+                }
             }else if(position == 2)
             {
-                //do nothing yet
+                if(! hasGone)
+                {
+                    humanPlayerTakeDistrictCard();
+                    hasGone = true;
+                }
+                else
+                {
+                    //do nothing because they are not allowed to go
+                }
             }else if(position == 3)
             {
-                //do nothing yet
+                if(! hasGone)
+                {
+                    humanPlayerUseAbility();
+                    hasGone = true;
+                }
+                else
+                {
+                    //do nothing--- they cannot go
+                }
+            }else if(position == 4)
+            {
+                if(hasGone)
+                {
+                    humanPlayerEndTurn();
+                    hasGone = false;
+                }
+                else
+                {
+                    //do nothing because they must do something before ending their turn
+                }
             }
         }
 
