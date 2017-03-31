@@ -701,4 +701,29 @@ public class CitadelsGameState extends GameState
             //do nothing
         }
     }
+
+    public String getP1DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p1City.get(index);
+        String P1DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P1DistrictInfo;
+    }
+
+    public String getP2DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p2City.get(index);
+        String P2DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P2DistrictInfo;
+    }
+
+    public String getP3DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p3City.get(index);
+        String P3DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P3DistrictInfo;
+    }
+
 }
