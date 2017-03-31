@@ -104,16 +104,17 @@ public class CitadelsGameState extends GameState
         this.p3Character2 = x;
     }
 
-
     public CitadelsDistrictCard drawCard()
     {
         return this.deckOrderDistricts.get(0);
     }
 
-    public void removeCard()
+    public void removeDistrictCard()
     {
         this.deckOrderDistricts.remove(0);
     }
+
+    public void removeCharacterCard(int i) { this.characterDeck[i] = null; }
 
     public void setTurn(int x)
     {
@@ -344,7 +345,7 @@ public class CitadelsGameState extends GameState
         }
 
         // Making character cards
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < 7; ++i)
         {
             if (i < 3 || i == 6)
             {
@@ -380,6 +381,7 @@ public class CitadelsGameState extends GameState
             deck[i] = a;
         }
     }
+
     public CitadelsGameState(CitadelsGameState orig)
     {
         this.buildLimit = orig.buildLimit;
@@ -675,7 +677,7 @@ public class CitadelsGameState extends GameState
     {
         if(this.p1City.size() > 0)
         {
-            p1City.remove(0);
+            p1City.remove(0); // TODO
         }else
         {
             //do nothing
@@ -686,7 +688,7 @@ public class CitadelsGameState extends GameState
     {
         if(this.p2City.size() > 0)
         {
-            p2City.remove(0);
+            p2City.remove(0); // TODO
         }else
         {
             //do nothing
@@ -697,7 +699,7 @@ public class CitadelsGameState extends GameState
     {
         if(this.p3City.size() > 0)
         {
-            p3City.remove(0);
+            p3City.remove(0); // TODO
         }else
         {
             //do nothing
