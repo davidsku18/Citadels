@@ -110,11 +110,12 @@ public class CitadelsGameState extends GameState
         return this.deckOrderDistricts.get(0);
     }
 
-    //TODO should not be 0
-    public void removeCard()
+    public void removeDistrictCard()
     {
         this.deckOrderDistricts.remove(0);
     }
+
+    public void removeCharacterCard(int i) { this.characterDeck[i] = null; }
 
     public void initializeCharacterDeck()
     {
@@ -376,6 +377,7 @@ public class CitadelsGameState extends GameState
             deck[i] = a;
         }
     }
+
     public CitadelsGameState(CitadelsGameState orig)
     {
         this.buildLimit = orig.buildLimit;
