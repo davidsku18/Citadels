@@ -76,6 +76,28 @@ public class CitadelsDistrictCard {
         return color;
     }
 
+    //Gets DistrictCard Color in String form
+    public String getColorString()
+    {
+        if(color == 0)
+        {
+            return "Red";
+        }
+        else if(color == 1)
+        {
+            return "Green";
+        }
+        else if(color == 2)
+        {
+            return "Blue";
+        }
+        else
+        {
+            return "Yellow";
+        }
+
+    }
+
     //Get CitadelsCard Cost
     public int getCost()
     {

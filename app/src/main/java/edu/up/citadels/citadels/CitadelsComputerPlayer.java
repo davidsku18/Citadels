@@ -21,6 +21,8 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsComputerPlayer extends GameComputerPlayer
 {
+    CitadelsGameState savedState;
+
     public CitadelsComputerPlayer(String initName)
     {
         super(initName);

@@ -682,4 +682,77 @@ public class CitadelsGameState extends GameState
     {
         this.isCharacterDead(kill);
     }
+
+    public void setP1Hand(ArrayList<CitadelsDistrictCard> arrayCD)
+    {
+        this.p1Hand = arrayCD;
+    }
+
+    public void setP2Hand(ArrayList<CitadelsDistrictCard> arrayCD)
+    {
+        this.p2Hand = arrayCD;
+    }
+
+    public void setP3Hand(ArrayList<CitadelsDistrictCard> arrayCD)
+    {
+        this.p3Hand = arrayCD;
+    }
+
+    public void removeP1BuiltDistrict()
+    {
+        if(this.p1City.size() > 0)
+        {
+            p1City.remove(0);
+        }else
+        {
+            //do nothing
+        }
+    }
+
+    public void removeP2BuiltDistrict()
+    {
+        if(this.p2City.size() > 0)
+        {
+            p2City.remove(0);
+        }else
+        {
+            //do nothing
+        }
+    }
+
+    public void removeP3BuiltDistrict()
+    {
+        if(this.p3City.size() > 0)
+        {
+            p3City.remove(0);
+        }else
+        {
+            //do nothing
+        }
+    }
+
+    public String getP1DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p1City.get(index);
+        String P1DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P1DistrictInfo;
+    }
+
+    public String getP2DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p2City.get(index);
+        String P2DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P2DistrictInfo;
+    }
+
+    public String getP3DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p3City.get(index);
+        String P3DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P3DistrictInfo;
+    }
+
 }

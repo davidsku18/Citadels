@@ -23,6 +23,18 @@
         <item>Take Gold</item>
         <item>Take District Card</item>
         <item>Use Character Ability</item>
+        <item>End Turn</item>
+    </string-array>
+
+    <string-array name="characterCardSpinnerHandName">
+        <item>Assassin</item>
+        <item>Thief</item>
+        <item>Magician</item>
+        <item>King</item>
+        <item>Bishop</item>
+        <item>Merchant</item>
+        <item>Architect</item>
+        <item>Warlord</item>
     </string-array>
 
 

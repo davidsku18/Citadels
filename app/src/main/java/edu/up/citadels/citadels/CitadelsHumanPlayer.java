@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,14 +14,21 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.up.citadels.citadels.actions.ChooseCharacterCard;
+import edu.up.citadels.citadels.actions.EndTurn;
+import edu.up.citadels.citadels.actions.TakeGold;
+import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 
+import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
@@ -34,7 +42,7 @@ import static edu.up.citadels.R.array.p1Action;
  * @version 3/10/2017
  */
 
-public class CitadelsHumanPlayer extends GameHumanPlayer
+public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener
 {
     String name;
     private ImageButton player1_Card1;
@@ -51,7 +59,28 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
     private ImageButton p1_D6;
     private ImageButton p1_D7;
     private ImageButton p1_D8;
+
+    private ImageButton p2_D1;
+    private ImageButton p2_D2;
+    private ImageButton p2_D3;
+    private ImageButton p2_D4;
+    private ImageButton p2_D5;
+    private ImageButton p2_D6;
+    private ImageButton p2_D7;
+    private ImageButton p2_D8;
+
+    private ImageButton p3_D1;
+    private ImageButton p3_D2;
+    private ImageButton p3_D3;
+    private ImageButton p3_D4;
+    private ImageButton p3_D5;
+    private ImageButton p3_D6;
+    private ImageButton p3_D7;
+    private ImageButton p3_D8;
+
     private TextView player1GoldCount;
+    private TextView player2GoldCount;
+    private TextView player3GoldCount;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -59,17 +88,23 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
     private boolean d3_Info = false; //initializes d3_Info Boolean
     private boolean d4_Info = false; //initializes d4_Info Boolean
 
+    private boolean hasGone = false;
+    private boolean hasGoneAbility = false;
+
     private ArrayList<Bitmap> p1HandImages;
 
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
+    private Spinner characterCardSpinner;
 
     // Our activity
     private Activity myActivity;
 
     // Our edu.up.citadels.game state
     protected CitadelsGameState state;
+
+    CitadelsDistrictCard card = null;
 
     List<String> player1DistrictsCards = new ArrayList<String>();
 
@@ -94,7 +129,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
     @Override
     public void receiveInfo(GameInfo info)
     {
-
+        //TODO
     }
 
     /**
@@ -118,11 +153,35 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
         p1_D3 = (ImageButton) myActivity.findViewById(R.id.p1_D3);
         p1_D4 = (ImageButton) myActivity.findViewById(R.id.p1_D4);
+        p1_D5 = (ImageButton) myActivity.findViewById(R.id.p1_D5);
+        p1_D6 = (ImageButton) myActivity.findViewById(R.id.p1_D6);
+        p1_D7 = (ImageButton) myActivity.findViewById(R.id.p1_D7);
+        p1_D8 = (ImageButton) myActivity.findViewById(R.id.p1_D8);
+
+        p2_D1 = (ImageButton) myActivity.findViewById(R.id.p2_D1);
+        p2_D2 = (ImageButton) myActivity.findViewById(R.id.p2_D2);
+        p2_D3 = (ImageButton) myActivity.findViewById(R.id.p2_D3);
+        p2_D4 = (ImageButton) myActivity.findViewById(R.id.p2_D4);
+        p2_D5 = (ImageButton) myActivity.findViewById(R.id.p2_D5);
+        p2_D6 = (ImageButton) myActivity.findViewById(R.id.p2_D6);
+        p2_D7 = (ImageButton) myActivity.findViewById(R.id.p2_D7);
+        p2_D8 = (ImageButton) myActivity.findViewById(R.id.p2_D8);
+
+        p3_D1 = (ImageButton) myActivity.findViewById(R.id.p3_D1);
+        p3_D2 = (ImageButton) myActivity.findViewById(R.id.p3_D2);
+        p3_D3 = (ImageButton) myActivity.findViewById(R.id.p3_D3);
+        p3_D4 = (ImageButton) myActivity.findViewById(R.id.p3_D4);
+        p3_D5 = (ImageButton) myActivity.findViewById(R.id.p3_D5);
+        p3_D6 = (ImageButton) myActivity.findViewById(R.id.p3_D6);
+        p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
+        p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1GoldCount = (TextView) myActivity.findViewById(R.id.Gold_Count);
+        player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
+        player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
 
        /**
         * @Author Victor Nguyen
@@ -136,7 +195,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             public void onClick(View v)
             {
                 myActivity.registerForContextMenu(menu_Button);
-
             }
 
 
@@ -145,155 +203,63 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
+        characterCardSpinner = (Spinner) myActivity.findViewById(R.id.characterCardSpinner);
 
         // get values for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
+        String[] characterCardSpinnerNames = myActivity.getResources().getStringArray(characterCardSpinnerHandName);
 
-        // set initial value for the p1 gold to 2
-        p1Gold = 2;
-        player1GoldCount.setText("Gold: " + p1Gold);
+        // set values for all players' gold
+        player1GoldCount.setText("Gold: " + state.getP1Gold());
+        player2GoldCount.setText("Gold: " + state.getP2Gold());
+        player3GoldCount.setText("Gold: " + state.getP3Gold());
+
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+        characterCardSpinner.setOnItemSelectedListener(new CharacterCardSpinnerListener());
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        //initialize the array adapter
+        ArrayAdapter characterAdapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, characterCardSpinnerNames);
+        characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
+        characterCardSpinner.setAdapter(characterAdapter);
+    }
 
-        /**
-         * @Author: Kurtis Davidson
-         *
-         * Listens to when user clicks on player 1's district card 1 and changes the background color
-         * to black, when pressed again it reverts its color
-         */
-        player1_Card1.setOnClickListener(new View.OnClickListener()
-        {
-            Drawable defaultImageColor = player1_Card1.getBackground(); // gets default background color
-            @Override
-            public void onClick(View view)
-            {
-                if(p1_Card1Bool)
-                {
-                    player1_Card1.setBackgroundColor(myActivity.getResources().getColor(R.color.blackButtonPressColor));
-                }
-                else
-                {
-                    player1_Card1.setBackgroundDrawable(defaultImageColor);
-                }
-                p1_Card1Bool=!p1_Card1Bool;
-            }
-        });
-        /**
-         * @Author: Kurtis Davidson
-         *
-         * Listens to when user clicks on player 1's district card 2 and changes the background color
-         * to black, when pressed again it reverts its color
-         */
-        player1_Card2.setOnClickListener(new View.OnClickListener()
-        {
-            Drawable defaultImageColor = player1_Card2.getBackground(); // gets default background color
-            @Override
-            public void onClick(View view)
-            {
-                if(p1_Card2Bool)
-                {
-                    player1_Card2.setBackgroundColor(myActivity.getResources().getColor(R.color.blackButtonPressColor));
-                }
-                else
-                {
-                    player1_Card2.setBackgroundDrawable(defaultImageColor);
-                }
-                p1_Card2Bool=!p1_Card2Bool;
-            }
-        });
 
-        /*
-        * @Author: Gavin Low
-        *
-        * Click on the card to display useful info about the card
-        * Click on the card again to remove displayed information
-        * The card with the displayed information must be clicked to show the next card's information
-        */
-        p1_D1.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(cardInfo.getText() == "")
-                {
-                    cardInfo.setText("Manor\nValue: 4\nColor: Gold"); //displays card info (name, value, color)
-                    d1_Info = true;
 
-                }
-                else if(d1_Info == true)
-                {
-                    cardInfo.setText("");
-                    d1_Info = false;
-                }
-            }
-        });
+    /*
+    This makes this player make a take gold action
+     */
+    public void humanPlayerTakeGold()
+    {
+        game.sendAction(new TakeGold(this));
+    }
 
-        p1_D2.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(cardInfo.getText() == "")
-                {
-                    cardInfo.setText("Town Hall\nValue: 3\nColor: Gold");
-                    d2_Info = true;
-                }
-                else if( d2_Info == true)
-                {
-                    cardInfo.setText("");
-                    d2_Info = false;
-                }
+    //This allows the player to take a district card
+    public void humanPlayerTakeDistrictCard()
+    {
+        game.sendAction(new ChooseCharacterCard(this));
+    }
 
-            }
-        });
+    //This allows a player to use their special ability
+    public void humanPlayerUseAbility()
+    {
+        game.sendAction(new UseSpecialAbility(this));
+    }
 
-        p1_D3.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(cardInfo.getText() == "")
-                {
-                    cardInfo.setText("Church\nValue: 2\nColor: Blue");
-                    d3_Info = true;
-
-                }
-                else if( d3_Info == true)
-                {
-                    cardInfo.setText("");
-                    d3_Info = false;
-                }
-            }
-        });
-
-        p1_D4.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(cardInfo.getText() == "")
-                {
-                    cardInfo.setText("Battlefield\nValue: 3\nColor: Red");
-                    d4_Info = true;
-
-                }
-                else if(d4_Info == true)
-                {
-                    cardInfo.setText("");
-                    d4_Info = false;
-                }
-            }
-        });
-
+    //This method allows the user to end their turn
+    public void humanPlayerEndTurn()
+    {
+        game.sendAction(new EndTurn(this));
     }
 
     /**
@@ -307,12 +273,406 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
         return myActivity.findViewById(R.id.top_gui_layout);
     }
 
+    @Override
+    public void onClick(View v)
+    {
+        player1_Card1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //if it gets touched do something
+            }
+        });
+
+        player1_Card2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //do something if it's touched
+            }
+        });
+
+        /*
+        * @Author: Gavin Low
+        * @Author: Bryce Amato
+        *
+        * Click on the card to display useful info about the card
+        * Click on the card again to remove displayed information
+        * The card with the displayed information must be clicked to show the next card's information
+        *
+        * EDIT--- It now will display information about the specific card
+        *
+        */
+        p1_D1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(0);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(0));
+                }
+            }
+        });
+
+        p1_D2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(1);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(1));
+                }
+
+            }
+        });
+
+        p1_D3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(2);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(2));
+                }
+            }
+        });
+
+        p1_D4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(3);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(3));
+                }
+            }
+        });
+
+        p1_D5.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(4);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(4));
+                }
+            }
+        });
+
+        p1_D6.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(5);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(5));
+                }
+            }
+        });
+
+        p1_D7.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(6);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(6));
+                }
+            }
+        });
+
+        p1_D8.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP1City().get(7);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP1DistrictInfo(7));
+                }
+            }
+        });
+
+        p2_D1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(0);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(0));
+                }
+            }
+        });
+
+        p2_D2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(1);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(1));
+                }
+
+            }
+        });
+
+        p2_D3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(2);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(2));
+                }
+            }
+        });
+
+        p2_D4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(3);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(3));
+                }
+            }
+        });
+
+        p2_D5.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(4);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(4));
+                }
+            }
+        });
+
+        p2_D6.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(5);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(5));
+                }
+            }
+        });
+
+        p2_D7.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(6);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(6));
+                }
+            }
+        });
+
+        p2_D8.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP2City().get(7);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP2DistrictInfo(7));
+                }
+            }
+        });
+
+        p3_D1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(0);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(0));
+                }
+            }
+        });
+
+        p3_D2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(1);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(1));
+                }
+
+            }
+        });
+
+        p3_D3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(2);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(2));
+                }
+            }
+        });
+
+        p3_D4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(3);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(3));
+                }
+            }
+        });
+
+        p3_D5.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(4);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(4));
+                }
+            }
+        });
+
+        p3_D6.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(5);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(5));
+                }
+            }
+        });
+
+        p3_D7.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(6);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(6));
+                }
+            }
+        });
+
+        p3_D8.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                card = state.getP3City().get(7);
+                if(card != null)
+                {
+                    //displays card info (name, value, color)
+                    cardInfo.setText(state.getP3DistrictInfo(7));
+                }
+            }
+        });
+    }
+
     /**
     * @Author: Bryce Amato
     *
-    * This listener will keep track of what is selected in the player 1 action listener
-    * and respond accordingly.
+    * This listener will keep track of what is selected in the character card spinner listener
+    * and respond accordingly
     */
+
+    private class CharacterCardSpinnerListener implements AdapterView.OnItemSelectedListener
+    {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            //this will allow the player to choose their characters TODO
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+    /**
+     * @Author: Bryce Amato
+     *
+     * This listener will keep track of what is selected in the player 1 action listener
+     * and respond accordingly
+     */
     private class P1ActionSpinnerListener implements AdapterView.OnItemSelectedListener
     {
 
@@ -323,16 +683,58 @@ public class CitadelsHumanPlayer extends GameHumanPlayer
             if(position == 0)
             {
                 //do nothing
+                cardInfo.setText("It is Your Turn.");
             }else if(position == 1)
             {
-                p1Gold = p1Gold + 2;
-                player1GoldCount.setText("Gold: " + p1Gold);
+                if (! hasGone)
+                {
+                    humanPlayerTakeGold();
+                    hasGone = true;
+                    cardInfo.setText("Added Two Gold.");
+                }else
+                {
+                    //do nothing because they are not allowed to go
+                    cardInfo.setText("You Have Already Gone.");
+                }
             }else if(position == 2)
             {
-                //do nothing yet
+                if(! hasGone)
+                {
+                    humanPlayerTakeDistrictCard();
+                    hasGone = true;
+                    cardInfo.setText("District Card Aquired.");
+                }
+                else
+                {
+                    //do nothing because they are not allowed to go
+                    cardInfo.setText("You have Already Gone");
+                }
             }else if(position == 3)
             {
-                //do nothing yet
+                if(! hasGoneAbility)
+                {
+                    humanPlayerUseAbility();
+                    hasGoneAbility = true;
+                    cardInfo.setText("Character Ability Used.");
+                }
+                else
+                {
+                    //do nothing--- they cannot go
+                    cardInfo.setText("You have already used your ability.");
+                }
+            }else if(position == 4)
+            {
+                if(hasGone)
+                {
+                    humanPlayerEndTurn();
+                    hasGone = false;
+                    cardInfo.setText("Turn Ended.");
+                }
+                else
+                {
+                    //do nothing because they must do something before ending their turn
+                    cardInfo.setText("Must Take Turn First.");
+                }
             }
         }
 
