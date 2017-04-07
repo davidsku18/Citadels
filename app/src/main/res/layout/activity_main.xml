@@ -53,12 +53,12 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
                     <ImageView
                         android:id="@+id/p2_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -77,15 +77,13 @@
                             android:id="@+id/p2_D1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/fortress" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/mansion" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -121,15 +119,13 @@
                             android:id="@+id/player2_Card1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/warlord" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/player2_Card2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/magician" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -149,15 +145,13 @@
                             android:id="@+id/p2_D3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/monastery" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/docks" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -176,13 +170,13 @@
                             android:id="@+id/p2_D7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -204,21 +198,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Score:" />
+                        android:text="Score:"/>
 
                     <TextView
                         android:id="@+id/p2_gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Gold:" />
+                        android:text="Gold:"/>
 
                     <TextView
                         android:id="@+id/p2_dc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Districts:" />
+                        android:text="Districts:"/>
 
                 </LinearLayout>
 
@@ -237,13 +231,13 @@
                             android:id="@+id/p2_D5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -280,7 +274,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="#000000"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -312,7 +306,7 @@
                         android:layout_gravity="right"
                         android:layout_weight="1"
                         android:text="Menu"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -384,15 +378,12 @@
                             android:id="@+id/p3_D1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/monastery" />
-
+                            android:layout_weight="1"/>
                         <ImageButton
                             android:id="@+id/p3_D2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/watchtower" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -405,12 +396,12 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
                     <ImageView
                         android:id="@+id/p3_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -435,13 +426,13 @@
                             android:id="@+id/p3_D7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p3_D8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -460,15 +451,12 @@
                             android:id="@+id/p3_D3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/cathedral" />
-
+                            android:layout_weight="1"/>
                         <ImageButton
                             android:id="@+id/p3_D4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/market" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -487,15 +475,12 @@
                             android:id="@+id/player3_card1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/king" />
-
+                            android:layout_weight="1"/>
                         <ImageButton
                             android:id="@+id/player3_card2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/thief" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -529,15 +514,13 @@
                             android:id="@+id/p3_D5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/market" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p3_D6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/tavern" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -552,21 +535,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Score:" />
+                        android:text="Score:"/>
 
                     <TextView
                         android:id="@+id/p3_Gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Gold:" />
+                        android:text="Gold:"/>
 
                     <TextView
                         android:id="@+id/p3_Dc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Districts:" />
+                        android:text="Districts:"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -633,15 +616,13 @@
                             android:id="@+id/face1_Up"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/merchant" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/face2_Up"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/assassin" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -682,8 +663,7 @@
                     <ImageView
                         android:id="@+id/Gold_Icon"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/btn_star_big_on" />
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -699,16 +679,14 @@
 
                         android:layout_weight="1"
                         android:adjustViewBounds="false"
-                        android:elevation="0dp"
-                        app:srcCompat="@mipmap/bishop" />
+                        android:elevation="0dp"/>
 
                     <ImageButton
                         android:id="@+id/player1_Card2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:elevation="0dp"
-                        app:srcCompat="@mipmap/architect" />
+                        android:elevation="0dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -786,15 +764,13 @@
                             android:id="@+id/p1_D1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/mansion" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p1_D2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/town_house" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -813,15 +789,13 @@
                             android:id="@+id/p1_D3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/church" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p1_D4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/battlefield" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -840,15 +814,13 @@
                             android:id="@+id/p1_D5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/cathedral" />
+                            android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p1_D6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/mansion" />
+                            android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -960,8 +932,7 @@
                     <ImageView
                         android:id="@+id/p1_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/star_big_on" />
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
 
