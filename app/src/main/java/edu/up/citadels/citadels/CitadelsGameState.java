@@ -469,6 +469,10 @@ public class CitadelsGameState extends GameState
 
         double king = Math.random();
 
+        this.setP1Score(0);
+        this.setP2Score(0);
+        this.setP3Score(0);
+
         this.setP1Gold(2);
         this.setP2Gold(2);
         this.setP3Gold(2);
@@ -480,6 +484,16 @@ public class CitadelsGameState extends GameState
         this.setP2Character2(3);
         this.setP3Character1(4);
         this.setP3Character2(5);
+
+        //TODO take this out, I only put it in to test basic functionality
+        this.setP1Character1(0);
+        this.setP1Character2(1);
+        this.setP2Character1(2);
+        this.setP2Character2(3);
+        this.setP3Character1(4);
+        this.setP3Character2(5);
+
+
 
         //sets all of the built districts for each player to null because no one will start
         //with a district built
@@ -608,6 +622,16 @@ public class CitadelsGameState extends GameState
         }
 
         this.initializeCharacterDeck();
+
+        //TODO take this out- I just put these in to test functionality
+        this.addToP1City(this.p1Hand.get(0));
+        this.addToP1City(this.p1Hand.get(1));
+        this.addToP2City(this.p2Hand.get(0));
+        this.addToP2City(this.p2Hand.get(1));
+        this.addToP3City(this.p3Hand.get(0));
+        this.addToP3City(this.p3Hand.get(1));
+
+        this.setTurn(0);
     }
 
     /*

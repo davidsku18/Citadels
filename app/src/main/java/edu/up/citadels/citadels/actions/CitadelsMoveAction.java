@@ -28,7 +28,7 @@ public abstract class CitadelsMoveAction extends GameAction {
      * 		whether the move was a slap
      */
     public boolean isTakeGold() {
-        return false;
+        return true;
     }
 
     /**
@@ -54,6 +54,8 @@ public abstract class CitadelsMoveAction extends GameAction {
     {
         return false;
     }
+
+    public boolean isUseCharacterAbility(){ return false;}
 
 
 

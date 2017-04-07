@@ -92,7 +92,7 @@ public class CitadelsLocalGame extends LocalGame
         int p3Districts = state.getP3City().size();
 
         /*
-        Keep in mind that this is just signaling the end of the game and does not declare a
+        TODO Keep in mind that this is just signaling the end of the game and does not declare a
         winner yet, this is just for the most basic functionality
          */
 
@@ -122,6 +122,11 @@ public class CitadelsLocalGame extends LocalGame
     @Override
     protected boolean makeMove(GameAction action)
     {
+        if (action instanceof TakeGold)
+        {
+            state.setP1Gold(state.getP1Gold() + 2);
+            return true;
+        }
         int turn = state.getTurn();
         int player;
         int kingNum = (int)Math.random()*3;
@@ -140,19 +145,19 @@ public class CitadelsLocalGame extends LocalGame
 
         if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
         {
-            player = thisPlayerIdx;        //character belongs to player 0
+            player = 0;       //character belongs to player 0
         } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
         {
-            player = thisPlayerIdx;        //character belongs to player 1
+            player = 1;       //character belongs to player 1
         } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
         {
-            player = thisPlayerIdx;        //character belongs to player 2
+            player = 2;      //character belongs to player 2
         } else
         {
-            player = thisPlayerIdx;        //this is if no one owns this character
+            player = 3;       //this is if no one owns this character
         }
 
-        if (action instanceof ChooseCharacterCard)
+        if (cma.isChooseCharacterCards())
         {
             //this is just setting them to arbitrary values, we will set more later
             //for basic functionality
@@ -200,27 +205,7 @@ public class CitadelsLocalGame extends LocalGame
 
             return true;
         }
-        else if (action instanceof TakeGold)
-        {
-            //this will add 2 gold to whoever the player is
-            if (player == 0)
-            {
-                state.setP1Gold(state.getP1Gold() + 2);
-                return true;
-            } else if (player == 1)
-            {
-                state.setP2Gold(state.getP2Gold() + 2);
-                return true;
-            } else if (player == 2)
-            {
-                state.setP3Gold(state.getP3Gold() + 2);
-                return true;
-            } else
-            {
-                //do nothing because player 4 doesn't exist
-                return true;
-            }
-        } else if (action instanceof EndTurn)
+         else if (cma.isEndTurn())
         {
             if (state.getTurn() != 8) {
                 state.setTurn(state.getTurn() + 1);
@@ -230,7 +215,7 @@ public class CitadelsLocalGame extends LocalGame
                 state.setTurn(1);
                 return true;
             }
-        } else if (action instanceof ChooseDistrictCard)
+        } else if (cma.isChooseDistrictCard())
         {
             //this will add a district card to whoever the player is // TODO in-case idx does not start at 0
             if (player == 1)
@@ -253,7 +238,8 @@ public class CitadelsLocalGame extends LocalGame
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        } else if (action instanceof CitadelsBuildDistrictCard) {
+        } else if (cma.isChooseBuildDistrict())
+        {
             //TODO this will build the first district card in the hand
             //we will implement fuller functionality later
             if (player == 1)
@@ -277,7 +263,7 @@ public class CitadelsLocalGame extends LocalGame
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        } else if (action instanceof UseSpecialAbility)
+        } else if (cma.isUseCharacterAbility())
         {
             // Assassin special ability
             if (state.getTurn() == 1)

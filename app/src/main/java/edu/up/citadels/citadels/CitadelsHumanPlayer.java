@@ -85,6 +85,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
+    private TextView player1Score;
+    private TextView player2Score;
+    private TextView player3Score;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -202,10 +205,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
-        // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
+        player1Score = (TextView)myActivity.findViewById(R.id.P1_Score);
+        player2Score = (TextView)myActivity.findViewById(R.id.p2_Score);
+        player3Score = (TextView)myActivity.findViewById(R.id.p3_Score);
 
        /**
         * @Author Victor Nguyen
@@ -229,9 +234,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
 
         // set values for all players' gold
-        /*player1GoldCount.setText("Gold: " + state.getP1Gold());
+        player1GoldCount.setText("Gold: " + state.getP1Gold());
         player2GoldCount.setText("Gold: " + state.getP2Gold());
-        player3GoldCount.setText("Gold: " + state.getP3Gold());*/
+        player3GoldCount.setText("Gold: " + state.getP3Gold());
+
+        player1Score.setText("Score: " + state.getP1Score());
+        player2Score.setText("Score: " + state.getP2Score());
+        player3Score.setText("Score: " + state.getP3Score());
 
 
         // define a listener for the spinner
@@ -253,9 +262,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
 
 
-    /*
-    This makes this player make a take gold action
-     */
+
+    //This makes this player make a take gold action
     public void humanPlayerTakeGold()
     {
         game.sendAction(new TakeGold(this));
@@ -686,6 +694,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerTakeGold();
                     hasGone = true;
                     cardInfo.setText("Added Two Gold.");
+                    player1GoldCount.setText("Gold: " + state.getP1Gold());
                 }else
                 {
                     //do nothing because they are not allowed to go
@@ -702,7 +711,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 else
                 {
                     //do nothing because they are not allowed to go
-                    cardInfo.setText("You have Already Gone");
+                    cardInfo.setText("You Have Already Gone.");
                 }
             }else if(position == 3)
             {

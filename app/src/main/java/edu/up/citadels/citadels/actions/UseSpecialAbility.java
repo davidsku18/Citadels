@@ -24,6 +24,9 @@ public class UseSpecialAbility extends GameAction
         super(player);
     }
 
+
+    public boolean isUseCharacterAbility(){ return true; }
+
     /**
      * return whether this ability is the assassin's special ability
      *

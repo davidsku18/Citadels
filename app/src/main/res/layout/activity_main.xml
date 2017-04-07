@@ -385,6 +385,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@mipmap/monastery"
                             app:srcCompat="@mipmap/monastery" />
 
                         <ImageButton
@@ -677,7 +678,7 @@
                         android:id="@+id/p1_Gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="" />
+                        android:text="Gold:" />
 
                     <ImageView
                         android:id="@+id/Gold_Icon"
@@ -943,7 +944,7 @@
                         android:id="@+id/P1_Score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Score: 10" />
+                        android:text="Score:" />
                 </LinearLayout>
 
                 <LinearLayout
