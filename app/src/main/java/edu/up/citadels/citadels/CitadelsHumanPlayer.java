@@ -2,7 +2,9 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -27,6 +29,8 @@ import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
+import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
+import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
 import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
@@ -102,11 +106,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Activity myActivity;
 
     // Our edu.up.citadels.game state
-    protected CitadelsGameState state;
+    protected CitadelsGameState state = new CitadelsGameState();
 
     CitadelsDistrictCard card = null;
 
     List<String> player1DistrictsCards = new ArrayList<String>();
+
+    private int layoutId;
 
     /**
      * constructor
@@ -115,9 +121,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
      * 		the player's name
      *
      */
-    public CitadelsHumanPlayer(String initName)
+    public CitadelsHumanPlayer(String initName, int layoutId)
     {
         super(initName);
+        this.layoutId = layoutId;
     }
 
     /**
@@ -129,7 +136,23 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     @Override
     public void receiveInfo(GameInfo info)
     {
-        //TODO
+        Log.i("CitadelsComputerPlayer", "receiving updated state ("+info.getClass()+")");
+        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            // if we had an out-of-turn or illegal move, flash the screen
+            //surface.flash(Color.RED, 50);
+            //Do nothing yet TODO
+        }
+        else if (!(info instanceof CitadelsGameState)) {
+            // otherwise, if it's not a game-state message, ignore
+            return;
+        }
+        else {
+            // it's a game-state object: update the state. Since we have an animation
+            // going, there is no need to explicitly display anything. That will happen
+            // at the next animation-tick, which should occur within 1/20 of a second
+            this.state = (CitadelsGameState)info;
+            Log.i("human player", "receiving");
+        }
     }
 
     /**
@@ -145,7 +168,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         //remember the activity
         myActivity = activity;
 
-        activity.setContentView(R.layout.activity_main);
+        //activity.setContentView(R.layout.activity_main);
+
+        //activity.setContentView(R.layout.citadels_human_player);
+
+        activity.setContentView(layoutId);
+
         player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);
         player1_Card2 = (ImageButton) myActivity.findViewById(R.id.player1_Card2);
 
@@ -196,8 +224,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 myActivity.registerForContextMenu(menu_Button);
             }
-
-
         });
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
@@ -232,6 +258,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
         characterCardSpinner.setAdapter(characterAdapter);
+
+        if(state != null)
+        {
+            receiveInfo(state);
+        }
     }
 
 
@@ -658,7 +689,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
         {
-            //this will allow the player to choose their characters TODO
+            //TODO this will allow the player to choose their characters
         }
 
         @Override

@@ -466,6 +466,13 @@ public class CitadelsGameState extends GameState
 
     public CitadelsGameState()
     {
+
+        double king = Math.random();
+
+        this.setP1Gold(2);
+        this.setP2Gold(2);
+        this.setP3Gold(2);
+
         //sets all of the built districts for each player to null because no one will start
         //with a district built
 
@@ -653,7 +660,7 @@ public class CitadelsGameState extends GameState
             this.p3City.add(new CitadelsDistrictCard(orig.p3City.get(i)));
         }
 
-        for (int i = 0; i<9; ++ i)
+        for (int i = 0; i<8; ++ i)
         {
             this.characterDeck[i] = new CharacterCard(orig.characterDeck[i]);
         }

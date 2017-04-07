@@ -4,23 +4,23 @@ package edu.up.citadels.game;
  * Created by bryce on 3/3/2017.
  */
 
-        import edu.up.citadels.game.actionMsg.GameOverAckAction;
-        import edu.up.citadels.game.actionMsg.MyNameIsAction;
-        import edu.up.citadels.game.actionMsg.ReadyAction;
-        import edu.up.citadels.game.actionMsg.TimerAction;
-        import edu.up.citadels.game.actionMsg.GameAction;
-        import edu.up.citadels.game.infoMsg.BindGameInfo;
-        import edu.up.citadels.game.infoMsg.GameOverInfo;
-        import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
-        import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
-        import edu.up.citadels.game.infoMsg.StartGameInfo;
-        import edu.up.citadels.game.util.GameTimer;
-        import edu.up.citadels.game.util.Tickable;
+import edu.up.citadels.game.actionMsg.GameOverAckAction;
+import edu.up.citadels.game.actionMsg.MyNameIsAction;
+import edu.up.citadels.game.actionMsg.ReadyAction;
+import edu.up.citadels.game.actionMsg.TimerAction;
+import edu.up.citadels.game.actionMsg.GameAction;
+import edu.up.citadels.game.infoMsg.BindGameInfo;
+import edu.up.citadels.game.infoMsg.GameOverInfo;
+import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
+import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
+import edu.up.citadels.game.infoMsg.StartGameInfo;
+import edu.up.citadels.game.util.GameTimer;
+import edu.up.citadels.game.util.Tickable;
 
-        import android.os.Handler;
-        import android.os.Looper;
-        import android.os.Message;
-        import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 
 /**
  * A class that knows how to play the edu.up.citadels.game. The data in this class represent the

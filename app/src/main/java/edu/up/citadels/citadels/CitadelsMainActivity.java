@@ -10,6 +10,7 @@ package edu.up.citadels.citadels;
 
 import java.util.ArrayList;
 
+import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.config.GameConfig;
 import edu.up.citadels.game.LocalGame;
@@ -35,12 +36,12 @@ public class CitadelsMainActivity extends GameMainActivity
         playerTypes.add(new GamePlayerType("human player")
         {
             public GamePlayer createPlayer(String name) {
-                return new CitadelsHumanPlayer(name);
+                return new CitadelsHumanPlayer(name, R.layout.activity_main);
             }});
         playerTypes.add(new GamePlayerType("human player")
         {
             public GamePlayer createPlayer(String name) {
-                return new CitadelsHumanPlayer(name);
+                return new CitadelsHumanPlayer(name, R.layout.activity_main);
             }
         });
         playerTypes.add(new GamePlayerType("computer player (dumb)")

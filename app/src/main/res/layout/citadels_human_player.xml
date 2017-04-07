@@ -4,11 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <edu.up.cs301.animation.AnimationSurface
-        android:id="@+id/animation_surface"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
