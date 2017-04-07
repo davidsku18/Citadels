@@ -25,6 +25,8 @@ import edu.up.citadels.game.config.GamePlayerType;
  */
 public class CitadelsMainActivity extends GameMainActivity
 {
+    public static final int PORT_NUMBER = 4752;
+
     public GameConfig createDefaultConfig()
     {
         // Define the allowed player types
@@ -55,7 +57,7 @@ public class CitadelsMainActivity extends GameMainActivity
         });
 
         // Create a edu.up.citadels.game configuration class for Citadels
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Citadels", 2017);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Citadels", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0);

@@ -26,6 +26,8 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
         super(initName);
     }
 
+    private CitadelsGameState savedState;
+
     @Override
     protected void receiveInfo(GameInfo info)
     {
@@ -35,7 +37,7 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
 
         savedState = (CitadelsGameState)info;
 
-        // generate random number for AI to choice to take gold or a district card
+        // generate random number for AI to choose to take gold or a district card
         int goldOrDist = (int)(Math.random()*2);
 
         if (goldOrDist == 0)

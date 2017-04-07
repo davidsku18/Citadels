@@ -22,4 +22,10 @@ public class ChooseCharacterCard extends GameAction
     {
         super(player);
     }
+
+    /**
+     *
+     * @return whether player has drawn gold or not
+     */
+    public boolean isChooseCharacterCard() { return true; }
 }

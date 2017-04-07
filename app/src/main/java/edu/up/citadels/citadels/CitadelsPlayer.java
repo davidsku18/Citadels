@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class CitadelsPlayer
 {
     private String playerName;
+    private int playerNum;
     private int playerScore;
     private int gold;
     private boolean isKing;
@@ -24,18 +25,20 @@ public class CitadelsPlayer
     private ArrayList<CitadelsDistrictCard> playerCity = new ArrayList<CitadelsDistrictCard>();
 
     // Creates the CitadelsPlayer
-    public CitadelsPlayer(String initplayerName, int initplayerScore, int initgold, boolean initisKing)
+    public CitadelsPlayer(String initPlayerName, int initPlayerNum, int initPlayerScore, int initGold, boolean initIsKing)
     {
-        this.playerName = initplayerName;
-        this.playerScore = initplayerScore;
-        this.gold = initgold;
-        this.isKing = initisKing;
+        this.playerName = initPlayerName;
+        this.playerNum = initPlayerNum;
+        this.playerScore = initPlayerScore;
+        this.gold = initGold;
+        this.isKing = initIsKing;
     }
 
     // Copies the player
     public CitadelsPlayer(CitadelsPlayer orig)
     {
         this.playerName = orig.playerName;
+        this.playerNum = orig.playerNum;
         this.playerScore = orig.playerScore;
         this.gold = orig.gold;
         this.isKing = orig.isKing;
@@ -77,6 +80,10 @@ public class CitadelsPlayer
     {
         return this.playerName;
     }
+
+    // public int setPlayerNum(int playerIdx) { this.playerNum = playerIdx; }
+
+    public int getPlayerNum() { return this.playerNum; }
 
     public void setScore(int x)
     {
