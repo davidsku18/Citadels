@@ -203,7 +203,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-        player1GoldCount = (TextView) myActivity.findViewById(R.id.Gold_Count);
+        player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
 
@@ -222,38 +222,28 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
-        characterCardSpinner = (Spinner) myActivity.findViewById(R.id.characterCardSpinner);
 
         // get values for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
-        String[] characterCardSpinnerNames = myActivity.getResources().getStringArray(characterCardSpinnerHandName);
 
         // set values for all players' gold
-        player1GoldCount.setText("Gold: " + state.getP1Gold());
+        /*player1GoldCount.setText("Gold: " + state.getP1Gold());
         player2GoldCount.setText("Gold: " + state.getP2Gold());
-        player3GoldCount.setText("Gold: " + state.getP3Gold());
+        player3GoldCount.setText("Gold: " + state.getP3Gold());*/
 
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
-        characterCardSpinner.setOnItemSelectedListener(new CharacterCardSpinnerListener());
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //initialize the array adapter
-        ArrayAdapter characterAdapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
-                android.R.id.text1, characterCardSpinnerNames);
-        characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
-        characterCardSpinner.setAdapter(characterAdapter);
 
         if(state != null)
         {
@@ -670,28 +660,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
-    }
-
-    /**
-    * @Author: Bryce Amato
-    *
-    * This listener will keep track of what is selected in the character card spinner listener
-    * and respond accordingly
-    */
-
-    private class CharacterCardSpinnerListener implements AdapterView.OnItemSelectedListener
-    {
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-        {
-            //TODO this will allow the player to choose their characters
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
     }
 
     /**
