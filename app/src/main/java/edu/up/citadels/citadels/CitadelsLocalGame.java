@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -123,32 +124,75 @@ public class CitadelsLocalGame extends LocalGame
     {
         int turn = state.getTurn();
         int player;
-        if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
-        {
-            player = 1;         //character belongs to player 1
-        } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
-        {
-            player = 2;         //character belongs to player 2
-        } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
-        {
-            player = 3;         //character belongs to player 3
-        } else
-        {
-            player = 4;        //this is if no one owns this character
+        int kingNum = (int)Math.random()*3;
+
+        //sets the king num
+        state.setKing(kingNum);
+
+        if (!(action instanceof CitadelsMoveAction)) {
+            return false;
         }
 
-        if (action instanceof TakeGold)
+        CitadelsMoveAction  cma = (CitadelsMoveAction) action;
+
+        //get the index of the player making the move;
+        int thisPlayerIdx = getPlayerIdx(cma.getPlayer());
+
+        if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
+        {
+            player = thisPlayerIdx;       //character belongs to player 1
+        } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
+        {
+            player = thisPlayerIdx;         //character belongs to player 2
+        } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
+        {
+            player = thisPlayerIdx;         //character belongs to player 3
+        } else
+        {
+            player = thisPlayerIdx;        //this is if no one owns this character
+        }
+
+        if (action instanceof ChooseCharacterCard)
+        {
+            //this is just setting them to arbitrary values, we will set more later
+            //for basic functionality
+            //TODO
+            /*
+            state.setP1Character1(0);
+            state.setP1Character2(1);
+            state.setP2Character1(2);
+            state.setP2Character2(3);
+            state.setP3Character1(4);
+            state.setP3Character2(5);
+            */
+            state.setTurn(0);
+
+            int[] p1Characters = new int[2];
+            int[] p2Characters = new int[2];
+            int[] p3Characters = new int[2]; // TODO may want to change to CharacterCards later
+
+            if(state.getIsKing() == player)
+            {
+                for (int i = 0; i < 1; ++i)
+                {
+                    p1Characters[i] = state.setP1Character1();
+                }
+            }
+
+            return true;
+        }
+        else if (action instanceof TakeGold)
         {
             //this will add 2 gold to whoever the player is
-            if (player == 1)
+            if (player == 0)
             {
                 state.setP1Gold(state.getP1Gold() + 2);
                 return true;
-            } else if (player == 2)
+            } else if (player == 1)
             {
                 state.setP2Gold(state.getP2Gold() + 2);
                 return true;
-            } else if (player == 3)
+            } else if (player == 2)
             {
                 state.setP3Gold(state.getP3Gold() + 2);
                 return true;
@@ -169,7 +213,7 @@ public class CitadelsLocalGame extends LocalGame
             }
         } else if (action instanceof ChooseDistrictCard)
         {
-            //this will add a district card to whoever the player is
+            //this will add a district card to whoever the player is // TODO in-case idx does not start at 0
             if (player == 1)
             {
                 state.addToP1Hand(state.drawCard());
@@ -196,17 +240,17 @@ public class CitadelsLocalGame extends LocalGame
             if (player == 1)
             {
                 //TODO check and see if the player has enough gold
-                state.addToP1City(state.getP1Card(1));
+                state.addToP1City(state.getP1DistrictCard(1));
                 state.removeFromP1Hand(1);
                 return true;
             } else if (player == 2)
             {
-                state.addToP2City(state.getP2Card(1));
+                state.addToP2City(state.getP2DistrictCard(1));
                 state.removeFromP2Hand(1);
                 return true;
             } else if (player == 3)
             {
-                state.addToP3City(state.getP3Card(1));
+                state.addToP3City(state.getP3DistrictCard(1));
                 state.removeFromP3Hand(1);
                 return true;
             } else
@@ -214,31 +258,6 @@ public class CitadelsLocalGame extends LocalGame
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        } else if (action instanceof ChooseCharacterCard)
-        {
-            //this is just setting them to arbitrary values, we will set more later
-            //for basic functionality
-            //TODO
-            /*
-            state.setP1Character1(0);
-            state.setP1Character2(1);
-            state.setP2Character1(2);
-            state.setP2Character2(3);
-            state.setP3Character1(4);
-            state.setP3Character2(5);
-            */
-            state.setTurn(0);
-
-            CharacterCard[] p1Characters = new CharacterCard[2];
-            CharacterCard[] p2Characters = new CharacterCard[2];
-            CharacterCard[] p3Characters = new CharacterCard[2];
-
-                if(state.getIsKing())
-                {
-
-                }
-
-            return true;
         } else if (action instanceof UseSpecialAbility)
         {
             // Assassin special ability
@@ -324,7 +343,7 @@ public class CitadelsLocalGame extends LocalGame
         {
             return false;
         }
-        return false;
+        return true;
     }
 }
 

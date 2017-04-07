@@ -62,7 +62,6 @@ public class CitadelsDistrictCard {
         this(orig.name, orig.color, orig.cost);
     }
 
-
     //Getter Methods
 
     //Get CitadelsCard Name
@@ -104,5 +103,4 @@ public class CitadelsDistrictCard {
     {
         return cost;
     }
-
 }
