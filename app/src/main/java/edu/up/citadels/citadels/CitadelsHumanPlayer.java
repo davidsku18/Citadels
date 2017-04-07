@@ -168,10 +168,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         //remember the activity
         myActivity = activity;
 
-        //activity.setContentView(R.layout.activity_main);
-
-        //activity.setContentView(R.layout.citadels_human_player);
-
         activity.setContentView(layoutId);
 
         player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);

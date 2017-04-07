@@ -24,14 +24,12 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsComputerPlayer extends GameComputerPlayer
 {
-    CitadelsGameState savedState;
+    private CitadelsGameState savedState;
 
     public CitadelsComputerPlayer(String initName)
     {
         super(initName);
     }
-
-    private CitadelsGameState savedState;
 
     @Override
     protected void receiveInfo(GameInfo info)
