@@ -123,6 +123,7 @@ public class CitadelsLocalGame extends LocalGame
     protected boolean makeMove(GameAction action)
     {
         int turn = state.getTurn();
+        int chosenNum = 0;
         int player;
         int kingNum = (int)Math.random()*3;
 
@@ -173,31 +174,64 @@ public class CitadelsLocalGame extends LocalGame
 
             // first person two choose is the person who has the crown
             // if king is equal to player 0 (player 1), then they get to choose their characters first
-            if(state.getKing() == 0)
-            {
-                p1Characters[0] = state.chosenCharacterCard();
-                p1Characters[1] = state.chosenCharacterCard();
-                state.setP1Character1(p1Characters[1]);
-                state.setP1Character2(p1Characters[2]);
+            if(state.getKing() == 0) {
+                chosenNum = 0;
+                //sets the player's characters to the chosen character card
+                while (chosenNum != 2) {
+                    if (chosenNum == 0) {
+                        state.setP1Character1(state.chosenCharacterCard());
+                        state.removeCharacterCard(state.chosenCharacterCard());
+                        chosenNum++;
+                        //increments chosenNum to determine whether the player has chosen their first character card
+                    }
+                    if (chosenNum == 1) {
+                        state.setP1Character2(state.chosenCharacterCard());
+                        state.removeCharacterCard(state.chosenCharacterCard());
+                        chosenNum++;
+                        //increments chosenNum to determine whether the player has chosen their second character card
+                    }
+                    return true;
+                }
             }
-
-            // if king is equal to player 1 (player 2), then they get to choose their characters first
-            if(state.getKing() == 1)
+            else if (player == 1)
             {
-                p2Characters[0] = state.chosenCharacterCard();
-                p2Characters[1] = state.chosenCharacterCard();
-                state.setP2Character1(p2Characters[1]);
-                state.setP2Character2(p2Characters[2]);
+                chosenNum = 0;
+                // could also check if character deck is null
+                while (state.chosenCharacterCard() == -1 || chosenNum != 2)
+                {
+                    if (chosenNum == 0)
+                    {
+                        state.setP2Character1(state.chosenCharacterCard());
+                        state.removeCharacterCard(state.chosenCharacterCard());
+                        chosenNum++;
+                    }
+                    else if (chosenNum == 1) {
+                        state.setP1Character2(state.chosenCharacterCard());
+                        state.removeCharacterCard(state.chosenCharacterCard());
+                        chosenNum++;
+                    }
+                }
+                return true;
             }
-
-            // if king is equal to player 2 (player 3), then they get to choose their characters first
-            if(state.getKing() == 2)
-            if( player == 3 )
+            else if (player == 2)
             {
-                p3Characters[0] = state.chosenCharacterCard();
-                p3Characters[1] = state.chosenCharacterCard();
+                chosenNum = 0;
+                while (state.chosenCharacterCard() == -1 || chosenNum != 2)
+                {
+                    if (chosenNum == 0)
+                    {
+                        state.setP3Character1(state.chosenCharacterCard());
+                        state.removeCharacterCard(state.chosenCharacterCard());
+                        chosenNum++;
+                    }
+                    else if (chosenNum == 1) {
+                        state.setP3Character2(state.chosenCharacterCard());
+                        state.removeCharacterCard(state.chosenCharacterCard());
+                        chosenNum++;
+                    }
+                }
+                return true;
             }
-
             return true;
         }
         else if (action instanceof TakeGold)
