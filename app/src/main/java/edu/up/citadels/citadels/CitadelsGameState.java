@@ -19,8 +19,10 @@ import edu.up.citadels.game.infoMsg.GameState;
 public class CitadelsGameState extends GameState
 {
 
+    // if king is equal to the player's number, they are the king
     private int king;
 
+    //scores for all the players
     private int p1Score;
     private int p2Score;
     private int p3Score;
@@ -100,7 +102,7 @@ public class CitadelsGameState extends GameState
     }
 
     //Returns if the player is king or not
-    public int getIsKing()
+    public int getKing()
     {
         return king;
     } // TODO need to implement who is king and who has the king character card
@@ -112,50 +114,18 @@ public class CitadelsGameState extends GameState
     }
 
     //Sets the player's chosen character card
-    public void setP1Character1(int x)
-    {
-        this.p1Character1 = x;
-    }
-    public void setP1Character2(int x)
-    {
-        this.p1Character2 = x;
-    }
-    public void setP2Character1(int x)
-    {
-        this.p2Character1 = x;
-    }
+    public void setP1Character1(int x) { this.p1Character1 = x; }
+    public void setP1Character2(int x) { this.p1Character2 = x; }
+    public void setP2Character1(int x) { this.p2Character1 = x; }
     public void setP2Character2(int x) { this.p2Character2 = x; }
-    public void setP3Character1(int x)
-    {
-        this.p3Character1 = x;
-    }
-    public void setP3Character2(int x)
-    {
-        this.p3Character2 = x;
-    }
+    public void setP3Character1(int x) { this.p3Character1 = x; }
+    public void setP3Character2(int x) { this.p3Character2 = x; }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
     public CitadelsDistrictCard drawCard() {
         this.deckOrderDistricts.remove(0);
         return this.deckOrderDistricts.get(0);
-    }
-
-    //Deprecated for now
-    public void removeDistrictCard()
-    {
-        this.deckOrderDistricts.remove(0);
-    }
-
-    //Adds district card to player's hand
-    public void addToP1Hand(CitadelsDistrictCard dc) { this.p1Hand.add(dc); }
-    public void addToP2Hand(CitadelsDistrictCard dc)
-    {
-        this.p2Hand.add(dc);
-    }
-    public void addToP3Hand(CitadelsDistrictCard dc)
-    {
-        this.p3Hand.add(dc);
     }
 
     //Adds district card to player's city (built)
@@ -288,7 +258,36 @@ public class CitadelsGameState extends GameState
     //Removes the characterCard from te deck after a player chooses their card
     public void removeCharacterCard(int i) { this.characterDeck[i] = null; }
 
+    //Get face up card 1
+    public CharacterCard getCardUp1()
+    {
+        return cardUp1;
+    }
+
+    //Get face up card 2
+    public CharacterCard getCardUp2()
+    {
+        return cardUp2;
+    }
+
+    //Get character card deck
+    public CharacterCard[] getCharacterDeck()
+    {
+        return characterDeck;
+    }
+
 ////////////////////////////////////Deals with Players district cards//////////////////////
+
+    //Deprecated for now
+    public void removeDistrictCard()
+    {
+        this.deckOrderDistricts.remove(0);
+    }
+
+    //Adds district card to player's hand
+    public void addToP1Hand(CitadelsDistrictCard dc) { this.p1Hand.add(dc); }
+    public void addToP2Hand(CitadelsDistrictCard dc) { this.p2Hand.add(dc); }
+    public void addToP3Hand(CitadelsDistrictCard dc) { this.p3Hand.add(dc); }
 
     //Removes district card from the player's hand
     public void removeFromP1Hand(int card)
@@ -407,6 +406,30 @@ public class CitadelsGameState extends GameState
             returnList.add(deckOrderDistricts.get(i));
         }
         return returnList;
+    }
+
+    public String getP1DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p1City.get(index);
+        String P1DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P1DistrictInfo;
+    }
+
+    public String getP2DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p2City.get(index);
+        String P2DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P2DistrictInfo;
+    }
+
+    public String getP3DistrictInfo(int index)
+    {
+        CitadelsDistrictCard temp = p3City.get(index);
+        String P3DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
+                + "\n" + "Cost: " + temp.getCost();
+        return P3DistrictInfo;
     }
 
     //Sets the player's hand with cards (Used at the start of game)
@@ -659,100 +682,10 @@ public class CitadelsGameState extends GameState
         return swapDistricts;
     }
 
-    //Get face up card 1
-    public CharacterCard getCardUp1()
-    {
-        return cardUp1;
-    }
-
-    //Get face up card 2
-    public CharacterCard getCardUp2()
-    {
-        return cardUp2;
-    }
-
-    //Get character card deck
-    public CharacterCard[] getCharacterDeck()
-    {
-        return characterDeck;
-    }
-
     //TODO may need to change
     public void isCharacterDead(boolean kill)
     {
         this.isCharacterDead(kill);
-    }
-
-    public void setP1Hand(ArrayList<CitadelsDistrictCard> arrayCD)
-    {
-        this.p1Hand = arrayCD;
-    }
-
-    public void setP2Hand(ArrayList<CitadelsDistrictCard> arrayCD)
-    {
-        this.p2Hand = arrayCD;
-    }
-
-    public void setP3Hand(ArrayList<CitadelsDistrictCard> arrayCD)
-    {
-        this.p3Hand = arrayCD;
-    }
-
-    public void removeP1BuiltDistrict()
-    {
-        if(this.p1City.size() > 0)
-        {
-            p1City.remove(0);
-        }else
-        {
-            //do nothing
-        }
-    }
-
-    public void removeP2BuiltDistrict()
-    {
-        if(this.p2City.size() > 0)
-        {
-            p2City.remove(0);
-        }else
-        {
-            //do nothing
-        }
-    }
-
-    public void removeP3BuiltDistrict()
-    {
-        if(this.p3City.size() > 0)
-        {
-            p3City.remove(0);
-        }else
-        {
-            //do nothing
-        }
-    }
-
-    public String getP1DistrictInfo(int index)
-    {
-        CitadelsDistrictCard temp = p1City.get(index);
-        String P1DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
-                + "\n" + "Cost: " + temp.getCost();
-        return P1DistrictInfo;
-    }
-
-    public String getP2DistrictInfo(int index)
-    {
-        CitadelsDistrictCard temp = p2City.get(index);
-        String P2DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
-                + "\n" + "Cost: " + temp.getCost();
-        return P2DistrictInfo;
-    }
-
-    public String getP3DistrictInfo(int index)
-    {
-        CitadelsDistrictCard temp = p3City.get(index);
-        String P3DistrictInfo = "Name: " + temp.getName() + "\n" + "Color: " + temp.getColorString()
-                + "\n" + "Cost: " + temp.getCost();
-        return P3DistrictInfo;
     }
 
 }

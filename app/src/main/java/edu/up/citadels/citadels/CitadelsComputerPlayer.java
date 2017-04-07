@@ -21,14 +21,13 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsComputerPlayer extends GameComputerPlayer
 {
-    CitadelsGameState savedState;
+
+    private CitadelsGameState savedState;
 
     public CitadelsComputerPlayer(String initName)
     {
         super(initName);
     }
-
-    private CitadelsGameState savedState;
 
     @Override
     protected void receiveInfo(GameInfo info)
@@ -64,9 +63,6 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
         }
 
         int chooseCharacter = (int)((Math.random())*8);
-
-
-
 
         // if we don't have a game-state, ignore
         if (!(info instanceof CitadelsGameState)) {

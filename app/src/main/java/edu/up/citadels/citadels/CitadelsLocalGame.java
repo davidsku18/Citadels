@@ -140,13 +140,13 @@ public class CitadelsLocalGame extends LocalGame
 
         if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
         {
-            player = thisPlayerIdx;       //character belongs to player 1
+            player = thisPlayerIdx;        //character belongs to player 0
         } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
         {
-            player = thisPlayerIdx;         //character belongs to player 2
+            player = thisPlayerIdx;        //character belongs to player 1
         } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
         {
-            player = thisPlayerIdx;         //character belongs to player 3
+            player = thisPlayerIdx;        //character belongs to player 2
         } else
         {
             player = thisPlayerIdx;        //this is if no one owns this character
@@ -157,26 +157,45 @@ public class CitadelsLocalGame extends LocalGame
             //this is just setting them to arbitrary values, we will set more later
             //for basic functionality
             //TODO
-            /*
+
             state.setP1Character1(0);
             state.setP1Character2(1);
             state.setP2Character1(2);
             state.setP2Character2(3);
             state.setP3Character1(4);
             state.setP3Character2(5);
-            */
+
             state.setTurn(0);
 
             int[] p1Characters = new int[2];
             int[] p2Characters = new int[2];
             int[] p3Characters = new int[2]; // TODO may want to change to CharacterCards later
 
-            if(state.getIsKing() == player)
+            // first person two choose is the person who has the crown
+            // if king is equal to player 0 (player 1), then they get to choose their characters first
+            if(state.getKing() == 0)
             {
-                for (int i = 0; i < 1; ++i)
-                {
-                    p1Characters[i] = state.setP1Character1();
-                }
+                p1Characters[0] = state.chosenCharacterCard();
+                p1Characters[1] = state.chosenCharacterCard();
+                state.setP1Character1(p1Characters[1]);
+                state.setP1Character2(p1Characters[2]);
+            }
+
+            // if king is equal to player 1 (player 2), then they get to choose their characters first
+            if(state.getKing() == 1)
+            {
+                p2Characters[0] = state.chosenCharacterCard();
+                p2Characters[1] = state.chosenCharacterCard();
+                state.setP2Character1(p2Characters[1]);
+                state.setP2Character2(p2Characters[2]);
+            }
+
+            // if king is equal to player 2 (player 3), then they get to choose their characters first
+            if(state.getKing() == 2)
+            if( player == 3 )
+            {
+                p3Characters[0] = state.chosenCharacterCard();
+                p3Characters[1] = state.chosenCharacterCard();
             }
 
             return true;
