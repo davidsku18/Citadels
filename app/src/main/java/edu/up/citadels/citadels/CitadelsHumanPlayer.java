@@ -793,8 +793,4 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         MenuInflater inflater = myActivity.getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
     }
-
-
-
-
 }
