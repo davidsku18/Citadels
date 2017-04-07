@@ -11,7 +11,7 @@ import edu.up.citadels.game.util.NetworkObjectPasser;
 import android.util.Log;
 
 /**
- * A CitadelsPlayer object that is used as a proxy for the real player that is on another
+ * A CitadelssPlayer object that is used as a proxy for the real player that is on another
  * machine on the network. Whenever a message is sent to the ProxyPlayer object,
  * it serializes the message and sends it across the network; when
  * the ProxyPlayer object receives a message from the network, it

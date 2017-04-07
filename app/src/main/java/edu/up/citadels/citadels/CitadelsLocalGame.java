@@ -34,7 +34,7 @@ public class CitadelsLocalGame extends LocalGame
     {
         Log.i("CitadelsLocalGame", "creating edu.up.citadels.game");
         // create the state for the beginning of the edu.up.citadels.game
-        state = new CitadelsGameState();
+        this.state = new CitadelsGameState();
     }
     /**
      * Notify the given player that its state has changed. This should involve sending
@@ -142,15 +142,15 @@ public class CitadelsLocalGame extends LocalGame
             //this will add 2 gold to whoever the player is
             if (player == 1)
             {
-                state.setP1Score(state.getP1Score() + 2);
+                state.setP1Gold(state.getP1Gold() + 2);
                 return true;
             } else if (player == 2)
             {
-                state.setP2Score(state.getP2Score() + 2);
+                state.setP2Gold(state.getP2Gold() + 2);
                 return true;
             } else if (player == 3)
             {
-                state.setP3Score(state.getP3Score() + 2);
+                state.setP3Gold(state.getP3Gold() + 2);
                 return true;
             } else
             {

@@ -217,11 +217,11 @@ public abstract class GameMainActivity extends Activity implements
         // run the thread
         Thread t = new Thread(runner);
         t.start();
-//		try {
-//			// join the thread to that we don't get ahead of it
-//			t.join();
-//		} catch (InterruptedException e) {
-//		}
+		try {
+			 //join the thread to that we don't get ahead of it
+            t.join();
+            } catch (InterruptedException e) {
+        }
 
     }//hideSoftKeyboard
 
@@ -398,7 +398,7 @@ public abstract class GameMainActivity extends Activity implements
                 }
             }
 
-            // set up our spinner so that when its last element ("Network CitadelsPlayer") is selected,
+            // set up our spinner so that when its last element ("Network CitadelssPlayer") is selected,
             // the corresponding EditText (the player name) is disabled.
             typeSpinner.setOnItemSelectedListener(new SpinnerListListener(playerName, availTypes.length-1));
 
@@ -488,13 +488,13 @@ public abstract class GameMainActivity extends Activity implements
             return;
         }
 
-        // Add CitadelsPlayer Button
+        // Add CitadelssPlayer Button
         if (button.getId() == R.id.addPlayerButton) {
             addPlayer();
             this.playerTable.invalidate(); // show the user the change
         }
 
-        // Delete CitadelsPlayer Button
+        // Delete CitadelssPlayer Button
         else if (button.getId() == R.id.delPlayerButton) {
             // Search the existing players to find out which delete button got
             // clicked

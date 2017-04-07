@@ -2,5 +2,5 @@
     <item android:id="@+id/menu_settings"
         android:title="Menu Settings"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+         />
 </menu>

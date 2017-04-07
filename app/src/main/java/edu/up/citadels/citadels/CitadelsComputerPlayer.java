@@ -17,6 +17,9 @@ import edu.up.citadels.game.infoMsg.GameState;
  * @author Kurtis Davidson
  * @version 3/3/2017
  *
+ * TODO the way we have it right now the computer is doing multiple things every time the computer
+ * TODO is called. We need to differentiate between a regular turn and a computer choosing a character card
+ *
  */
 
 public class CitadelsComputerPlayer extends GameComputerPlayer
@@ -62,17 +65,6 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
         }
 
         int chooseCharacter = (int)((Math.random())*8);
-
-
-
-
-        // if we don't have a game-state, ignore
-        if (!(info instanceof CitadelsGameState)) {
-            return;
-        }
-
-        // update our state variable
-        savedState = (CitadelsGameState)info;
 
     }
 }
