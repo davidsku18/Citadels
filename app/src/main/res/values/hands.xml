@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="imageIdArray">
-        <item>@mipmap/palace</item>
-        <item>@mipmap/mansion</item>
-        <item>@mipmap/merchant</item>
-        <item>@mipmap/prison</item>
-        <item>@mipmap/trading_post</item>
-        <item>@mipmap/town_house</item>
+        <item>@drawable/palace</item>
+        <item>@drawable/manor</item>
+        <item>@drawable/merchant</item>
+        <item>@drawable/prison</item>
+        <item>@drawable/trading_post</item>
+        <item>@drawable/townhall</item>
     </array>
 
     <string-array name="p1HandImages">
