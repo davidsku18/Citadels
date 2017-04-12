@@ -25,7 +25,7 @@ public abstract class CitadelsMoveAction extends GameAction {
 
     /**
      * @return
-     * 		whether the move was a slap
+     * 		whether gold was taken or not
      */
     public boolean isTakeGold() {
         return false;
