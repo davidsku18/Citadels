@@ -18,8 +18,8 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <SurfaceView
-            android:id="@+id/cardSurfaceView"
+        <edu.up.citadels.citadels.actions.CardChooserSurfaceView
+            android:id="@+id/cardtheSurfaceView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

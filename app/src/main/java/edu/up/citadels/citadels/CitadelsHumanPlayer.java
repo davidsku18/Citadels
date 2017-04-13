@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
@@ -104,6 +105,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     // Our activity
     private Activity myActivity;
+
+    // Our surface view
+    CardChooserSurfaceView ccsv;
 
     // Our edu.up.citadels.game state
     protected CitadelsGameState state = new CitadelsGameState();
@@ -236,6 +240,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+
+        this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
