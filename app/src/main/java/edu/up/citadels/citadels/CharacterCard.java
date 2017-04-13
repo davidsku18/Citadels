@@ -51,12 +51,4 @@ public class CharacterCard
     {
         this(orig.whichCharacter, orig.color);
     }
-
-    /*
-    public int getCharacter(int who)
-    {
-        return 1;
-    }
-    */
-
 }

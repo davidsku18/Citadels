@@ -23,14 +23,12 @@ public class CardChooserSurfaceView extends SurfaceView
     private int width = this.getWidth();
     private int height = this.getHeight();
 
-
-
         /*
         characterCards.add(assassinScaled);
         characterCards.add(thiefScaled);
         characterCards.add(magicianScaled);
         characterCards.add(kingScaled);
-        characterCards.add(bishopScdled);
+        characterCards.add(bishopScaled);
         characterCards.add(merchantScaled);
         characterCards.add(architectScaled);
         characterCards.add(warlordScaled);
@@ -74,15 +72,21 @@ public class CardChooserSurfaceView extends SurfaceView
         Bitmap merchant = BitmapFactory.decodeResource(getResources(), R.drawable.merchant);
         Bitmap architect = BitmapFactory.decodeResource(getResources(), R.drawable.architect);
         Bitmap warlord = BitmapFactory.decodeResource(getResources(), R.drawable.warlord);
-        Bitmap assassinScaled = Bitmap.createScaledBitmap(assassin, this.getWidth()/8, this.getHeight()/2, true);
+        Bitmap assassinScaled = Bitmap.createScaledBitmap(assassin, this.getWidth()/4, this.getHeight(), true);
         Bitmap thiefScaled = Bitmap.createScaledBitmap(thief, this.getWidth()/4, this.getHeight(), true);
-        Bitmap magicianScaled = Bitmap.createScaledBitmap(magician, this.getWidth()/4, this.getHeight()/2, true);
-        Bitmap kingScaled = Bitmap.createScaledBitmap(king, this.getWidth()/4, this.getHeight(), true);
-        Bitmap bishopScdled = Bitmap.createScaledBitmap(bishop, this.getWidth()/4, this.getHeight(), true);
-        Bitmap merchantScaled = Bitmap.createScaledBitmap(merchant, this.getWidth()/4, this.getHeight(), true);
-        Bitmap architectScaled = Bitmap.createScaledBitmap(architect, this.getWidth()/4, this.getHeight(), true);
-        Bitmap warlordScaled = Bitmap.createScaledBitmap(warlord, this.getWidth()/4, this.getHeight(), true);
+        Bitmap magicianScaled = Bitmap.createScaledBitmap(magician, this.getWidth()/8, this.getHeight(), true);
+        Bitmap kingScaled = Bitmap.createScaledBitmap(king, this.getWidth()/8, this.getHeight(), true);
+        Bitmap bishopScdled = Bitmap.createScaledBitmap(bishop, this.getWidth()/8, this.getHeight(), true);
+        Bitmap merchantScaled = Bitmap.createScaledBitmap(merchant, this.getWidth()/8, this.getHeight(), true);
+        Bitmap architectScaled = Bitmap.createScaledBitmap(architect, this.getWidth()/8, this.getHeight(), true);
+        Bitmap warlordScaled = Bitmap.createScaledBitmap(warlord, this.getWidth()/8, this.getHeight(), true);
         canvas.drawBitmap(assassinScaled, 0, 0, defaultPaint);
-
+        canvas.drawBitmap(assassinScaled, 180, 0, defaultPaint);
+        canvas.drawBitmap(assassinScaled, 360, 0, defaultPaint);
+        canvas.drawBitmap(assassinScaled, 540, 0, defaultPaint);
+        canvas.drawBitmap(assassinScaled, 720, 0, defaultPaint);
+        canvas.drawBitmap(assassinScaled, 900, 0, defaultPaint);
+        canvas.drawBitmap(assassinScaled, 1080, 0, defaultPaint);
+        canvas.drawBitmap(assassinScaled, 1260, 0, defaultPaint);
     }
 }

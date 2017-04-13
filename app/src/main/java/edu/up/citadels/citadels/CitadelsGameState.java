@@ -58,7 +58,7 @@ public class CitadelsGameState extends GameState
     private int p3Character1;
     private int p3Character2;
 
-    //if a character has been assassinated
+    //if a character has been assassinated //TODO
     private boolean characterIsAlive;
 
     //is a player has been robbed
