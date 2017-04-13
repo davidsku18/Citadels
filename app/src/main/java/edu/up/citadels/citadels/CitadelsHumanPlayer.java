@@ -2,10 +2,13 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,15 +16,19 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.up.citadels.R;
+import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
+import edu.up.citadels.game.infoMsg.GameInfo;
+import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
@@ -49,6 +56,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean p1_Card1Bool = true; // boolean for player1_Card1
     private boolean p1_Card2Bool = true; // boolean for player1_Cart2
 
+    // Image Buttons for player1
     private ImageButton p1_D1;
     private ImageButton p1_D2;
     private ImageButton p1_D3;
@@ -100,6 +108,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     // Our activity
     private Activity myActivity;
 
+    // Our surface view
+    CardChooserSurfaceView ccsv;
+
     // Our edu.up.citadels.game state
     protected CitadelsGameState state = new CitadelsGameState();
 
@@ -121,7 +132,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         super(initName);
         this.layoutId = layoutId;
     }
-
 
     /**
      * callback method: we have received a message from the game
@@ -166,8 +176,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         activity.setContentView(layoutId);
 
-
-
         player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);
         player1_Card2 = (ImageButton) myActivity.findViewById(R.id.player1_Card2);
 
@@ -201,7 +209,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
-        player1GoldCount = (TextView) myActivity.findViewById(R.id.Gold_Count);
+        player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
 
@@ -211,7 +219,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         * Creates the floating menu
         * Must long press to open the menu
         */
-
         menu_Button = (Button) myActivity.findViewById(R.id.Menu);
         menu_Button.setOnClickListener(new View.OnClickListener()
         {
@@ -222,42 +229,31 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-
-
-
-
-        // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
-        characterCardSpinner = (Spinner) myActivity.findViewById(R.id.characterCardSpinner);
 
         // get values for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
-        String[] characterCardSpinnerNames = myActivity.getResources().getStringArray(characterCardSpinnerHandName);
 
         // set values for all players' gold
-        player1GoldCount.setText("Gold: " + state.getP1Gold());
+        /*player1GoldCount.setText("Gold: " + state.getP1Gold());
         player2GoldCount.setText("Gold: " + state.getP2Gold());
-        player3GoldCount.setText("Gold: " + state.getP3Gold());
+        player3GoldCount.setText("Gold: " + state.getP3Gold());*/
 
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
-        characterCardSpinner.setOnItemSelectedListener(new CharacterCardSpinnerListener());
+
+        // initializing CardChooserSurfaceView
+        //this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //initialize the array adapter
-        ArrayAdapter characterAdapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
-                android.R.id.text1, characterCardSpinnerNames);
-        characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
-        characterCardSpinner.setAdapter(characterAdapter);
 
         if(state != null)
         {
@@ -301,17 +297,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
      */
     @Override
     public View getTopView() {
-
-
         return myActivity.findViewById(R.id.top_gui_layout);
-
     }
-
 
     @Override
     public void onClick(View v)
     {
-
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -682,31 +673,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     /**
-    * @Author: Bryce Amato
-    *
-    * This listener will keep track of what is selected in the character card spinner listener
-    * and respond accordingly
-    */
-
-
-
-
-    private class CharacterCardSpinnerListener implements AdapterView.OnItemSelectedListener
-    {
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-        {
-            //TODO this will allow the player to choose their characters
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }
-
-    /**
      * @Author: Bryce Amato
      *
      * This listener will keep track of what is selected in the player 1 action listener
@@ -801,7 +767,4 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         MenuInflater inflater = myActivity.getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
     }
-
-
-
 }

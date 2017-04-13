@@ -58,7 +58,7 @@ public class CitadelsGameState extends GameState
     private int p3Character1;
     private int p3Character2;
 
-    //if a character has been assassinated
+    //if a character has been assassinated //TODO
     private boolean characterIsAlive;
 
     //is a player has been robbed
@@ -249,6 +249,7 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
+    public void setChosenCharacterCard(int chosenCharacterCard) { theChosenCharacterCard = chosenCharacterCard; }
     //returns the character card that the player chose
     public int chosenCharacterCard()
     {
@@ -472,6 +473,14 @@ public class CitadelsGameState extends GameState
         this.setP1Gold(2);
         this.setP2Gold(2);
         this.setP3Gold(2);
+
+        //TODO take this out, I only put it in to test basic functionality
+        this.setP1Character1(0);
+        this.setP1Character2(1);
+        this.setP2Character1(2);
+        this.setP2Character2(3);
+        this.setP3Character1(4);
+        this.setP3Character2(5);
 
         //sets all of the built districts for each player to null because no one will start
         //with a district built
