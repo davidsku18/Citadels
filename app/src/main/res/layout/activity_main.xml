@@ -1087,7 +1087,8 @@
                         android:id="@+id/characterCardSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:visibility="visible"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -1362,10 +1363,11 @@
                         android:id="@+id/P1_Score" />
 
                     <Spinner
+                        android:id="@+id/actionSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/actionSpinner"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:visibility="visible"/>
 
                 </LinearLayout>
 

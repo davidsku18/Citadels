@@ -206,6 +206,7 @@ public class CitadelsLocalGame extends LocalGame
             if (player == 0)
             {
                 state.setP1Gold(state.getP1Gold() + 2);
+
                 return true;
             } else if (player == 1)
             {
