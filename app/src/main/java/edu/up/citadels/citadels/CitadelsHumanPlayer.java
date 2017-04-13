@@ -103,7 +103,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
-    private Spinner characterCardSpinner;
 
     // Our activity
     private Activity myActivity;

@@ -479,20 +479,13 @@ public class CitadelsGameState extends GameState
 
         //TODO take this out, I only put it in to test basic functionality
         this.setP1Character1(0);
-        this.setP1Character2(1);
-        this.setP2Character1(2);
-        this.setP2Character2(3);
-        this.setP3Character1(4);
+        this.setP1Character2(3);
+        this.setP2Character1(1);
+        this.setP2Character2(4);
+        this.setP3Character1(2);
         this.setP3Character2(5);
 
-        //TODO take this out, I only put it in to test basic functionality
-        this.setP1Character1(0);
-        this.setP1Character2(1);
-        this.setP2Character1(2);
-        this.setP2Character2(3);
-        this.setP3Character1(4);
-        this.setP3Character2(5);
-
+        this.setTurn(0);
 
 
         //sets all of the built districts for each player to null because no one will start
