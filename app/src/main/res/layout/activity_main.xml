@@ -198,21 +198,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Score:"/>
+                        />
 
                     <TextView
                         android:id="@+id/p2_gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Gold:"/>
+                        />
 
                     <TextView
                         android:id="@+id/p2_dc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Districts:"/>
+                        />
 
                 </LinearLayout>
 
@@ -535,21 +535,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Score:"/>
+                        />
 
                     <TextView
                         android:id="@+id/p3_Gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Gold:"/>
+                        />
 
                     <TextView
                         android:id="@+id/p3_Dc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Districts:"/>
+                        />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -915,7 +915,7 @@
                         android:id="@+id/P1_Score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Score: 10" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
