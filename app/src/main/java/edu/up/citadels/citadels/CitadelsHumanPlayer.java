@@ -242,7 +242,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
 
         // initializing CardChooserSurfaceView
-        this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
+        //this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
