@@ -249,6 +249,7 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
+    public void setChosenCharacterCard(int chosenCharacterCard) { theChosenCharacterCard = chosenCharacterCard; }
     //returns the character card that the player chose
     public int chosenCharacterCard()
     {

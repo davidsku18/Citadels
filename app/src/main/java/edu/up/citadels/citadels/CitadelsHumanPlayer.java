@@ -241,6 +241,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
 
+        // initializing CardChooserSurfaceView
         this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
 
         //initialize the array adapter
