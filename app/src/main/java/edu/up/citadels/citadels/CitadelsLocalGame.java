@@ -99,13 +99,16 @@ public class CitadelsLocalGame extends LocalGame
         if(p1Districts >= 7)
         {
             return "Player 1 has built 8 districts. Game over.";
-        }else if(p2Districts >= 7)
+        }
+        else if(p2Districts >= 7)
         {
             return "Player 2 has built 8 districts. Game over.";
-        }else if(p3Districts >= 7)
+        }
+        else if(p3Districts >= 7)
         {
             return "Player 3 has built 8 districts. Game over.";
-        }else
+        }
+        else
         {
             return null;
         }
@@ -221,7 +224,8 @@ public class CitadelsLocalGame extends LocalGame
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        } else if (action instanceof EndTurn)
+        }
+        else if (action instanceof EndTurn)
         {
             if (state.getTurn() != 8) {
                 state.setTurn(state.getTurn() + 1);
@@ -231,7 +235,8 @@ public class CitadelsLocalGame extends LocalGame
                 state.setTurn(1);
                 return true;
             }
-        } else if (action instanceof ChooseDistrictCard)
+        }
+        else if (action instanceof ChooseDistrictCard)
         {
             //this will add a district card to whoever the player is // TODO in-case idx does not start at 0
             if (player == 1)
@@ -254,31 +259,45 @@ public class CitadelsLocalGame extends LocalGame
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        } else if (action instanceof CitadelsBuildDistrictCard) {
+        }
+        else if (action instanceof CitadelsBuildDistrictCard) {
             //TODO this will build the first district card in the hand
             //we will implement fuller functionality later
             if (player == 1)
             {
-                //TODO check and see if the player has enough gold
-                state.addToP1City(state.getP1DistrictCard(1));
-                state.removeFromP1Hand(1);
-                return true;
+                // @Victor, checks if P1 has enough gold to build card
+                if(state.getP1Gold()>state.getP1DistrictCard(0).getCost())
+                {//TODO check and see if the player has enough gold
+                    state.addToP1City(state.getP1DistrictCard(0));
+                    state.removeFromP1Hand(0);
+                    return true;
+                }
             } else if (player == 2)
             {
-                state.addToP2City(state.getP2DistrictCard(1));
-                state.removeFromP2Hand(1);
-                return true;
-            } else if (player == 3)
+                // @Victor, checks if P2 has enough gold to build card
+                if(state.getP2Gold()>state.getP2DistrictCard(0).getCost())
+                {
+                    state.addToP2City(state.getP2DistrictCard(0));
+                    state.removeFromP2Hand(0);
+                    return true;
+                }
+            }
+            else if (player == 3)
             {
-                state.addToP3City(state.getP3DistrictCard(1));
-                state.removeFromP3Hand(1);
-                return true;
+                // @Victor, checks if P3 has enough gold to build card
+                if(state.getP3Gold()>state.getP3DistrictCard(0).getCost())
+                {
+                    state.addToP3City(state.getP3DistrictCard(0));
+                    state.removeFromP3Hand(0);
+                    return true;
+                }
             } else
             {
                 //do nothing because player 4 doesn't exist
                 return true;
             }
-        } else if (action instanceof UseSpecialAbility)
+        }
+        else if (action instanceof UseSpecialAbility)
         {
             // Assassin special ability
             if (state.getTurn() == 1)

@@ -49,8 +49,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean p1_Card1Bool = true; // boolean for player1_Card1
     private boolean p1_Card2Bool = true; // boolean for player1_Cart2
 
-    //Bitmap cathedralCard = BitmapFactory.decodeResource(getResources(), R.drawable.cathedral);
-    // Image Buttons for player1
     private ImageButton p1_D1;
     private ImageButton p1_D2;
     private ImageButton p1_D3;
@@ -200,22 +198,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
         p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
 
-        //p1_D1.setImageResource(R.drawable.cathedral-web.png);
-
-        /*p1City = new ArrayList<Bitmap>();
-        TypedArray p1cityImages = getResources().obtainTypedArray(R.array.player1City);
-
-        for (int i = 0; i < 8; i++)
-        {
-            int id = p1cityImages.getResourceId(i,0);
-            if(id == 0)
-            {
-                id = p1cityImages.getResourceId(0,0);
-            }
-            Bitmap img = BitmapFactory.decodeResource(getResources(), id);
-
-        }
-*/
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
