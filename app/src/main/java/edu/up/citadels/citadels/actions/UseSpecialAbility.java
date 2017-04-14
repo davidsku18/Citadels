@@ -12,7 +12,7 @@ import edu.up.citadels.game.GamePlayer;
  * @version 3/6/17.
  */
 
-public class UseSpecialAbility extends GameAction
+public class UseSpecialAbility extends CitadelsMoveAction
 {
     /**
      * constructor for edu.up.citadels.game.GameAction
@@ -23,6 +23,9 @@ public class UseSpecialAbility extends GameAction
     {
         super(player);
     }
+
+
+    public boolean isUseCharacterAbility(){ return true; }
 
     /**
      * return whether this ability is the assassin's special ability

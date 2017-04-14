@@ -26,7 +26,7 @@ import edu.up.citadels.game.config.GamePlayerType;
  */
 public class CitadelsMainActivity extends GameMainActivity
 {
-    public static final int PORT_NUMBER = 4752;
+    public static final int PORT_NUMBER = 4753;
 
     public GameConfig createDefaultConfig()
     {
@@ -47,22 +47,23 @@ public class CitadelsMainActivity extends GameMainActivity
         playerTypes.add(new GamePlayerType("computer player (dumb)")
         {
             public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name);
+                return new CitadelsComputerPlayer(name, 1);
             }
         });
         playerTypes.add(new GamePlayerType("computer player (smart)")
         {
             public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name);
+                return new CitadelsComputerPlayer(name, 2);
             }
         });
 
         // Create a edu.up.citadels.game configuration class for Citadels
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Citadels", PORT_NUMBER);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 3, 3, "Citadels", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
         defaultConfig.addPlayer("Computer", 2);
+        defaultConfig.addPlayer("Computer2", 3);
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Guest", "", 1);

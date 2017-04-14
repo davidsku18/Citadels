@@ -98,6 +98,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
+    private TextView player1Score;
+    private TextView player2Score;
+    private TextView player3Score;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -110,11 +113,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private ArrayList<Bitmap> p1City;
     private ArrayList<Bitmap> p1HandImages;
+    private ArrayList<String> p1HandNames;
+    private ArrayList<String> p2HandNames;
+    private ArrayList<String> p3HandNames;
+
 
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
-    private Spinner characterCardSpinner;
 
     // Our activity
     private Activity myActivity;
@@ -228,10 +234,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
-        // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
         player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
+        player1Score = (TextView)myActivity.findViewById(R.id.P1_Score);
+        player2Score = (TextView)myActivity.findViewById(R.id.p2_Score);
+        player3Score = (TextView)myActivity.findViewById(R.id.p3_Score);
 
        /**
         * @Author Victor Nguyen
@@ -242,7 +250,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         menu_Button = (Button) myActivity.findViewById(R.id.Menu);
         menu_Button.setOnClickListener(new View.OnClickListener()
         {
-            @Override
             public void onClick(View v)
             {
                 myActivity.registerForContextMenu(menu_Button);
@@ -256,9 +263,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
 
         // set values for all players' gold
-        /*player1GoldCount.setText("Gold: " + state.getP1Gold());
+        player1GoldCount.setText("Gold: " + state.getP1Gold());
         player2GoldCount.setText("Gold: " + state.getP2Gold());
-        player3GoldCount.setText("Gold: " + state.getP3Gold());*/
+        player3GoldCount.setText("Gold: " + state.getP3Gold());
+
+        player1Score.setText("Score: " + state.getP1Score());
+        player2Score.setText("Score: " + state.getP2Score());
+        player3Score.setText("Score: " + state.getP3Score());
 
 
         // define a listener for the spinner
@@ -279,20 +290,39 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             receiveInfo(state);
         }
+
+        for(int i = 0; i < state.getP1City().size(); ++i)
+        {
+            CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
+            p1HandNames.add(cdc.getName());
+        }
+
+        for(int i = 0; i < state.getP2City().size(); ++i)
+        {
+            CitadelsDistrictCard cdc = state.getP2DistrictCard(i);
+            p2HandNames.add(cdc.getName());
+        }
+
+        for(int i = 0; i < state.getP3City().size(); ++i)
+        {
+            CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
+            p3HandNames.add(cdc.getName());
+        }
+
+
     }
 
 
 
-    /*
-    This makes this player make a take gold action
-     */
+
+    //This makes this player make a take gold action
     public void humanPlayerTakeGold()
     {
         game.sendAction(new TakeGold(this));
     }
 
     //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard()
+    public void humanPlayerTakeDistrictCard(CitadelsDistrictCard cardToBeBuilt)
     {
         game.sendAction(new ChooseDistrictCard(this));
     }
@@ -692,25 +722,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
-
-        assassinButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(0) != null)
-                {
-                    state.setChosenCharacterCard(0);
-                    humanPlayerChooseCharacterCard(0);
-                }
-                else
-                {
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-
-
     }
 
     /**
@@ -737,6 +748,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerTakeGold();
                     hasGone = true;
                     cardInfo.setText("Added Two Gold.");
+                    player1GoldCount.setText("Gold: " + state.getP1Gold());
                 }else
                 {
                     //do nothing because they are not allowed to go
@@ -753,7 +765,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 else
                 {
                     //do nothing because they are not allowed to go
-                    cardInfo.setText("You have Already Gone");
+                    cardInfo.setText("You Have Already Gone.");
                 }
             }else if(position == 3)
             {
