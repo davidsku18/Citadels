@@ -179,14 +179,14 @@ public class CitadelsLocalGame extends LocalGame
                 //sets the player's characters to the chosen character card
                 while (chosenNum != 2) {
                     if (chosenNum == 0) {
-                        state.setP1Character1(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP1Character1(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                         //increments chosenNum to determine whether the player has chosen their first character card
                     }
                     if (chosenNum == 1) {
-                        state.setP1Character2(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP1Character2(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                         //increments chosenNum to determine whether the player has chosen their second character card
                     }
@@ -197,17 +197,17 @@ public class CitadelsLocalGame extends LocalGame
             {
                 chosenNum = 0;
                 // could also check if character deck is null
-                while (state.chosenCharacterCard() == -1 || chosenNum != 2)
+                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
                 {
                     if (chosenNum == 0)
                     {
-                        state.setP2Character1(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP2Character1(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                     else if (chosenNum == 1) {
-                        state.setP1Character2(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP1Character2(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                 }
@@ -216,17 +216,17 @@ public class CitadelsLocalGame extends LocalGame
             else if (player == 2)
             {
                 chosenNum = 0;
-                while (state.chosenCharacterCard() == -1 || chosenNum != 2)
+                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
                 {
                     if (chosenNum == 0)
                     {
-                        state.setP3Character1(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP3Character1(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                     else if (chosenNum == 1) {
-                        state.setP3Character2(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP3Character2(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                 }

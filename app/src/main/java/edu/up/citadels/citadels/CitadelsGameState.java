@@ -249,9 +249,13 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
-    public void setChosenCharacterCard(int chosenCharacterCard) { theChosenCharacterCard = chosenCharacterCard; }
+    public void setChosenCharacterCard(int chosenCharacterCard)
+    {
+        characterDeck[chosenCharacterCard] = null;
+        theChosenCharacterCard = chosenCharacterCard;
+    }
     //returns the character card that the player chose
-    public int chosenCharacterCard()
+    public int getChosenCharacterCard()
     {
         return theChosenCharacterCard;
     }
@@ -272,9 +276,9 @@ public class CitadelsGameState extends GameState
     }
 
     //Get character card deck
-    public CharacterCard[] getCharacterDeck()
+    public CharacterCard getCharacterCardFromDeck(int i)
     {
-        return characterDeck;
+        return characterDeck[i];
     }
 
 ////////////////////////////////////Deals with Players district cards//////////////////////

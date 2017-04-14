@@ -83,6 +83,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p3_D7;
     private ImageButton p3_D8;
 
+    private ImageButton assassinButton;
+    private ImageButton thiefButton;
+    private ImageButton magicianButton;
+    private ImageButton kingButton;
+    private ImageButton bishopButton;
+    private ImageButton merchantButton;
+    private ImageButton architectButton;
+    private ImageButton warlordButton;
+
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
@@ -203,6 +212,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D6 = (ImageButton) myActivity.findViewById(R.id.p3_D6);
         p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
         p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
+
+        //Character cards
+        assassinButton = (ImageButton) myActivity.findViewById(R.id.assassinButton);
+        thiefButton = (ImageButton) myActivity.findViewById(R.id.thiefButton);
+        magicianButton = (ImageButton) myActivity.findViewById(R.id.magicianButton);
+        kingButton = (ImageButton) myActivity.findViewById(R.id.kingButton);
+        bishopButton = (ImageButton) myActivity.findViewById(R.id.bishopButton);
+        merchantButton = (ImageButton) myActivity.findViewById(R.id.merchantButton);
+        architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
+        warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
+
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
@@ -667,6 +687,143 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        // Character card listeners
+        // The character card will be set if it is not null
+        assassinButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(0) != null)
+                {
+                    state.setChosenCharacterCard(0);
+                    state.removeCharacterCard(0);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+
+        thiefButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(1) != null)
+                {
+                    state.setChosenCharacterCard(1);
+                    state.removeCharacterCard(1);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+        magicianButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(2) != null)
+                {
+                    state.setChosenCharacterCard(2);
+                    state.removeCharacterCard(2);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+        kingButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(3) != null)
+                {
+                    state.setChosenCharacterCard(3);
+                    state.removeCharacterCard(3);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+        bishopButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(4) != null)
+                {
+                    state.setChosenCharacterCard(4);
+                    state.removeCharacterCard(4);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+        merchantButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(5) != null)
+                {
+                    state.setChosenCharacterCard(5);
+                    state.removeCharacterCard(5);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+        architectButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(6) != null)
+                {
+                    state.setChosenCharacterCard(6);
+                    state.removeCharacterCard(6);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+        warlordButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterCardFromDeck(7) != null)
+                {
+                    state.setChosenCharacterCard(7);
+                    state.removeCharacterCard(7);
+                }
+                else
+                {
+                    flash(Color.RED, 20);
+                }
+            }
+        });
+
+
+
+
+
     }
 
     /**
