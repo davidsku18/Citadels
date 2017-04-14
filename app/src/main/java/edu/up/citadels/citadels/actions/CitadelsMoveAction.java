@@ -23,18 +23,10 @@ public abstract class CitadelsMoveAction extends GameAction {
         super(player);
     }
 
-    /**
-     * @return
-     * 		whether the move was a slap
-     */
     public boolean isTakeGold() {
-        return true;
+        return false;
     }
 
-    /**
-     * @return
-     * 		whether the move was a "play"
-     */
     public boolean isEndTurn()
     {
         return false;

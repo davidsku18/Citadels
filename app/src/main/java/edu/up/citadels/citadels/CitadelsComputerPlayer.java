@@ -29,9 +29,10 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
 
     private int player;
 
-    public CitadelsComputerPlayer(String initName)
+    public CitadelsComputerPlayer(String initName, int myNumber)
     {
         super(initName);
+        this.player = myNumber;
     }
 
     @Override
@@ -43,14 +44,21 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
 
         savedState = (CitadelsGameState)info;
 
-        if(savedState.getTurn() == this.playerNum)
+       /* if(savedState.getPlayerTurn() == this.playerNum)
         {
             game.sendAction(new TakeGold(this));
 
             sleep(500);
 
             game.sendAction(new EndTurn(this));
-        }
+        }*/
+
+        game.sendAction(new TakeGold(this));
+
+        sleep(500);
+
+        game.sendAction(new EndTurn(this));
+
 
         /*// generate random number for AI to choose to take gold or a district card
         int goldOrDist = (int)(Math.random()*2);

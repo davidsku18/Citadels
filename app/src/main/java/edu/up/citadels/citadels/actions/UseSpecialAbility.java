@@ -12,7 +12,7 @@ import edu.up.citadels.game.GamePlayer;
  * @version 3/6/17.
  */
 
-public class UseSpecialAbility extends GameAction
+public class UseSpecialAbility extends CitadelsMoveAction
 {
     /**
      * constructor for edu.up.citadels.game.GameAction

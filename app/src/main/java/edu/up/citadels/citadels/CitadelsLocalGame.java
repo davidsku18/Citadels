@@ -122,59 +122,28 @@ public class CitadelsLocalGame extends LocalGame
     @Override
     protected boolean makeMove(GameAction action)
     {
+        if (!(action instanceof CitadelsMoveAction)) {
+            return false;
+        }
 
         CitadelsMoveAction cma = (CitadelsMoveAction) action;
         int playerID = getPlayerIdx(cma.getPlayer());
-
-
-
 
         if (action instanceof TakeGold)
         {
             if(playerID == 0)
             {
                 state.setP1Gold(state.getP1Gold() + 2);
-                state.setTurn(state.getTurn() + 1);
             }else if(playerID == 1)
             {
                 state.setP2Gold(state.getP2Gold() + 2);
-                state.setTurn(state.getTurn() + 1);
             }else if(playerID == 2)
             {
                 state.setP3Gold(state.getP3Gold() + 2);
-                state.setTurn(state.getTurn() + 1);
             }
             return true;
         }
-        /*int turn = state.getTurn();
-        int player;
-        int kingNum = (int)Math.random()*3;
 
-        //sets the king num
-        state.setKing(kingNum);
-*/
-        if (!(action instanceof CitadelsMoveAction)) {
-            return false;
-        }
-
-      /*  CitadelsMoveAction  cma = (CitadelsMoveAction) action;
-
-        //get the index of the player making the move;
-        int thisPlayerIdx = getPlayerIdx(cma.getPlayer());
-
-        if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
-        {
-            player = 0;       //character belongs to player 0
-        } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
-        {
-            player = 1;       //character belongs to player 1
-        } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
-        {
-            player = 2;      //character belongs to player 2
-        } else
-        {
-            player = 3;       //this is if no one owns this character
-        }*/
 
         if (action instanceof ChooseCharacterCard)
         {
@@ -236,53 +205,37 @@ public class CitadelsLocalGame extends LocalGame
             }
         } else if (action instanceof ChooseDistrictCard)
         {
-            //this will add a district card to whoever the player is // TODO in-case idx does not start at 0
-           /* if (player == 1)
+            if(playerID == 0)
             {
                 state.addToP1Hand(state.drawCard());
                 state.removeDistrictCard();
-                return true;
-            } else if (player == 2)
+            }else if(playerID == 1)
             {
                 state.addToP2Hand(state.drawCard());
                 state.removeDistrictCard();
-                return true;
-            } else if (player == 3)
+            }else if(playerID == 2)
             {
                 state.addToP3Hand(state.drawCard());
                 state.removeDistrictCard();
-                return true;
-            } else
-            {
-                //do nothing because player 4 doesn't exist
-                return true;
-            }*/
-           return true;
+            }
+            return true;
         } else if (action instanceof CitadelsBuildDistrictCard)
         {
             //TODO this will build the first district card in the hand
-            //we will implement fuller functionality later
-            /*if (player == 1)
+
+            if(playerID == 0)
             {
-                //TODO check and see if the player has enough gold
-                state.addToP1City(state.getP1DistrictCard(1));
-                state.removeFromP1Hand(1);
-                return true;
-            } else if (player == 2)
+                state.addToP1City(state.getP1DistrictCard(0));
+                state.removeFromP1Hand(0);
+            }else if(playerID == 1)
             {
-                state.addToP2City(state.getP2DistrictCard(1));
-                state.removeFromP2Hand(1);
-                return true;
-            } else if (player == 3)
+                state.addToP2City(state.getP2DistrictCard(0));
+                state.removeFromP2Hand(0);
+            }else if(playerID == 2)
             {
-                state.addToP3City(state.getP3DistrictCard(1));
-                state.removeFromP3Hand(1);
-                return true;
-            } else
-            {
-                //do nothing because player 4 doesn't exist
-                return true;
-            }*/
+                state.addToP3City(state.getP3DistrictCard(0));
+                state.removeFromP3Hand(0);
+            }
             return true;
         } else if (action instanceof UseSpecialAbility)
         {

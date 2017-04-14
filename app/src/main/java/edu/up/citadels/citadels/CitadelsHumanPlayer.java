@@ -99,6 +99,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean hasGoneAbility = false;
 
     private ArrayList<Bitmap> p1HandImages;
+    private ArrayList<String> p1HandNames;
+    private ArrayList<String> p2HandNames;
+    private ArrayList<String> p3HandNames;
+
 
     private Button menu_Button;
     private Spinner actionSpinner;
@@ -257,6 +261,26 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             receiveInfo(state);
         }
+
+        for(int i = 0; i < state.getP1City().size(); ++i)
+        {
+            CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
+            p1HandNames.add(cdc.getName());
+        }
+
+        for(int i = 0; i < state.getP2City().size(); ++i)
+        {
+            CitadelsDistrictCard cdc = state.getP2DistrictCard(i);
+            p2HandNames.add(cdc.getName());
+        }
+
+        for(int i = 0; i < state.getP3City().size(); ++i)
+        {
+            CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
+            p3HandNames.add(cdc.getName());
+        }
+
+
     }
 
 
@@ -269,9 +293,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard()
+    public void humanPlayerTakeDistrictCard(CitadelsDistrictCard cardToBeBuilt)
     {
-        game.sendAction(new ChooseCharacterCard(this));
+        game.sendAction(new ChooseCharacterCard(this, cardToBeBuilt));
     }
 
     //This allows a player to use their special ability
