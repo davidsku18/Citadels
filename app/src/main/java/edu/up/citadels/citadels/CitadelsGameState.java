@@ -272,9 +272,9 @@ public class CitadelsGameState extends GameState
     }
 
     //Get character card deck
-    public CharacterCard[] getCharacterDeck()
+    public CharacterCard getCharacterDeck(int i)
     {
-        return characterDeck;
+        return characterDeck[i];
     }
 
 ////////////////////////////////////Deals with Players district cards//////////////////////

@@ -28,50 +28,56 @@
                 android:orientation="horizontal" >
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/assassinButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/assasin" />
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/thiefButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/thief" />
+
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/magicianButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/magician" />
+
                 <ImageButton
-                    android:id="@+id/imageButton6"
+                    android:id="@+id/kingButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/king" />
+
                 <ImageButton
-                    android:id="@+id/imageButton7"
+                    android:id="@+id/bishopButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bishop" />
+
                 <ImageButton
-                    android:id="@+id/imageButton9"
+                    android:id="@+id/merchantButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/merchant" />
+
                 <ImageButton
-                    android:id="@+id/imageButton10"
+                    android:id="@+id/architectButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/architect" />
+
                 <ImageButton
-                    android:id="@+id/imageButton11"
+                    android:id="@+id/warlordButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

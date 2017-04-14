@@ -23,6 +23,7 @@ import java.util.List;
 
 import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -83,6 +84,16 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p3_D6;
     private ImageButton p3_D7;
     private ImageButton p3_D8;
+
+    private ImageButton assassinButton;
+    private ImageButton thiefButton;
+    private ImageButton magicianButton;
+    private ImageButton kingButton;
+    private ImageButton bishopButton;
+    private ImageButton merchantButton;
+    private ImageButton architectButton;
+    private ImageButton warlordButton;
+
 
     private TextView player1GoldCount;
     private TextView player2GoldCount;
@@ -206,6 +217,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
         p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
 
+        assassinButton = (ImageButton) myActivity.findViewById(R.id.assassinButton);
+        thiefButton = (ImageButton) myActivity.findViewById(R.id.thiefButton);
+        magicianButton = (ImageButton) myActivity.findViewById(R.id.magicianButton);
+        kingButton = (ImageButton) myActivity.findViewById(R.id.kingButton);
+        bishopButton = (ImageButton) myActivity.findViewById(R.id.bishopButton);
+        merchantButton = (ImageButton) myActivity.findViewById(R.id.merchantButton);
+        architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
+        warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
+
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         // String[] p1Hand = getResources().getStringArray(R.array.p1Hand);
@@ -274,7 +294,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     //This allows the player to take a district card
     public void humanPlayerTakeDistrictCard()
     {
-        game.sendAction(new ChooseCharacterCard(this));
+        game.sendAction(new ChooseDistrictCard(this));
     }
 
     //This allows a player to use their special ability
@@ -288,6 +308,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     {
         game.sendAction(new EndTurn(this));
     }
+
+    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
 
     /**
      * returns the GUI's top view
@@ -670,6 +692,25 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        assassinButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(0) != null)
+                {
+                    state.setChosenCharacterCard(0);
+                    humanPlayerChooseCharacterCard(0);
+                }
+                else
+                {
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+
     }
 
     /**
