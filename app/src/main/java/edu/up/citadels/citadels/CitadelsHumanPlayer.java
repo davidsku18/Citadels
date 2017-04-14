@@ -250,6 +250,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
         // get values for the spinner
+
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
 
         // set values for all players' gold
@@ -690,6 +691,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         // Character card listeners
         // The character card will be set if it is not null
+        // If the character card is already taken (null) then
+        // the surface view will flash
         assassinButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

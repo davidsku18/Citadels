@@ -125,7 +125,8 @@ public class CitadelsLocalGame extends LocalGame
         int turn = state.getTurn();
         int chosenNum = 0;
         int player;
-        int kingNum = (int)Math.random()*3;
+        //int kingNum = (int)Math.random()*3;
+        int kingNum = 0; //TODO: Setting the king always to player 1
 
         //sets the king num
         state.setKing(kingNum);
@@ -150,7 +151,7 @@ public class CitadelsLocalGame extends LocalGame
             player = thisPlayerIdx;        //character belongs to player 2
         } else
         {
-            player = thisPlayerIdx;        //this is if no one owns this character
+            player = 4;        //this is if no one owns this character
         }
 
         if (action instanceof ChooseCharacterCard)
@@ -159,13 +160,14 @@ public class CitadelsLocalGame extends LocalGame
             //for basic functionality
             //TODO
 
+            /*
             state.setP1Character1(0);
             state.setP1Character2(1);
             state.setP2Character1(2);
             state.setP2Character2(3);
             state.setP3Character1(4);
             state.setP3Character2(5);
-
+            */
             state.setTurn(0);
 
             int[] p1Characters = new int[2];
@@ -174,7 +176,7 @@ public class CitadelsLocalGame extends LocalGame
 
             // first person two choose is the person who has the crown
             // if king is equal to player 0 (player 1), then they get to choose their characters first
-            if(state.getKing() == 0) {
+            if(state.getKing() == player) {
                 chosenNum = 0;
                 //sets the player's characters to the chosen character card
                 while (chosenNum != 2) {
