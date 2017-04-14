@@ -1,5 +1,6 @@
 package edu.up.citadels.citadels.actions;
 
+import edu.up.citadels.citadels.CharacterCard;
 import edu.up.citadels.citadels.CitadelsDistrictCard;
 import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
@@ -14,16 +15,16 @@ import edu.up.citadels.game.GamePlayer;
 
 public class ChooseCharacterCard extends CitadelsMoveAction
 {
-    CitadelsDistrictCard theCardIAmBuilding;
+    CharacterCard myCharacter;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *
      * @param player the player who created the action
      */
-    public ChooseCharacterCard(GamePlayer player, CitadelsDistrictCard whichCard)
+    public ChooseCharacterCard(GamePlayer player, CharacterCard whichCard)
     {
         super(player);
-        theCardIAmBuilding = whichCard;
+         this.myCharacter = whichCard;
     }
 
     /**

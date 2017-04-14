@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -88,7 +89,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1Score;
     private TextView player2Score;
     private TextView player3Score;
-    private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
     private boolean d2_Info = false; //initializes d2_Info Boolean
@@ -235,6 +235,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         // get values for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
+        ArrayList<String> p1HandArrayList = state.getP1Hand();
 
         // set values for all players' gold
         player1GoldCount.setText("Gold: " + state.getP1Gold());
@@ -248,21 +249,27 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+        player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        ArrayAdapter p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, p1HandArrayList);
+        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
+        player1HandSpinner.setAdapter(p1HandAdapter);
 
         if(state != null)
         {
             receiveInfo(state);
         }
 
-        for(int i = 0; i < state.getP1City().size(); ++i)
+        /*for(int i = 0; i < state.getP1City().size(); ++i)
         {
             CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
             p1HandNames.add(cdc.getName());
@@ -278,7 +285,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
             p3HandNames.add(cdc.getName());
-        }
+        }*/
 
 
     }
@@ -293,9 +300,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard(CitadelsDistrictCard cardToBeBuilt)
+    public void humanPlayerTakeDistrictCard()
     {
-        game.sendAction(new ChooseCharacterCard(this, cardToBeBuilt));
+        game.sendAction(new ChooseDistrictCard(this));
     }
 
     //This allows a player to use their special ability
@@ -693,6 +700,34 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         });
     }
 
+    private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener
+    {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
+                                   int position, long id)
+        {
+            for(int i = 0; i < state.getP1Hand().size(); ++i)
+            {
+
+            }
+
+        }
+
+
+
+
+        /**
+         * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(
+         *                  android.widget.AdapterView)
+         */
+        @Override
+        public void onNothingSelected(AdapterView<?> parentView)
+        {
+
+        }
+    }
+
     /**
      * @Author: Bryce Amato
      *
@@ -764,6 +799,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         }
+
+
+
 
         /**
          * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(
