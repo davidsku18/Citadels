@@ -2,8 +2,6 @@ package edu.up.citadels.citadels;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -151,6 +149,8 @@ public class CitadelsLocalGame extends LocalGame
             //for basic functionality
             //TODO
 
+            int chosenNum = 0;
+
             state.setP1Character1(0);
             state.setP1Character2(1);
             state.setP2Character1(2);
@@ -160,65 +160,63 @@ public class CitadelsLocalGame extends LocalGame
 
             state.setTurn(0);
 
-            int[] p1Characters = new int[2];
-            int[] p2Characters = new int[2];
-            int[] p3Characters = new int[2]; // TODO may want to change to CharacterCards later
-
             // first person two choose is the person who has the crown
             // if king is equal to player 0 (player 1), then they get to choose their characters first
             if(state.getKing() == 0) {
                 chosenNum = 0;
                 //sets the player's characters to the chosen character card
-                while (chosenNum != 2) {
-                    if (chosenNum == 0) {
-                        state.setP1Character1(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                while (chosenNum != 2)
+                {
+                    if (chosenNum == 0)
+                    {
+                        state.setP1Character1(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                         //increments chosenNum to determine whether the player has chosen their first character card
                     }
                     if (chosenNum == 1) {
-                        state.setP1Character2(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP1Character2(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                         //increments chosenNum to determine whether the player has chosen their second character card
                     }
                     return true;
                 }
             }
-            else if (player == 1)
+            else if (playerID == 1)
             {
                 chosenNum = 0;
                 // could also check if character deck is null
-                while (state.chosenCharacterCard() == -1 || chosenNum != 2)
+                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
                 {
                     if (chosenNum == 0)
                     {
-                        state.setP2Character1(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP2Character1(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                     else if (chosenNum == 1) {
-                        state.setP1Character2(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP1Character2(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                 }
                 return true;
             }
-            else if (player == 2)
+            else if (playerID == 2)
             {
                 chosenNum = 0;
-                while (state.chosenCharacterCard() == -1 || chosenNum != 2)
+                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
                 {
                     if (chosenNum == 0)
                     {
-                        state.setP3Character1(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP3Character1(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                     else if (chosenNum == 1) {
-                        state.setP3Character2(state.chosenCharacterCard());
-                        state.removeCharacterCard(state.chosenCharacterCard());
+                        state.setP3Character2(state.getChosenCharacterCard());
+                        state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
                     }
                 }

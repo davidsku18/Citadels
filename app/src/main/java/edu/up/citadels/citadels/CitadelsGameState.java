@@ -269,7 +269,7 @@ public class CitadelsGameState extends GameState
 
     public void setChosenCharacterCard(int chosenCharacterCard) { theChosenCharacterCard = chosenCharacterCard; }
     //returns the character card that the player chose
-    public int chosenCharacterCard()
+    public int getChosenCharacterCard()
     {
         return theChosenCharacterCard;
     }
@@ -623,7 +623,7 @@ public class CitadelsGameState extends GameState
 
         this.setTurn(0);
 
-        double king = Math.random();
+        int king = (int)Math.random();
 
         this.setP1Score(0);
         this.setP2Score(0);
