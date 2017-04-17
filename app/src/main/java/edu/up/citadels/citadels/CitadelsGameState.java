@@ -58,7 +58,7 @@ public class CitadelsGameState extends GameState
     private int p3Character1;
     private int p3Character2;
 
-    //if a character has been assassinated
+    //if a character has been assassinated //TODO
     private boolean characterIsAlive;
 
     //is a player has been robbed
@@ -267,8 +267,9 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
+    public void setChosenCharacterCard(int chosenCharacterCard) { theChosenCharacterCard = chosenCharacterCard; }
     //returns the character card that the player chose
-    public int chosenCharacterCard()
+    public int getChosenCharacterCard()
     {
         return theChosenCharacterCard;
     }
@@ -289,9 +290,9 @@ public class CitadelsGameState extends GameState
     }
 
     //Get character card deck
-    public CharacterCard[] getCharacterDeck()
+    public CharacterCard getCharacterDeck(int i)
     {
-        return characterDeck;
+        return characterDeck[i];
     }
 
 ////////////////////////////////////Deals with Players district cards//////////////////////
@@ -627,7 +628,7 @@ public class CitadelsGameState extends GameState
 
         this.setTurn(0);
 
-        double king = Math.random();
+        int king = (int)Math.random();
 
         this.setP1Score(0);
         this.setP2Score(0);

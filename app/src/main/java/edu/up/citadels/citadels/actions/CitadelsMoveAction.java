@@ -23,6 +23,10 @@ public abstract class CitadelsMoveAction extends GameAction {
         super(player);
     }
 
+    /**
+     * @return
+     * 		whether gold was taken or not
+     */
     public boolean isTakeGold() {
         return false;
     }

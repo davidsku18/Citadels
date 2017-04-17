@@ -12,7 +12,9 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,9 +23,11 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -31,6 +35,7 @@ import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
+import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
 import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
@@ -48,7 +53,7 @@ import static edu.up.citadels.R.array.p1Action;
  * @version 3/10/2017
  */
 
-public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener
+public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnCreateContextMenuListener
 {
     String name;
     private ImageButton player1_Card1;
@@ -84,12 +89,25 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p3_D7;
     private ImageButton p3_D8;
 
+    private HorizontalScrollView horizontalScrollView;
+
+    private ImageButton assassinButton;
+    private ImageButton thiefButton;
+    private ImageButton magicianButton;
+    private ImageButton kingButton;
+    private ImageButton bishopButton;
+    private ImageButton merchantButton;
+    private ImageButton architectButton;
+    private ImageButton warlordButton;
+
+
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
     private TextView player1Score;
     private TextView player2Score;
     private TextView player3Score;
+    private int p1Gold;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
     private boolean d2_Info = false; //initializes d2_Info Boolean
@@ -100,6 +118,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean hasGoneAbility = false;
     private boolean hasBuilt = false;
 
+    private ArrayList<Bitmap> p1City;
     private ArrayList<Bitmap> p1HandImages;
     private ArrayList<String> p1HandNames;
     private ArrayList<String> p2HandNames;
@@ -112,6 +131,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     // Our activity
     private Activity myActivity;
+
+    // Our surface view
+    CardChooserSurfaceView ccsv;
 
     // Our edu.up.citadels.game state
     protected CitadelsGameState state = new CitadelsGameState();
@@ -208,6 +230,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
         p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
 
+        horizontalScrollView = (HorizontalScrollView) myActivity.findViewById(R.id.horizontalScrollView);
+
+        assassinButton = (ImageButton) myActivity.findViewById(R.id.assassinButton);
+        thiefButton = (ImageButton) myActivity.findViewById(R.id.thiefButton);
+        magicianButton = (ImageButton) myActivity.findViewById(R.id.magicianButton);
+        kingButton = (ImageButton) myActivity.findViewById(R.id.kingButton);
+        bishopButton = (ImageButton) myActivity.findViewById(R.id.bishopButton);
+        merchantButton = (ImageButton) myActivity.findViewById(R.id.merchantButton);
+        architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
+        warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
+
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
@@ -257,6 +290,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         // define a listener for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+
+        // initializing CardChooserSurfaceView
+        //this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
+
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
@@ -266,6 +303,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
 
         /*for(int i = 0; i < state.getP1City().size(); ++i)
+        if(state != null)
+        {
+            receiveInfo(state);
+        }
+/*
+        for(int i = 0; i < state.getP1City().size(); ++i)
         {
             CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
             p1HandNames.add(cdc.getName());
@@ -281,9 +324,160 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
             p3HandNames.add(cdc.getName());
+        }
+*/      //TODO set random cards invisible
+        assassinButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(0) != null)
+                {
+                    state.setChosenCharacterCard(0);
+                    humanPlayerChooseCharacterCard(0);
+                    cardInfo.setText("You've chosen the assassin card");
+                    assassinButton.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+        thiefButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(1) != null)
+                {
+                    state.setChosenCharacterCard(1);
+                    humanPlayerChooseCharacterCard(1);
+                    cardInfo.setText("You've chosen the thief card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
         }*/
 
+        magicianButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(2) != null)
+                {
+                    state.setChosenCharacterCard(2);
+                    humanPlayerChooseCharacterCard(2);
+                    cardInfo.setText("You've chosen the magician card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
 
+    }
+        kingButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(3) != null)
+                {
+                    state.setChosenCharacterCard(3);
+                    humanPlayerChooseCharacterCard(3);
+                    cardInfo.setText("You've chosen the king card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        bishopButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(4) != null)
+                {
+                    state.setChosenCharacterCard(4);
+                    humanPlayerChooseCharacterCard(4);
+                    cardInfo.setText("You've chosen the bishop card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        merchantButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(5) != null)
+                {
+                    state.setChosenCharacterCard(5);
+                    humanPlayerChooseCharacterCard(5);
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        architectButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(6) != null)
+                {
+                    state.setChosenCharacterCard(6);
+                    humanPlayerChooseCharacterCard(6);
+                    cardInfo.setText("You've chosen the architect card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        warlordButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(7) != null)
+                {
+                    state.setChosenCharacterCard(7);
+                    humanPlayerChooseCharacterCard(7);
+                    cardInfo.setText("You've chosen the warlord card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
     }
 
 
@@ -315,6 +509,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     {
         game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
     }
+
+    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
 
     /**
      * returns the GUI's top view
@@ -697,6 +893,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        //Listeners for the character cards
+
     }
 
     private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener
@@ -832,8 +1031,4 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         MenuInflater inflater = myActivity.getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
     }
-
-
-
-
 }
