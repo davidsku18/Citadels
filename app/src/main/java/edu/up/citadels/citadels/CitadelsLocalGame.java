@@ -236,15 +236,15 @@ public class CitadelsLocalGame extends LocalGame
             if(playerID == 0)
             {
                 state.addToP1Hand(state.drawCard());
-                state.removeDistrictCard();
+                state.removeCard();
             }else if(playerID == 1)
             {
                 state.addToP2Hand(state.drawCard());
-                state.removeDistrictCard();
+                state.removeCard();
             }else if(playerID == 2)
             {
                 state.addToP3Hand(state.drawCard());
-                state.removeDistrictCard();
+                state.removeCard();
             }
             return true;
         } else if (action instanceof CitadelsBuildDistrictCard)
@@ -253,8 +253,14 @@ public class CitadelsLocalGame extends LocalGame
             if(playerID == 0)
             {
                 state.addToP1City(cbdc.getCard());
-                if(state.getP1Gold() >= cbdc.getCard().getCost())
-                state.removeFromP1Hand(0);
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP1Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP1Hand().get(i)))
+                    {
+                        state.getP1Hand().remove(i);
+                    }
+                }
             }else if(playerID == 1)
             {
                 state.addToP2City(cbdc.getCard());

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -16,6 +18,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -61,6 +64,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean p1_Card1Bool = true; // boolean for player1_Card1
     private boolean p1_Card2Bool = true; // boolean for player1_Cart2
 
+    private ImageButton assassinButton;
+    private ImageButton thiefButton;
+    private ImageButton magicianButton;
+    private ImageButton kingButton;
+    private ImageButton bishopButton;
+    private ImageButton merchantButton;
+    private ImageButton architectButton;
+    private ImageButton warlordButton;
+
+    private HorizontalScrollView horizontalScrollView;
+
     // Image Buttons for player1
     private ImageButton p1_D1;
     private ImageButton p1_D2;
@@ -89,25 +103,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p3_D7;
     private ImageButton p3_D8;
 
-    private HorizontalScrollView horizontalScrollView;
-
-    private ImageButton assassinButton;
-    private ImageButton thiefButton;
-    private ImageButton magicianButton;
-    private ImageButton kingButton;
-    private ImageButton bishopButton;
-    private ImageButton merchantButton;
-    private ImageButton architectButton;
-    private ImageButton warlordButton;
-
-
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
     private TextView player1Score;
     private TextView player2Score;
     private TextView player3Score;
-    private int p1Gold;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
     private boolean d2_Info = false; //initializes d2_Info Boolean
@@ -128,6 +129,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
+    private ArrayAdapter p1HandAdapter;
+
+    private CitadelsDistrictCard cdc;
+
     private ArrayAdapter p1HandAdapter;
 
     // Our activity
@@ -512,6 +517,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
+
+    public void setWhichCard(CitadelsDistrictCard cdc)
+    {
+        this.cdc = cdc;
+    }
 
     /**
      * returns the GUI's top view
@@ -910,6 +920,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(position);
                 humanPlayerBuildDistrict(cardToBuild);
+                p1HandAdapter.remove(p1HandAdapter.getItem(position));
+                p1HandAdapter.notifyDataSetChanged();
                 hasBuilt = true;
             }else
             {
@@ -965,7 +977,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(! hasGone)
                 {
+                    CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                    setWhichCard(cdc);
                     humanPlayerTakeDistrictCard();
+                    p1HandAdapter.add(cdc.getInfo(cdc));
+                    p1HandAdapter.notifyDataSetChanged();
                     hasGone = true;
                     cardInfo.setText("District Card Aquired.");
                 }
