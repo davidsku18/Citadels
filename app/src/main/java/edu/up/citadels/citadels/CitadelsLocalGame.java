@@ -31,6 +31,9 @@ public class CitadelsLocalGame extends LocalGame
     //the edu.up.citadels.game's state
     CitadelsGameState state;
 
+    private int chosenNum;
+    private int buildNum;
+
     public CitadelsLocalGame()
     {
         Log.i("CitadelsLocalGame", "creating edu.up.citadels.game");
@@ -120,8 +123,7 @@ public class CitadelsLocalGame extends LocalGame
      *          Tells whether the move was legal or not
      */
     @Override
-    protected boolean makeMove(GameAction action)
-    {
+    protected boolean makeMove(GameAction action) {
         if (!(action instanceof CitadelsMoveAction)) {
             return false;
         }
@@ -145,7 +147,7 @@ public class CitadelsLocalGame extends LocalGame
                 if (state.getKing() == playerID || playerID == 0) {
                     chosenNum = 0;
                     //sets the player's characters to the chosen character card
-                    while (chosenNum != 2) {
+                    while (state.getChosenCharacterCard() == -1 || chosenNum != 2) {
                         if (chosenNum == 0) {
                             // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
                             state.setP1Character1(state.getChosenCharacterCard());
@@ -198,7 +200,8 @@ public class CitadelsLocalGame extends LocalGame
                 }
             }
         }
-        while (state.getTurn() != 7) {
+        while (state.getTurn() != 7)
+        {
             if (action instanceof TakeGold)
             {
                 if (playerID == 0) {
@@ -278,7 +281,8 @@ public class CitadelsLocalGame extends LocalGame
                     }
                 }
                 return true;
-            } else if (action instanceof UseSpecialAbility) {
+            } else if (action instanceof UseSpecialAbility)
+            {
                 // Assassin special ability
             /*if (state.getTurn() == 1)
             {
@@ -359,7 +363,8 @@ public class CitadelsLocalGame extends LocalGame
                 }
             }*/
                 return true;
-            } else if (action instanceof EndTurn) {
+            } else if (action instanceof EndTurn)
+            {
                 if (state.getTurn() != 7) {
                     state.setTurn(state.getTurn() + 1);
                     return true;
@@ -368,7 +373,8 @@ public class CitadelsLocalGame extends LocalGame
                     //TODO need to adjust the turn due to while loop
                     return true;
                 }
-            } else {
+            } else
+            {
                 return false;
             }
             //increments the turn

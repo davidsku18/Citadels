@@ -114,6 +114,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnCreat
     private boolean hasGoneAbility = false;
 
     private ArrayList<Bitmap> p1City;
+    private ArrayList<String> p1HandArrayList;
     private ArrayList<Bitmap> p1HandImages;
     private ArrayList<String> p1HandNames;
     private ArrayList<String> p2HandNames;
@@ -315,46 +316,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnCreat
             p3HandNames.add(cdc.getName());
         }
         */
-        }*/
-
-
-    }
-
-
-    //This makes this player make a take gold action
-    public void humanPlayerTakeGold()
-    {
-        game.sendAction(new TakeGold(this));
-    }
-
-    //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard()
-    {
-        game.sendAction(new ChooseDistrictCard(this));
-    }
-
-    //This allows a player to use their special ability
-    public void humanPlayerUseAbility()
-    {
-        game.sendAction(new UseSpecialAbility(this));
-    }
-
-    //This method allows the user to end their turn
-    public void humanPlayerEndTurn()
-    {
-        game.sendAction(new EndTurn(this));
-    }
-
-    /**
-     * returns the GUI's top view
-     *
-     * @return
-     * 		the GUI's top view
-     */
-    @Override
-    public View getTopView() {
-        return myActivity.findViewById(R.id.top_gui_layout);
-    }
 
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
@@ -869,6 +830,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnCreat
     }
 
 
+    /**
+     * returns the GUI's top view
+     *
+     * @return
+     * 		the GUI's top view
+     */
+    @Override
+    public View getTopView() {
+        return myActivity.findViewById(R.id.top_gui_layout);
+    }
+
     //This makes this player make a take gold action
     public void humanPlayerTakeGold()
     {
@@ -895,17 +867,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnCreat
 
     //This method allows the user to choose their character
     public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
-
-    /**
-     * returns the GUI's top view
-     *
-     * @return
-     * 		the GUI's top view
-     */
-    @Override
-    public View getTopView() {
-        return myActivity.findViewById(R.id.top_gui_layout);
-    }
 
     private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener
     {
