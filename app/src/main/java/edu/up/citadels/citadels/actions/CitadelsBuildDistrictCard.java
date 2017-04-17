@@ -14,7 +14,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class CitadelsBuildDistrictCard extends CitadelsMoveAction
 {
-    CitadelsDistrictCard cardBeingBuilt;
+    private CitadelsDistrictCard cardBeingBuilt;
 
     /**
      * constructor for edu.up.citadels.game.GameAction
@@ -25,5 +25,10 @@ public class CitadelsBuildDistrictCard extends CitadelsMoveAction
     {
         super(player);
         this.cardBeingBuilt = cardToBuild;
+    }
+
+    public CitadelsDistrictCard getCard()
+    {
+        return this.cardBeingBuilt;
     }
 }

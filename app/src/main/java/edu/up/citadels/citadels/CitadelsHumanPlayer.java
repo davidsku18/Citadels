@@ -102,7 +102,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ArrayList<String> p1HandNames;
     private ArrayList<String> p2HandNames;
     private ArrayList<String> p3HandNames;
-
+    private ArrayList<String> p1HandArrayList;
 
     private Button menu_Button;
     private Spinner actionSpinner;
@@ -230,12 +230,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
+        this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
         // get values for the spinner
-        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
-        ArrayList<String> p1HandArrayList = state.getP1Hand();
+
+        this.p1HandArrayList = state.getP1HandNames();
+        ArrayAdapter p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, p1HandArrayList);
+        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.player1HandSpinner.setAdapter(p1HandAdapter);
+        this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
         // set values for all players' gold
         player1GoldCount.setText("Gold: " + state.getP1Gold());
@@ -248,26 +253,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
 
         // define a listener for the spinner
+        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
-        player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
-
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        ArrayAdapter p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
-                android.R.id.text1, p1HandArrayList);
-        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
-        player1HandSpinner.setAdapter(p1HandAdapter);
 
-        if(state != null)
-        {
-            receiveInfo(state);
-        }
 
         /*for(int i = 0; i < state.getP1City().size(); ++i)
         {
@@ -289,8 +283,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
 
     }
-
-
 
 
     //This makes this player make a take gold action
