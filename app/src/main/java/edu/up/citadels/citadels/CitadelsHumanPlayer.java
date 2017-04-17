@@ -23,6 +23,7 @@ import java.util.List;
 
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -97,6 +98,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private boolean hasGone = false;
     private boolean hasGoneAbility = false;
+    private boolean hasBuilt = false;
 
     private ArrayList<Bitmap> p1HandImages;
     private ArrayList<String> p1HandNames;
@@ -307,6 +309,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     public void humanPlayerEndTurn()
     {
         game.sendAction(new EndTurn(this));
+    }
+
+    public void humanPlayerBuildDistrict(CitadelsDistrictCard cdc)
+    {
+        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
     }
 
     /**
@@ -699,11 +706,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id)
         {
-            for(int i = 0; i < state.getP1Hand().size(); ++i)
+            if (hasBuilt == false)
             {
-
+                humanPlayerBuildDistrict(state.getP1Hand().get(position));
+                hasBuilt = true;
+            }else
+            {
+                //do nothing, they aren't allowed to build more
             }
-
         }
 
 
@@ -782,6 +792,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerEndTurn();
                     hasGone = false;
+                    hasBuilt = false;
+                    hasGoneAbility = false;
                     cardInfo.setText("Turn Ended.");
                 }
                 else
