@@ -2,27 +2,23 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.up.citadels.R;
 import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -30,14 +26,11 @@ import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
-import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
 import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
-import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
@@ -58,6 +51,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton player1_Card2;
     private boolean p1_Card1Bool = true; // boolean for player1_Card1
     private boolean p1_Card2Bool = true; // boolean for player1_Cart2
+
+    private ImageButton player2_Card1;
+    private ImageButton player2_Card2;
+
+    private ImageButton player3_Card1;
+    private ImageButton player3_Card2;
 
     // Image Buttons for player1
     private ImageButton p1_D1;
@@ -182,6 +181,84 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
+    public void drawcityCard(ImageButton button, String cardName)
+    {
+        if (cardName.toLowerCase().equals("battlefield"))
+        {
+            button.setImageResource(R.drawable.battlefield);
+        }
+        else if (cardName.toLowerCase().equals("castle"))
+        {
+            button.setImageResource(R.drawable.castle);
+        }
+        else if (cardName.toLowerCase().equals("cathedral"))
+        {
+            button.setImageResource(R.drawable.cathedral);
+        }
+        else if (cardName.toLowerCase().equals("church"))
+        {
+            button.setImageResource(R.drawable.church);
+        }
+        else if (cardName.toLowerCase().equals("docks"))
+        {
+            button.setImageResource(R.drawable.docks);
+        }
+        else if (cardName.toLowerCase().equals("fortress"))
+        {
+            button.setImageResource(R.drawable.fortress);
+        }
+        else if (cardName.toLowerCase().equals("harbor"))
+        {
+            button.setImageResource(R.drawable.harbor);
+        }
+        else if (cardName.toLowerCase().equals("manor"))
+        {
+            button.setImageResource(R.drawable.manor);
+        }
+        else if (cardName.toLowerCase().equals("market"))
+        {
+            button.setImageResource(R.drawable.market);
+        }
+        else if (cardName.toLowerCase().equals("monastery"))
+        {
+            button.setImageResource(R.drawable.monastery);
+        }
+        else if (cardName.toLowerCase().equals("palace"))
+        {
+            button.setImageResource(R.drawable.palace);
+        }
+        else if (cardName.toLowerCase().equals("prison"))
+        {
+            button.setImageResource(R.drawable.prison);
+        }
+        else if (cardName.toLowerCase().equals("tavern"))
+        {
+            button.setImageResource(R.drawable.tavern);
+        }
+        else if (cardName.toLowerCase().equals("temple"))
+        {
+            button.setImageResource(R.drawable.temple);
+        }
+        else if (cardName.toLowerCase().equals("townhall"))
+        {
+            button.setImageResource(R.drawable.townhall);
+        }
+        else if (cardName.toLowerCase().equals("trading post"))
+        {
+            button.setImageResource(R.drawable.trading_post);
+        }
+        else if (cardName.toLowerCase().equals("watchtower"))
+        {
+            button.setImageResource(R.drawable.watchtower);
+        }
+        else // Sets image to nothing
+        {
+            button.setImageResource(R.drawable.assasin);
+        }
+
+    }
+
+
     /**
      * call-back method: called whenever the GUI has changed (e.g., at the beginning
      * of the game, or when the screen orientation changes).
@@ -199,6 +276,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);
         player1_Card2 = (ImageButton) myActivity.findViewById(R.id.player1_Card2);
+
+        player2_Card1 = (ImageButton) myActivity.findViewById(R.id.player2_Card1);
+        player2_Card2 = (ImageButton) myActivity.findViewById(R.id.player2_Card2);
+
+        player3_Card1 = (ImageButton) myActivity.findViewById(R.id.player3_card1);
+        player3_Card2 = (ImageButton) myActivity.findViewById(R.id.player3_card2);
+
 
         p1_D1 = (ImageButton) myActivity.findViewById(R.id.p1_D1);
         p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
@@ -237,6 +321,74 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         merchantButton = (ImageButton) myActivity.findViewById(R.id.merchantButton);
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
+
+        player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
+        player1_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D1.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D3.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D4.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D5.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D6.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D7.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D8.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        player2_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
+        player2_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D1.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D3.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D4.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D5.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D6.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D7.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D8.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        player3_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
+        player3_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D1.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D3.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D4.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D5.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D6.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D7.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D8.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        drawcityCard(p1_D1, state.getP1CityCard(0).getName());
+        drawcityCard(p1_D2, state.getP1CityCard(1).getName());
+        drawcityCard(p1_D3, state.getP1CityCard(2).getName());
+        drawcityCard(p1_D4, state.getP1CityCard(3).getName());
+        drawcityCard(p1_D5, state.getP1CityCard(4).getName());
+        drawcityCard(p1_D6, state.getP1CityCard(5).getName());
+        drawcityCard(p1_D7, state.getP1CityCard(6).getName());
+        drawcityCard(p1_D8, state.getP1CityCard(7).getName());
+
+        drawcityCard(p2_D1, state.getP1CityCard(0).getName());
+        drawcityCard(p2_D2, state.getP1CityCard(1).getName());
+        drawcityCard(p2_D3, state.getP1CityCard(2).getName());
+        drawcityCard(p2_D4, state.getP1CityCard(3).getName());
+        drawcityCard(p2_D5, state.getP1CityCard(4).getName());
+        drawcityCard(p2_D6, state.getP1CityCard(5).getName());
+        drawcityCard(p2_D7, state.getP1CityCard(6).getName());
+        drawcityCard(p2_D8, state.getP1CityCard(7).getName());
+
+        drawcityCard(p3_D1, state.getP1CityCard(0).getName());
+        drawcityCard(p3_D2, state.getP1CityCard(1).getName());
+        drawcityCard(p3_D3, state.getP1CityCard(2).getName());
+        drawcityCard(p3_D4, state.getP1CityCard(3).getName());
+        drawcityCard(p3_D5, state.getP1CityCard(4).getName());
+        drawcityCard(p3_D6, state.getP1CityCard(5).getName());
+        drawcityCard(p3_D7, state.getP1CityCard(6).getName());
+        drawcityCard(p3_D8, state.getP1CityCard(7).getName());
+
+
+
+
+
+
+
+
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
