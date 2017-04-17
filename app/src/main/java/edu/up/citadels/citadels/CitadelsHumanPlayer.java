@@ -181,6 +181,47 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
+    public void drawcharacterCard(ImageButton button, int charNum)
+    {
+        if (charNum == 1)
+        {
+            button.setImageResource(R.drawable.assasin);
+        }
+        else if (charNum == 2)
+        {
+            button.setImageResource(R.drawable.thief);
+        }
+        else if (charNum == 3)
+        {
+            button.setImageResource(R.drawable.magician);
+        }
+        else if (charNum == 4)
+        {
+            button.setImageResource(R.drawable.king);
+        }
+        else if (charNum == 5)
+        {
+            button.setImageResource(R.drawable.bishop);
+        }
+        else if (charNum == 6)
+        {
+            button.setImageResource(R.drawable.merchant);
+        }
+        else if (charNum == 7)
+        {
+            button.setImageResource(R.drawable.architect);
+        }
+        else if (charNum == 8)
+        {
+            button.setImageResource(R.drawable.warlord);
+        }
+        else //TODO Change to back of card
+        {
+            button.setImageResource(R.drawable.architect);
+        }
+
+    }
+
     public void drawcityCard(ImageButton button, String cardName)
     {
         if (cardName.toLowerCase().equals("battlefield"))
@@ -251,7 +292,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             button.setImageResource(R.drawable.watchtower);
         }
-        else // Sets image to nothing
+        else // Sets image to nothing TODO set to empty
         {
             button.setImageResource(R.drawable.assasin);
         }
@@ -355,6 +396,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7.setScaleType(ImageView.ScaleType.FIT_XY);
         p3_D8.setScaleType(ImageView.ScaleType.FIT_XY);
 
+        drawcharacterCard(player1_Card1, state.getP1Character1());
+        drawcharacterCard(player1_Card2, state.getP1Character2());
+
         drawcityCard(p1_D1, state.getP1CityCard(0).getName());
         drawcityCard(p1_D2, state.getP1CityCard(1).getName());
         drawcityCard(p1_D3, state.getP1CityCard(2).getName());
@@ -364,23 +408,27 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         drawcityCard(p1_D7, state.getP1CityCard(6).getName());
         drawcityCard(p1_D8, state.getP1CityCard(7).getName());
 
-        drawcityCard(p2_D1, state.getP1CityCard(0).getName());
-        drawcityCard(p2_D2, state.getP1CityCard(1).getName());
-        drawcityCard(p2_D3, state.getP1CityCard(2).getName());
-        drawcityCard(p2_D4, state.getP1CityCard(3).getName());
-        drawcityCard(p2_D5, state.getP1CityCard(4).getName());
-        drawcityCard(p2_D6, state.getP1CityCard(5).getName());
-        drawcityCard(p2_D7, state.getP1CityCard(6).getName());
-        drawcityCard(p2_D8, state.getP1CityCard(7).getName());
+        drawcharacterCard(player2_Card1, state.getP2Character1());
+        drawcharacterCard(player2_Card2, state.getP2Character2());
+        drawcityCard(p2_D1, state.getP2CityCard(0).getName());
+        drawcityCard(p2_D2, state.getP2CityCard(1).getName());
+        drawcityCard(p2_D3, state.getP2CityCard(2).getName());
+        drawcityCard(p2_D4, state.getP2CityCard(3).getName());
+        drawcityCard(p2_D5, state.getP2CityCard(4).getName());
+        drawcityCard(p2_D6, state.getP2CityCard(5).getName());
+        drawcityCard(p2_D7, state.getP2CityCard(6).getName());
+        drawcityCard(p2_D8, state.getP2CityCard(7).getName());
 
-        drawcityCard(p3_D1, state.getP1CityCard(0).getName());
-        drawcityCard(p3_D2, state.getP1CityCard(1).getName());
-        drawcityCard(p3_D3, state.getP1CityCard(2).getName());
-        drawcityCard(p3_D4, state.getP1CityCard(3).getName());
-        drawcityCard(p3_D5, state.getP1CityCard(4).getName());
-        drawcityCard(p3_D6, state.getP1CityCard(5).getName());
-        drawcityCard(p3_D7, state.getP1CityCard(6).getName());
-        drawcityCard(p3_D8, state.getP1CityCard(7).getName());
+        drawcharacterCard(player3_Card1, state.getP3Character1());
+        drawcharacterCard(player3_Card2, state.getP3Character2());
+        drawcityCard(p3_D1, state.getP3CityCard(0).getName());
+        drawcityCard(p3_D2, state.getP3CityCard(1).getName());
+        drawcityCard(p3_D3, state.getP3CityCard(2).getName());
+        drawcityCard(p3_D4, state.getP3CityCard(3).getName());
+        drawcityCard(p3_D5, state.getP3CityCard(4).getName());
+        drawcityCard(p3_D6, state.getP3CityCard(5).getName());
+        drawcityCard(p3_D7, state.getP3CityCard(6).getName());
+        drawcityCard(p3_D8, state.getP3CityCard(7).getName());
 
 
 

@@ -57,6 +57,14 @@ public class CitadelsGameState extends GameState
     private int p3Character1;
     private int p3Character2;
 
+    private CharacterCard p1Chara1;
+    private CharacterCard p1Chara2;
+    private CharacterCard p2Chara1;
+    private CharacterCard p2Chara2;
+    private CharacterCard p3Chara1;
+    private CharacterCard p3Chara2;
+
+
     //if a character has been assassinated //TODO
     private boolean characterIsAlive;
 
@@ -132,6 +140,15 @@ public class CitadelsGameState extends GameState
 
     //Sets the player's chosen character card
     public void setP1Character1(int x) { this.p1Character1 = x; }
+    public void setp1Char1(int c, int color)
+    {
+        p1Chara1 = new CharacterCard(c, color);
+    }
+    public void setp1Char2(int c, int color)
+    {
+        p1Chara2 = new CharacterCard(c, color);
+    }
+
     public void setP1Character2(int x) { this.p1Character2 = x; }
     public void setP2Character1(int x) { this.p2Character1 = x; }
     public void setP2Character2(int x) { this.p2Character2 = x; }
