@@ -337,15 +337,15 @@ public class CitadelsGameState extends GameState
     //Gets the player's district cards in their hand
     public ArrayList getP1Hand()
     {
-        return p1Hand;
+        return this.p1Hand;
     }
     public ArrayList getP2Hand()
     {
-        return p2Hand;
+        return this.p2Hand;
     }
     public ArrayList getP3Hand()
     {
-        return p3Hand;
+        return this.p3Hand;
     }
 
     //Gets the player's district card at specific index in their district cards hand

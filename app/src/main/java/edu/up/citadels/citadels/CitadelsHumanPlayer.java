@@ -708,7 +708,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             if (hasBuilt == false)
             {
-                humanPlayerBuildDistrict(state.getP1Hand().get(position));
+                CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(position);
+                humanPlayerBuildDistrict(cardToBuild);
                 hasBuilt = true;
             }else
             {

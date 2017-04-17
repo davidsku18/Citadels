@@ -222,7 +222,7 @@ public class CitadelsLocalGame extends LocalGame
             if(playerID == 0)
             {
                 state.addToP1City(cbdc.getCard());
-                //todo
+                if(state.getP1Gold() >= cbdc.getCard().getCost())
                 state.removeFromP1Hand(0);
             }else if(playerID == 1)
             {
