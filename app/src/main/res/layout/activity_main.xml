@@ -19,66 +19,67 @@
         android:orientation="horizontal">
 
         <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/assassinButton"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/assasin" />
 
                 <ImageButton
                     android:id="@+id/thiefButton"
-                    android:layout_width="201dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/thief" />
 
                 <ImageButton
                     android:id="@+id/magicianButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/magician" />
 
                 <ImageButton
                     android:id="@+id/kingButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/king" />
 
                 <ImageButton
                     android:id="@+id/bishopButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bishop" />
 
                 <ImageButton
                     android:id="@+id/merchantButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/merchant" />
 
                 <ImageButton
                     android:id="@+id/architectButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/architect" />
 
                 <ImageButton
                     android:id="@+id/warlordButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/warlord" />
@@ -143,7 +144,7 @@
                             android:id="@+id/p2_D2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -258,21 +259,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        />
+                        android:text="Score:" />
 
                     <TextView
                         android:id="@+id/p2_gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        />
+                        android:text="Gold:" />
 
                     <TextView
                         android:id="@+id/p2_dc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        />
+                        android:text="Districts:" />
 
                 </LinearLayout>
 
@@ -291,13 +292,13 @@
                             android:id="@+id/p2_D5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                         <ImageButton
                             android:id="@+id/p2_D6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -366,7 +367,7 @@
                         android:layout_gravity="right"
                         android:layout_weight="1"
                         android:text="Menu"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -608,7 +609,8 @@
                         android:id="@+id/p3_Dc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -717,7 +719,7 @@
                         android:id="@+id/p1_Gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="" />
+                        android:text="Gold:" />
 
                     <ImageView
                         android:id="@+id/Gold_Icon"
@@ -974,7 +976,7 @@
                         android:id="@+id/P1_Score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:text="Score:" />
                 </LinearLayout>
 
                 <LinearLayout

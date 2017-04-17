@@ -1,5 +1,6 @@
 package edu.up.citadels.citadels;
 
+import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
@@ -26,9 +27,12 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
 {
     private CitadelsGameState savedState;
 
-    public CitadelsComputerPlayer(String initName)
+    private int player;
+
+    public CitadelsComputerPlayer(String initName, int myNumber)
     {
         super(initName);
+        this.player = myNumber;
     }
 
     @Override
@@ -40,7 +44,23 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
 
         savedState = (CitadelsGameState)info;
 
-        // generate random number for AI to choose to take gold or a district card
+       /* if(savedState.getPlayerTurn() == this.playerNum)
+        {
+            game.sendAction(new TakeGold(this));
+
+            sleep(500);
+
+            game.sendAction(new EndTurn(this));
+        }*/
+
+        game.sendAction(new TakeGold(this));
+
+        sleep(500);
+
+        game.sendAction(new EndTurn(this));
+
+
+        /*// generate random number for AI to choose to take gold or a district card
         int goldOrDist = (int)(Math.random()*2);
 
         if (goldOrDist == 0)
@@ -65,6 +85,24 @@ public class CitadelsComputerPlayer extends GameComputerPlayer
         }
 
         int chooseCharacter = (int)((Math.random())*8);
+*/
 
+
+
+        /*if(this.allPlayerNames[0].equals(this.name))
+        {
+            player = 0;
+        }else if(this.allPlayerNames[1].equals(this.name))
+        {
+            player = 1;
+        }else if(this.allPlayerNames[2].equals(this.name))
+        {
+            player = 2;
+        }
+
+        if(savedState.getTurn() == this.player)
+        {
+            game.sendAction(new TakeGold(this));
+        }*/
     }
 }

@@ -11,7 +11,7 @@ import edu.up.citadels.game.GamePlayer;
  * @version 3/10/2017
  */
 
-public class EndTurn extends GameAction
+public class EndTurn extends CitadelsMoveAction
 {
     /**
      * constructor for edu.up.citadels.game.GameAction

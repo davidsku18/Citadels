@@ -31,10 +31,6 @@ public abstract class CitadelsMoveAction extends GameAction {
         return false;
     }
 
-    /**
-     * @return
-     * 		whether the move was a "play"
-     */
     public boolean isEndTurn()
     {
         return false;
@@ -54,6 +50,8 @@ public abstract class CitadelsMoveAction extends GameAction {
     {
         return false;
     }
+
+    public boolean isUseCharacterAbility(){ return false;}
 
 
 

@@ -2,8 +2,6 @@ package edu.up.citadels.citadels;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -92,7 +90,7 @@ public class CitadelsLocalGame extends LocalGame
         int p3Districts = state.getP3City().size();
 
         /*
-        Keep in mind that this is just signaling the end of the game and does not declare a
+        TODO Keep in mind that this is just signaling the end of the game and does not declare a
         winner yet, this is just for the most basic functionality
          */
 
@@ -135,30 +133,32 @@ public class CitadelsLocalGame extends LocalGame
             return false;
         }
 
-        CitadelsMoveAction  cma = (CitadelsMoveAction) action;
+        CitadelsMoveAction cma = (CitadelsMoveAction) action;
+        int playerID = getPlayerIdx(cma.getPlayer());
 
-        //get the index of the player making the move;
-        int thisPlayerIdx = getPlayerIdx(cma.getPlayer());
-
-        if ((turn == state.getP1Character1()) || (turn == state.getP1Character2()))
+        if (action instanceof TakeGold)
         {
-            player = thisPlayerIdx;        //character belongs to player 0
-        } else if ((turn == state.getP2Character1()) || (turn == state.getP2Character2()))
-        {
-            player = thisPlayerIdx;        //character belongs to player 1
-        } else if ((turn == state.getP3Character1()) || (turn == state.getP3Character2()))
-        {
-            player = thisPlayerIdx;        //character belongs to player 2
-        } else
-        {
-            player = 4;        //this is if no one owns this character
+            if(playerID == 0)
+            {
+                state.setP1Gold(state.getP1Gold() + 2);
+            }else if(playerID == 1)
+            {
+                state.setP2Gold(state.getP2Gold() + 2);
+            }else if(playerID == 2)
+            {
+                state.setP3Gold(state.getP3Gold() + 2);
+            }
+            return true;
         }
+
 
         if (action instanceof ChooseCharacterCard)
         {
             //this is just setting them to arbitrary values, we will set more later
             //for basic functionality
             //TODO
+
+            int chosenNum = 0;
 
             /*
             state.setP1Character1(0);
@@ -167,7 +167,7 @@ public class CitadelsLocalGame extends LocalGame
             state.setP2Character2(3);
             state.setP3Character1(4);
             state.setP3Character2(5);
-            */
+
             state.setTurn(0);
 
             int[] p1Characters = new int[2];
@@ -176,11 +176,13 @@ public class CitadelsLocalGame extends LocalGame
 
             // first person two choose is the person who has the crown
             // if king is equal to player 0 (player 1), then they get to choose their characters first
-            if(state.getKing() == player) {
+            if(state.getKing() == 0) {
                 chosenNum = 0;
                 //sets the player's characters to the chosen character card
-                while (chosenNum != 2) {
-                    if (chosenNum == 0) {
+                while (chosenNum != 2)
+                {
+                    if (chosenNum == 0)
+                    {
                         state.setP1Character1(state.getChosenCharacterCard());
                         state.removeCharacterCard(state.getChosenCharacterCard());
                         chosenNum++;
@@ -195,7 +197,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 }
             }
-            else if (player == 1)
+            else if (playerID == 1)
             {
                 chosenNum = 0;
                 // could also check if character deck is null
@@ -215,7 +217,7 @@ public class CitadelsLocalGame extends LocalGame
                 }
                 return true;
             }
-            else if (player == 2)
+            else if (playerID == 2)
             {
                 chosenNum = 0;
                 while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
@@ -236,87 +238,54 @@ public class CitadelsLocalGame extends LocalGame
             }
             return true;
         }
-        else if (action instanceof TakeGold)
+         else if (action instanceof EndTurn)
         {
-            //this will add 2 gold to whoever the player is
-            if (player == 0)
-            {
-                state.setP1Gold(state.getP1Gold() + 2);
-                return true;
-            } else if (player == 1)
-            {
-                state.setP2Gold(state.getP2Gold() + 2);
-                return true;
-            } else if (player == 2)
-            {
-                state.setP3Gold(state.getP3Gold() + 2);
-                return true;
-            } else
-            {
-                //do nothing because player 4 doesn't exist
-                return true;
-            }
-        } else if (action instanceof EndTurn)
-        {
-            if (state.getTurn() != 8) {
+            if (state.getTurn() != 7) {
                 state.setTurn(state.getTurn() + 1);
                 return true;
-            } else if (state.getTurn() == 8)
+            } else if (state.getTurn() == 7)
             {
-                state.setTurn(1);
+                state.setTurn(0);
                 return true;
             }
         } else if (action instanceof ChooseDistrictCard)
         {
-            //this will add a district card to whoever the player is // TODO in-case idx does not start at 0
-            if (player == 1)
+            if(playerID == 0)
             {
                 state.addToP1Hand(state.drawCard());
                 state.removeDistrictCard();
-                return true;
-            } else if (player == 2)
+            }else if(playerID == 1)
             {
                 state.addToP2Hand(state.drawCard());
                 state.removeDistrictCard();
-                return true;
-            } else if (player == 3)
+            }else if(playerID == 2)
             {
                 state.addToP3Hand(state.drawCard());
                 state.removeDistrictCard();
-                return true;
-            } else
-            {
-                //do nothing because player 4 doesn't exist
-                return true;
             }
-        } else if (action instanceof CitadelsBuildDistrictCard) {
+            return true;
+        } else if (action instanceof CitadelsBuildDistrictCard)
+        {
             //TODO this will build the first district card in the hand
-            //we will implement fuller functionality later
-            if (player == 1)
+
+            if(playerID == 0)
             {
-                //TODO check and see if the player has enough gold
-                state.addToP1City(state.getP1DistrictCard(1));
-                state.removeFromP1Hand(1);
-                return true;
-            } else if (player == 2)
+                state.addToP1City(state.getP1DistrictCard(0));
+                state.removeFromP1Hand(0);
+            }else if(playerID == 1)
             {
-                state.addToP2City(state.getP2DistrictCard(1));
-                state.removeFromP2Hand(1);
-                return true;
-            } else if (player == 3)
+                state.addToP2City(state.getP2DistrictCard(0));
+                state.removeFromP2Hand(0);
+            }else if(playerID == 2)
             {
-                state.addToP3City(state.getP3DistrictCard(1));
-                state.removeFromP3Hand(1);
-                return true;
-            } else
-            {
-                //do nothing because player 4 doesn't exist
-                return true;
+                state.addToP3City(state.getP3DistrictCard(0));
+                state.removeFromP3Hand(0);
             }
+            return true;
         } else if (action instanceof UseSpecialAbility)
         {
             // Assassin special ability
-            if (state.getTurn() == 1)
+            /*if (state.getTurn() == 1)
             {
                 if(player == 1)
                 {
@@ -393,7 +362,8 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     return false;
                 }
-            }
+            }*/
+            return true;
         }else
         {
             return false;

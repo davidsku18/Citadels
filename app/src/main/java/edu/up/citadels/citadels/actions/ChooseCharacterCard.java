@@ -11,16 +11,19 @@ import edu.up.citadels.game.GamePlayer;
  * @version 3/10/2017
  */
 
-public class ChooseCharacterCard extends GameAction
+public class ChooseCharacterCard extends CitadelsMoveAction
 {
+    private int characterCard;
+
     /**
      * constructor for edu.up.citadels.game.GameAction
      *
      * @param player the player who created the action
      */
-    public ChooseCharacterCard(GamePlayer player)
+    public ChooseCharacterCard(GamePlayer player, int characterNum)
     {
         super(player);
+        this.characterCard = characterNum;
     }
 
     /**
