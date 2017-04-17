@@ -67,7 +67,7 @@ public class CitadelsLocalGame extends LocalGame
     @Override
     protected boolean canMove(int playerIdx)
     {
-        if(playerIdx == state.getTurn())
+        if(playerIdx == state.getPlayerTurn())
         {
             return true;
         }else
@@ -118,16 +118,10 @@ public class CitadelsLocalGame extends LocalGame
      *          Tells whether the move was legal or not
      */
     @Override
-    protected boolean makeMove(GameAction action)
-    {
+    protected boolean makeMove(GameAction action) {
         int turn = state.getTurn();
-        int chosenNum = 0;
-        int player;
-        //int kingNum = (int)Math.random()*3;
-        int kingNum = 0; //TODO: Setting the king always to player 1
-
-        //sets the king num
-        state.setKing(kingNum);
+        int buildNum;
+        int chosenNum;
 
         if (!(action instanceof CitadelsMoveAction)) {
             return false;
@@ -136,155 +130,157 @@ public class CitadelsLocalGame extends LocalGame
         CitadelsMoveAction cma = (CitadelsMoveAction) action;
         int playerID = getPlayerIdx(cma.getPlayer());
 
-        if (action instanceof TakeGold)
-        {
-            if(playerID == 0)
-            {
-                state.setP1Gold(state.getP1Gold() + 2);
-            }else if(playerID == 1)
-            {
-                state.setP2Gold(state.getP2Gold() + 2);
-            }else if(playerID == 2)
-            {
-                state.setP3Gold(state.getP3Gold() + 2);
-            }
-            return true;
-        }
 
+        if (action instanceof ChooseCharacterCard) {
+            // Rolls for a random number to determine who will be the king
+            state.setRollKing();
 
-        if (action instanceof ChooseCharacterCard)
-        {
-            //this is just setting them to arbitrary values, we will set more later
-            //for basic functionality
-            //TODO
-
-            int chosenNum = 0;
-
-            /*
-            state.setP1Character1(0);
-            state.setP1Character2(1);
-            state.setP2Character1(2);
-            state.setP2Character2(3);
-            state.setP3Character1(4);
-            state.setP3Character2(5);
-
+            // Sets the turn to zero issuing a new round of character choosing
             state.setTurn(0);
-
-            int[] p1Characters = new int[2];
-            int[] p2Characters = new int[2];
-            int[] p3Characters = new int[2]; // TODO may want to change to CharacterCards later
 
             // first person two choose is the person who has the crown
             // if king is equal to player 0 (player 1), then they get to choose their characters first
-            if(state.getKing() == 0) {
-                chosenNum = 0;
-                //sets the player's characters to the chosen character card
-                while (chosenNum != 2)
-                {
-                    if (chosenNum == 0)
-                    {
-                        state.setP1Character1(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                        //increments chosenNum to determine whether the player has chosen their first character card
+            // state.getKing() != playerID && state.getKing() != 1 && state.getKing() == 2 || state.getKing() != playerID && state.getKing() != 2 && state.getKing() == 1 || state.getKing() == playerID
+            // loop through until all players have chosen their characters
+            while (state.getTurn() != 2) {
+                if (state.getKing() == playerID || playerID == 0) {
+                    chosenNum = 0;
+                    //sets the player's characters to the chosen character card
+                    while (chosenNum != 2) {
+                        if (chosenNum == 0) {
+                            // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
+                            state.setP1Character1(state.getChosenCharacterCard());
+                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            chosenNum++;
+                            //increments chosenNum to determine whether the player has chosen their first character card
+                        }
+                        if (chosenNum == 1) {
+                            state.setP1Character2(state.getChosenCharacterCard());
+                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            chosenNum++;
+                            //increments chosenNum to determine whether the player has chosen their second character card
+                        }
                     }
-                    if (chosenNum == 1) {
-                        state.setP1Character2(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                        //increments chosenNum to determine whether the player has chosen their second character card
+                    state.setTurn(state.getTurn()+1);
+                    return true;
+                } else if (state.getKing() == playerID || playerID == 1) {
+                    chosenNum = 0;
+                    // if chosenCharacterCard returns null have the player choose again
+                    while (state.getChosenCharacterCard() == -1 || chosenNum != 2) {
+                        if (chosenNum == 0) {
+                            // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
+                            state.setP2Character1(state.getChosenCharacterCard());
+                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            chosenNum++;
+                        } else if (chosenNum == 1) {
+                            state.setP1Character2(state.getChosenCharacterCard());
+                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            chosenNum++;
+                        }
                     }
+                    state.setTurn(state.getTurn()+1);
+                    return true;
+                } else if (state.getKing() == playerID || playerID == 2) {
+                    chosenNum = 0;
+                    while (state.getChosenCharacterCard() == -1 || chosenNum != 2) {
+                        if (chosenNum == 0) {
+                            // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
+                            state.setP3Character1(state.getChosenCharacterCard());
+                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            chosenNum++;
+                        } else if (chosenNum == 1) {
+                            state.setP3Character2(state.getChosenCharacterCard());
+                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            chosenNum++;
+                        }
+                    }
+                    state.setTurn(state.getTurn()+1);
                     return true;
                 }
             }
-            else if (playerID == 1)
-            {
-                chosenNum = 0;
-                // could also check if character deck is null
-                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
-                {
-                    if (chosenNum == 0)
-                    {
-                        state.setP2Character1(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
-                    else if (chosenNum == 1) {
-                        state.setP1Character2(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
-                }
-                return true;
-            }
-            else if (playerID == 2)
-            {
-                chosenNum = 0;
-                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
-                {
-                    if (chosenNum == 0)
-                    {
-                        state.setP3Character1(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
-                    else if (chosenNum == 1) {
-                        state.setP3Character2(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
-                }
-                return true;
-            }
-            return true;
         }
-         else if (action instanceof EndTurn)
-        {
-            if (state.getTurn() != 7) {
-                state.setTurn(state.getTurn() + 1);
+        while (state.getTurn() != 7) {
+            if (action instanceof TakeGold)
+            {
+                if (playerID == 0) {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1) {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2) {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
                 return true;
-            } else if (state.getTurn() == 7)
+            } else if (action instanceof ChooseDistrictCard)
             {
-                state.setTurn(0);
+                if (playerID == 0) {
+                    state.addToP1Hand(state.drawCard());
+                    state.removeDistrictCard();
+                    return true;
+                } else if (playerID == 1) {
+                    state.addToP2Hand(state.drawCard());
+                    state.removeDistrictCard();
+                    return true;
+                } else if (playerID == 2) {
+                    state.addToP3Hand(state.drawCard());
+                    state.removeDistrictCard();
+                    return true;
+                }
                 return true;
-            }
-        } else if (action instanceof ChooseDistrictCard)
-        {
-            if(playerID == 0)
+            } else if (action instanceof CitadelsBuildDistrictCard)
             {
-                state.addToP1Hand(state.drawCard());
-                state.removeDistrictCard();
-            }else if(playerID == 1)
-            {
-                state.addToP2Hand(state.drawCard());
-                state.removeDistrictCard();
-            }else if(playerID == 2)
-            {
-                state.addToP3Hand(state.drawCard());
-                state.removeDistrictCard();
-            }
-            return true;
-        } else if (action instanceof CitadelsBuildDistrictCard)
-        {
-            //TODO this will build the first district card in the hand
-
-            if(playerID == 0)
-            {
-                state.addToP1City(state.getP1DistrictCard(0));
-                state.removeFromP1Hand(0);
-            }else if(playerID == 1)
-            {
-                state.addToP2City(state.getP2DistrictCard(0));
-                state.removeFromP2Hand(0);
-            }else if(playerID == 2)
-            {
-                state.addToP3City(state.getP3DistrictCard(0));
-                state.removeFromP3Hand(0);
-            }
-            return true;
-        } else if (action instanceof UseSpecialAbility)
-        {
-            // Assassin special ability
+                //TODO this will build the first district card in the hand
+                if (playerID == 0) {
+                    buildNum=0;
+                    // allows the player to build district cards to a specific amount or until they end their turn
+                    while (!(action instanceof EndTurn) || buildNum != 2 )
+                    {
+                        if (state.getP1Gold() >= state.getTheDistrictCardToBeBuilt().getCost())
+                        {
+                            state.addToP1City(state.getTheDistrictCardToBeBuilt());
+                            state.removeFromP1Hand(state.getTheChosenDistrict());
+                            buildNum++;
+                        } else {
+                            Log.i("CitadelsLocalGame", "makeMove: CitadelsBuildDistrictCard: Not enough gold for P1");
+                        }
+                        return true;
+                    }
+                } else if (playerID == 1)
+                {
+                    buildNum=0;
+                    while (!(action instanceof EndTurn) || buildNum != 2)
+                    {
+                        if (state.getP2Gold() >= state.getTheDistrictCardToBeBuilt().getCost())
+                        {
+                            state.addToP2City(state.getTheDistrictCardToBeBuilt());
+                            state.removeFromP2Hand(0);
+                            buildNum++;
+                        } else {
+                            Log.i("CitadelsLocalGame", "makeMove: CitadelsBuildDistrictCard: Not enough gold for P2");
+                        }
+                        return true;
+                    }
+                } else if (playerID == 2)
+                {
+                    buildNum=0;
+                    while (!(action instanceof EndTurn) || buildNum != 2)
+                    {
+                        if (state.getP3Gold() >= state.getTheDistrictCardToBeBuilt().getCost())
+                        {
+                            state.addToP3City(state.getP3DistrictCard(0));
+                            state.removeFromP3Hand(0);
+                            buildNum++;
+                        } else {
+                            Log.i("CitadelsLocalGame", "makeMove: CitadelsBuildDistrictCard: Not enough gold for P3");
+                        }
+                        return true;
+                    }
+                }
+                return true;
+            } else if (action instanceof UseSpecialAbility) {
+                // Assassin special ability
             /*if (state.getTurn() == 1)
             {
                 if(player == 1)
@@ -363,10 +359,20 @@ public class CitadelsLocalGame extends LocalGame
                     return false;
                 }
             }*/
-            return true;
-        }else
-        {
-            return false;
+                return true;
+            } else if (action instanceof EndTurn) {
+                if (state.getTurn() != 7) {
+                    state.setTurn(state.getTurn() + 1);
+                    return true;
+                } else if (state.getTurn() == 7) {
+                    // state.setTurn(0);
+                    //TODO need to adjust the turn due to while loop
+                    return true;
+                }
+            } else {
+                return false;
+            }
+            //increments the turn
         }
         return true;
     }

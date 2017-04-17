@@ -47,9 +47,6 @@ public class CitadelsGameState extends GameState
     //there are 52 district cards in the deck
     private ArrayList<CitadelsDistrictCard> deckOrderDistricts = new ArrayList<CitadelsDistrictCard>();
 
-    //tells us which player is the king
-    private boolean isKing;
-
     //which characters are assigned to each player
     private int p1Character1;
     private int p1Character2;
@@ -70,6 +67,9 @@ public class CitadelsGameState extends GameState
     //if a player has had districts destroyed by warlord
     private boolean destroyDistrict;
 
+    //The chosen district card to be built
+    private CitadelsDistrictCard districtCardToBeBuilt;
+
     //whose turn is it
     private int turn;
 
@@ -86,6 +86,7 @@ public class CitadelsGameState extends GameState
     //the character card that was chosen
     private int theChosenCharacterCard = 0;
 
+    private int theChosenDistrict;
 
 /////////////////////////////Stuff to deal with player//////////////////////////////////////////////
 
@@ -95,7 +96,13 @@ public class CitadelsGameState extends GameState
         turn = x;
     }
 
-    //Get turn
+    //Gets the current turn
+    public int getTurn()
+    {
+        return this.turn;
+    }
+
+    //Gets the turn of the player based on their character
     public int getPlayerTurn()
     {
         if((turn == this.p1Character1) || (turn == this.p1Character2))
@@ -109,14 +116,15 @@ public class CitadelsGameState extends GameState
             return 2;
         }
         else
-            {
-                return -1;
-            }
+        {
+            return -1;
+        }
     }
 
-    public int getTurn()
+    //Sets which player is king
+    public void setRollKing()
     {
-        return this.turn;
+        king = (int)Math.random()*2;
     }
 
     //Returns if the player is king or not
@@ -124,12 +132,6 @@ public class CitadelsGameState extends GameState
     {
         return king;
     } // TODO need to implement who is king and who has the king character card
-
-    //Sets which player is king
-    public void setKing(int playerIdx)
-    {
-        king = playerIdx;
-    }
 
     //Sets the player's chosen character card
     public void setP1Character1(int x) { this.p1Character1 = x; }
@@ -142,7 +144,7 @@ public class CitadelsGameState extends GameState
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
     public CitadelsDistrictCard drawCard() {
-        this.deckOrderDistricts.remove(0);
+        this.deckOrderDistricts.remove(0);  //TODO possible issue with order? Remove may have to come after
         return this.deckOrderDistricts.get(0);
     }
 
@@ -354,6 +356,16 @@ public class CitadelsGameState extends GameState
         return p3Hand.get(x);
     }
 
+    public void setTheChosenDistrict(int district)
+    {
+        this.theChosenDistrict = district;
+    }
+
+    public int getTheChosenDistrict()
+    {
+        return this.theChosenDistrict;
+    }
+
     public void removeP1BuiltDistrict()
     {
         if(this.p1City.size() > 0)
@@ -469,6 +481,16 @@ public class CitadelsGameState extends GameState
         this.p3Hand = arrayCD;
     }
 
+    //Gets the cost of the character card that will be build
+    public void districtCardToBuild(CitadelsDistrictCard tobeBuilt)
+    {
+        this.districtCardToBeBuilt = tobeBuilt;
+    }
+
+    public CitadelsDistrictCard getTheDistrictCardToBeBuilt()
+    {
+        return this.districtCardToBeBuilt;
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     public int p1FindCard(int card)
@@ -489,7 +511,6 @@ public class CitadelsGameState extends GameState
 
     public CitadelsGameState()
     {
-        double king = Math.random();
         //sets all of the built districts for each player to null because no one will start
         //with a district built
 
@@ -627,8 +648,7 @@ public class CitadelsGameState extends GameState
         this.addToP3City(this.p3Hand.get(1));
 
         this.setTurn(0);
-
-        int king = (int)Math.random();
+        this.setRollKing();
 
         this.setP1Score(0);
         this.setP2Score(0);

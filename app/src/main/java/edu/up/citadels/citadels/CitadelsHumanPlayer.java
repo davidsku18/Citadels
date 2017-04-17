@@ -51,7 +51,7 @@ import static edu.up.citadels.R.array.p1Action;
  * @version 3/10/2017
  */
 
-public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnCreateContextMenuListener
+public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnCreateContextMenuListener
 {
     String name;
     private ImageButton player1_Card1;
@@ -97,7 +97,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton merchantButton;
     private ImageButton architectButton;
     private ImageButton warlordButton;
-
 
     private TextView player1GoldCount;
     private TextView player2GoldCount;
@@ -281,9 +280,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         // define a listener for the spinner
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
 
-        // initializing CardChooserSurfaceView
-        //this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
-
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1ActionSpinnerNames);
@@ -296,7 +292,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             receiveInfo(state);
         }
-/*
+
+        /*
         for(int i = 0; i < state.getP1City().size(); ++i)
         {
             CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
@@ -314,200 +311,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
             p3HandNames.add(cdc.getName());
         }
-*/      //TODO set random cards invisible
-        assassinButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(0) != null)
-                {
-                    state.setChosenCharacterCard(0);
-                    humanPlayerChooseCharacterCard(0);
-                    cardInfo.setText("You've chosen the assassin card");
-                    assassinButton.setVisibility(View.INVISIBLE);
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-        thiefButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(1) != null)
-                {
-                    state.setChosenCharacterCard(1);
-                    humanPlayerChooseCharacterCard(1);
-                    cardInfo.setText("You've chosen the thief card");
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
+        */
 
-        magicianButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(2) != null)
-                {
-                    state.setChosenCharacterCard(2);
-                    humanPlayerChooseCharacterCard(2);
-                    cardInfo.setText("You've chosen the magician card");
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-
-        kingButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(3) != null)
-                {
-                    state.setChosenCharacterCard(3);
-                    humanPlayerChooseCharacterCard(3);
-                    cardInfo.setText("You've chosen the king card");
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-
-        bishopButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(4) != null)
-                {
-                    state.setChosenCharacterCard(4);
-                    humanPlayerChooseCharacterCard(4);
-                    cardInfo.setText("You've chosen the bishop card");
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-
-        merchantButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(5) != null)
-                {
-                    state.setChosenCharacterCard(5);
-                    humanPlayerChooseCharacterCard(5);
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-
-        architectButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(6) != null)
-                {
-                    state.setChosenCharacterCard(6);
-                    humanPlayerChooseCharacterCard(6);
-                    cardInfo.setText("You've chosen the architect card");
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-
-        warlordButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(state.getCharacterDeck(7) != null)
-                {
-                    state.setChosenCharacterCard(7);
-                    humanPlayerChooseCharacterCard(7);
-                    cardInfo.setText("You've chosen the warlord card");
-                }
-                else
-                {
-                    state.setChosenCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }
-            }
-        });
-    }
-
-
-    //This makes this player make a take gold action
-    public void humanPlayerTakeGold()
-    {
-        game.sendAction(new TakeGold(this));
-    }
-
-    //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard()
-    {
-        game.sendAction(new ChooseDistrictCard(this));
-    }
-
-    //This allows a player to use their special ability
-    public void humanPlayerUseAbility()
-    {
-        game.sendAction(new UseSpecialAbility(this));
-    }
-
-    //This method allows the user to end their turn
-    public void humanPlayerEndTurn()
-    {
-        game.sendAction(new EndTurn(this));
-    }
-
-    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
-
-    /**
-     * returns the GUI's top view
-     *
-     * @return
-     * 		the GUI's top view
-     */
-    @Override
-    public View getTopView() {
-        return myActivity.findViewById(R.id.top_gui_layout);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -526,17 +331,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        /*
-        * @Author: Gavin Low
-        * @Author: Bryce Amato
-        *
-        * Click on the card to display useful info about the card
-        * Click on the card again to remove displayed information
-        * The card with the displayed information must be clicked to show the next card's information
-        *
-        * EDIT--- It now will display information about the specific card
-        *
-        */
         p1_D1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -548,6 +342,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     //displays card info (name, value, color)
                     cardInfo.setText(state.getP1DistrictInfo(0));
                 }
+                // TODO implement when the button is clicked on when building district to place the district card in this place
             }
         });
 
@@ -875,6 +670,198 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        // TODO set random cards invisible
+        // TODO thread needed to wait for click on the button or will just crash
+        assassinButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(0) != null)
+                {
+                    state.setChosenCharacterCard(0);
+                    humanPlayerChooseCharacterCard(0);
+                    cardInfo.setText("You've chosen the assassin card");
+                    assassinButton.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+        thiefButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(1) != null)
+                {
+                    state.setChosenCharacterCard(1);
+                    humanPlayerChooseCharacterCard(1);
+                    cardInfo.setText("You've chosen the thief card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        magicianButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(2) != null)
+                {
+                    state.setChosenCharacterCard(2);
+                    humanPlayerChooseCharacterCard(2);
+                    cardInfo.setText("You've chosen the magician card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        kingButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(3) != null)
+                {
+                    state.setChosenCharacterCard(3);
+                    humanPlayerChooseCharacterCard(3);
+                    cardInfo.setText("You've chosen the king card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        bishopButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(4) != null)
+                {
+                    state.setChosenCharacterCard(4);
+                    humanPlayerChooseCharacterCard(4);
+                    cardInfo.setText("You've chosen the bishop card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        merchantButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(5) != null)
+                {
+                    state.setChosenCharacterCard(5);
+                    humanPlayerChooseCharacterCard(5);
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        architectButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(6) != null)
+                {
+                    state.setChosenCharacterCard(6);
+                    humanPlayerChooseCharacterCard(6);
+                    cardInfo.setText("You've chosen the architect card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+
+        warlordButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(state.getCharacterDeck(7) != null)
+                {
+                    state.setChosenCharacterCard(7);
+                    humanPlayerChooseCharacterCard(7);
+                    cardInfo.setText("You've chosen the warlord card");
+                }
+                else
+                {
+                    state.setChosenCharacterCard(-1);
+                    cardInfo.setText("This card is already taken");
+                }
+            }
+        });
+    }
+
+
+    //This makes this player make a take gold action
+    public void humanPlayerTakeGold()
+    {
+        game.sendAction(new TakeGold(this));
+    }
+
+    //This allows the player to take a district card
+    public void humanPlayerTakeDistrictCard()
+    {
+        game.sendAction(new ChooseDistrictCard(this));
+    }
+
+    //This allows a player to use their special ability
+    public void humanPlayerUseAbility()
+    {
+        game.sendAction(new UseSpecialAbility(this));
+    }
+
+    //This method allows the user to end their turn
+    public void humanPlayerEndTurn()
+    {
+        game.sendAction(new EndTurn(this));
+    }
+
+    //This method allows the user to choose their character
+    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
+
+    /**
+     * returns the GUI's top view
+     *
+     * @return
+     * 		the GUI's top view
+     */
+    @Override
+    public View getTopView() {
+        return myActivity.findViewById(R.id.top_gui_layout);
     }
 
     /**
@@ -890,7 +877,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id)
         {
-            if(position == 0)
+            if(position == 0) //TODO when the position is 0 a player must select their character
             {
                 //do nothing
                 cardInfo.setText("It is Your Turn.");
