@@ -515,6 +515,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
 
+    public void setWhichCard(CitadelsDistrictCard cdc)
+    {
+        this.cdc = cdc;
+    }
+
     /**
      * returns the GUI's top view
      *
@@ -912,7 +917,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(position);
                 humanPlayerBuildDistrict(cardToBuild);
-                p1HandAdapter.remove(position);
+                p1HandAdapter.remove();
                 p1HandAdapter.notifyDataSetChanged();
                 hasBuilt = true;
             }else
@@ -970,6 +975,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(! hasGone)
                 {
                     CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                    setWhichCard(cdc);
                     humanPlayerTakeDistrictCard();
                     p1HandAdapter.add(cdc.getInfo(cdc));
                     p1HandAdapter.notifyDataSetChanged();
