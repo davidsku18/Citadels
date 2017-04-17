@@ -328,6 +328,19 @@ public class CitadelsGameState extends GameState
         this.p3Hand.remove(card);
     }
 
+    public ArrayList<String> getP1HandNames()
+    {
+        ArrayList<String> names = new ArrayList<>();
+        String info;
+        for(int i = 0; i < this.p1Hand.size(); ++i)
+        {
+            info = this.p1Hand.get(i).getName() + "\nCost: " + this.p1Hand.get(i).getCost() +
+                    "\nColor: " + this.p1Hand.get(i).getColorString();
+            names.add(info);
+        }
+        return names;
+    }
+
     //Gets the player's district cards in their hand
     public ArrayList getP1Hand()
     {
@@ -638,14 +651,6 @@ public class CitadelsGameState extends GameState
         }
 
         this.initializeCharacterDeck();
-
-        //TODO take this out- I just put these in to test functionality
-        this.addToP1City(this.p1Hand.get(0));
-        this.addToP1City(this.p1Hand.get(1));
-        this.addToP2City(this.p2Hand.get(0));
-        this.addToP2City(this.p2Hand.get(1));
-        this.addToP3City(this.p3Hand.get(0));
-        this.addToP3City(this.p3Hand.get(1));
 
         this.setTurn(0);
         this.setRollKing();

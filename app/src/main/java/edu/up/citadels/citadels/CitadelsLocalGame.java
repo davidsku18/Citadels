@@ -2,6 +2,8 @@ package edu.up.citadels.citadels;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -118,11 +120,8 @@ public class CitadelsLocalGame extends LocalGame
      *          Tells whether the move was legal or not
      */
     @Override
-    protected boolean makeMove(GameAction action) {
-        int turn = state.getTurn();
-        int buildNum;
-        int chosenNum;
-
+    protected boolean makeMove(GameAction action)
+    {
         if (!(action instanceof CitadelsMoveAction)) {
             return false;
         }
