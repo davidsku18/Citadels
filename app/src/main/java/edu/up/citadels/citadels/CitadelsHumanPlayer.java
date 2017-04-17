@@ -130,6 +130,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
 
+    private CitadelsDistrictCard cdc;
+
     private ArrayAdapter p1HandAdapter;
 
     // Our activity
@@ -917,7 +919,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(position);
                 humanPlayerBuildDistrict(cardToBuild);
-                p1HandAdapter.remove();
+                p1HandAdapter.remove(p1HandAdapter.getItem(position));
                 p1HandAdapter.notifyDataSetChanged();
                 hasBuilt = true;
             }else
