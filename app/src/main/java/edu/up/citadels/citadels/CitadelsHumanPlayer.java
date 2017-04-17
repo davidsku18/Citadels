@@ -128,6 +128,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
+    private ArrayAdapter p1HandAdapter;
 
     // Our activity
     private Activity myActivity;
@@ -271,7 +272,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         // get values for the spinner
 
         this.p1HandArrayList = state.getP1HandNames();
-        ArrayAdapter p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
+        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
                 android.R.id.text1, p1HandArrayList);
         p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.player1HandSpinner.setAdapter(p1HandAdapter);
@@ -363,7 +364,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
-        }*/
+
 
         magicianButton.setOnClickListener(new View.OnClickListener()
         {
@@ -384,7 +385,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-    }
+
         kingButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -1017,6 +1018,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         }
     }
+
 
     /**
      * @Author Victor Nguyen

@@ -17,17 +17,14 @@ public class ChooseCharacterCard extends CitadelsMoveAction
 {
     private int characterCard;
 
-    CharacterCard myCharacter;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *
      * @param player the player who created the action
      */
-    public ChooseCharacterCard(GamePlayer player, CharacterCard whichCard)
     public ChooseCharacterCard(GamePlayer player, int characterNum)
     {
         super(player);
-         this.myCharacter = whichCard;
         this.characterCard = characterNum;
     }
 
