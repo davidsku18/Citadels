@@ -1229,7 +1229,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(! hasGone)
                 {
-                    CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                    CitadelsDistrictCard cdc = state.getTopCard();
                     setWhichCard(cdc);
                     humanPlayerTakeDistrictCard();
                     p1HandAdapter.add(cdc.getInfo(cdc));
