@@ -518,7 +518,7 @@ public class CitadelsGameState extends GameState
         //sets all of the built districts for each player to null because no one will start
         //with a district built
 
-        buildLimit = 1;
+        this.buildLimit = 1;
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -619,7 +619,7 @@ public class CitadelsGameState extends GameState
         Collections.shuffle(deckOrderDistricts);
 
         //player 1's starting district cards
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p1Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -627,7 +627,7 @@ public class CitadelsGameState extends GameState
 
 
         //player 2's starting district cards
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p2Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -635,7 +635,7 @@ public class CitadelsGameState extends GameState
 
 
         //player 3's starting district cards
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p3Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);

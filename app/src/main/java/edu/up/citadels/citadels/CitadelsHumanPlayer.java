@@ -114,6 +114,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1Score;
     private TextView player2Score;
     private TextView player3Score;
+    private TextView player2DistrictCards;
+    private TextView player3DistrictCards;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -411,9 +413,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
-        player1Score = (TextView)myActivity.findViewById(R.id.P1_Score);
-        player2Score = (TextView)myActivity.findViewById(R.id.p2_Score);
-        player3Score = (TextView)myActivity.findViewById(R.id.p3_Score);
+        player1Score = (TextView) myActivity.findViewById(R.id.P1_Score);
+        player2Score = (TextView) myActivity.findViewById(R.id.p2_Score);
+        player3Score = (TextView) myActivity.findViewById(R.id.p3_Score);
+        player2DistrictCards = (TextView) myActivity.findViewById(R.id.p2_dc);
+        player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
 
        /**
         * @Author Victor Nguyen
@@ -457,6 +461,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2Score.setText("Score: " + state.getP2Score());
         player3Score.setText("Score: " + state.getP3Score());
 
+        player2DistrictCards.setText("Districts: " + state.getP2Hand().size());
+        player3DistrictCards.setText("Districts: " + state.getP3Hand().size());
 
         this.p1HandArrayList = state.getP1HandNames();
         p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
