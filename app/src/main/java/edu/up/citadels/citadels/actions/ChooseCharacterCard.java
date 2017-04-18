@@ -17,7 +17,6 @@ public class ChooseCharacterCard extends CitadelsMoveAction
 {
     private int characterCard;
 
-    CharacterCard myCharacter;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *

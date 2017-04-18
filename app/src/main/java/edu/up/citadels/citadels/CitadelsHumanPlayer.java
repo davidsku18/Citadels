@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -26,6 +26,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.up.citadels.R;
 import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -35,8 +36,6 @@ import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
-import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
@@ -63,6 +62,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton player1_Card2;
     private boolean p1_Card1Bool = true; // boolean for player1_Card1
     private boolean p1_Card2Bool = true; // boolean for player1_Cart2
+
+    private ImageButton player2_Card1;
+    private ImageButton player2_Card2;
+
+    private ImageButton player3_Card1;
+    private ImageButton player3_Card2;
 
     private ImageButton assassinButton;
     private ImageButton thiefButton;
@@ -109,6 +114,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1Score;
     private TextView player2Score;
     private TextView player3Score;
+    private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
     private boolean d2_Info = false; //initializes d2_Info Boolean
@@ -148,6 +154,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     List<String> player1DistrictsCards = new ArrayList<String>();
 
     private int layoutId;
+    private int selectedCard;
 
     /**
      * constructor
@@ -184,6 +191,125 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
+    public void drawcharacterCard(ImageButton cbutton, int charNum)
+    {
+        if (charNum == 0)
+        {
+            cbutton.setImageResource(R.drawable.assasin);
+        }
+        else if (charNum == 1)
+        {
+            cbutton.setImageResource(R.drawable.thief);
+        }
+        else if (charNum == 2)
+        {
+            cbutton.setImageResource(R.drawable.magician);
+        }
+        else if (charNum == 3)
+        {
+            cbutton.setImageResource(R.drawable.king);
+        }
+        else if (charNum == 4)
+        {
+            cbutton.setImageResource(R.drawable.bishop);
+        }
+        else if (charNum == 5)
+        {
+            cbutton.setImageResource(R.drawable.merchant);
+        }
+        else if (charNum == 6)
+        {
+            cbutton.setImageResource(R.drawable.architect);
+        }
+        else if (charNum == 7)
+        {
+            cbutton.setImageResource(R.drawable.warlord);
+        }
+        else //TODO Change to back of card
+        {
+            cbutton.setImageResource(R.drawable.architect);
+        }
+
+    }
+
+    public void drawcityCard(ImageButton button, String cardName)
+    {
+        if (cardName.toLowerCase().equals("battlefield"))
+        {
+            button.setImageResource(R.drawable.battlefield);
+        }
+        else if (cardName.toLowerCase().equals("castle"))
+        {
+            button.setImageResource(R.drawable.castle);
+        }
+        else if (cardName.toLowerCase().equals("cathedral"))
+        {
+            button.setImageResource(R.drawable.cathedral);
+        }
+        else if (cardName.toLowerCase().equals("church"))
+        {
+            button.setImageResource(R.drawable.church);
+        }
+        else if (cardName.toLowerCase().equals("docks"))
+        {
+            button.setImageResource(R.drawable.docks);
+        }
+        else if (cardName.toLowerCase().equals("fortress"))
+        {
+            button.setImageResource(R.drawable.fortress);
+        }
+        else if (cardName.toLowerCase().equals("harbor"))
+        {
+            button.setImageResource(R.drawable.harbor);
+        }
+        else if (cardName.toLowerCase().equals("manor"))
+        {
+            button.setImageResource(R.drawable.manor);
+        }
+        else if (cardName.toLowerCase().equals("market"))
+        {
+            button.setImageResource(R.drawable.market);
+        }
+        else if (cardName.toLowerCase().equals("monastery"))
+        {
+            button.setImageResource(R.drawable.monastery);
+        }
+        else if (cardName.toLowerCase().equals("palace"))
+        {
+            button.setImageResource(R.drawable.palace);
+        }
+        else if (cardName.toLowerCase().equals("prison"))
+        {
+            button.setImageResource(R.drawable.prison);
+        }
+        else if (cardName.toLowerCase().equals("tavern"))
+        {
+            button.setImageResource(R.drawable.tavern);
+        }
+        else if (cardName.toLowerCase().equals("temple"))
+        {
+            button.setImageResource(R.drawable.temple);
+        }
+        else if (cardName.toLowerCase().equals("townhall"))
+        {
+            button.setImageResource(R.drawable.townhall);
+        }
+        else if (cardName.toLowerCase().equals("trading post"))
+        {
+            button.setImageResource(R.drawable.trading_post);
+        }
+        else if (cardName.toLowerCase().equals("watchtower"))
+        {
+            button.setImageResource(R.drawable.watchtower);
+        }
+        else // Sets image to nothing TODO set to empty
+        {
+            button.setImageResource(R.drawable.assasin);
+        }
+
+    }
+
+
     /**
      * call-back method: called whenever the GUI has changed (e.g., at the beginning
      * of the game, or when the screen orientation changes).
@@ -201,6 +327,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);
         player1_Card2 = (ImageButton) myActivity.findViewById(R.id.player1_Card2);
+
+        player2_Card1 = (ImageButton) myActivity.findViewById(R.id.player2_Card1);
+        player2_Card2 = (ImageButton) myActivity.findViewById(R.id.player2_Card2);
+
+        player3_Card1 = (ImageButton) myActivity.findViewById(R.id.player3_card1);
+        player3_Card2 = (ImageButton) myActivity.findViewById(R.id.player3_card2);
+
 
         p1_D1 = (ImageButton) myActivity.findViewById(R.id.p1_D1);
         p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
@@ -239,6 +372,171 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         merchantButton = (ImageButton) myActivity.findViewById(R.id.merchantButton);
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
+
+        player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
+        player1_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D1.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D3.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D4.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D5.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D6.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D7.setScaleType(ImageView.ScaleType.FIT_XY);
+        p1_D8.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        player2_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
+        player2_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D1.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D3.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D4.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D5.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D6.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D7.setScaleType(ImageView.ScaleType.FIT_XY);
+        p2_D8.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        player3_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
+        player3_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D1.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D2.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D3.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D4.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D5.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D6.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D7.setScaleType(ImageView.ScaleType.FIT_XY);
+        p3_D8.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        drawcharacterCard(player1_Card1, state.getP1Character1());
+        drawcharacterCard(player1_Card2, state.getP1Character2());
+        drawcharacterCard(player2_Card1, state.getP2Character1());
+        drawcharacterCard(player2_Card2, state.getP2Character2());
+
+
+        drawcharacterCard(player3_Card1, state.getP3Character1());
+        drawcharacterCard(player3_Card2, state.getP3Character2());
+
+        for(int i = 0; i <state.getP1City().size(); ++i)
+        {
+            if( i == 0)
+            {
+                drawcityCard(p1_D1, state.getP1CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawcityCard(p1_D2, state.getP1CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawcityCard(p1_D3, state.getP1CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawcityCard(p1_D4, state.getP1CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawcityCard(p1_D5, state.getP1CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawcityCard(p1_D6, state.getP1CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawcityCard(p1_D7, state.getP1CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawcityCard(p1_D8, state.getP1CityCard(i).getName());
+            }
+        }
+
+        for(int i = 0; i <state.getP2City().size(); ++i)
+        {
+            if( i == 0)
+            {
+                drawcityCard(p2_D1, state.getP2CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawcityCard(p2_D2, state.getP2CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawcityCard(p2_D3, state.getP2CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawcityCard(p2_D4, state.getP2CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawcityCard(p2_D5, state.getP2CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawcityCard(p2_D6, state.getP2CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawcityCard(p2_D7, state.getP2CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawcityCard(p2_D8, state.getP2CityCard(i).getName());
+            }
+        }
+
+        for(int i = 0; i <state.getP3City().size(); ++i)
+        {
+            if( i == 0)
+            {
+                drawcityCard(p3_D1, state.getP3CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawcityCard(p3_D2, state.getP3CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawcityCard(p3_D3, state.getP3CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawcityCard(p3_D4, state.getP3CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawcityCard(p3_D5, state.getP3CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawcityCard(p3_D6, state.getP3CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawcityCard(p3_D7, state.getP3CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawcityCard(p3_D8, state.getP3CityCard(i).getName());
+            }
+        }
+
+
+        drawcharacterCard(player2_Card1, state.getP2Character1());
+        drawcharacterCard(player2_Card2, state.getP2Character2());
+
+
+        drawcharacterCard(player3_Card1, state.getP3Character1());
+        drawcharacterCard(player3_Card2, state.getP3Character2());
+
+
+
+
+
+
+
 
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
@@ -911,17 +1209,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id)
         {
-            if (hasBuilt == false)
-            {
-                CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(position);
-                humanPlayerBuildDistrict(cardToBuild);
-                p1HandAdapter.remove(p1HandAdapter.getItem(position));
-                p1HandAdapter.notifyDataSetChanged();
-                hasBuilt = true;
-            }else
-            {
-                //do nothing, they aren't allowed to build more
-            }
+            selectedCard = position;
         }
 
 
@@ -985,7 +1273,24 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     //do nothing because they are not allowed to go
                     cardInfo.setText("You Have Already Gone.");
                 }
-            }else if(position == 3)
+            }
+            else if(position == 3)
+            {
+                if (hasBuilt == false)
+                {
+                    CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
+                    humanPlayerBuildDistrict(cardToBuild);
+                    p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
+                    p1HandAdapter.notifyDataSetChanged();
+                    cardInfo.setText(cardToBuild.getName() + " built");
+                    hasBuilt = true;
+                }else
+                {
+                    //do nothing, they aren't allowed to build more
+                    cardInfo.setText("You have already built a district");
+                }
+            }
+            else if(position == 4)
             {
                 if(! hasGoneAbility)
                 {
@@ -998,7 +1303,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     //do nothing--- they cannot go
                     cardInfo.setText("You have already used your ability.");
                 }
-            }else if(position == 4)
+            }else if(position == 5)
             {
                 if(hasGone)
                 {
@@ -1029,6 +1334,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         }
     }
+
 
     /**
      * @Author Victor Nguyen
