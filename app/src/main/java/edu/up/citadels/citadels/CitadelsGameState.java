@@ -3,6 +3,7 @@ package edu.up.citadels.citadels;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import edu.up.citadels.game.infoMsg.GameState;
 
@@ -56,7 +57,6 @@ public class CitadelsGameState extends GameState
     private int p2Character2;
     private int p3Character1;
     private int p3Character2;
-
 
     //if a character has been assassinated //TODO
     private boolean characterIsAlive;
@@ -141,9 +141,14 @@ public class CitadelsGameState extends GameState
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
-    public CitadelsDistrictCard drawCard() {
-        this.deckOrderDistricts.remove(0);
+    public CitadelsDistrictCard drawCard()
+    {
         return this.deckOrderDistricts.get(0);
+    }
+
+    public void removeCard()
+    {
+        this.deckOrderDistricts.remove(0);
     }
 
     //Adds district card to player's city (built)
@@ -322,18 +327,31 @@ public class CitadelsGameState extends GameState
         this.p3Hand.remove(card);
     }
 
+    public ArrayList<String> getP1HandNames()
+    {
+        ArrayList<String> names = new ArrayList<>();
+        String info;
+        for(int i = 0; i < this.p1Hand.size(); ++i)
+        {
+            info = this.p1Hand.get(i).getName() + "\nCost: " + this.p1Hand.get(i).getCost() +
+                    "\nColor: " + this.p1Hand.get(i).getColorString();
+            names.add(info);
+        }
+        return names;
+    }
+
     //Gets the player's district cards in their hand
     public ArrayList getP1Hand()
     {
-        return p1Hand;
+        return this.p1Hand;
     }
     public ArrayList getP2Hand()
     {
-        return p2Hand;
+        return this.p2Hand;
     }
     public ArrayList getP3Hand()
     {
-        return p3Hand;
+        return this.p3Hand;
     }
 
     //Gets the player's district card at specific index in their district cards hand
@@ -678,18 +696,22 @@ public class CitadelsGameState extends GameState
 
     public CitadelsGameState(CitadelsGameState orig)
     {
-        this.buildLimit = orig.buildLimit;
-        this.king = orig.king;
+        buildLimit = orig.buildLimit;
+        king = orig.king;
         this.turn = orig.turn;
 
-        this.p1Gold = orig.p1Gold;
-        this.p2Gold = orig.p2Gold;
-        this.p3Gold = orig.p3Gold;
+        p1Gold = orig.p1Gold;
+        p2Gold = orig.p2Gold;
+        p3Gold = orig.p3Gold;
 
-        this.p1Score = orig.p1Score;
-        this.p2Score = orig.p2Score;
-        this.p3Score = orig.p3Score;
+        p1Score = orig.p1Score;
+        p2Score = orig.p2Score;
+        p3Score = orig.p3Score;
 
+        p1Hand = orig.p1Hand;
+        p2Hand = orig.p2Hand;
+        p3Hand = orig.p3Hand;
+        deckOrderDistricts = orig.deckOrderDistricts;
         this.p1Character1 = orig.p1Character1;
         this.p1Character2 = orig.p1Character2;
         this.p2Character1 = orig.p2Character1;
@@ -697,45 +719,7 @@ public class CitadelsGameState extends GameState
         this.p3Character1 = orig.p3Character1;
         this.p3Character2 = orig.p3Character2;
 
-        for (int i = 0; i<p1Hand.size(); ++i)
-        {
-            this.p1Hand.add(new CitadelsDistrictCard(orig.p1Hand.get(i)));
-        }
 
-        for (int i = 0; i<p2Hand.size(); ++i)
-        {
-            this.p2Hand.add(new CitadelsDistrictCard(orig.p2Hand.get(i)));
-        }
-
-        for (int i = 0; i<p3Hand.size(); ++i)
-        {
-            this.p3Hand.add(new CitadelsDistrictCard(orig.p3Hand.get(i)));
-        }
-
-        for (int i = 0; i<p1City.size(); ++i)
-        {
-            this.p1City.add(new CitadelsDistrictCard(orig.p1City.get(i)));
-        }
-
-        for (int i = 0; i<p2City.size(); ++i)
-        {
-            this.p2City.add(new CitadelsDistrictCard(orig.p2City.get(i)));
-        }
-
-        for (int i = 0; i<p3City.size(); ++i)
-        {
-            this.p3City.add(new CitadelsDistrictCard(orig.p3City.get(i)));
-        }
-
-        for (int i = 0; i<8; ++ i)
-        {
-            this.characterDeck[i] = new CharacterCard(orig.characterDeck[i]);
-        }
-
-        for (int i = 0; i<deckOrderDistricts.size(); ++i)
-        {
-            this.deckOrderDistricts.add(new CitadelsDistrictCard(orig.deckOrderDistricts.get(i)));
-        }
     }
 
     //Returns if Character is alive

@@ -140,10 +140,7 @@ public class CitadelsLocalGame extends LocalGame
                 state.setP3Gold(state.getP3Gold() + 2);
             }
             return true;
-        }
-
-
-        if (action instanceof ChooseCharacterCard)
+        }else if (action instanceof ChooseCharacterCard)
         {
             //this is just setting them to arbitrary values, we will set more later
             //for basic functionality
@@ -239,33 +236,53 @@ public class CitadelsLocalGame extends LocalGame
             if(playerID == 0)
             {
                 state.addToP1Hand(state.drawCard());
-                state.removeDistrictCard();
+                state.removeCard();
             }else if(playerID == 1)
             {
                 state.addToP2Hand(state.drawCard());
-                state.removeDistrictCard();
+                state.removeCard();
             }else if(playerID == 2)
             {
                 state.addToP3Hand(state.drawCard());
-                state.removeDistrictCard();
+                state.removeCard();
             }
             return true;
         } else if (action instanceof CitadelsBuildDistrictCard)
         {
-            //TODO this will build the first district card in the hand
-
+            CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard)cma;
             if(playerID == 0)
             {
-                state.addToP1City(state.getP1DistrictCard(0));
-                state.removeFromP1Hand(0);
+                state.addToP1City(cbdc.getCard());
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP1Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP1Hand().get(i)))
+                    {
+                        state.getP1Hand().remove(i);
+                    }
+                }
             }else if(playerID == 1)
             {
-                state.addToP2City(state.getP2DistrictCard(0));
-                state.removeFromP2Hand(0);
+                state.addToP2City(cbdc.getCard());
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP2Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP2Hand().get(i)))
+                    {
+                        state.getP2Hand().remove(i);
+                    }
+                }
             }else if(playerID == 2)
             {
-                state.addToP3City(state.getP3DistrictCard(0));
-                state.removeFromP3Hand(0);
+                state.addToP3City(cbdc.getCard());
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP3Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP3Hand().get(i)))
+                    {
+                        state.getP3Hand().remove(i);
+                    }
+                }
             }
             return true;
         } else if (action instanceof UseSpecialAbility)

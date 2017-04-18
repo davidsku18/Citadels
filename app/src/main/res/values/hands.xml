@@ -22,6 +22,7 @@
         <item>Choose Action:</item>
         <item>Take Gold</item>
         <item>Take District Card</item>
+        <item>Build District</item>
         <item>Use Character Ability</item>
         <item>End Turn</item>
     </string-array>
