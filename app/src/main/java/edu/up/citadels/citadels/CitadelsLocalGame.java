@@ -264,11 +264,25 @@ public class CitadelsLocalGame extends LocalGame
             }else if(playerID == 1)
             {
                 state.addToP2City(cbdc.getCard());
-                state.removeFromP2Hand(0);
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP2Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP2Hand().get(i)))
+                    {
+                        state.getP2Hand().remove(i);
+                    }
+                }
             }else if(playerID == 2)
             {
                 state.addToP3City(cbdc.getCard());
-                state.removeFromP3Hand(0);
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP3Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP3Hand().get(i)))
+                    {
+                        state.getP3Hand().remove(i);
+                    }
+                }
             }
             return true;
         } else if (action instanceof UseSpecialAbility)

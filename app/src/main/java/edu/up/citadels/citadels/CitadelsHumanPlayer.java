@@ -129,7 +129,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
-    private ArrayAdapter p1HandAdapter;
 
     private CitadelsDistrictCard cdc;
 
@@ -149,6 +148,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     List<String> player1DistrictsCards = new ArrayList<String>();
 
     private int layoutId;
+    private int selectedCard;
 
     /**
      * constructor
@@ -916,17 +916,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id)
         {
-            if (hasBuilt == false)
-            {
-                CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(position);
-                humanPlayerBuildDistrict(cardToBuild);
-                p1HandAdapter.remove(p1HandAdapter.getItem(position));
-                p1HandAdapter.notifyDataSetChanged();
-                hasBuilt = true;
-            }else
-            {
-                //do nothing, they aren't allowed to build more
-            }
+            selectedCard = position;
         }
 
 
@@ -990,7 +980,24 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     //do nothing because they are not allowed to go
                     cardInfo.setText("You Have Already Gone.");
                 }
-            }else if(position == 3)
+            }
+            else if(position == 3)
+            {
+                if (hasBuilt == false)
+                {
+                    CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
+                    humanPlayerBuildDistrict(cardToBuild);
+                    p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
+                    p1HandAdapter.notifyDataSetChanged();
+                    cardInfo.setText(cardToBuild.getName() + " built");
+                    hasBuilt = true;
+                }else
+                {
+                    //do nothing, they aren't allowed to build more
+                    cardInfo.setText("You have already built a district");
+                }
+            }
+            else if(position == 4)
             {
                 if(! hasGoneAbility)
                 {
@@ -1003,7 +1010,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     //do nothing--- they cannot go
                     cardInfo.setText("You have already used your ability.");
                 }
-            }else if(position == 4)
+            }else if(position == 5)
             {
                 if(hasGone)
                 {
