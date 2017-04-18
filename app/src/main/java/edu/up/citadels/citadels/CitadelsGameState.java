@@ -687,6 +687,10 @@ public class CitadelsGameState extends GameState
 
     public CitadelsGameState(CitadelsGameState orig)
     {
+        //TODO
+        //TODO  Nux includes the "new" reserved word in his copy constructor, not sure if that's immportant
+        //TODO  and I cannot check right now. Just didn't want to forget.
+
         buildLimit = orig.buildLimit;
         king = orig.king;
         turn = orig.turn;
