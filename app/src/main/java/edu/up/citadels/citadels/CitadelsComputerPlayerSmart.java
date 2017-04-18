@@ -30,21 +30,21 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 
         savedState = (CitadelsGameState)info;
 
-       /* if(savedState.getPlayerTurn() == this.playerNum)
+       if(savedState.getPlayerTurn() == this.playerNum)
         {
             game.sendAction(new TakeGold(this));
 
-            sleep(500);
+            //sleep(500);
 
             game.sendAction(new EndTurn(this));
-        }*/
+        }
 
-        game.sendAction(new TakeGold(this));
+        /*game.sendAction(new TakeGold(this));
 
         sleep(500);
 
         game.sendAction(new EndTurn(this));
-
+*/
 
         /*// generate random number for AI to choose to take gold or a district card
         int goldOrDist = (int)(Math.random()*2);

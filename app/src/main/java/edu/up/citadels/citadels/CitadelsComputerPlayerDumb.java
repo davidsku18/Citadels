@@ -8,7 +8,6 @@ import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.infoMsg.GameState;
-import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
 /**
  * Computer player that will make guesses whenever it is its turn
@@ -42,28 +41,24 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         if (!(info instanceof CitadelsGameState)) {
             return;
         }
-        else if (!(info instanceof  NotYourTurnInfo)) {
-            return;
-        }
 
         savedState = (CitadelsGameState)info;
 
-       if(savedState.getPlayerTurn() == this.playerNum)
+        if(savedState.getPlayerTurn() == this.playerNum)
         {
             game.sendAction(new TakeGold(this));
 
-            sleep(500);
+            //sleep(500);
 
             game.sendAction(new EndTurn(this));
         }
 
-        /*
-        game.sendAction(new TakeGold(this));
+        /*game.sendAction(new TakeGold(this));
 
         sleep(1000);
 
         game.sendAction(new EndTurn(this));
-        */
+*/
 
         /*// generate random number for AI to choose to take gold or a district card
         int goldOrDist = (int)(Math.random()*2);
