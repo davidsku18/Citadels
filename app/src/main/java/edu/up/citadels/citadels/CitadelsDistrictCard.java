@@ -76,6 +76,12 @@ public class CitadelsDistrictCard {
         return this.color;
     }
 
+    public String getInfo(CitadelsDistrictCard cdc)
+    {
+        String info = cdc.getName() + " Cost: " + cdc.getCost() + " Color: " + cdc.getColorString();
+        return info;
+    }
+
     //Gets DistrictCard Color in String form
     public String getColorString()
     {

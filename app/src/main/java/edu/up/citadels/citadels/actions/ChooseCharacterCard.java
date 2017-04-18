@@ -1,5 +1,7 @@
 package edu.up.citadels.citadels.actions;
 
+import edu.up.citadels.citadels.CharacterCard;
+import edu.up.citadels.citadels.CitadelsDistrictCard;
 import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
