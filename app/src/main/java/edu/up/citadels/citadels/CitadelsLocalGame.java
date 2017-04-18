@@ -146,13 +146,7 @@ public class CitadelsLocalGame extends LocalGame
                 state.setP3Gold(state.getP3Gold() + 2);
                 return true;
             }
-        }else if (action instanceof ChooseCharacterCard)
-        {
-            //this is just setting them to arbitrary values, we will set more later
-            //for basic functionality
-            //TODO
-
-        if (action instanceof ChooseCharacterCard) {
+        } else if (action instanceof ChooseCharacterCard) {
             // Rolls for a random number to determine who will be the king
             state.setRollKing();
 
@@ -167,35 +161,33 @@ public class CitadelsLocalGame extends LocalGame
                 if (state.getKing() == playerID || playerID == 0) {
                     chosenNum = 0;
                     //sets the player's characters to the chosen character card
-                    while (state.getChosenCharacterCard() == -1 || chosenNum != 2) {
-                        if (chosenNum == 0) {
-                            // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
-                            state.setP1Character1(state.getChosenCharacterCard());
-                            state.removeCharacterCard(state.getChosenCharacterCard());
-                            chosenNum++;
-                            //increments chosenNum to determine whether the player has chosen their first character card
-                        }
-                        if (chosenNum == 1) {
-                            state.setP1Character2(state.getChosenCharacterCard());
-                            state.removeCharacterCard(state.getChosenCharacterCard());
-                            chosenNum++;
-                            //increments chosenNum to determine whether the player has chosen their second character card
-                        }
+                    state.setP1Character1(10);
+                    state.setP1Character2(10);
+                    while (state.getP1Character1() == 10)
+                    {
+                        // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
+                        state.setP1Character1(state.getChosenCharacterCardNum());
+                        state.removeCharacterCard(state.getChosenCharacterCardNum());
+                    }
+                    while (state.getP1Character2() == 10 || state.getP1Character1() == state.getP1Character2())
+                    {
+                        state.setP1Character2(state.getChosenCharacterCardNum());
+                        state.removeCharacterCard(state.getChosenCharacterCardNum());
                     }
                     state.setTurn(state.getTurn()+1);
                     return true;
                 } else if (state.getKing() == playerID || playerID == 1) {
                     chosenNum = 0;
                     // if chosenCharacterCard returns null have the player choose again
-                    while (state.getChosenCharacterCard() == -1 || chosenNum != 2) {
+                    while (state.getChosenCharacterCardNum() == -1 || chosenNum != 2) {
                         if (chosenNum == 0) {
                             // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
-                            state.setP2Character1(state.getChosenCharacterCard());
-                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            state.setP2Character1(state.getChosenCharacterCardNum());
+                            state.removeCharacterCard(state.getChosenCharacterCardNum());
                             chosenNum++;
                         } else if (chosenNum == 1) {
-                            state.setP1Character2(state.getChosenCharacterCard());
-                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            state.setP2Character2(state.getChosenCharacterCardNum());
+                            state.removeCharacterCard(state.getChosenCharacterCardNum());
                             chosenNum++;
                         }
                     }
@@ -203,15 +195,15 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (state.getKing() == playerID || playerID == 2) {
                     chosenNum = 0;
-                    while (state.getChosenCharacterCard() == -1 || chosenNum != 2) {
+                    while (state.getChosenCharacterCardNum() == -1 || chosenNum != 2) {
                         if (chosenNum == 0) {
                             // TODO thread needed to wait for click on the button or will just crash due to not knowing what theChosenCharacterCard is
-                            state.setP3Character1(state.getChosenCharacterCard());
-                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            state.setP3Character1(state.getChosenCharacterCardNum());
+                            state.removeCharacterCard(state.getChosenCharacterCardNum());
                             chosenNum++;
                         } else if (chosenNum == 1) {
-                            state.setP3Character2(state.getChosenCharacterCard());
-                            state.removeCharacterCard(state.getChosenCharacterCard());
+                            state.setP3Character2(state.getChosenCharacterCardNum());
+                            state.removeCharacterCard(state.getChosenCharacterCardNum());
                             chosenNum++;
                         }
                     }
@@ -249,7 +241,7 @@ public class CitadelsLocalGame extends LocalGame
                 state.removeCard();
             }
             return true;
-        } else if (action instanceof CitadelsBuildDistrictCard)
+        }if (action instanceof CitadelsBuildDistrictCard)
         {
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard)cma;
             if(playerID == 0)
@@ -369,22 +361,21 @@ public class CitadelsLocalGame extends LocalGame
                 }
             }*/
                 return true;
-            } else if (action instanceof EndTurn)
-            {
-                if (state.getTurn() != 7) {
-                    state.setTurn(state.getTurn() + 1);
-                    return true;
-                } else if (state.getTurn() == 7) {
-                    // state.setTurn(0);
-                    //TODO need to adjust the turn due to while loop
-                    return true;
-                }
-            } else
-            {
-                return false;
+        } else if (action instanceof EndTurn)
+        {
+            if (state.getTurn() != 7) {
+                state.setTurn(state.getTurn() + 1);
+                return true;
+            } else if (state.getTurn() == 7) {
+                // state.setTurn(0);
+                //TODO need to adjust the turn due to while loop
+                return true;
             }
-            //increments the turn
+        } else
+        {
+            return false;
         }
+            //increments the turn
         return true;
     }
 }

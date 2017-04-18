@@ -1,5 +1,6 @@
 package edu.up.citadels.citadels;
 
+import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -44,8 +45,10 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         savedState = (CitadelsGameState)info;
 
-        if(savedState.getPlayerTurn() == this.playerNum)
+        if(savedState.getTurn() == this.playerNum)
         {
+            game.sendAction(new ChooseCharacterCard(this));
+
             game.sendAction(new TakeGold(this));
 
             //sleep(500);

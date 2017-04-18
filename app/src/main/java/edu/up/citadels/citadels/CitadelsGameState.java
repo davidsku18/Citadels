@@ -274,13 +274,13 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
-    public void setChosenCharacterCard(int chosenCharacterCard)
+    public void setChosenCharacterCardNum(int chosenCharacterCard)
     {
-        characterDeck[chosenCharacterCard] = null;
+        //characterDeck[chosenCharacterCard] = null;
         theChosenCharacterCard = chosenCharacterCard;
     }
     //returns the character card that the player chose
-    public int getChosenCharacterCard()
+    public int getChosenCharacterCardNum()
     {
         return theChosenCharacterCard;
     }
@@ -545,6 +545,8 @@ public class CitadelsGameState extends GameState
         //with a district built
 
         this.buildLimit = 1;
+        this.setP1Character1(10);
+        this.setP1Character2(10);
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -720,7 +722,10 @@ public class CitadelsGameState extends GameState
         p2City = orig.p2City;
         p3City = orig.p3City;
 
+        theChosenCharacterCard = orig.theChosenCharacterCard;
+
         deckOrderDistricts = orig.deckOrderDistricts;
+        characterDeck = orig.characterDeck;
 
         p1Character1 = orig.p1Character1;
         p1Character2 = orig.p1Character2;
