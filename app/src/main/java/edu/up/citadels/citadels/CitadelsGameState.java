@@ -57,13 +57,6 @@ public class CitadelsGameState extends GameState
     private int p3Character1;
     private int p3Character2;
 
-    private CharacterCard p1Chara1;
-    private CharacterCard p1Chara2;
-    private CharacterCard p2Chara1;
-    private CharacterCard p2Chara2;
-    private CharacterCard p3Chara1;
-    private CharacterCard p3Chara2;
-
 
     //if a character has been assassinated //TODO
     private boolean characterIsAlive;
@@ -140,15 +133,6 @@ public class CitadelsGameState extends GameState
 
     //Sets the player's chosen character card
     public void setP1Character1(int x) { this.p1Character1 = x; }
-    public void setp1Char1(int c, int color)
-    {
-        p1Chara1 = new CharacterCard(c, color);
-    }
-    public void setp1Char2(int c, int color)
-    {
-        p1Chara2 = new CharacterCard(c, color);
-    }
-
     public void setP1Character2(int x) { this.p1Character2 = x; }
     public void setP2Character1(int x) { this.p2Character1 = x; }
     public void setP2Character2(int x) { this.p2Character2 = x; }
@@ -669,8 +653,7 @@ public class CitadelsGameState extends GameState
         this.setP3Character1(2);
         this.setP3Character2(5);
 
-
-        this.p1City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
+        /*this.p1City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
         this.p1City.add(new CitadelsDistrictCard("Castle", 2, 2));
         this.p1City.add(new CitadelsDistrictCard("Market", 2, 2));
         this.p1City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
@@ -678,21 +661,20 @@ public class CitadelsGameState extends GameState
         this.p1City.add(new CitadelsDistrictCard("Harbor", 2, 2));
         this.p1City.add(new CitadelsDistrictCard("Cathedral", 0, 1));
         this.p1City.add(new CitadelsDistrictCard("Manor", 1, 3));
+
+        this.p2City.add(new CitadelsDistrictCard("Palace", 3, 2));
+        this.p2City.add(new CitadelsDistrictCard("Castle", 2, 2));
+        this.p2City.add(new CitadelsDistrictCard("Market", 2, 2));
+        this.p2City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
+
+        this.p3City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
+        this.p3City.add(new CitadelsDistrictCard("Prison", 2, 2));
+        this.p3City.add(new CitadelsDistrictCard("Market", 2, 2));
+        this.p3City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
+        this.p3City.add(new CitadelsDistrictCard("Docks", 1, 4));
+        this.p3City.add(new CitadelsDistrictCard("Harbor", 2, 2));*/
     }
 
-    /*
-    public static void shuffleDeck(CitadelsDistrictCard[] deck)
-    {
-        Random rnd = new Random();
-        for (int i = deck.length - 1; i > 0; i--)
-        {
-            int index = rnd.nextInt(i + 1);
-            CitadelsDistrictCard a = deck[index];
-            deck[index] = deck[i];
-            deck[i] = a;
-        }
-    }
-    */
 
     public CitadelsGameState(CitadelsGameState orig)
     {
@@ -707,6 +689,13 @@ public class CitadelsGameState extends GameState
         this.p1Score = orig.p1Score;
         this.p2Score = orig.p2Score;
         this.p3Score = orig.p3Score;
+
+        this.p1Character1 = orig.p1Character1;
+        this.p1Character2 = orig.p1Character2;
+        this.p2Character1 = orig.p2Character1;
+        this.p2Character2 = orig.p2Character2;
+        this.p3Character1 = orig.p3Character1;
+        this.p3Character2 = orig.p3Character2;
 
         for (int i = 0; i<p1Hand.size(); ++i)
         {
