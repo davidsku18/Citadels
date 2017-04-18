@@ -3,7 +3,6 @@ package edu.up.citadels.citadels;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 import edu.up.citadels.game.infoMsg.GameState;
 
