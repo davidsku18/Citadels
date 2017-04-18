@@ -670,27 +670,6 @@ public class CitadelsGameState extends GameState
         this.setP2Character2(4);
         this.setP3Character1(2);
         this.setP3Character2(5);
-
-        /*this.p1City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
-        this.p1City.add(new CitadelsDistrictCard("Castle", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Market", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Docks", 1, 4));
-        this.p1City.add(new CitadelsDistrictCard("Harbor", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Cathedral", 0, 1));
-        this.p1City.add(new CitadelsDistrictCard("Manor", 1, 3));
-
-        this.p2City.add(new CitadelsDistrictCard("Palace", 3, 2));
-        this.p2City.add(new CitadelsDistrictCard("Castle", 2, 2));
-        this.p2City.add(new CitadelsDistrictCard("Market", 2, 2));
-        this.p2City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
-
-        this.p3City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
-        this.p3City.add(new CitadelsDistrictCard("Prison", 2, 2));
-        this.p3City.add(new CitadelsDistrictCard("Market", 2, 2));
-        this.p3City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
-        this.p3City.add(new CitadelsDistrictCard("Docks", 1, 4));
-        this.p3City.add(new CitadelsDistrictCard("Harbor", 2, 2));*/
     }
 
 
@@ -698,7 +677,7 @@ public class CitadelsGameState extends GameState
     {
         buildLimit = orig.buildLimit;
         king = orig.king;
-        this.turn = orig.turn;
+        turn = orig.turn;
 
         p1Gold = orig.p1Gold;
         p2Gold = orig.p2Gold;
@@ -711,13 +690,19 @@ public class CitadelsGameState extends GameState
         p1Hand = orig.p1Hand;
         p2Hand = orig.p2Hand;
         p3Hand = orig.p3Hand;
+
+        p1City = orig.p1City;
+        p2City = orig.p2City;
+        p3City = orig.p3City;
+
         deckOrderDistricts = orig.deckOrderDistricts;
-        this.p1Character1 = orig.p1Character1;
-        this.p1Character2 = orig.p1Character2;
-        this.p2Character1 = orig.p2Character1;
-        this.p2Character2 = orig.p2Character2;
-        this.p3Character1 = orig.p3Character1;
-        this.p3Character2 = orig.p3Character2;
+
+        p1Character1 = orig.p1Character1;
+        p1Character2 = orig.p1Character2;
+        p2Character1 = orig.p2Character1;
+        p2Character2 = orig.p2Character2;
+        p3Character1 = orig.p3Character1;
+        p3Character2 = orig.p3Character2;
 
 
     }
