@@ -132,14 +132,16 @@ public class CitadelsLocalGame extends LocalGame
             if(playerID == 0)
             {
                 state.setP1Gold(state.getP1Gold() + 2);
+                return true;
             }else if(playerID == 1)
             {
                 state.setP2Gold(state.getP2Gold() + 2);
+                return true;
             }else if(playerID == 2)
             {
                 state.setP3Gold(state.getP3Gold() + 2);
+                return true;
             }
-            return true;
         }else if (action instanceof ChooseCharacterCard)
         {
             //this is just setting them to arbitrary values, we will set more later
@@ -264,11 +266,25 @@ public class CitadelsLocalGame extends LocalGame
             }else if(playerID == 1)
             {
                 state.addToP2City(cbdc.getCard());
-                state.removeFromP2Hand(0);
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP2Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP2Hand().get(i)))
+                    {
+                        state.getP2Hand().remove(i);
+                    }
+                }
             }else if(playerID == 2)
             {
                 state.addToP3City(cbdc.getCard());
-                state.removeFromP3Hand(0);
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP3Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP3Hand().get(i)))
+                    {
+                        state.getP3Hand().remove(i);
+                    }
+                }
             }
             return true;
         } else if (action instanceof UseSpecialAbility)

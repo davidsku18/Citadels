@@ -141,7 +141,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     CardChooserSurfaceView ccsv;
 
     // Our edu.up.citadels.game state
-    protected CitadelsGameState state = new CitadelsGameState();
+    protected CitadelsGameState state;  //= new CitadelsGameState();
 
     CitadelsDistrictCard card = null;
 
@@ -171,13 +171,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     @Override
     public void receiveInfo(GameInfo info)
     {
-        Log.i("CitadelsComputerPlayer", "receiving updated state ("+info.getClass()+")");
-        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
-            // if we had an out-of-turn or illegal move, flash the screen
-            //surface.flash(Color.RED, 50);
-            //Do nothing yet TODO
-        }
-        else if (!(info instanceof CitadelsGameState)) {
+        if (!(info instanceof CitadelsGameState)) {
             // otherwise, if it's not a game-state message, ignore
             return;
         }
@@ -186,7 +180,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // going, there is no need to explicitly display anything. That will happen
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
-            Log.i("human player", "receiving");
+            this.initializeEverything();
         }
     }
 
@@ -273,31 +267,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
-        // get values for the spinner
-
-        this.p1HandArrayList = state.getP1HandNames();
-        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
-                android.R.id.text1, p1HandArrayList);
-        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.player1HandSpinner.setAdapter(p1HandAdapter);
-        this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
-
-        // set values for all players' gold
-        player1GoldCount.setText("Gold: " + state.getP1Gold());
-        player2GoldCount.setText("Gold: " + state.getP2Gold());
-        player3GoldCount.setText("Gold: " + state.getP3Gold());
-
-        player1Score.setText("Score: " + state.getP1Score());
-        player2Score.setText("Score: " + state.getP2Score());
-        player3Score.setText("Score: " + state.getP3Score());
-
 
         // define a listener for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
-
-        // initializing CardChooserSurfaceView
-        //this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
@@ -312,7 +285,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             receiveInfo(state);
         }
-/*
+
+        /*
         for(int i = 0; i < state.getP1City().size(); ++i)
         {
             CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
@@ -330,7 +304,81 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
             p3HandNames.add(cdc.getName());
         }
-*/      //TODO set random cards invisible
+        */
+         //TODO set random cards invisible
+
+    }
+
+    public void initializeEverything()
+    {
+        // set values for all players' gold
+        player1GoldCount.setText("Gold: " + state.getP1Gold());
+        player2GoldCount.setText("Gold: " + state.getP2Gold());
+        player3GoldCount.setText("Gold: " + state.getP3Gold());
+
+        player1Score.setText("Score: " + state.getP1Score());
+        player2Score.setText("Score: " + state.getP2Score());
+        player3Score.setText("Score: " + state.getP3Score());
+
+
+        this.p1HandArrayList = state.getP1HandNames();
+        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, p1HandArrayList);
+        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.player1HandSpinner.setAdapter(p1HandAdapter);
+        this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
+    }
+
+    //This makes this player make a take gold action
+    public void humanPlayerTakeGold()
+    {
+        game.sendAction(new TakeGold(this));
+    }
+
+    //This allows the player to take a district card
+    public void humanPlayerTakeDistrictCard()
+    {
+        game.sendAction(new ChooseDistrictCard(this));
+    }
+
+    //This allows a player to use their special ability
+    public void humanPlayerUseAbility()
+    {
+        game.sendAction(new UseSpecialAbility(this));
+    }
+
+    //This method allows the user to end their turn
+    public void humanPlayerEndTurn()
+    {
+        game.sendAction(new EndTurn(this));
+    }
+
+    public void humanPlayerBuildDistrict(CitadelsDistrictCard cdc)
+    {
+        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
+    }
+
+    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
+
+    public void setWhichCard(CitadelsDistrictCard cdc)
+    {
+        this.cdc = cdc;
+    }
+
+    /**
+     * returns the GUI's top view
+     *
+     * @return
+     * 		the GUI's top view
+     */
+    @Override
+    public View getTopView() {
+        return myActivity.findViewById(R.id.top_gui_layout);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
         assassinButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -483,59 +531,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
-    }
 
-
-    //This makes this player make a take gold action
-    public void humanPlayerTakeGold()
-    {
-        game.sendAction(new TakeGold(this));
-    }
-
-    //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard()
-    {
-        game.sendAction(new ChooseDistrictCard(this));
-    }
-
-    //This allows a player to use their special ability
-    public void humanPlayerUseAbility()
-    {
-        game.sendAction(new UseSpecialAbility(this));
-    }
-
-    //This method allows the user to end their turn
-    public void humanPlayerEndTurn()
-    {
-        game.sendAction(new EndTurn(this));
-    }
-
-    public void humanPlayerBuildDistrict(CitadelsDistrictCard cdc)
-    {
-        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
-    }
-
-    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
-
-    public void setWhichCard(CitadelsDistrictCard cdc)
-    {
-        this.cdc = cdc;
-    }
-
-    /**
-     * returns the GUI's top view
-     *
-     * @return
-     * 		the GUI's top view
-     */
-    @Override
-    public View getTopView() {
-        return myActivity.findViewById(R.id.top_gui_layout);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
             @Override

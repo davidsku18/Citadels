@@ -47,13 +47,13 @@ public class CitadelsMainActivity extends GameMainActivity
         playerTypes.add(new GamePlayerType("computer player (dumb)")
         {
             public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name, 1);
+                return new CitadelsComputerPlayerDumb(name, 1);
             }
         });
         playerTypes.add(new GamePlayerType("computer player (smart)")
         {
             public GamePlayer createPlayer(String name) {
-                return new CitadelsComputerPlayer(name, 2);
+                return new CitadelsComputerPlayerSmart(name, 2);
             }
         });
 
