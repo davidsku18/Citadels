@@ -599,18 +599,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(0) != null)
+                if(state.getCharacterDeck(0) != null)
                 {
                     state.setChosenCharacterCard(0);
                     humanPlayerChooseCharacterCard(0);
-                    cardInfo.setText("You've chosen the assassin card");
-                    assassinButton.setVisibility(View.INVISIBLE);
+                    cardInfo.setText("You've chosen the thief card");
                 }
                 else
                 {
                     state.setChosenCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }*/
+                }
             }
         });
         thiefButton.setOnClickListener(new View.OnClickListener()

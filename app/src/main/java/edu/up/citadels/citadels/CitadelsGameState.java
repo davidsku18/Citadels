@@ -719,8 +719,6 @@ public class CitadelsGameState extends GameState
         p2Character2 = orig.p2Character2;
         p3Character1 = orig.p3Character1;
         p3Character2 = orig.p3Character2;
-
-
     }
 
     //Returns if Character is alive
