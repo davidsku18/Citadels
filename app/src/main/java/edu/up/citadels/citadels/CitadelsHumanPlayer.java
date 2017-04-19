@@ -199,31 +199,31 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             cbutton.setBackgroundResource(R.drawable.assasin);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("thief"))
         {
             cbutton.setBackgroundResource(R.drawable.thief);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("magician"))
         {
             cbutton.setBackgroundResource(R.drawable.magician);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("king"))
         {
             cbutton.setBackgroundResource(R.drawable.king);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("bishop"))
         {
             cbutton.setBackgroundResource(R.drawable.bishop);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("merchant"))
         {
             cbutton.setBackgroundResource(R.drawable.merchant);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("architect"))
         {
             cbutton.setBackgroundResource(R.drawable.architect);
         }
-        else if (cardName.toLowerCase().equals("assassin"))
+        else if (cardName.toLowerCase().equals("warlord"))
         {
             cbutton.setBackgroundResource(R.drawable.warlord);
         }
@@ -1256,7 +1256,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View v)
             {
-                //CharacterCard card = state.getP1Character1();
+                CharacterCard card = state.getP1Character1();
                 cardInfo.setText(card.getName());
 
             }
@@ -1267,7 +1267,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View v)
             {
-                //CharacterCard card = state.getP1Character1();
+                CharacterCard card = state.getP1Character1();
                 cardInfo.setText(card.getName());
 
             }

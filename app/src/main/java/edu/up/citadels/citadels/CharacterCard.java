@@ -133,6 +133,7 @@ public class CharacterCard
     public String getName()
     {
         String name = null;
+
         switch (whichCharacter)
         {
             case -1:
