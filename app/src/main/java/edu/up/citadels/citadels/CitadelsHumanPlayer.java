@@ -190,7 +190,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
-            cardInfo.setText("It is your turn.");
+            //cardInfo.setText("It is your turn.");
         }
     }
 
