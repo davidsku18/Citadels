@@ -23,10 +23,13 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 
 public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 {
+    //game state for the computer player to use
     private CitadelsGameState savedState;
 
+    //the player number
     private int player;
 
+    //constructor for the dumb AI player
     public CitadelsComputerPlayerDumb(String initName, int myNumber)
     {
         super(initName);
@@ -43,16 +46,20 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         int myPlayer = savedState.getPlayer(this);
 
+        //AI sleeps for 2 to 3 seconds so it looks like it is thinking
         sleep((int)(1 + Math.random() * 2000));
 
+        //random int to determine if it should draw gold or districts
         int whatToDo = (int) (Math.random() * 2);
 
+        //sends the correct action to the local game
         if (whatToDo == 0) {
             game.sendAction(new ChooseDistrictCard(this));
         } else {
             game.sendAction(new TakeGold(this));
         }
 
+        //Determines which AI player is which
         if(myPlayer == 1)
         {
             game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
@@ -68,6 +75,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         game.sendAction(new EndTurn(this));
     }
 
+    //returns the player number
     public int getPlayerNum()
     {
         return this.playerNum;
