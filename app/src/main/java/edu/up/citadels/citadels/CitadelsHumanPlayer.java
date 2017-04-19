@@ -2,15 +2,9 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,10 +12,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,17 +22,13 @@ import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
-import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
-import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
-import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
