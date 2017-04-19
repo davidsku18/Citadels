@@ -528,38 +528,9 @@ public class CitadelsGameState extends GameState
     {
         return this.districtCardToBeBuilt;
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////
 
-    public int p1FindCard(CitadelsDistrictCard card)
+    public void initializeDistrictDeck()
     {
-        return this.p1Hand.indexOf(card);
-
-    }
-    public int p2FindCard(int card)
-    {
-        return this.p2Hand.indexOf(card);
-
-    }
-    public int p3FindCard(int card)
-    {
-        return this.p3Hand.indexOf(card);
-
-    }
-
-    public CitadelsDistrictCard getTopCard()
-    {
-        return this.drawCard();
-    }
-
-    public CitadelsGameState()
-    {
-        //sets all of the built districts for each player to null because no one will start
-        //with a district built
-
-        this.buildLimit = 1;
-        this.setP1Character1(10);
-        this.setP1Character2(10);
-
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
         {
@@ -657,6 +628,36 @@ public class CitadelsGameState extends GameState
         }
 
         Collections.shuffle(deckOrderDistricts);
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    public int p1FindCard(CitadelsDistrictCard card)
+    {
+        return this.p1Hand.indexOf(card);
+
+    }
+    public int p2FindCard(int card)
+    {
+        return this.p2Hand.indexOf(card);
+
+    }
+    public int p3FindCard(int card)
+    {
+        return this.p3Hand.indexOf(card);
+
+    }
+
+    public CitadelsDistrictCard getTopCard()
+    {
+        return this.drawCard();
+    }
+
+    public CitadelsGameState()
+    {
+        //sets all of the built districts for each player to null because no one will start
+        //with a district built
+
+        this.buildLimit = 1;
 
         //player 1's starting district cards
         for (int i = 0; i < 4; ++i)
@@ -681,6 +682,7 @@ public class CitadelsGameState extends GameState
             deckOrderDistricts.remove(0);
         }
 
+        this.initializeDistrictDeck();
         this.initializeCharacterDeck();
 
         /*//TODO take this out- I just put these in to test functionality
