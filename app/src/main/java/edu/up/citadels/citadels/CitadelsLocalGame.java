@@ -166,10 +166,14 @@ public class CitadelsLocalGame extends LocalGame {
             if (playerID == 0) {
                 state.addToP1Hand(state.drawDistrictCard());
                 return true;
-            } else if (playerID == 1) {
+            } else if (playerID == 1)
+            {
+                state.setAction("Player 2 Drew a District Card.");
                 state.addToP2Hand(state.drawDistrictCard());
                 return true;
-            } else if (playerID == 2) {
+            } else if (playerID == 2)
+            {
+                state.setAction("Player 3 Drew a District Card.");
                 state.addToP3Hand(state.drawDistrictCard());
                 return true;
             }
@@ -179,7 +183,8 @@ public class CitadelsLocalGame extends LocalGame {
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
             if (playerID == 0)
             {
-                if (state.getP1Gold() >= cbdc.getCard().getCost()) {
+                if (state.getP1Gold() >= cbdc.getCard().getCost())
+                {
                     state.addToP1City(cbdc.getCard());
                     int index = state.p1FindCard(cbdc.getCard());
                     state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
@@ -192,7 +197,9 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (playerID == 1)
             {
-                if (state.getP2Gold() >= cbdc.getCard().getCost()) {
+                if (state.getP2Gold() >= cbdc.getCard().getCost())
+                {
+                    state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
                     state.addToP2City(cbdc.getCard());
                     int index = state.p2FindCard(cbdc.getCard());
                     state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
@@ -204,7 +211,9 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             } else if (playerID == 2) {
-                if (state.getP3Gold() >= cbdc.getCard().getCost()) {
+                if (state.getP3Gold() >= cbdc.getCard().getCost())
+                {
+                    state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
                     state.addToP3City(cbdc.getCard());
                     int index = state.p3FindCard(cbdc.getCard());
                     state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
