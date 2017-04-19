@@ -175,7 +175,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
-            //cardInfo.setText("It is your turn.");
+            //cardInfo.setText(state.getAction());
         }
     }
 
@@ -439,6 +439,37 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
+    }
+
+    public String getStringName(int character)
+    {
+        String theCharacter;
+        if(character == 0)
+        {
+            theCharacter = "Assassin";
+        }else if(character == 1)
+        {
+            theCharacter = "Thief";
+        }else if(character == 2)
+        {
+            theCharacter = "Magician";
+        }else if(character == 3)
+        {
+            theCharacter = "King";
+        }else if(character == 4)
+        {
+            theCharacter = "Bishop";
+        }else if(character == 5)
+        {
+            theCharacter = "Merchant";
+        }else if(character == 6)
+        {
+            theCharacter = "Architect";
+        }else if(character == 7)
+        {
+            theCharacter = "Warlord";
+        }else{  theCharacter = null;    }
+        return theCharacter;
     }
 
     public void initializeEverything()
@@ -737,12 +768,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
-                    cardInfo.setText("Your First Character is: " + state.getP1Character1Name());
-                }catch(IndexOutOfBoundsException ie)
+                try {
+                    cardInfo.setText("Your First Character is: " + getStringName(state.getP1Character1()));
+                }catch(NullPointerException ie)
                 {
 
-                }*/
+                }
             }
         });
 
@@ -751,12 +782,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
-                    cardInfo.setText("Your Second Character is: " + state.getP1Character2Name());
-                }catch(IndexOutOfBoundsException ie)
+                try {
+                    cardInfo.setText("Your Second Character is: " + getStringName(state.getP1Character2()));
+                }catch(NullPointerException ie)
                 {
 
-                }*/
+                }
             }
         });
 
@@ -765,12 +796,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
-                    cardInfo.setText("Player 2's First Character is: " + state.getP2Character1Name());
-                }catch(IndexOutOfBoundsException ie)
+                try {
+                    cardInfo.setText("Player 2's First Character is: " + getStringName(state.getP2Character1()));
+                }catch(NullPointerException ie)
                 {
 
-                }*/
+                }
             }
         });
 
@@ -779,12 +810,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
-                    cardInfo.setText("Player 2's Second Character is: " + state.getP2Character2Name());
-                }catch(IndexOutOfBoundsException ie)
+                try {
+                    cardInfo.setText("Player 2's Second Character is: " + getStringName(state.getP2Character2()));
+                }catch(NullPointerException ie)
                 {
 
-                }*/
+                }
             }
         });
 
@@ -793,12 +824,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
-                    cardInfo.setText("Player 3's First Character is: " + state.getP3Character1Name());
-                }catch(IndexOutOfBoundsException ie)
+                try {
+                    cardInfo.setText("Player 3's First Character is: " + getStringName(state.getP3Character1()));
+                }catch(NullPointerException ie)
                 {
 
-                }*/
+                }
             }
         });
 
@@ -807,12 +838,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
-                    cardInfo.setText("Player 3's Second Character is: " + state.getP3Character2Name());
-                }catch(IndexOutOfBoundsException ie)
+                try {
+                    cardInfo.setText("Player 3's Second Character is: " + getStringName(state.getP3Character2()));
+                }catch(NullPointerException ie)
                 {
 
-                }*/
+                }
             }
         });
 
@@ -1309,7 +1340,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
-
     }
 
     //This makes this player make a take gold action

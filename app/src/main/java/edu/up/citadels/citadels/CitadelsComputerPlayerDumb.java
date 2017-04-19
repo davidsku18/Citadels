@@ -4,10 +4,8 @@ import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
-import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.game.infoMsg.GameState;
 
 /**
  * Computer player that will make guesses whenever it is its turn
