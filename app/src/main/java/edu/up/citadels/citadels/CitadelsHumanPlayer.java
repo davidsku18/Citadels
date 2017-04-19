@@ -1382,11 +1382,19 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if (hasBuilt == false)
                 {
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
-                    cardInfo.setText(cardToBuild.getName() + " Built.");
-                    humanPlayerBuildDistrict(cardToBuild);
-                    p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
-                    p1HandAdapter.notifyDataSetChanged();
-                    hasBuilt = true;
+                    if(state.getP1Gold() >= cardToBuild.getCost())
+                    {
+                        cardInfo.setText(cardToBuild.getName() + " Built.");
+                        humanPlayerBuildDistrict(cardToBuild);
+                        p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
+                        p1HandAdapter.notifyDataSetChanged();
+                        hasBuilt = true;
+                    }
+                    else
+                    {
+                        cardInfo.setText("Not Enough Gold to Build");
+                    }
+
                 }else
                 {
                     //do nothing, they aren't allowed to build more
