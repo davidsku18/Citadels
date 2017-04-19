@@ -32,6 +32,8 @@ public class CitadelsGameState extends GameState
     private int p2Gold;
     private int p3Gold;
 
+    private String action;
+
     //List of all cards in each player's hand
     private ArrayList<CitadelsDistrictCard> p1Hand = new ArrayList<CitadelsDistrictCard>();
     private ArrayList<CitadelsDistrictCard> p2Hand = new ArrayList<CitadelsDistrictCard>();
@@ -230,6 +232,21 @@ public class CitadelsGameState extends GameState
         return p3Gold;
     }
 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+    public String getAction()
+    {
+        return this.action;
+    }
+
+    public void setAction(String initAction)
+    {
+        this.action = initAction;
+    }
+
+
+
 //////////////////////////////////Deals with character cards////////////////////////
 
     //Creathes the Character deck
@@ -281,6 +298,7 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
+    //Allows the dumb AI to know what player it is
     public int getPlayer(CitadelsComputerPlayerDumb ccpd)
     {
         int num = ccpd.getPlayerNum();
@@ -296,6 +314,7 @@ public class CitadelsGameState extends GameState
         }else{  return -1;  }
     }
 
+    //Allows the smart AI to know what player it is
     public int getPlayer(CitadelsComputerPlayerSmart ccps)
     {
         int num = ccps.getPlayerNum();
@@ -311,36 +330,6 @@ public class CitadelsGameState extends GameState
         }else{  return -1;  }
     }
 
-    //get the names of the characters
-    public String getP1Character1Name()
-    {
-        return characterDeck[this.p1Character1].getName();
-    }
-
-    public String getP1Character2Name()
-    {
-        return characterDeck[this.p1Character2].getName();
-    }
-
-    public String getP2Character1Name()
-    {
-        return characterDeck[this.p2Character1].getName();
-    }
-
-    public String getP2Character2Name()
-    {
-        return characterDeck[this.p2Character2].getName();
-    }
-
-    public String getP3Character1Name()
-    {
-        return characterDeck[this.p3Character1].getName();
-    }
-
-    public String getP3Character2Name()
-    {
-        return characterDeck[this.p3Character2].getName();
-    }
     public void setChosenCharacterCardNum(int chosenCharacterCard)
     {
         //characterDeck[chosenCharacterCard] = null;

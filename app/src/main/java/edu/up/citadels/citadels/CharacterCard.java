@@ -52,6 +52,7 @@ public class CharacterCard
         this(orig.whichCharacter, orig.color);
     }
 
+
     public int getColor()
     {
         return color;
