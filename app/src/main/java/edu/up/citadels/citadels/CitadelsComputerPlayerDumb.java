@@ -36,27 +36,42 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
     }
 
     @Override
-    protected void receiveInfo(GameInfo info)
-    {
+    protected void receiveInfo(GameInfo info) {
         if (!(info instanceof CitadelsGameState)) {
             return;
         }
 
-        savedState = (CitadelsGameState)info;
+        savedState = (CitadelsGameState) info;
 
-        //TODO maybe check and see if I can check with player int and turn
+        int myPlayer = savedState.getPlayer(this);
+
+        sleep((int)(1 + Math.random() * 2000));
 
         int whatToDo = (int) (Math.random() * 2);
 
-        if (whatToDo == 0)
-        {
+        if (whatToDo == 0) {
             game.sendAction(new ChooseDistrictCard(this));
-        }else
-        {
+        } else {
             game.sendAction(new TakeGold(this));
         }
-        sleep(1000);
+
+        if(myPlayer == 1)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
+        }else if(myPlayer == 2)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+
+        }else if(myPlayer == 3)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+        }
 
         game.sendAction(new EndTurn(this));
+    }
+
+    public int getPlayerNum()
+    {
+        return this.playerNum;
     }
 }

@@ -13,7 +13,7 @@ import edu.up.citadels.game.GamePlayer;
  * @version 3/10/2017
  */
 
-public class ChooseCharacterCard extends CitadelsMoveAction
+public class ChooseCharacterCard2 extends CitadelsMoveAction
 {
     private int theChosenCard;
     /**
@@ -21,7 +21,7 @@ public class ChooseCharacterCard extends CitadelsMoveAction
      *
      * @param player the player who created the action
      */
-    public ChooseCharacterCard(GamePlayer player, int initTheChosenCard)
+    public ChooseCharacterCard2(GamePlayer player, int initTheChosenCard)
     {
         super(player);
         this.theChosenCard = initTheChosenCard;
@@ -31,7 +31,7 @@ public class ChooseCharacterCard extends CitadelsMoveAction
      *
      * @return whether player has drawn gold or not
      */
-    public boolean isChooseCharacterCard() { return true; }
+    public boolean isChooseCharacterCard2() { return true; }
 
-    public int getTheChosenCharacterCard() { return this.theChosenCard; }
+    public int getTheChosenCharacterCard2() { return this.theChosenCard; }
 }

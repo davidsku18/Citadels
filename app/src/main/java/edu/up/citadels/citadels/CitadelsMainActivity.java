@@ -44,13 +44,25 @@ public class CitadelsMainActivity extends GameMainActivity
                 return new CitadelsHumanPlayer(name, R.layout.activity_main);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (dumb)")
+        playerTypes.add(new GamePlayerType("computer player (dumb) 1")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayerDumb(name, 1);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (smart)")
+        playerTypes.add(new GamePlayerType("computer player (dumb) 2")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayerDumb(name, 2);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (smart) 1")
+        {
+            public GamePlayer createPlayer(String name) {
+                return new CitadelsComputerPlayerSmart(name, 1);
+            }
+        });
+        playerTypes.add(new GamePlayerType("computer player (smart) 2")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayerSmart(name, 2);
@@ -63,7 +75,7 @@ public class CitadelsMainActivity extends GameMainActivity
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
         defaultConfig.addPlayer("Computer", 2);
-        defaultConfig.addPlayer("Computer2", 3);
+        defaultConfig.addPlayer("Computer2", 5);
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Guest", "", 1);

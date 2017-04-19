@@ -1,6 +1,7 @@
 package edu.up.citadels.citadels;
 
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.game.GameComputerPlayer;
@@ -14,12 +15,12 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 {
     private CitadelsGameState savedState;
 
-    private int player;
+    private int playerNum;
 
     public CitadelsComputerPlayerSmart(String initName, int myNumber)
     {
         super(initName);
-        this.player = myNumber;
+        this.playerNum = myNumber;
     }
 
     @Override
@@ -32,7 +33,9 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 
         savedState = (CitadelsGameState) info;
 
-        //TODO maybe check and see if I can check with player int and turn
+        int myPlayer = savedState.getPlayer(this);
+
+        sleep((int)(1 + Math.random() * 2000));
 
         int whatToDo = (int) (Math.random() * 2);
 
@@ -43,9 +46,25 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
         {
             game.sendAction(new TakeGold(this));
         }
-        sleep(1000);
+
+        if(myPlayer == 1)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
+        }else if(myPlayer == 2)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+
+        }else if(myPlayer == 3)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+        }
+
 
         game.sendAction(new EndTurn(this));
+    }
 
+    public int getPlayerNum()
+    {
+        return this.playerNum;
     }
 }
