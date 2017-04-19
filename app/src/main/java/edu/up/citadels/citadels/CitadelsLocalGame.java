@@ -289,7 +289,17 @@ public class CitadelsLocalGame extends LocalGame
                 }*/
             }else if(playerID == 1)
             {
-                state.addToP2City(cbdc.getCard());
+                if(state.getP2Gold() >= cbdc.getCard().getCost())
+                {
+                    //TODO maybe this will work better
+                    state.addToP2City(cbdc.getCard());
+                    int index = state.p2FindCard(cbdc.getCard());
+                    state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                    state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                    state.removeFromP2Hand(index);
+                    return true;
+                }else{  return true;    }
+                /*
                 String cardName = cbdc.getCard().getName();
                 for(int i = 0; i < state.getP2Hand().size(); ++i)
                 {
@@ -298,10 +308,21 @@ public class CitadelsLocalGame extends LocalGame
                         state.getP2Hand().remove(i);
                     }
                 }
-                return true;
+                return true;*/
             }else if(playerID == 2)
             {
-                state.addToP3City(cbdc.getCard());
+                if(state.getP3Gold() >= cbdc.getCard().getCost())
+                {
+                    //TODO maybe this will work better
+                    state.addToP3City(cbdc.getCard());
+                    int index = state.p3FindCard(cbdc.getCard());
+                    state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                    state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                    state.removeFromP3Hand(index);
+                    return true;
+                }else{  return true;    }
+
+                /* state.addToP3City(cbdc.getCard());
                 String cardName = cbdc.getCard().getName();
                 for(int i = 0; i < state.getP3Hand().size(); ++i)
                 {
@@ -310,7 +331,7 @@ public class CitadelsLocalGame extends LocalGame
                         state.getP3Hand().remove(i);
                     }
                 }
-                return true;
+                return true;*/
             }
         } else if (action instanceof UseSpecialAbility)
         {
