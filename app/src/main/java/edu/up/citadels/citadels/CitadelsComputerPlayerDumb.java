@@ -38,12 +38,16 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
     @Override
     protected void receiveInfo(GameInfo info)
     {
-        if (!(info instanceof CitadelsGameState)) {
+        if (!(info instanceof CitadelsGameState))
+        {
             return;
         }
 
         savedState = (CitadelsGameState)info;
+        game.sendAction(new TakeGold(this));
+        game.sendAction(new EndTurn(this));
 
+        /*
         //TODO maybe check and see if I can check with player int and turn
 
         int whatToDo = (int) (Math.random() * 2);
@@ -58,5 +62,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         sleep(1000);
 
         game.sendAction(new EndTurn(this));
+        */
     }
 }

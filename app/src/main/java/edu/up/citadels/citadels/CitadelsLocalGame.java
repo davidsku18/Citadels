@@ -125,6 +125,7 @@ public class CitadelsLocalGame extends LocalGame
     @Override
     protected boolean makeMove(GameAction action)
     {
+        state.setTurn(0);
         if (!(action instanceof CitadelsMoveAction)) {
             return false;
         }
