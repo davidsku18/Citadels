@@ -529,8 +529,7 @@ public class CitadelsGameState extends GameState
         return this.districtCardToBeBuilt;
     }
 
-    public void initializeDistrictDeck()
-    {
+    public void initializeDistrictDeck() {
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
         {
@@ -659,6 +658,9 @@ public class CitadelsGameState extends GameState
 
         this.buildLimit = 1;
 
+        this.initializeDistrictDeck();
+        this.initializeCharacterDeck();
+
         //player 1's starting district cards
         for (int i = 0; i < 4; ++i)
         {
@@ -682,9 +684,6 @@ public class CitadelsGameState extends GameState
             deckOrderDistricts.remove(0);
         }
 
-        this.initializeDistrictDeck();
-        this.initializeCharacterDeck();
-
         /*//TODO take this out- I just put these in to test functionality
         this.addToP1City(this.p1Hand.get(0));
         this.addToP1City(this.p1Hand.get(1));
@@ -707,6 +706,7 @@ public class CitadelsGameState extends GameState
         //TODO take this out, I only put it in to test basic functionality
 
         //sets all character cards for players to nothing
+
         this.setP1Character1(-1);
         this.setP1Character2(-1);
         this.setP2Character1(-1);

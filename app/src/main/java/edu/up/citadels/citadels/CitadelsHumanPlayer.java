@@ -230,7 +230,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         else if( charNum == -1)
         {
             // when no one has a character
-            cbutton.setBackgroundResource(R.drawable.watchtower);
+            //cbutton.setBackgroundResource();
         }
         else //TODO Change to back of card
         {

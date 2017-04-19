@@ -3,11 +3,8 @@ package edu.up.citadels.citadels;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
-import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
-import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.game.infoMsg.GameState;
 
 /**
  * Computer player that will make guesses whenever it is its turn
@@ -45,10 +42,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         savedState = (CitadelsGameState)info;
 
         //TODO maybe check and see if I can check with player int and turn
-
-        int whatCharacterToChoose = (int) (Math.random() * 8);
         int whatToDo = (int) (Math.random() * 2);
-
 
         if (whatToDo == 0)
         {
