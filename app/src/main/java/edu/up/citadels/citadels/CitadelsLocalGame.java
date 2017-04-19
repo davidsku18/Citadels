@@ -151,20 +151,20 @@ public class CitadelsLocalGame extends LocalGame {
             {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                 state.setP1Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
 
             }
             else if (playerID == 1)
             {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                 state.setP2Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
             }
             else if (playerID == 2)
             {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                 state.setP3Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
             }
 
             // first person to choose is the person who has the crown
