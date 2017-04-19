@@ -535,12 +535,12 @@ public class CitadelsGameState extends GameState
         return this.p1Hand.indexOf(card);
 
     }
-    public int p2FindCard(int card)
+    public int p2FindCard(CitadelsDistrictCard card)
     {
         return this.p2Hand.indexOf(card);
 
     }
-    public int p3FindCard(int card)
+    public int p3FindCard(CitadelsDistrictCard card)
     {
         return this.p3Hand.indexOf(card);
 
@@ -557,8 +557,6 @@ public class CitadelsGameState extends GameState
         //with a district built
 
         this.buildLimit = 1;
-        this.setP1Character1(10);
-        this.setP1Character2(10);
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -702,16 +700,19 @@ public class CitadelsGameState extends GameState
         this.setP2Gold(2);
         this.setP3Gold(2);
 
-        //TODO take this out, I only put it in to test basic functionality
+        this.setP1Character1(0);
+        this.setP1Character2(3);
+        this.setP2Character1(1);
+        this.setP2Character2(4);
+        this.setP3Character1(2);
+        this.setP3Character2(5);
 
-        //sets all character cards for players to nothing
-        this.setP1Character1(-1);
-        this.setP1Character2(-1);
-        this.setP2Character1(-1);
-        this.setP2Character2(-1);
-        this.setP3Character1(-1);
-        this.setP3Character2(-1);
-
+        this.removeCharacterCardFromDeck(0);
+        this.removeCharacterCardFromDeck(1);
+        this.removeCharacterCardFromDeck(2);
+        this.removeCharacterCardFromDeck(3);
+        this.removeCharacterCardFromDeck(4);
+        this.removeCharacterCardFromDeck(5);
     }
 
 

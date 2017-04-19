@@ -625,7 +625,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(state.getCharacterDeck(1) != null)
                 {
-                    state.setChosenCharacterCard(1);
                     humanPlayerChooseCharacterCard(1);
                     cardInfo.setText("You've chosen the thief card");
                 }
@@ -645,7 +644,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(state.getCharacterDeck(2) != null)
                 {
-                    state.setChosenCharacterCard(2);
                     humanPlayerChooseCharacterCard(2);
                     cardInfo.setText("You've chosen the magician card");
                 }
