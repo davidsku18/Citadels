@@ -32,9 +32,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 
         savedState = (CitadelsGameState) info;
 
-        //TODO maybe check and see if I can check with player int and turn
-
-        //sleep(1000);
+        sleep((int)(1 + Math.random() * 2000));
 
         int whatToDo = (int) (Math.random() * 2);
 
@@ -45,7 +43,6 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
         {
             game.sendAction(new TakeGold(this));
         }
-        //sleep(1000);
 
         game.sendAction(new EndTurn(this));
     }
