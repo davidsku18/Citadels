@@ -47,9 +47,6 @@ public class CitadelsGameState extends GameState
     //there are 52 district cards in the deck
     private ArrayList<CitadelsDistrictCard> deckOrderDistricts = new ArrayList<CitadelsDistrictCard>();
 
-    //tells us which player is the king
-    private boolean isKing;
-
     //which characters are assigned to each player
     private int p1Character1;
     private int p1Character2;
@@ -70,6 +67,9 @@ public class CitadelsGameState extends GameState
     //if a player has had districts destroyed by warlord
     private boolean destroyDistrict;
 
+    //The chosen district card to be built
+    private CitadelsDistrictCard districtCardToBeBuilt;
+
     //whose turn is it
     private int turn;
 
@@ -84,8 +84,9 @@ public class CitadelsGameState extends GameState
     private CharacterCard[] characterDeck = new CharacterCard[8];
 
     //the character card that was chosen
-    private int theChosenCharacterCard = 0;
+    private int theChosenCharacterCard;
 
+    private int theChosenDistrict;
 
 /////////////////////////////Stuff to deal with player//////////////////////////////////////////////
 
@@ -95,7 +96,13 @@ public class CitadelsGameState extends GameState
         turn = x;
     }
 
-    //Get turn
+    //Gets the current turn
+    public int getTurn()
+    {
+        return this.turn;
+    }
+
+    //Gets the turn of the player based on their character
     public int getPlayerTurn()
     {
         if((turn == this.p1Character1) || (turn == this.p1Character2))
@@ -109,14 +116,15 @@ public class CitadelsGameState extends GameState
             return 2;
         }
         else
-            {
-                return -1;
-            }
+        {
+            return -1;
+        }
     }
 
-    public int getTurn()
+    //Sets which player is king
+    public void setRollKing()
     {
-        return this.turn;
+        king = (int)Math.random()*2;
     }
 
     //Returns if the player is king or not
@@ -124,12 +132,6 @@ public class CitadelsGameState extends GameState
     {
         return king;
     } // TODO need to implement who is king and who has the king character card
-
-    //Sets which player is king
-    public void setKing(int playerIdx)
-    {
-        king = playerIdx;
-    }
 
     //Sets the player's chosen character card
     public void setP1Character1(int x) { this.p1Character1 = x; }
@@ -279,15 +281,19 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
-    public void setChosenCharacterCard(int chosenCharacterCard) { theChosenCharacterCard = chosenCharacterCard; }
-    //returns the character card that the player chose
-    public int getChosenCharacterCard()
+    public void setChosenCharacterCardNum(int chosenCharacterCard)
     {
-        return theChosenCharacterCard;
+        //characterDeck[chosenCharacterCard] = null;
+        this.theChosenCharacterCard = chosenCharacterCard;
+    }
+    //returns the character card that the player chose
+    public int getChosenCharacterCardNum()
+    {
+        return this.theChosenCharacterCard;
     }
 
     //Removes the characterCard from te deck after a player chooses their card
-    public void removeCharacterCard(int i) { this.characterDeck[i] = null; }
+    public void removeCharacterCardFromDeck(int i) { this.characterDeck[i] = null; }
 
     //Get face up card 1
     public CharacterCard getCardUp1()
@@ -373,6 +379,16 @@ public class CitadelsGameState extends GameState
     public CitadelsDistrictCard getP3DistrictCard(int x)
     {
         return p3Hand.get(x);
+    }
+
+    public void setTheChosenDistrict(int district)
+    {
+        this.theChosenDistrict = district;
+    }
+
+    public int getTheChosenDistrict()
+    {
+        return this.theChosenDistrict;
     }
 
     public void removeP1BuiltDistrict()
@@ -502,6 +518,16 @@ public class CitadelsGameState extends GameState
         this.p3Hand = arrayCD;
     }
 
+    //Gets the cost of the character card that will be build
+    public void districtCardToBuild(CitadelsDistrictCard tobeBuilt)
+    {
+        this.districtCardToBeBuilt = tobeBuilt;
+    }
+
+    public CitadelsDistrictCard getTheDistrictCardToBeBuilt()
+    {
+        return this.districtCardToBeBuilt;
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     public int p1FindCard(CitadelsDistrictCard card)
@@ -509,12 +535,12 @@ public class CitadelsGameState extends GameState
         return this.p1Hand.indexOf(card);
 
     }
-    public int p2FindCard(CitadelsDistrictCard card)
+    public int p2FindCard(int card)
     {
         return this.p2Hand.indexOf(card);
 
     }
-    public int p3FindCard(CitadelsDistrictCard card)
+    public int p3FindCard(int card)
     {
         return this.p3Hand.indexOf(card);
 
@@ -531,6 +557,8 @@ public class CitadelsGameState extends GameState
         //with a district built
 
         this.buildLimit = 1;
+        this.setP1Character1(10);
+        this.setP1Character2(10);
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -664,8 +692,7 @@ public class CitadelsGameState extends GameState
         this.addToP3City(this.p3Hand.get(1));*/
 
         this.setTurn(0);
-
-        int king = (int)Math.random();
+        this.setRollKing();
 
         this.setP1Score(0);
         this.setP2Score(0);
@@ -676,12 +703,15 @@ public class CitadelsGameState extends GameState
         this.setP3Gold(2);
 
         //TODO take this out, I only put it in to test basic functionality
-        this.setP1Character1(0);
-        this.setP1Character2(3);
-        this.setP2Character1(1);
-        this.setP2Character2(4);
-        this.setP3Character1(2);
-        this.setP3Character2(5);
+
+        //sets all character cards for players to nothing
+        this.setP1Character1(-1);
+        this.setP1Character2(-1);
+        this.setP2Character1(-1);
+        this.setP2Character2(-1);
+        this.setP3Character1(-1);
+        this.setP3Character2(-1);
+
     }
 
 
@@ -711,7 +741,10 @@ public class CitadelsGameState extends GameState
         p2City = orig.p2City;
         p3City = orig.p3City;
 
+        theChosenCharacterCard = orig.theChosenCharacterCard;
+
         deckOrderDistricts = orig.deckOrderDistricts;
+        characterDeck = orig.characterDeck;
 
         p1Character1 = orig.p1Character1;
         p1Character2 = orig.p1Character2;

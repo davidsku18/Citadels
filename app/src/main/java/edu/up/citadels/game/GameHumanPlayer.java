@@ -4,24 +4,24 @@ package edu.up.citadels.game;
  * Created by bryce on 3/3/2017.
  */
 
-import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.game.actionMsg.GameOverAckAction;
-import edu.up.citadels.game.actionMsg.MyNameIsAction;
-import edu.up.citadels.game.actionMsg.ReadyAction;
-import edu.up.citadels.game.infoMsg.BindGameInfo;
-import edu.up.citadels.game.infoMsg.GameOverInfo;
-import edu.up.citadels.game.infoMsg.StartGameInfo;
-import edu.up.citadels.game.infoMsg.TimerInfo;
-import edu.up.citadels.game.util.GameTimer;
-import edu.up.citadels.game.util.MessageBox;
-import edu.up.citadels.game.util.Tickable;
-
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+
+import edu.up.citadels.game.actionMsg.GameOverAckAction;
+import edu.up.citadels.game.actionMsg.MyNameIsAction;
+import edu.up.citadels.game.actionMsg.ReadyAction;
+import edu.up.citadels.game.infoMsg.BindGameInfo;
+import edu.up.citadels.game.infoMsg.GameInfo;
+import edu.up.citadels.game.infoMsg.GameOverInfo;
+import edu.up.citadels.game.infoMsg.StartGameInfo;
+import edu.up.citadels.game.infoMsg.TimerInfo;
+import edu.up.citadels.game.util.GameTimer;
+import edu.up.citadels.game.util.MessageBox;
+import edu.up.citadels.game.util.Tickable;
 
 /**
  * class GameHumanPlayer
@@ -35,7 +35,8 @@ import android.view.View;
  * @version July 2013
  *
  */
-public abstract class GameHumanPlayer implements GamePlayer, Tickable {
+public abstract class GameHumanPlayer implements GamePlayer, Tickable
+{
     /**
      * instance variables
      */
