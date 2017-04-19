@@ -29,25 +29,26 @@ public class CitadelsLocalGame extends LocalGame
     //the edu.up.citadels.game's state
     CitadelsGameState state;
 
+
     public CitadelsLocalGame()
     {
         Log.i("CitadelsLocalGame", "creating edu.up.citadels.game");
         // create the state for the beginning of the edu.up.citadels.game
         this.state = new CitadelsGameState();
     }
+
     /**
      * Notify the given player that its state has changed. This should involve sending
      * a GameInfo object to the player. If the game is not a perfect-information game
      * this method should remove any information from the game that the player is not
      * allowed to know.
      *
-     * @param p
-     * 			the player to notify
+     * @param p the player to notify
      */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p)
     {
-        if(state == null)
+        if (state == null)
         {
             return;
         }
@@ -56,21 +57,21 @@ public class CitadelsLocalGame extends LocalGame
 
         p.sendInfo(stateForPlayer);
     }
+
     /**
      * return whether the specified player can move
      *
-     * @param playerIdx
-     *          The player's ID
+     * @param playerIdx The player's ID
      * @return boolean
-     *          Whether the specified player's ID can perform a move
+     * Whether the specified player's ID can perform a move
      */
     @Override
     protected boolean canMove(int playerIdx)
     {
-        if(playerIdx == state.getPlayerTurn())
+        if (playerIdx == state.getTurn())
         {
             return true;
-        }else
+        } else
         {
             return false;
         }
@@ -80,12 +81,12 @@ public class CitadelsLocalGame extends LocalGame
      * Checks which player has 8 districts built and ends the game
      *
      * @return String
-     *          Specifies which player has 8 districts built
+     * Specifies which player has 8 districts built
      */
     @Override
     protected String checkIfGameOver()
     {
-        if(state.getTurn() == 8)
+        if (state.getTurn() == 14)
         {
             int p1Districts = state.getP1City().size();
             int p2Districts = state.getP2City().size();
@@ -95,7 +96,7 @@ public class CitadelsLocalGame extends LocalGame
             int p2Score = state.getP2Score();
             int p3Score = state.getP3Score();
 
-            if(p1Districts > 7 || p2Districts > 7 || p3Districts > 7)
+            if (p1Districts > 7 || p2Districts > 7 || p3Districts > 7)
             {
 
                 if (p1Score >= p2Score && p1Score >= p3Score)
@@ -107,235 +108,867 @@ public class CitadelsLocalGame extends LocalGame
                 } else if (p3Score >= p2Score && p3Score >= p1Score)
                 {
                     return "PLAYER 3 HAS WON! BUMMER.";
-                } else {
+                } else
+                {
                     return "There was a tie!";
                 }
-            }else{  return null;    }
-        }else{  return null;    }
+            } else
+            {
+                return null;
+            }
+        } else
+        {
+            return null;
+        }
     }
 
     /**
      * Makes a move on behalf the player
      *
-     * @param action
-     *          The move that the player has sent to the game
+     * @param action The move that the player has sent to the game
      * @return boolean
-     *          Tells whether the move was legal or not
+     * Tells whether the move was legal or not
      */
     @Override
     protected boolean makeMove(GameAction action)
     {
-        if (!(action instanceof CitadelsMoveAction)) {
+        if (!(action instanceof CitadelsMoveAction))
+        {
             return false;
         }
 
         CitadelsMoveAction cma = (CitadelsMoveAction) action;
         int playerID = getPlayerIdx(cma.getPlayer());
-        if(this.canMove(getPlayerIdx(cma.getPlayer())))
+        if (this.canMove(getPlayerIdx(cma.getPlayer())))
         {
             playerID = 0;
-        }else if(this.canMove(getPlayerIdx(cma.getPlayer())))
+        } else if (this.canMove(getPlayerIdx(cma.getPlayer())))
         {
             playerID = 1;
-        }else if(this.canMove(getPlayerIdx(cma.getPlayer())))
+        } else if (this.canMove(getPlayerIdx(cma.getPlayer())))
         {
             playerID = 2;
-        }else{  playerID = -1;   }
+        } else
+        {
+            playerID = -1;
+        }
 
         if (action instanceof TakeGold)
         {
-            if(playerID == 0)
+            if (state.getTurn() == 7)
             {
-                state.setP1Gold(state.getP1Gold() + 2);
-                return true;
-            }else if(playerID == 1)
-            {
-                state.setP2Gold(state.getP2Gold() + 2);
-                return true;
-            }else if(playerID == 2)
-            {
-                state.setP3Gold(state.getP3Gold() + 2);
-                return true;
-            }
-        }else if (action instanceof ChooseCharacterCard)
-        {
-            //this is just setting them to arbitrary values, we will set more later
-            //for basic functionality
-            //TODO
-
-            int chosenNum = 0;
-
-            state.setP1Character1(0);
-            state.setP1Character2(1);
-            state.setP2Character1(2);
-            state.setP2Character2(3);
-            state.setP3Character1(4);
-            state.setP3Character2(5);
-
-            state.setTurn(0);
-
-            // first person two choose is the person who has the crown
-            // if king is equal to player 0 (player 1), then they get to choose their characters first
-            if(state.getKing() == 0) {
-                chosenNum = 0;
-                //sets the player's characters to the chosen character card
-                while (chosenNum != 2)
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
                 {
-                    if (chosenNum == 0)
-                    {
-                        state.setP1Character1(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                        //increments chosenNum to determine whether the player has chosen their first character card
-                    }
-                    if (chosenNum == 1) {
-                        state.setP1Character2(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                        //increments chosenNum to determine whether the player has chosen their second character card
-                    }
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
+            } else if (state.getTurn() == 8)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
+            } else if (state.getTurn() == 9)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
+            } else if (state.getTurn() == 10)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
                     return true;
                 }
             }
-            else if (playerID == 1)
+            else if (state.getTurn() == 11)
             {
-                chosenNum = 0;
-                // could also check if character deck is null
-                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
                 {
-                    if (chosenNum == 0)
-                    {
-                        state.setP2Character1(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
-                    else if (chosenNum == 1) {
-                        state.setP1Character2(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
                 }
-                return true;
             }
-            else if (playerID == 2)
+            else if (state.getTurn() == 12)
             {
-                chosenNum = 0;
-                while (state.getChosenCharacterCard() == -1 || chosenNum != 2)
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
                 {
-                    if (chosenNum == 0)
-                    {
-                        state.setP3Character1(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
-                    else if (chosenNum == 1) {
-                        state.setP3Character2(state.getChosenCharacterCard());
-                        state.removeCharacterCard(state.getChosenCharacterCard());
-                        chosenNum++;
-                    }
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
                 }
-                return true;
+            } else if (state.getTurn() == 13)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
+            } else if (state.getTurn() == 14)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
             }
         }
-         else if (action instanceof EndTurn)
+        else if (action instanceof ChooseCharacterCard)
         {
-            if (state.getTurn() != 7) {
+            if (state.getTurn() == 0)
+            {
+                if (playerID == state.getKing())
+                {
+                    if (playerID == 0)
+                    {
+                        return true;
+                    } else if (playerID == 1)
+                    {
+                        return true;
+                    } else if (playerID == 2)
+                    {
+                        return true;
+                    }
+                }
+            } else if (state.getTurn() == 1)
+            {
+                if (playerID == state.getKing())
+                {
+                    if (playerID == 0)
+                    {
+                        return true;
+                    } else if (playerID == 1)
+                    {
+                        return true;
+                    } else if (playerID == 2)
+                    {
+                        return true;
+                    }
+                }
+            } else if (state.getTurn() == 2)
+            {
+                if (playerID == 0 && state.getKing() == 3)
+                {
+                    return true;
+                } else if (playerID == 1 && state.getKing() == 1)
+                {
+                    return true;
+                } else if (playerID == 2 && state.getKing() == 2)
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 3)
+            {
+                if (playerID == 0 && state.getKing() == 2)
+                {
+                    return true;
+                } else if (playerID == 1 && state.getKing() == 3)
+                {
+                    return true;
+                } else if (playerID == 2 && state.getKing() == 1)
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 4)
+            {
+                if (playerID == 0 && state.getKing() == 1)
+                {
+                    return true;
+                } else if (playerID == 1 && state.getKing() == 2)
+                {
+                    return true;
+                } else if (playerID == 2 && state.getKing() == 3)
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 5)
+            {
+                if (playerID == 0 && state.getKing() == 3)
+                {
+                    return true;
+                } else if (playerID == 1 && state.getKing() == 1)
+                {
+                    return true;
+                } else if (playerID == 2 && state.getKing() == 2)
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 6)
+            {
+                if (playerID == 0 && state.getKing() == 2)
+                {
+                    return true;
+                } else if (playerID == 1 && state.getKing() == 3)
+                {
+                    return true;
+                } else if (playerID == 2 && state.getKing() == 1)
+                {
+                    return true;
+                }
+            }
+        }
+        else if (action instanceof EndTurn)
+        {
+            if (state.getTurn() == 7)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 8)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 9)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 10)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 11)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 12)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 13)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 14)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            }
+            checkIfGameOver();
+            if (state.getTurn() != 14)
+            {
                 state.setTurn(state.getTurn() + 1);
                 return true;
-            } else if (state.getTurn() == 7)
+            } else if (state.getTurn() == 14)
             {
                 state.setTurn(0);
                 return true;
             }
-        } else if (action instanceof ChooseDistrictCard)
+        }
+        else if (action instanceof ChooseDistrictCard)
         {
-            if(playerID == 0)
+            if (state.getTurn() == 7)
             {
-                state.addToP1Hand(state.drawDistrictCard());
-                return true;
-            }else if(playerID == 1)
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 8)
             {
-                state.addToP2Hand(state.drawDistrictCard());
-                return true;
-            }else if(playerID == 2)
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 9)
             {
-                state.addToP3Hand(state.drawDistrictCard());
-                return true;
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 10)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 11)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 12)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 13)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
+            } else if (state.getTurn() == 14)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    return true;
+                }
             }
-            //return true;
-        } else if (action instanceof CitadelsBuildDistrictCard)
+            return true;
+        }
+        else if (action instanceof CitadelsBuildDistrictCard)
         {
-            CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard)cma;
-            if(playerID == 0)
+            CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
+            if (state.getTurn() == 7)
             {
-                if(state.getP1Gold() >= cbdc.getCard().getCost())
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
                 {
-                    //TODO maybe this will work better
-                    state.addToP1City(cbdc.getCard());
-                    int index = state.p1FindCard(cbdc.getCard());
-                    state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
-                    state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
-                    state.removeFromP1Hand(index);
-                    return true;
-                }else{  return true;    }
-
-                /*String cardName = cbdc.getCard().getName();
-                for(int i = 0; i < state.getP1Hand().size(); ++i)
-                {
-                    if(cardName.equals(state.getP1Hand().get(i)))
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
                     {
-                        state.getP1Hand().remove(i);
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
                     }
-                }*/
-            }else if(playerID == 1)
-            {
-                if(state.getP2Gold() >= cbdc.getCard().getCost())
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
                 {
-                    //TODO maybe this will work better
-                    state.addToP2City(cbdc.getCard());
-                    int index = state.p2FindCard(cbdc.getCard());
-                    state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
-                    state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
-                    state.removeFromP2Hand(index);
-                    return true;
-                }else{  return true;    }
-                /*
-                String cardName = cbdc.getCard().getName();
-                for(int i = 0; i < state.getP2Hand().size(); ++i)
-                {
-                    if(cardName.equals(state.getP2Hand().get(i)))
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
                     {
-                        state.getP2Hand().remove(i);
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+            } else if (state.getTurn() == 8)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                }
+            } else if (state.getTurn() == 9)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                }
+            } else if (state.getTurn() == 10)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                }
+            } else if (state.getTurn() == 11)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                }
+            } else if (state.getTurn() == 12)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                }
+            } else if (state.getTurn() == 13)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                }
+            } else if (state.getTurn() == 14)
+            {
+                if (playerID == 0 && (state.getP1Character1() + 7 == state.getTurn() || state.getP1Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 1 && (state.getP2Character1() + 7 == state.getTurn() || state.getP2Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
+                    }
+
+                } else if (playerID == 2 && (state.getP3Character1() + 7 == state.getTurn() || state.getP3Character2() + 7 == state.getTurn()))
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    {
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else
+                    {
+                        return true;
                     }
                 }
-                return true;*/
-            }else if(playerID == 2)
+                return true;
+            } else if (action instanceof UseSpecialAbility)
             {
-                if(state.getP3Gold() >= cbdc.getCard().getCost())
-                {
-                    //TODO maybe this will work better
-                    state.addToP3City(cbdc.getCard());
-                    int index = state.p3FindCard(cbdc.getCard());
-                    state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
-                    state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
-                    state.removeFromP3Hand(index);
-                    return true;
-                }else{  return true;    }
-
-                /* state.addToP3City(cbdc.getCard());
-                String cardName = cbdc.getCard().getName();
-                for(int i = 0; i < state.getP3Hand().size(); ++i)
-                {
-                    if(cardName.equals(state.getP3Hand().get(i)))
-                    {
-                        state.getP3Hand().remove(i);
-                    }
-                }
-                return true;*/
-            }
-        } else if (action instanceof UseSpecialAbility)
-        {
-            // Assassin special ability
+                // Assassin special ability
             /*if (state.getTurn() == 1)
             {
                 if(player == 1)
@@ -414,12 +1047,13 @@ public class CitadelsLocalGame extends LocalGame
                     return false;
                 }
             }*/
+                return true;
+            } else
+            {
+                return false;
+            }
             return true;
-        }else
-        {
-            return false;
         }
-        return true;
-    }
 }
+
 
