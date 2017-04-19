@@ -33,7 +33,6 @@ public class CitadelsLocalGame extends LocalGame {
         // create the state for the beginning of the edu.up.citadels.game
         this.state = new CitadelsGameState();
     }
-
     /**
      * Notify the given player that its state has changed. This should involve sending
      * a GameInfo object to the player. If the game is not a perfect-information game
@@ -52,7 +51,6 @@ public class CitadelsLocalGame extends LocalGame {
 
         p.sendInfo(stateForPlayer);
     }
-
     /**
      * return whether the specified player can move
      *
@@ -64,7 +62,8 @@ public class CitadelsLocalGame extends LocalGame {
     protected boolean canMove(int playerIdx) {
         if (playerIdx == state.getTurn()) {
             return true;
-        } else {
+        }else
+        {
             return false;
         }
     }
@@ -287,6 +286,55 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (action instanceof UseSpecialAbility) {
                 // Assassin special ability
+            }else if(playerID == 1)
+            {
+                if(state.getP2Gold() >= cbdc.getCard().getCost())
+                {
+                    //TODO maybe this will work better
+                    state.addToP2City(cbdc.getCard());
+                    int index = state.p2FindCard(cbdc.getCard());
+                    state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                    state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                    state.removeFromP2Hand(index);
+                    return true;
+                }else{  return true;    }
+                /*
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP2Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP2Hand().get(i)))
+                    {
+                        state.getP2Hand().remove(i);
+                    }
+                }
+                return true;*/
+            }else if(playerID == 2)
+            {
+                if(state.getP3Gold() >= cbdc.getCard().getCost())
+                {
+                    //TODO maybe this will work better
+                    state.addToP3City(cbdc.getCard());
+                    int index = state.p3FindCard(cbdc.getCard());
+                    state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                    state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                    state.removeFromP3Hand(index);
+                    return true;
+                }else{  return true;    }
+
+                /* state.addToP3City(cbdc.getCard());
+                String cardName = cbdc.getCard().getName();
+                for(int i = 0; i < state.getP3Hand().size(); ++i)
+                {
+                    if(cardName.equals(state.getP3Hand().get(i)))
+                    {
+                        state.getP3Hand().remove(i);
+                    }
+                }
+                return true;*/
+            }
+        } else if (action instanceof UseSpecialAbility)
+        {
+            // Assassin special ability
             /*if (state.getTurn() == 1)
             {
                 if(player == 1)

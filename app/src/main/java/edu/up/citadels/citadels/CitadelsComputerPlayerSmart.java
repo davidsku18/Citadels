@@ -1,5 +1,6 @@
 package edu.up.citadels.citadels;
 
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.game.GameComputerPlayer;
@@ -30,6 +31,21 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
         }
 
         savedState = (CitadelsGameState) info;
+
+        //TODO maybe check and see if I can check with player int and turn
+
+        int whatToDo = (int) (Math.random() * 2);
+
+        if (whatToDo == 0)
+        {
+            game.sendAction(new ChooseDistrictCard(this));
+        }else
+        {
+            game.sendAction(new TakeGold(this));
+        }
+        sleep(1000);
+
+        game.sendAction(new EndTurn(this));
 
     }
 }
