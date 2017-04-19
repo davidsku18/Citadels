@@ -752,7 +752,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 try {
                     cardInfo.setText("Your First Character is: " + state.getP1Character1Name());
-                }catch(IndexOutOfBoundsException ie)
+                }catch(NullPointerException npe)
                 {
 
                 }
@@ -766,7 +766,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 try {
                     cardInfo.setText("Your Second Character is: " + state.getP1Character2Name());
-                }catch(IndexOutOfBoundsException ie)
+                }catch(NullPointerException npe)
                 {
 
                 }
@@ -780,7 +780,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 try {
                     cardInfo.setText("Player 2's First Character is: " + state.getP2Character1Name());
-                }catch(IndexOutOfBoundsException ie)
+                }catch(NullPointerException npe)
                 {
 
                 }
@@ -794,7 +794,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 try {
                     cardInfo.setText("Player 2's Second Character is: " + state.getP2Character2Name());
-                }catch(IndexOutOfBoundsException ie)
+                }catch(NullPointerException npe)
                 {
 
                 }
@@ -808,7 +808,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 try {
                     cardInfo.setText("Player 3's First Character is: " + state.getP3Character1Name());
-                }catch(IndexOutOfBoundsException ie)
+                }catch(NullPointerException npe)
                 {
 
                 }
@@ -822,7 +822,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 try {
                     cardInfo.setText("Player 3's Second Character is: " + state.getP3Character2Name());
-                }catch(IndexOutOfBoundsException ie)
+                }catch(NullPointerException npe)
                 {
 
                 }

@@ -29,6 +29,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
     private int player;
 
+    private int selectedCard;
+
     public CitadelsComputerPlayerDumb(String initName, int myNumber)
     {
         super(initName);
@@ -45,17 +47,38 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         //TODO maybe check and see if I can check with player int and turn
 
-        //sleep(1000);
+        sleep(2000);
 
         int whatToDo = (int) (Math.random() * 2);
+        int doOrDontBuild = (int) (Math.random() * 2 );
+        int whichDistrictToBuildP2 = (int) (Math.random() * savedState.getP2Hand().size());
+        int whichDistrictToBuildP3 = (int) (Math.random() * savedState.getP3Hand().size());
 
-        if (whatToDo == 0) {
+        if (whatToDo == 0)
+        {
             game.sendAction(new ChooseDistrictCard(this));
-        } else {
+        }
+        else if (whatToDo == 1)
+        {
             game.sendAction(new TakeGold(this));
         }
-
-        //sleep(1000);
+        else if ( doOrDontBuild == 0 )
+        {
+            CitadelsDistrictCard cardToBuild2 = (CitadelsDistrictCard)savedState.getP1Hand().get(whichDistrictToBuildP2);
+            CitadelsDistrictCard cardToBuild3 = (CitadelsDistrictCard)savedState.getP1Hand().get(whichDistrictToBuildP3);
+            if(savedState.getP2Gold() >= cardToBuild2.getCost())
+            {
+                game.sendAction(new CitadelsBuildDistrictCard(this, cardToBuild2));
+            }
+            else if (savedState.getP3Gold() >= cardToBuild2.getCost())
+            {
+                game.sendAction(new CitadelsBuildDistrictCard(this, cardToBuild3));
+            }
+        }
+        else if (doOrDontBuild == 1)
+        {
+            //dont build anything
+        }
 
         game.sendAction(new EndTurn(this));
     }
