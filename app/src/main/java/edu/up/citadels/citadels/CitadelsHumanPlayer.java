@@ -750,12 +750,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*try {
+                try {
                     cardInfo.setText("Your First Character is: " + state.getP1Character1Name());
                 }catch(NullPointerException npe)
                 {
 
-                }*/
+                }
             }
         });
 
