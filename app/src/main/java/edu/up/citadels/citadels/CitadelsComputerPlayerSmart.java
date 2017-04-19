@@ -37,12 +37,14 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 
         sleep((int)(1 + Math.random() * 2000));
 
+
         int whatToDo = (int) (Math.random() * 2);
 
         if (whatToDo == 0)
         {
             game.sendAction(new ChooseDistrictCard(this));
-        }else
+        }
+        else
         {
             game.sendAction(new TakeGold(this));
         }
