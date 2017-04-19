@@ -46,17 +46,18 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         //TODO maybe check and see if I can check with player int and turn
 
-        //int whatToDo = (int) (Math.random() * 2);
+        int whatToDo = (int) (Math.random() * 2);
 
-       /* if (whatToDo == 0)
+        if (whatToDo == 0)
         {
             game.sendAction(new ChooseDistrictCard(this));
         }else
         {
             game.sendAction(new TakeGold(this));
-        }*/
-        //sleep(1000);
-        game.sendAction(new TakeGold(this));
+        }
+        sleep(500);
+
+        //game.sendAction(new TakeGold(this));
 
         game.sendAction(new EndTurn(this));
     }

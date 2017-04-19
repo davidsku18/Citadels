@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.game.infoMsg.GameState;
 
 /**
@@ -628,6 +629,7 @@ public class CitadelsGameState extends GameState
 
         Collections.shuffle(deckOrderDistricts);
     }
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     public int p1FindCard(CitadelsDistrictCard card)
@@ -635,12 +637,12 @@ public class CitadelsGameState extends GameState
         return this.p1Hand.indexOf(card);
 
     }
-    public int p2FindCard(int card)
+    public int p2FindCard(CitadelsDistrictCard card)
     {
         return this.p2Hand.indexOf(card);
 
     }
-    public int p3FindCard(int card)
+    public int p3FindCard(CitadelsDistrictCard card)
     {
         return this.p3Hand.indexOf(card);
 
