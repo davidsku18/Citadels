@@ -3,6 +3,7 @@ package edu.up.citadels.citadels;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import edu.up.citadels.game.infoMsg.GameState;
 
@@ -31,8 +32,6 @@ public class CitadelsGameState extends GameState
     private int p2Gold;
     private int p3Gold;
 
-    private CharacterCard noCharacter = new CharacterCard( -1, -1);
-
     //List of all cards in each player's hand
     private ArrayList<CitadelsDistrictCard> p1Hand = new ArrayList<CitadelsDistrictCard>();
     private ArrayList<CitadelsDistrictCard> p2Hand = new ArrayList<CitadelsDistrictCard>();
@@ -49,12 +48,12 @@ public class CitadelsGameState extends GameState
     private ArrayList<CitadelsDistrictCard> deckOrderDistricts = new ArrayList<CitadelsDistrictCard>();
 
     //which characters are assigned to each player
-    private CharacterCard p1Character1;
-    private CharacterCard p1Character2;
-    private CharacterCard p2Character1;
-    private CharacterCard p2Character2;
-    private CharacterCard p3Character1;
-    private CharacterCard p3Character2;
+    private int p1Character1;
+    private int p1Character2;
+    private int p2Character1;
+    private int p2Character2;
+    private int p3Character1;
+    private int p3Character2;
 
     //if a character has been assassinated //TODO
     private boolean characterIsAlive;
@@ -106,13 +105,13 @@ public class CitadelsGameState extends GameState
     //Gets the turn of the player based on their character
     public int getPlayerTurn()
     {
-        if((turn == this.p1Character1.getWhichCharacter()) || (turn == this.p1Character2.getWhichCharacter()))
+        if((turn == this.p1Character1) || (turn == this.p1Character2))
         {
             return 0;
-        }else if((turn == this.p2Character1.getWhichCharacter()) || (turn == this.p2Character2.getWhichCharacter()))
+        }else if((turn == this.p2Character1) || (turn == this.p2Character2))
         {
             return 1;
-        }else if((turn == this.p3Character1.getWhichCharacter()) || (turn == this.p3Character2.getWhichCharacter()))
+        }else if((turn == this.p3Character1) || (turn == this.p3Character2))
         {
             return 2;
         }
@@ -135,12 +134,12 @@ public class CitadelsGameState extends GameState
     } // TODO need to implement who is king and who has the king character card
 
     //Sets the player's chosen character card
-    public void setP1Character1(CharacterCard theCard) { this.p1Character1 = theCard; }
-    public void setP1Character2(CharacterCard theCard) { this.p1Character2 = theCard; }
-    public void setP2Character1(CharacterCard theCard) { this.p2Character1 = theCard; }
-    public void setP2Character2(CharacterCard theCard) { this.p2Character2 = theCard; }
-    public void setP3Character1(CharacterCard theCard) { this.p3Character1 = theCard; }
-    public void setP3Character2(CharacterCard theCard) { this.p3Character2 = theCard; }
+    public void setP1Character1(int x) { this.p1Character1 = x; }
+    public void setP1Character2(int x) { this.p1Character2 = x; }
+    public void setP2Character1(int x) { this.p2Character1 = x; }
+    public void setP2Character2(int x) { this.p2Character2 = x; }
+    public void setP3Character1(int x) { this.p3Character1 = x; }
+    public void setP3Character2(int x) { this.p3Character2 = x; }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
@@ -253,31 +252,31 @@ public class CitadelsGameState extends GameState
     }
 
     //Get P1's Characters
-    public CharacterCard getP1Character1()
+    public int getP1Character1()
     {
         return p1Character1;
     }
-    public CharacterCard getP1Character2()
+    public int getP1Character2()
     {
         return p1Character2;
     }
 
     //Get P2's Characters
-    public CharacterCard getP2Character1()
+    public int getP2Character1()
     {
         return p2Character1;
     }
-    public CharacterCard getP2Character2()
+    public int getP2Character2()
     {
         return p2Character2;
     }
 
     //Get P3's Characters
-    public CharacterCard getP3Character1()
+    public int getP3Character1()
     {
         return p3Character1;
     }
-    public CharacterCard getP3Character2()
+    public int getP3Character2()
     {
         return p3Character2;
     }
@@ -536,12 +535,12 @@ public class CitadelsGameState extends GameState
         return this.p1Hand.indexOf(card);
 
     }
-    public int p2FindCard(CitadelsDistrictCard card)
+    public int p2FindCard(int card)
     {
         return this.p2Hand.indexOf(card);
 
     }
-    public int p3FindCard(CitadelsDistrictCard card)
+    public int p3FindCard(int card)
     {
         return this.p3Hand.indexOf(card);
 
@@ -558,6 +557,8 @@ public class CitadelsGameState extends GameState
         //with a district built
 
         this.buildLimit = 1;
+        this.setP1Character1(10);
+        this.setP1Character2(10);
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -704,13 +705,12 @@ public class CitadelsGameState extends GameState
         //TODO take this out, I only put it in to test basic functionality
 
         //sets all character cards for players to nothing
-
-        this.setP1Character1(noCharacter);
-        this.setP1Character2(noCharacter);
-        this.setP2Character1(noCharacter);
-        this.setP2Character2(noCharacter);
-        this.setP3Character1(noCharacter);
-        this.setP3Character2(noCharacter);
+        this.setP1Character1(-1);
+        this.setP1Character2(-1);
+        this.setP2Character1(-1);
+        this.setP2Character2(-1);
+        this.setP3Character1(-1);
+        this.setP3Character2(-1);
 
     }
 
