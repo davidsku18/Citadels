@@ -1,6 +1,5 @@
 package edu.up.citadels.citadels;
 
-import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -45,67 +44,22 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         savedState = (CitadelsGameState)info;
 
+        //TODO maybe check and see if I can check with player int and turn
+
+        int whatToDo = (int) (Math.random() * 2);
+
+        if (whatToDo == 0)
+        {
+            game.sendAction(new ChooseDistrictCard(this));
+        }else
         if(savedState.getTurn() == this.playerNum)
         {
             game.sendAction(new ChooseCharacterCard(this));
 
             game.sendAction(new TakeGold(this));
-
-            //sleep(500);
-
-            game.sendAction(new EndTurn(this));
         }
-
-        /*game.sendAction(new TakeGold(this));
-
         sleep(1000);
 
         game.sendAction(new EndTurn(this));
-*/
-
-        /*// generate random number for AI to choose to take gold or a district card
-        int goldOrDist = (int)(Math.random()*2);
-
-        if (goldOrDist == 0)
-        {
-            game.sendAction(new TakeGold(this));
-        }
-        else
-        {
-            game.sendAction(new ChooseDistrictCard(this));
-        }
-
-        // generate random number for AI to choice to build or not build
-        int build = (int)(Math.random()*2);
-
-        if (build == 0)
-        {
-            game.sendAction(new CitadelsBuildDistrictCard(this));
-        }
-        else
-        {
-
-        }
-
-        int chooseCharacter = (int)((Math.random())*8);
-*/
-
-
-
-        /*if(this.allPlayerNames[0].equals(this.name))
-        {
-            player = 0;
-        }else if(this.allPlayerNames[1].equals(this.name))
-        {
-            player = 1;
-        }else if(this.allPlayerNames[2].equals(this.name))
-        {
-            player = 2;
-        }
-
-        if(savedState.getTurn() == this.player)
-        {
-            game.sendAction(new TakeGold(this));
-        }*/
     }
 }

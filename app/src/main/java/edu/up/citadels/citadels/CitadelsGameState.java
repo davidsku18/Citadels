@@ -153,6 +153,13 @@ public class CitadelsGameState extends GameState
         this.deckOrderDistricts.remove(0);
     }
 
+    public CitadelsDistrictCard drawDistrictCard()
+    {
+        CitadelsDistrictCard cdc = this.deckOrderDistricts.get(0);
+        this.deckOrderDistricts.remove(0);
+        return cdc;
+    }
+
     //Adds district card to player's city (built)
     public void addToP1City(CitadelsDistrictCard dc)
     {
@@ -523,7 +530,7 @@ public class CitadelsGameState extends GameState
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    public int p1FindCard(int card)
+    public int p1FindCard(CitadelsDistrictCard card)
     {
         return this.p1Hand.indexOf(card);
 
@@ -537,6 +544,11 @@ public class CitadelsGameState extends GameState
     {
         return this.p3Hand.indexOf(card);
 
+    }
+
+    public CitadelsDistrictCard getTopCard()
+    {
+        return this.drawCard();
     }
 
     public CitadelsGameState()
@@ -702,6 +714,10 @@ public class CitadelsGameState extends GameState
 
     public CitadelsGameState(CitadelsGameState orig)
     {
+        //TODO
+        //TODO  Nux includes the "new" reserved word in his copy constructor, not sure if that's immportant
+        //TODO  and I cannot check right now. Just didn't want to forget.
+
         buildLimit = orig.buildLimit;
         king = orig.king;
         turn = orig.turn;
