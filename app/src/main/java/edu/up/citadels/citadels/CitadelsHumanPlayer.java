@@ -296,7 +296,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             button.setBackgroundResource(R.drawable.temple);
         }
-        else if (cardName.toLowerCase().equals("townhall"))
+        else if (cardName.toLowerCase().equals("city hall"))
         {
             button.setBackgroundResource(R.drawable.townhall);
         }
@@ -750,12 +750,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                try {
+                /*try {
                     cardInfo.setText("Your First Character is: " + state.getP1Character1Name());
                 }catch(NullPointerException npe)
                 {
 
-                }
+                }*/
             }
         });
 
@@ -764,12 +764,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                try {
+                /*try {
                     cardInfo.setText("Your Second Character is: " + state.getP1Character2Name());
                 }catch(NullPointerException npe)
                 {
 
-                }
+                }*/
             }
         });
 
@@ -778,12 +778,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                try {
+                /*try {
                     cardInfo.setText("Player 2's First Character is: " + state.getP2Character1Name());
                 }catch(NullPointerException npe)
                 {
 
-                }
+                }*/
             }
         });
 
@@ -792,12 +792,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                try {
+                /*try {
                     cardInfo.setText("Player 2's Second Character is: " + state.getP2Character2Name());
                 }catch(NullPointerException npe)
                 {
 
-                }
+                }*/
             }
         });
 
@@ -806,12 +806,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                try {
+                /*try {
                     cardInfo.setText("Player 3's First Character is: " + state.getP3Character1Name());
                 }catch(NullPointerException npe)
                 {
 
-                }
+                }*/
             }
         });
 
@@ -820,12 +820,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                try {
+                /*try {
                     cardInfo.setText("Player 3's Second Character is: " + state.getP3Character2Name());
                 }catch(NullPointerException npe)
                 {
 
-                }
+                }*/
             }
         });
 

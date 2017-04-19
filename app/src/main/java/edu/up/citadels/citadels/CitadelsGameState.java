@@ -282,6 +282,36 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
+    public int getPlayer(CitadelsComputerPlayerDumb ccpd)
+    {
+        int num = ccpd.getPlayerNum();
+        if(num == 0)
+        {
+            return 1;
+        }else if(num == 1)
+        {
+            return 2;
+        }else if(num == 2)
+        {
+            return 3;
+        }else{  return -1;  }
+    }
+
+    public int getPlayer(CitadelsComputerPlayerSmart ccps)
+    {
+        int num = ccps.getPlayerNum();
+        if(num == 0)
+        {
+            return 1;
+        }else if(num == 1)
+        {
+            return 2;
+        }else if(num == 2)
+        {
+            return 3;
+        }else{  return -1;  }
+    }
+
     //get the names of the characters
     public String getP1Character1Name()
     {
@@ -326,23 +356,6 @@ public class CitadelsGameState extends GameState
     //Removes the characterCard from te deck after a player chooses their card
     public void removeCharacterCardFromDeck(int i) { this.characterDeck[i] = null; }
 
-    //Get face up card 1
-    public CharacterCard getCardUp1()
-    {
-        return cardUp1;
-    }
-
-    //Get face up card 2
-    public CharacterCard getCardUp2()
-    {
-        return cardUp2;
-    }
-
-    //Get character card deck
-    public CharacterCard getCharacterDeck(int i)
-    {
-        return characterDeck[i];
-    }
 
 ////////////////////////////////////Deals with Players district cards//////////////////////
 
@@ -396,63 +409,6 @@ public class CitadelsGameState extends GameState
     public ArrayList getP3Hand()
     {
         return this.p3Hand;
-    }
-
-    //Gets the player's district card at specific index in their district cards hand
-    public CitadelsDistrictCard getP1DistrictCard(int x)
-    {
-        return p1Hand.get(x);
-    }
-    public CitadelsDistrictCard getP2DistrictCard(int x)
-    {
-        return p2Hand.get(x);
-    }
-    public CitadelsDistrictCard getP3DistrictCard(int x)
-    {
-        return p3Hand.get(x);
-    }
-
-    public void setTheChosenDistrict(int district)
-    {
-        this.theChosenDistrict = district;
-    }
-
-    public int getTheChosenDistrict()
-    {
-        return this.theChosenDistrict;
-    }
-
-    public void removeP1BuiltDistrict()
-    {
-        if(this.p1City.size() > 0)
-        {
-            p1City.remove(0);
-        }else
-        {
-            //do nothing
-        }
-    }
-
-    public void removeP2BuiltDistrict()
-    {
-        if(this.p2City.size() > 0)
-        {
-            p2City.remove(0);
-        }else
-        {
-            //do nothing
-        }
-    }
-
-    public void removeP3BuiltDistrict()
-    {
-        if(this.p3City.size() > 0)
-        {
-            p3City.remove(0);
-        }else
-        {
-            //do nothing
-        }
     }
 
     //Get P1 City
@@ -612,7 +568,7 @@ public class CitadelsGameState extends GameState
         // Making Harbour district cards and adding them to deck
         for (int i = 26; i < 29; ++i)
         {
-            deckOrderDistricts.add(new CitadelsDistrictCard("Harbour", 1, 4));
+            deckOrderDistricts.add(new CitadelsDistrictCard("Harbor", 1, 4));
         }
 
         // Making City Hall district cards and adding them to deck
