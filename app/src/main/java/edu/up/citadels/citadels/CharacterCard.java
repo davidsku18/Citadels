@@ -129,4 +129,49 @@ public class CharacterCard
             return -1;
         }
     }
+
+    public String getName()
+    {
+        String name = null;
+        switch (whichCharacter)
+        {
+            case -1:
+                name = "nothing";
+                break;
+
+            case 1:
+                name =  "Assassin";
+                break;
+
+            case 2:
+                name =  "Thief";
+                break;
+
+            case 3:
+                name =  "Magician";
+                break;
+
+            case 4:
+                name =  "King";
+                break;
+
+            case 5:
+                name =  "Bishop";
+                break;
+
+            case 6:
+                name =  "Merchant";
+                break;
+
+            case 7:
+                name =  "Architect";
+                break;
+
+            case 8:
+                name =  "Warlord";
+                break;
+
+        }
+        return name;
+    }
 }
