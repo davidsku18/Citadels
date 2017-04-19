@@ -60,8 +60,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     String name;
     private ImageButton player1_Card1;
     private ImageButton player1_Card2;
-    private boolean p1_Card1Bool = true; // boolean for player1_Card1
-    private boolean p1_Card2Bool = true; // boolean for player1_Cart2
 
     private ImageButton player2_Card1;
     private ImageButton player2_Card2;
@@ -606,7 +604,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(0) != null)
+                /*if(state.getCharacterDeck(0) != null)
                 {
                     humanPlayerChooseCharacterCard(0);
                     cardInfo.setText("You've chosen the thief card");
@@ -616,7 +614,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
         thiefButton.setOnClickListener(new View.OnClickListener()
@@ -624,7 +622,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(1) != null)
+                /*if(state.getCharacterDeck(1) != null)
                 {
                     humanPlayerChooseCharacterCard(1);
                     cardInfo.setText("You've chosen the thief card");
@@ -633,7 +631,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -643,7 +641,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(2) != null)
+                /*if(state.getCharacterDeck(2) != null)
                 {
                     humanPlayerChooseCharacterCard(2);
                     cardInfo.setText("You've chosen the magician card");
@@ -652,7 +650,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -662,7 +660,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(3) != null)
+                /*if(state.getCharacterDeck(3) != null)
                 {
                     humanPlayerChooseCharacterCard(3);
                     cardInfo.setText("You've chosen the king card");
@@ -671,7 +669,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -680,7 +678,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(4) != null)
+                /*if(state.getCharacterDeck(4) != null)
                 {
                     humanPlayerChooseCharacterCard(4);
                     cardInfo.setText("You've chosen the bishop card");
@@ -689,7 +687,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -698,7 +696,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(5) != null)
+                /*if(state.getCharacterDeck(5) != null)
                 {
                     humanPlayerChooseCharacterCard(5);
                     cardInfo.setText("You've chosen the merchant card");
@@ -707,7 +705,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -716,7 +714,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(6) != null)
+                /*if(state.getCharacterDeck(6) != null)
                 {
                     humanPlayerChooseCharacterCard(6);
                     cardInfo.setText("You've chosen the architect card");
@@ -725,7 +723,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -734,7 +732,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(7) != null)
+               /* if(state.getCharacterDeck(7) != null)
                 {
                     humanPlayerChooseCharacterCard(7);
                     cardInfo.setText("You've chosen the warlord card");
@@ -743,7 +741,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
 
@@ -752,7 +750,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                //if it gets touched do something
+                try {
+                    cardInfo.setText("Your First Character is: " + state.getP1Character1Name());
+                }catch(IndexOutOfBoundsException ie)
+                {
+
+                }
             }
         });
 
@@ -761,7 +764,68 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                //do something if it's touched
+                try {
+                    cardInfo.setText("Your Second Character is: " + state.getP1Character2Name());
+                }catch(IndexOutOfBoundsException ie)
+                {
+
+                }
+            }
+        });
+
+        player2_Card1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try {
+                    cardInfo.setText("Player 2's First Character is: " + state.getP2Character1Name());
+                }catch(IndexOutOfBoundsException ie)
+                {
+
+                }
+            }
+        });
+
+        player2_Card2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try {
+                    cardInfo.setText("Player 2's Second Character is: " + state.getP2Character2Name());
+                }catch(IndexOutOfBoundsException ie)
+                {
+
+                }
+            }
+        });
+
+        player3_Card1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try {
+                    cardInfo.setText("Player 3's First Character is: " + state.getP3Character1Name());
+                }catch(IndexOutOfBoundsException ie)
+                {
+
+                }
+            }
+        });
+
+        player3_Card2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try {
+                    cardInfo.setText("Player 3's Second Character is: " + state.getP3Character2Name());
+                }catch(IndexOutOfBoundsException ie)
+                {
+
+                }
             }
         });
 
@@ -1388,14 +1452,21 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
             else if(position == 3)
             {
-                if (hasBuilt == false)
+                if (hasBuilt == false && state.getP1Hand().size() != 0)
                 {
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
-                    cardInfo.setText(cardToBuild.getName() + " Built.");
-                    humanPlayerBuildDistrict(cardToBuild);
-                    p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
-                    p1HandAdapter.notifyDataSetChanged();
-                    hasBuilt = true;
+                    if(state.getP1Gold() >= cardToBuild.getCost())
+                   {
+                       cardInfo.setText(cardToBuild.getName() + " Built.");
+                       humanPlayerBuildDistrict(cardToBuild);
+                       p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
+                       p1HandAdapter.notifyDataSetChanged();
+                       hasBuilt = true;
+                   }else
+                    {
+                        cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
+                    }
+
                 }else
                 {
                     //do nothing, they aren't allowed to build more

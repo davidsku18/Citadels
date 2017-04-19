@@ -77,7 +77,7 @@ public class CitadelsLocalGame extends LocalGame {
      */
     @Override
     protected String checkIfGameOver() {
-        if (state.getTurn() == 8) {
+        if (state.getTurn() == 5) {
             int p1Districts = state.getP1City().size();
             int p2Districts = state.getP2City().size();
             int p3Districts = state.getP3City().size();

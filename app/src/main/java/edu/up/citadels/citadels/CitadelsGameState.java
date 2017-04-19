@@ -281,6 +281,36 @@ public class CitadelsGameState extends GameState
         return p3Character2;
     }
 
+    //get the names of the characters
+    public String getP1Character1Name()
+    {
+        return characterDeck[this.p1Character1].getName();
+    }
+
+    public String getP1Character2Name()
+    {
+        return characterDeck[this.p1Character2].getName();
+    }
+
+    public String getP2Character1Name()
+    {
+        return characterDeck[this.p2Character1].getName();
+    }
+
+    public String getP2Character2Name()
+    {
+        return characterDeck[this.p2Character2].getName();
+    }
+
+    public String getP3Character1Name()
+    {
+        return characterDeck[this.p3Character1].getName();
+    }
+
+    public String getP3Character2Name()
+    {
+        return characterDeck[this.p3Character2].getName();
+    }
     public void setChosenCharacterCardNum(int chosenCharacterCard)
     {
         //characterDeck[chosenCharacterCard] = null;
