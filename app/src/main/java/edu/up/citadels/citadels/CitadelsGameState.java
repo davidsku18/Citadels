@@ -84,7 +84,7 @@ public class CitadelsGameState extends GameState
     private CharacterCard[] characterDeck = new CharacterCard[8];
 
     //the character card that was chosen
-    private int theChosenCharacterCard = 0;
+    private int theChosenCharacterCard;
 
     private int theChosenDistrict;
 
@@ -284,16 +284,16 @@ public class CitadelsGameState extends GameState
     public void setChosenCharacterCardNum(int chosenCharacterCard)
     {
         //characterDeck[chosenCharacterCard] = null;
-        theChosenCharacterCard = chosenCharacterCard;
+        this.theChosenCharacterCard = chosenCharacterCard;
     }
     //returns the character card that the player chose
     public int getChosenCharacterCardNum()
     {
-        return theChosenCharacterCard;
+        return this.theChosenCharacterCard;
     }
 
     //Removes the characterCard from te deck after a player chooses their card
-    public void removeCharacterCard(int i) { this.characterDeck[i] = null; }
+    public void removeCharacterCardFromDeck(int i) { this.characterDeck[i] = null; }
 
     //Get face up card 1
     public CharacterCard getCardUp1()
@@ -703,12 +703,15 @@ public class CitadelsGameState extends GameState
         this.setP3Gold(2);
 
         //TODO take this out, I only put it in to test basic functionality
-        this.setP1Character1(0);
-        this.setP1Character2(3);
-        this.setP2Character1(1);
-        this.setP2Character2(4);
-        this.setP3Character1(2);
-        this.setP3Character2(5);
+
+        //sets all character cards for players to nothing
+        this.setP1Character1(-1);
+        this.setP1Character2(-1);
+        this.setP2Character1(-1);
+        this.setP2Character2(-1);
+        this.setP3Character1(-1);
+        this.setP3Character2(-1);
+
     }
 
 

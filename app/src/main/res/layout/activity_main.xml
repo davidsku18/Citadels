@@ -825,13 +825,13 @@
                             android:id="@+id/p1_D1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                         <ImageButton
                             android:id="@+id/p1_D2"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
 

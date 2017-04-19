@@ -1,5 +1,6 @@
 package edu.up.citadels.citadels;
 
+import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -46,20 +47,20 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         //TODO maybe check and see if I can check with player int and turn
 
+        int whatCharacterToChoose = (int) (Math.random() * 8);
         int whatToDo = (int) (Math.random() * 2);
+
 
         if (whatToDo == 0)
         {
             game.sendAction(new ChooseDistrictCard(this));
-        }else
-        if(savedState.getTurn() == this.playerNum)
-        {
-            game.sendAction(new ChooseCharacterCard(this));
-
-            game.sendAction(new TakeGold(this));
         }
-        sleep(1000);
-
-        game.sendAction(new EndTurn(this));
+        else if (savedState.getTurn() == this.player)
+        {
+            //game.sendAction(new ChooseCharacterCard(this));
+            sleep(1000);
+            game.sendAction(new TakeGold(this));
+            game.sendAction(new EndTurn(this));
+        }
     }
 }
