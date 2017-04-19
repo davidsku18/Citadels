@@ -703,17 +703,19 @@ public class CitadelsGameState extends GameState
         this.setP2Gold(2);
         this.setP3Gold(2);
 
-        //TODO take this out, I only put it in to test basic functionality
+        this.setP1Character1(0);
+        this.setP1Character2(3);
+        this.setP2Character1(1);
+        this.setP2Character2(4);
+        this.setP3Character1(2);
+        this.setP3Character2(5);
 
-        //sets all character cards for players to nothing
-
-        this.setP1Character1(-1);
-        this.setP1Character2(-1);
-        this.setP2Character1(-1);
-        this.setP2Character2(-1);
-        this.setP3Character1(-1);
-        this.setP3Character2(-1);
-
+        this.removeCharacterCardFromDeck(0);
+        this.removeCharacterCardFromDeck(1);
+        this.removeCharacterCardFromDeck(2);
+        this.removeCharacterCardFromDeck(3);
+        this.removeCharacterCardFromDeck(4);
+        this.removeCharacterCardFromDeck(5);
     }
 
 
@@ -754,8 +756,6 @@ public class CitadelsGameState extends GameState
         p2Character2 = orig.p2Character2;
         p3Character1 = orig.p3Character1;
         p3Character2 = orig.p3Character2;
-
-
     }
 
     //Returns if Character is alive

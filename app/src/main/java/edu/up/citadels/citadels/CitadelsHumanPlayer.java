@@ -190,6 +190,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
+            cardInfo.setText("It is your turn.");
         }
     }
 
@@ -476,7 +477,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
-
+        drawCharacterCard(player1_Card1, state.getP1Character1());
+        drawCharacterCard(player1_Card2, state.getP1Character2());
+        drawCharacterCard(player2_Card1, state.getP2Character1());
+        drawCharacterCard(player2_Card2, state.getP2Character2());
+        drawCharacterCard(player3_Card1, state.getP3Character1());
+        drawCharacterCard(player3_Card2, state.getP3Character2());
 
         for(int i = 0; i < state.getP1City().size(); ++i)
         {
@@ -590,6 +596,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         drawCharacterCard(player1_Card2, state.getP1Character2());
         drawCharacterCard(player2_Card1, state.getP2Character1());
         drawCharacterCard(player2_Card2, state.getP2Character2());
+
+
         drawCharacterCard(player3_Card1, state.getP3Character1());
         drawCharacterCard(player3_Card2, state.getP3Character2());
 
@@ -601,6 +609,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(0) != null)
                 {
                     humanPlayerChooseCharacterCard(0);
+                    cardInfo.setText("You've chosen the thief card");
                     cardInfo.setText("You've chosen the assassin card");
                 }
                 else
