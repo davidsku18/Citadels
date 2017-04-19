@@ -43,6 +43,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         savedState = (CitadelsGameState) info;
 
+        int myPlayer = savedState.getPlayer(this);
+
         sleep((int)(1 + Math.random() * 2000));
 
         int whatToDo = (int) (Math.random() * 2);
@@ -53,6 +55,23 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             game.sendAction(new TakeGold(this));
         }
 
+        if(myPlayer == 1)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
+        }else if(myPlayer == 2)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+
+        }else if(myPlayer == 3)
+        {
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+        }
+
         game.sendAction(new EndTurn(this));
+    }
+
+    public int getPlayerNum()
+    {
+        return this.playerNum;
     }
 }

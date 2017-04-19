@@ -296,7 +296,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             button.setBackgroundResource(R.drawable.temple);
         }
-        else if (cardName.toLowerCase().equals("townhall"))
+        else if (cardName.toLowerCase().equals("city hall"))
         {
             button.setBackgroundResource(R.drawable.townhall);
         }

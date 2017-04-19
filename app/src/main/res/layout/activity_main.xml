@@ -24,63 +24,63 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/assassinButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/assasin" />
 
                 <ImageButton
                     android:id="@+id/thiefButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/thief" />
 
                 <ImageButton
                     android:id="@+id/magicianButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/magician" />
 
                 <ImageButton
                     android:id="@+id/kingButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/king" />
 
                 <ImageButton
                     android:id="@+id/bishopButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bishop" />
 
                 <ImageButton
                     android:id="@+id/merchantButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/merchant" />
 
                 <ImageButton
                     android:id="@+id/architectButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/architect" />
 
                 <ImageButton
                     android:id="@+id/warlordButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/warlord" />
             </LinearLayout>
@@ -113,13 +113,13 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"/>
 
                     <ImageView
                         android:id="@+id/p2_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,13 +137,13 @@
                         <ImageButton
                             android:id="@+id/p2_D1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
                     </LinearLayout>
 
@@ -179,13 +179,13 @@
                         <ImageButton
                             android:id="@+id/player2_Card1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/player2_Card2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
 
@@ -204,14 +204,14 @@
 
                         <ImageButton
                             android:id="@+id/p2_D3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -229,14 +229,14 @@
 
                         <ImageButton
                             android:id="@+id/p2_D7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p2_D8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -257,21 +257,21 @@
                     <TextView
                         android:id="@+id/p2_Score"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Score:" />
 
                     <TextView
                         android:id="@+id/p2_gold"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Gold:" />
 
                     <TextView
                         android:id="@+id/p2_dc"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Districts:" />
 
@@ -290,14 +290,14 @@
 
                         <ImageButton
                             android:id="@+id/p2_D5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:id="@+id/p2_D6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
@@ -363,7 +363,7 @@
                     <Button
                         android:id="@+id/Menu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="right"
                         android:layout_weight="1"
                         android:text="Menu"
@@ -437,13 +437,13 @@
 
                         <ImageButton
                             android:id="@+id/p3_D1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                         <ImageButton
                             android:id="@+id/p3_D2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -456,13 +456,13 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"/>
 
                     <ImageView
                         android:id="@+id/p3_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -485,14 +485,14 @@
 
                         <ImageButton
                             android:id="@+id/p3_D7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p3_D8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -510,13 +510,13 @@
 
                         <ImageButton
                             android:id="@+id/p3_D3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                         <ImageButton
                             android:id="@+id/p3_D4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -535,12 +535,12 @@
                         <ImageButton
                             android:id="@+id/player3_card1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                         <ImageButton
                             android:id="@+id/player3_card2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -573,14 +573,14 @@
 
                         <ImageButton
                             android:id="@+id/p3_D5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p3_D6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -594,21 +594,21 @@
                     <TextView
                         android:id="@+id/p3_Score"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         />
 
                     <TextView
                         android:id="@+id/p3_Gold"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         />
 
                     <TextView
                         android:id="@+id/p3_Dc"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Districts:" />
                 </LinearLayout>
@@ -676,13 +676,13 @@
                         <ImageButton
                             android:id="@+id/face1_Up"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/face2_Up"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
 
@@ -718,13 +718,13 @@
                     <TextView
                         android:id="@+id/p1_Gold"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="Gold:" />
 
                     <ImageView
                         android:id="@+id/Gold_Icon"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -736,7 +736,7 @@
                     <ImageButton
                         android:id="@+id/player1_Card1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
 
                         android:layout_weight="1"
                         android:adjustViewBounds="false"
@@ -745,7 +745,7 @@
                     <ImageButton
                         android:id="@+id/player1_Card2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:elevation="0dp"/>
                 </LinearLayout>
@@ -785,14 +785,14 @@
 
                         <ImageButton
                             android:id="@+id/p1_D7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:id="@+id/p1_D8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
@@ -823,14 +823,14 @@
 
                         <ImageButton
                             android:id="@+id/p1_D1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
 
                         <ImageButton
                             android:id="@+id/p1_D2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
@@ -848,14 +848,14 @@
 
                         <ImageButton
                             android:id="@+id/p1_D3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p1_D4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -873,14 +873,14 @@
 
                         <ImageButton
                             android:id="@+id/p1_D5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
 
                         <ImageButton
                             android:id="@+id/p1_D6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -901,7 +901,7 @@
                     <Spinner
                         android:id="@+id/player1HandSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="4" />
 
                 </LinearLayout>
@@ -964,7 +964,7 @@
                     <TextView
                         android:id="@+id/P1_Score"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="Score:" />
                 </LinearLayout>
 
@@ -976,13 +976,13 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <ImageView
                         android:id="@+id/p1_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
             </LinearLayout>
 
