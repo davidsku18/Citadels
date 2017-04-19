@@ -150,6 +150,13 @@ public class CitadelsGameState extends GameState
         this.deckOrderDistricts.remove(0);
     }
 
+    public CitadelsDistrictCard drawDistrictCard()
+    {
+        CitadelsDistrictCard cdc = this.deckOrderDistricts.get(0);
+        this.deckOrderDistricts.remove(0);
+        return cdc;
+    }
+
     //Adds district card to player's city (built)
     public void addToP1City(CitadelsDistrictCard dc)
     {
@@ -496,7 +503,7 @@ public class CitadelsGameState extends GameState
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    public int p1FindCard(int card)
+    public int p1FindCard(CitadelsDistrictCard card)
     {
         return this.p1Hand.indexOf(card);
 
@@ -512,12 +519,17 @@ public class CitadelsGameState extends GameState
 
     }
 
+    public CitadelsDistrictCard getTopCard()
+    {
+        return this.drawCard();
+    }
+
     public CitadelsGameState()
     {
         //sets all of the built districts for each player to null because no one will start
         //with a district built
 
-        buildLimit = 1;
+        this.buildLimit = 1;
 
         // Making Watchtower district cards and adding them to deck
         for (int i = 0; i < 3; ++i)
@@ -618,7 +630,7 @@ public class CitadelsGameState extends GameState
         Collections.shuffle(deckOrderDistricts);
 
         //player 1's starting district cards
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p1Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -626,7 +638,7 @@ public class CitadelsGameState extends GameState
 
 
         //player 2's starting district cards
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p2Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -634,7 +646,7 @@ public class CitadelsGameState extends GameState
 
 
         //player 3's starting district cards
-        for (int i = 0; i<4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p3Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -669,35 +681,18 @@ public class CitadelsGameState extends GameState
         this.setP2Character2(4);
         this.setP3Character1(2);
         this.setP3Character2(5);
-
-        /*this.p1City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
-        this.p1City.add(new CitadelsDistrictCard("Castle", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Market", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Docks", 1, 4));
-        this.p1City.add(new CitadelsDistrictCard("Harbor", 2, 2));
-        this.p1City.add(new CitadelsDistrictCard("Cathedral", 0, 1));
-        this.p1City.add(new CitadelsDistrictCard("Manor", 1, 3));
-
-        this.p2City.add(new CitadelsDistrictCard("Palace", 3, 2));
-        this.p2City.add(new CitadelsDistrictCard("Castle", 2, 2));
-        this.p2City.add(new CitadelsDistrictCard("Market", 2, 2));
-        this.p2City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
-
-        this.p3City.add(new CitadelsDistrictCard("WatchTower", 3, 2));
-        this.p3City.add(new CitadelsDistrictCard("Prison", 2, 2));
-        this.p3City.add(new CitadelsDistrictCard("Market", 2, 2));
-        this.p3City.add(new CitadelsDistrictCard("Battlefield", 2, 2));
-        this.p3City.add(new CitadelsDistrictCard("Docks", 1, 4));
-        this.p3City.add(new CitadelsDistrictCard("Harbor", 2, 2));*/
     }
 
 
     public CitadelsGameState(CitadelsGameState orig)
     {
+        //TODO
+        //TODO  Nux includes the "new" reserved word in his copy constructor, not sure if that's immportant
+        //TODO  and I cannot check right now. Just didn't want to forget.
+
         buildLimit = orig.buildLimit;
         king = orig.king;
-        this.turn = orig.turn;
+        turn = orig.turn;
 
         p1Gold = orig.p1Gold;
         p2Gold = orig.p2Gold;
@@ -710,13 +705,19 @@ public class CitadelsGameState extends GameState
         p1Hand = orig.p1Hand;
         p2Hand = orig.p2Hand;
         p3Hand = orig.p3Hand;
+
+        p1City = orig.p1City;
+        p2City = orig.p2City;
+        p3City = orig.p3City;
+
         deckOrderDistricts = orig.deckOrderDistricts;
-        this.p1Character1 = orig.p1Character1;
-        this.p1Character2 = orig.p1Character2;
-        this.p2Character1 = orig.p2Character1;
-        this.p2Character2 = orig.p2Character2;
-        this.p3Character1 = orig.p3Character1;
-        this.p3Character2 = orig.p3Character2;
+
+        p1Character1 = orig.p1Character1;
+        p1Character2 = orig.p1Character2;
+        p2Character1 = orig.p2Character1;
+        p2Character2 = orig.p2Character2;
+        p3Character1 = orig.p3Character1;
+        p3Character2 = orig.p3Character2;
 
 
     }

@@ -2,10 +2,15 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,7 +18,10 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +31,7 @@ import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
@@ -32,6 +41,7 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
 import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
+import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
@@ -104,6 +114,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1Score;
     private TextView player2Score;
     private TextView player3Score;
+    private TextView player2DistrictCards;
+    private TextView player3DistrictCards;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -137,7 +149,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     CardChooserSurfaceView ccsv;
 
     // Our edu.up.citadels.game state
-    protected CitadelsGameState state = new CitadelsGameState();
+    protected CitadelsGameState state;  //= new CitadelsGameState();
 
     CitadelsDistrictCard card = null;
 
@@ -145,9 +157,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private int layoutId;
     private int selectedCard;
-
-    //LinearLayout main = (LinearLayout) myActivity.findViewById(R.id.activity_main);
-
 
     /**
      * constructor
@@ -171,13 +180,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     @Override
     public void receiveInfo(GameInfo info)
     {
-        Log.i("CitadelsComputerPlayer", "receiving updated state ("+info.getClass()+")");
-        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
-            // if we had an out-of-turn or illegal move, flash the screen
-            //surface.flash(Color.RED, 50);
-            //Do nothing yet TODO
-        }
-        else if (!(info instanceof CitadelsGameState)) {
+        if (!(info instanceof CitadelsGameState)) {
             // otherwise, if it's not a game-state message, ignore
             return;
         }
@@ -186,12 +189,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // going, there is no need to explicitly display anything. That will happen
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
-            Log.i("human player", "receiving");
-
+            this.initializeEverything();
         }
     }
 
-    public void drawcharacterCard(ImageButton cbutton, int charNum)
+    public void drawCharacterCard(ImageButton cbutton, int charNum)
     {
         if (charNum == 0)
         {
@@ -232,7 +234,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     }
 
-    public void drawcityCard(ImageButton button, String cardName)
+    public void drawCityCard(ImageButton button, String cardName)
     {
         if (cardName.toLowerCase().equals("battlefield"))
         {
@@ -406,146 +408,16 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7.setScaleType(ImageView.ScaleType.FIT_XY);
         p3_D8.setScaleType(ImageView.ScaleType.FIT_XY);
 
-        drawcharacterCard(player1_Card1, state.getP1Character1());
-        drawcharacterCard(player1_Card2, state.getP1Character2());
-        drawcharacterCard(player2_Card1, state.getP2Character1());
-        drawcharacterCard(player2_Card2, state.getP2Character2());
-
-
-        drawcharacterCard(player3_Card1, state.getP3Character1());
-        drawcharacterCard(player3_Card2, state.getP3Character2());
-
-        for(int i = 0; i <state.getP1City().size(); ++i)
-        {
-            if( i == 0)
-            {
-                drawcityCard(p1_D1, state.getP1CityCard(i).getName());
-            }
-            else if (i == 1)
-            {
-                drawcityCard(p1_D2, state.getP1CityCard(i).getName());
-            }
-            else if (i == 2)
-            {
-                drawcityCard(p1_D3, state.getP1CityCard(i).getName());
-            }
-            else if (i == 3)
-            {
-                drawcityCard(p1_D4, state.getP1CityCard(i).getName());
-            }
-            else if (i == 4)
-            {
-                drawcityCard(p1_D5, state.getP1CityCard(i).getName());
-            }
-            else if (i == 5)
-            {
-                drawcityCard(p1_D6, state.getP1CityCard(i).getName());
-            }
-            else if (i == 6)
-            {
-                drawcityCard(p1_D7, state.getP1CityCard(i).getName());
-            }
-            else if (i == 7)
-            {
-                drawcityCard(p1_D8, state.getP1CityCard(i).getName());
-            }
-        }
-
-        for(int i = 0; i <state.getP2City().size(); ++i)
-        {
-            if( i == 0)
-            {
-                drawcityCard(p2_D1, state.getP2CityCard(i).getName());
-            }
-            else if (i == 1)
-            {
-                drawcityCard(p2_D2, state.getP2CityCard(i).getName());
-            }
-            else if (i == 2)
-            {
-                drawcityCard(p2_D3, state.getP2CityCard(i).getName());
-            }
-            else if (i == 3)
-            {
-                drawcityCard(p2_D4, state.getP2CityCard(i).getName());
-            }
-            else if (i == 4)
-            {
-                drawcityCard(p2_D5, state.getP2CityCard(i).getName());
-            }
-            else if (i == 5)
-            {
-                drawcityCard(p2_D6, state.getP2CityCard(i).getName());
-            }
-            else if (i == 6)
-            {
-                drawcityCard(p2_D7, state.getP2CityCard(i).getName());
-            }
-            else if (i == 7)
-            {
-                drawcityCard(p2_D8, state.getP2CityCard(i).getName());
-            }
-        }
-
-        for(int i = 0; i <state.getP3City().size(); ++i)
-        {
-            if( i == 0)
-            {
-                drawcityCard(p3_D1, state.getP3CityCard(i).getName());
-            }
-            else if (i == 1)
-            {
-                drawcityCard(p3_D2, state.getP3CityCard(i).getName());
-            }
-            else if (i == 2)
-            {
-                drawcityCard(p3_D3, state.getP3CityCard(i).getName());
-            }
-            else if (i == 3)
-            {
-                drawcityCard(p3_D4, state.getP3CityCard(i).getName());
-            }
-            else if (i == 4)
-            {
-                drawcityCard(p3_D5, state.getP3CityCard(i).getName());
-            }
-            else if (i == 5)
-            {
-                drawcityCard(p3_D6, state.getP3CityCard(i).getName());
-            }
-            else if (i == 6)
-            {
-                drawcityCard(p3_D7, state.getP3CityCard(i).getName());
-            }
-            else if (i == 7)
-            {
-                drawcityCard(p3_D8, state.getP3CityCard(i).getName());
-            }
-        }
-
-
-        drawcharacterCard(player2_Card1, state.getP2Character1());
-        drawcharacterCard(player2_Card2, state.getP2Character2());
-
-
-        drawcharacterCard(player3_Card1, state.getP3Character1());
-        drawcharacterCard(player3_Card2, state.getP3Character2());
-
-
-
-
-
-
-
-
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
         player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
-        player1Score = (TextView)myActivity.findViewById(R.id.P1_Score);
-        player2Score = (TextView)myActivity.findViewById(R.id.p2_Score);
-        player3Score = (TextView)myActivity.findViewById(R.id.p3_Score);
+        player1Score = (TextView) myActivity.findViewById(R.id.P1_Score);
+        player2Score = (TextView) myActivity.findViewById(R.id.p2_Score);
+        player3Score = (TextView) myActivity.findViewById(R.id.p3_Score);
+        player2DistrictCards = (TextView) myActivity.findViewById(R.id.p2_dc);
+        player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
 
        /**
         * @Author Victor Nguyen
@@ -565,15 +437,21 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
-        // get values for the spinner
 
-        this.p1HandArrayList = state.getP1HandNames();
-        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
-                android.R.id.text1, p1HandArrayList);
-        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.player1HandSpinner.setAdapter(p1HandAdapter);
-        this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
+        // define a listener for the spinner
+        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
+        actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
 
+        //initialize the array adapter
+        ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, p1ActionSpinnerNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //connect spinner to the adapter
+        actionSpinner.setAdapter(adapter);
+    }
+
+    public void initializeEverything()
+    {
         // set values for all players' gold
         player1GoldCount.setText("Gold: " + state.getP1Gold());
         player2GoldCount.setText("Gold: " + state.getP2Gold());
@@ -583,52 +461,145 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2Score.setText("Score: " + state.getP2Score());
         player3Score.setText("Score: " + state.getP3Score());
 
+        player2DistrictCards.setText("Districts: " + state.getP2Hand().size());
+        player3DistrictCards.setText("Districts: " + state.getP3Hand().size());
 
-        // define a listener for the spinner
-        String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
-        actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+        this.p1HandArrayList = state.getP1HandNames();
+        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, p1HandArrayList);
+        p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.player1HandSpinner.setAdapter(p1HandAdapter);
+        this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
-        // initializing CardChooserSurfaceView
-        //this.ccsv = (CardChooserSurfaceView) this.myActivity.findViewById(R.id.cardtheSurfaceView);
+        drawCharacterCard(player1_Card1, state.getP1Character1());
+        drawCharacterCard(player1_Card2, state.getP1Character2());
+        drawCharacterCard(player2_Card1, state.getP2Character1());
+        drawCharacterCard(player2_Card2, state.getP2Character2());
+        drawCharacterCard(player3_Card1, state.getP3Character1());
+        drawCharacterCard(player3_Card2, state.getP3Character2());
 
-        //initialize the array adapter
-        ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
-                android.R.id.text1, p1ActionSpinnerNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //connect spinner to the adapter
-        actionSpinner.setAdapter(adapter);
-
-
-        /*for(int i = 0; i < state.getP1City().size(); ++i)
-        if(state != null)
-        {
-            receiveInfo(state);
-        }
-/*
         for(int i = 0; i < state.getP1City().size(); ++i)
         {
-            CitadelsDistrictCard cdc = state.getP1DistrictCard(i);
-            p1HandNames.add(cdc.getName());
+            if( i == 0)
+            {
+                drawCityCard(p1_D1, state.getP1CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawCityCard(p1_D2, state.getP1CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawCityCard(p1_D3, state.getP1CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawCityCard(p1_D4, state.getP1CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawCityCard(p1_D5, state.getP1CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawCityCard(p1_D6, state.getP1CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawCityCard(p1_D7, state.getP1CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawCityCard(p1_D8, state.getP1CityCard(i).getName());
+            }
         }
 
         for(int i = 0; i < state.getP2City().size(); ++i)
         {
-            CitadelsDistrictCard cdc = state.getP2DistrictCard(i);
-            p2HandNames.add(cdc.getName());
+            if( i == 0)
+            {
+                drawCityCard(p2_D1, state.getP2CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawCityCard(p2_D2, state.getP2CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawCityCard(p2_D3, state.getP2CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawCityCard(p2_D4, state.getP2CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawCityCard(p2_D5, state.getP2CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawCityCard(p2_D6, state.getP2CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawCityCard(p2_D7, state.getP2CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawCityCard(p2_D8, state.getP2CityCard(i).getName());
+            }
         }
 
         for(int i = 0; i < state.getP3City().size(); ++i)
         {
-            CitadelsDistrictCard cdc = state.getP3DistrictCard(i);
-            p3HandNames.add(cdc.getName());
+            if( i == 0)
+            {
+                drawCityCard(p3_D1, state.getP3CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawCityCard(p3_D2, state.getP3CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawCityCard(p3_D3, state.getP3CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawCityCard(p3_D4, state.getP3CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawCityCard(p3_D5, state.getP3CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawCityCard(p3_D6, state.getP3CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawCityCard(p3_D7, state.getP3CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawCityCard(p3_D8, state.getP3CityCard(i).getName());
+            }
         }
-*/      //TODO set random cards invisible
+
+
+        drawCharacterCard(player2_Card1, state.getP2Character1());
+        drawCharacterCard(player2_Card2, state.getP2Character2());
+
+
+        drawCharacterCard(player3_Card1, state.getP3Character1());
+        drawCharacterCard(player3_Card2, state.getP3Character2());
+
         assassinButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(0) != null)
+                /*if(state.getCharacterDeck(0) != null)
                 {
                     state.setChosenCharacterCard(0);
                     humanPlayerChooseCharacterCard(0);
@@ -639,7 +610,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     state.setChosenCharacterCard(-1);
                     cardInfo.setText("This card is already taken");
-                }
+                }*/
             }
         });
         thiefButton.setOnClickListener(new View.OnClickListener()
@@ -775,59 +746,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
-    }
 
-
-    //This makes this player make a take gold action
-    public void humanPlayerTakeGold()
-    {
-        game.sendAction(new TakeGold(this));
-    }
-
-    //This allows the player to take a district card
-    public void humanPlayerTakeDistrictCard()
-    {
-        game.sendAction(new ChooseDistrictCard(this));
-    }
-
-    //This allows a player to use their special ability
-    public void humanPlayerUseAbility()
-    {
-        game.sendAction(new UseSpecialAbility(this));
-    }
-
-    //This method allows the user to end their turn
-    public void humanPlayerEndTurn()
-    {
-        game.sendAction(new EndTurn(this));
-    }
-
-    public void humanPlayerBuildDistrict(CitadelsDistrictCard cdc)
-    {
-        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
-    }
-
-    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
-
-    public void setWhichCard(CitadelsDistrictCard cdc)
-    {
-        this.cdc = cdc;
-    }
-
-    /**
-     * returns the GUI's top view
-     *
-     * @return
-     * 		the GUI's top view
-     */
-    @Override
-    public View getTopView() {
-        return myActivity.findViewById(R.id.top_gui_layout);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -862,11 +781,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                card = state.getP1City().get(0);
-                if(card != null)
+                if(state.getP1City().get(0) != null)
                 {
                     //displays card info (name, value, color)
-                    cardInfo.setText(state.getP1DistrictInfo(0));
+                    cardInfo.setText("nothing");
                 }
             }
         });
@@ -1196,8 +1114,61 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        //Listeners for the character cards
+    }
 
+
+
+    //This makes this player make a take gold action
+    public void humanPlayerTakeGold()
+    {
+        game.sendAction(new TakeGold(this));
+    }
+
+    //This allows the player to take a district card
+    public void humanPlayerTakeDistrictCard()
+    {
+        game.sendAction(new ChooseDistrictCard(this));
+    }
+
+    //This allows a player to use their special ability
+    public void humanPlayerUseAbility()
+    {
+        game.sendAction(new UseSpecialAbility(this));
+    }
+
+    //This method allows the user to end their turn
+    public void humanPlayerEndTurn()
+    {
+        game.sendAction(new EndTurn(this));
+    }
+
+    public void humanPlayerBuildDistrict(CitadelsDistrictCard cdc)
+    {
+        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
+    }
+
+    public void humanPlayerChooseCharacterCard(int character) { game.sendAction((new ChooseCharacterCard(this, character))); }
+
+    public void setWhichCard(CitadelsDistrictCard cdc)
+    {
+        this.cdc = cdc;
+    }
+
+    /**
+     * returns the GUI's top view
+     *
+     * @return
+     * 		the GUI's top view
+     */
+    @Override
+    public View getTopView() {
+        return myActivity.findViewById(R.id.top_gui_layout);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        //
     }
 
     private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener
@@ -1258,7 +1229,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(! hasGone)
                 {
-                    CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                    CitadelsDistrictCard cdc = state.getTopCard();
                     setWhichCard(cdc);
                     humanPlayerTakeDistrictCard();
                     p1HandAdapter.add(cdc.getInfo(cdc));
@@ -1277,10 +1248,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if (hasBuilt == false)
                 {
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
+                    cardInfo.setText(cardToBuild.getName() + " Built.");
                     humanPlayerBuildDistrict(cardToBuild);
                     p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
                     p1HandAdapter.notifyDataSetChanged();
-                    cardInfo.setText(cardToBuild.getName() + " built");
                     hasBuilt = true;
                 }else
                 {
