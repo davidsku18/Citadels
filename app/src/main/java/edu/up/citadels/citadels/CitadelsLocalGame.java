@@ -183,46 +183,50 @@ public class CitadelsLocalGame extends LocalGame {
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
             if (playerID == 0)
             {
-                if (state.getP1Gold() >= cbdc.getCard().getCost())
-                {
-                    state.addToP1City(cbdc.getCard());
-                    int index = state.p1FindCard(cbdc.getCard());
-                    state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
-                    state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
-                    state.removeFromP1Hand(index);
-                    return true;
-                } else
-                {
-                    return true;
-                }
+                if(state.getP1Hand().size() != 0) {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost()) {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else{  return true;    }
             } else if (playerID == 1)
             {
-                if (state.getP2Gold() >= cbdc.getCard().getCost())
+                if(state.getP2Hand().size() != 0)
                 {
-                    state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
-                    state.addToP2City(cbdc.getCard());
-                    int index = state.p2FindCard(cbdc.getCard());
-                    state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
-                    state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
-                    state.removeFromP2Hand(index);
-                    return true;
-                } else
+                    if (state.getP2Gold() >= cbdc.getCard().getCost()) {
+                        state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else{  return true;    }
+            } else if (playerID == 2)
+            {
+                if(state.getP3Hand().size() != 0)
                 {
-                    return true;
-                }
-            } else if (playerID == 2) {
-                if (state.getP3Gold() >= cbdc.getCard().getCost())
-                {
-                    state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
-                    state.addToP3City(cbdc.getCard());
-                    int index = state.p3FindCard(cbdc.getCard());
-                    state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
-                    state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
-                    state.removeFromP3Hand(index);
-                    return true;
-                } else {
-                    return true;
-                }
+                    if (state.getP3Gold() >= cbdc.getCard().getCost()) {
+                        state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else{  return true;    }
             }
             } else if (action instanceof UseSpecialAbility)
             {
