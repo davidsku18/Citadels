@@ -384,6 +384,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
 
+        
         //scales the images so they show up in the designated buttons
         player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
         player1_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
