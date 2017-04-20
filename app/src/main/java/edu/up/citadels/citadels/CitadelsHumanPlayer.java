@@ -1367,6 +1367,25 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        if(state.getPlayerTurn() == 0)
+        {
+            //cardInfo.setText("It is your turn.");
+            actionSpinner.setVisibility(View.VISIBLE);
+            /*
+            I will be putting a boolean in to check and see if we have received confirmation that it is our
+            turn.
+
+            Maybe add a counter at the bottom that will show which character's turn it is
+
+            Make infoText display winner at game end
+
+            Get checkIfGameOver to work
+             */
+        }else
+        {
+            actionSpinner.setVisibility(View.INVISIBLE);
+        }
     }
 
     //This makes this player make a take gold action
@@ -1466,7 +1485,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                cardInfo.setText("It is Your Turn.");
+                //cardInfo.setText("");
             }else if(position == 1)
             {
                 if (! hasGone)
@@ -1517,6 +1536,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                    }else
                     {
                         cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
+                        actionSpinner.setSelection(0);
                     }
 
                 }else
@@ -1549,6 +1569,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasBuilt = false;
                     hasGoneAbility = false;
                     cardInfo.setText("Turn Ended.");
+                    actionSpinner.setSelection(0);
                 }
                 else
                 {
