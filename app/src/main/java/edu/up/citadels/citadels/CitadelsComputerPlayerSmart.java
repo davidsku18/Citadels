@@ -52,9 +52,11 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
         if(myPlayer == 1)
         {
             game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
-        }else if(myPlayer == 2)
+        }
+        else if(myPlayer == 2)
         {
-            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+
+                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
 
         }else if(myPlayer == 3)
         {
