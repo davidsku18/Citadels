@@ -192,6 +192,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
+    //this will find the character that each player is and draw it in the designated image button
     public void drawCharacterCard(ImageButton cbutton, int charNum)
     {
         if (charNum == 0)
@@ -238,6 +239,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     }
 
+    //this will take in the district card and find the corresponding background at set the cities accordingly
     public void drawCityCard(ImageButton button, String cardName)
     {
         if (cardName.toLowerCase().equals("battlefield"))
@@ -331,6 +333,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         activity.setContentView(layoutId);
 
+        //which players are which character
         player1_Card1 = (ImageButton) myActivity.findViewById(R.id.player1_Card1);
         player1_Card2 = (ImageButton) myActivity.findViewById(R.id.player1_Card2);
 
@@ -340,7 +343,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player3_Card1 = (ImageButton) myActivity.findViewById(R.id.player3_card1);
         player3_Card2 = (ImageButton) myActivity.findViewById(R.id.player3_card2);
 
-
+        //All of the built districts in the cities
         p1_D1 = (ImageButton) myActivity.findViewById(R.id.p1_D1);
         p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
         p1_D3 = (ImageButton) myActivity.findViewById(R.id.p1_D3);
@@ -368,8 +371,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7 = (ImageButton) myActivity.findViewById(R.id.p3_D7);
         p3_D8 = (ImageButton) myActivity.findViewById(R.id.p3_D8);
 
+        //View on top for the character card selection
         horizontalScrollView = (HorizontalScrollView) myActivity.findViewById(R.id.horizontalScrollView);
 
+        //initialize buttons for choosing characters
         assassinButton = (ImageButton) myActivity.findViewById(R.id.assassinButton);
         thiefButton = (ImageButton) myActivity.findViewById(R.id.thiefButton);
         magicianButton = (ImageButton) myActivity.findViewById(R.id.magicianButton);
@@ -379,6 +384,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
 
+        
+        //scales the images so they show up in the designated buttons
         player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
         player1_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
         p1_D1.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -412,8 +419,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p3_D7.setScaleType(ImageView.ScaleType.FIT_XY);
         p3_D8.setScaleType(ImageView.ScaleType.FIT_XY);
 
+        //this textview updates the human player with the latest actions and information
         cardInfo = (TextView) myActivity.findViewById(R.id.helpText); // sets cardInfo to the helpText TextView
 
+        //displays correct information to the human player
         player1GoldCount = (TextView) myActivity.findViewById(R.id.p1_Gold);
         player2GoldCount = (TextView) myActivity.findViewById(R.id.p2_gold);
         player3GoldCount = (TextView) myActivity.findViewById(R.id.p3_Gold);
@@ -438,6 +447,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
+        //initializes the actions array with legal actions human player can take
         this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
 
@@ -454,6 +464,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         actionSpinner.setAdapter(adapter);
     }
 
+    //this allows us to pass in a character and find a string representation of the name for display purposes
     public String getStringName(int character)
     {
         String theCharacter;
@@ -485,6 +496,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         return theCharacter;
     }
 
+    //this is called AFTER we have a reference to the state. It updates all info and initializes button listeners
     public void initializeEverything()
     {
         // set values for all players' gold
@@ -513,6 +525,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         drawCharacterCard(player3_Card1, state.getP3Character1());
         drawCharacterCard(player3_Card2, state.getP3Character2());
 
+        //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)
         {
             if( i == 0)
@@ -549,6 +562,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         }
 
+        //draws images
         for(int i = 0; i < state.getP2City().size(); ++i)
         {
             if( i == 0)
@@ -585,6 +599,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         }
 
+        //draws images
         for(int i = 0; i < state.getP3City().size(); ++i)
         {
             if( i == 0)
@@ -621,12 +636,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         }
 
+        //draws character images
         drawCharacterCard(player1_Card1, state.getP1Character1());
         drawCharacterCard(player1_Card2, state.getP1Character2());
         drawCharacterCard(player2_Card1, state.getP2Character1());
         drawCharacterCard(player2_Card2, state.getP2Character2());
-
-
         drawCharacterCard(player3_Card1, state.getP3Character1());
         drawCharacterCard(player3_Card2, state.getP3Character2());
 
@@ -776,6 +790,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
+        //the following listeners allow the user to get the names of all players' characters
         player1_Card1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -1353,6 +1368,25 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        if(state.getPlayerTurn() == 0)
+        {
+            //cardInfo.setText("It is your turn.");
+            actionSpinner.setVisibility(View.VISIBLE);
+            /*
+            I will be putting a boolean in to check and see if we have received confirmation that it is our
+            turn.
+
+            Maybe add a counter at the bottom that will show which character's turn it is
+
+            Make infoText display winner at game end
+
+            Get checkIfGameOver to work
+             */
+        }else
+        {
+            actionSpinner.setVisibility(View.INVISIBLE);
+        }
     }
 
     //This makes this player make a take gold action
@@ -1379,13 +1413,16 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         game.sendAction(new EndTurn(this));
     }
 
+    //allows human player to build a district card, or at least try
     public void humanPlayerBuildDistrict(CitadelsDistrictCard cdc)
     {
         game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
     }
 
+    //this doesn't do anything yet- alpha sets characters automatically
     public void humanPlayerChooseCharacterCard(int theCard) { game.sendAction((new ChooseCharacterCard(this, theCard))); }
 
+    //gives us a reference to which district card is being built
     public void setWhichCard(CitadelsDistrictCard cdc)
     {
         this.cdc = cdc;
@@ -1405,7 +1442,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     @Override
     public void onClick(View v)
     {
-        //
+        //nothing
     }
 
     private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener
@@ -1415,6 +1452,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id)
         {
+            //this doesn't do anything except tell us which card is in the position of the spinner to be built
             selectedCard = position;
         }
 
@@ -1448,11 +1486,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                cardInfo.setText("It is Your Turn.");
+                //cardInfo.setText("");
             }else if(position == 1)
             {
                 if (! hasGone)
                 {
+                    //take gold
                     humanPlayerTakeGold();
                     hasGone = true;
                     cardInfo.setText("Added Two Gold.");
@@ -1466,6 +1505,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(! hasGone)
                 {
+                    //draw a card
                     CitadelsDistrictCard cdc = state.getTopCard();
                     setWhichCard(cdc);
                     humanPlayerTakeDistrictCard();
@@ -1482,11 +1522,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
             else if(position == 3)
             {
+                //make sure there is something in the district card array
                 if (hasBuilt == false && state.getP1Hand().size() != 0)
                 {
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
                     if(state.getP1Gold() >= cardToBuild.getCost())
                    {
+                       //if p1 has enough gold, build a district card
                        cardInfo.setText(cardToBuild.getName() + " Built.");
                        humanPlayerBuildDistrict(cardToBuild);
                        p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
@@ -1495,6 +1537,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                    }else
                     {
                         cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
+                        actionSpinner.setSelection(0);
                     }
 
                 }else
@@ -1507,6 +1550,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(! hasGoneAbility)
                 {
+                    //use character ability
                     humanPlayerUseAbility();
                     hasGoneAbility = true;
                     cardInfo.setText("Character Ability Used.");
@@ -1520,11 +1564,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(hasGone)
                 {
+                    //end the turn
                     humanPlayerEndTurn();
                     hasGone = false;
                     hasBuilt = false;
                     hasGoneAbility = false;
                     cardInfo.setText("Turn Ended.");
+                    actionSpinner.setSelection(0);
                 }
                 else
                 {
