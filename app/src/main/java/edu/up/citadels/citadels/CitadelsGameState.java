@@ -269,6 +269,11 @@ public class CitadelsGameState extends GameState
         }
     }
 
+    public CharacterCard getCharacterFromDeck(int theCharacter)
+    {
+        return characterDeck[theCharacter];
+    }
+
     //Get P1's Characters
     public int getP1Character1()
     {
@@ -680,12 +685,12 @@ public class CitadelsGameState extends GameState
         this.setP2Gold(2);
         this.setP3Gold(2);
 
-        this.setP1Character1(0);
-        this.setP1Character2(3);
-        this.setP2Character1(1);
-        this.setP2Character2(4);
-        this.setP3Character1(2);
-        this.setP3Character2(5);
+        this.setP1Character1(-1);
+        this.setP1Character2(-1);
+        this.setP2Character1(-1);
+        this.setP2Character2(-1);
+        this.setP3Character1(-1);
+        this.setP3Character2(-1);
 
         this.removeCharacterCardFromDeck(0);
         this.removeCharacterCardFromDeck(1);

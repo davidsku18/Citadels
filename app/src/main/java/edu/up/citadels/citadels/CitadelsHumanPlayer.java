@@ -155,6 +155,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private int layoutId;
     private int selectedCard;
+    boolean chosenFirstCharacter = false;
+    boolean chosenSecondCharacter = false;
 
     /**
      * constructor
@@ -384,7 +386,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
 
-        
+
         //scales the images so they show up in the designated buttons
         player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
         player1_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -649,17 +651,33 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(0) != null)
+                if(state.getCharacterFromDeck(6) != null)
                 {
-                    humanPlayerChooseCharacterCard(0);
-                    cardInfo.setText("You've chosen the thief card");
+
+                    if (chosenFirstCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard1(6);
+                        chosenFirstCharacter = true;
+                    }
+                    else if (chosenSecondCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard2(6);
+                        chosenSecondCharacter = true;
+                    }
                     cardInfo.setText("You've chosen the assassin card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(-1);
+                    if (chosenFirstCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard1(-1);
+                    }
+                    else if (chosenSecondCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard2(-1);
+                    }
                     cardInfo.setText("This card is already taken");
-                }*/
+                }
             }
         });
         thiefButton.setOnClickListener(new View.OnClickListener()
@@ -667,16 +685,30 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(1) != null)
-                {
-                    humanPlayerChooseCharacterCard(1);
-                    cardInfo.setText("You've chosen the thief card");
+                if(state.getCharacterFromDeck(1) != null) {
+                    if (chosenFirstCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard1(7);
+                        chosenFirstCharacter = true;
+                    }
+                    else if (chosenSecondCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard2(7);
+                        chosenSecondCharacter = true;
+                    }
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(-1);
+                    if (chosenFirstCharacter == false) {
+                        humanPlayerChooseCharacterCard1(-1);
+                    }
+                    else if (chosenSecondCharacter == false)
+                    {
+                        humanPlayerChooseCharacterCard2(-1);
+                    }
                     cardInfo.setText("This card is already taken");
-                }*/
+                }
+
             }
         });
 
@@ -1420,7 +1452,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     //this doesn't do anything yet- alpha sets characters automatically
-    public void humanPlayerChooseCharacterCard(int theCard) { game.sendAction((new ChooseCharacterCard(this, theCard))); }
+    public void humanPlayerChooseCharacterCard1(int theCharacterCard1)
+    {
+        game.sendAction((new ChooseCharacterCard(this, theCharacterCard1)));
+    }
+
+    public void humanPlayerChooseCharacterCard2(int theCharacterCard1)
+    {
+        game.sendAction((new ChooseCharacterCard(this, theCharacterCard1)));
+    }
 
     //gives us a reference to which district card is being built
     public void setWhichCard(CitadelsDistrictCard cdc)

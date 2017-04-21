@@ -2,6 +2,7 @@ package edu.up.citadels.citadels;
 
 import android.util.Log;
 
+import edu.up.citadels.citadels.actions.ChooseCharacterCard2;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
@@ -134,21 +135,53 @@ public class CitadelsLocalGame extends LocalGame {
             }
         } else if (action instanceof ChooseCharacterCard) {
 
-            state.setTurn(0);
+            if (playerID == 0)
+            {
+                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                state.setP1Character1(ccc.getTheChosenCharacterCard1());
+                if (ccc.getTheChosenCharacterCard1() == -1) {
 
-            if (playerID == 0) {
+                }
+                else
+                {
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
+                }
+            } else if (playerID == 1)
+            {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP1Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.setP2Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
+            } else if (playerID == 2)
+            {
+                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                state.setP3Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
+            }
+        } else if (action instanceof ChooseCharacterCard2) {
 
-            } else if (playerID == 1) {
-                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP2Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
-            } else if (playerID == 2) {
-                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP3Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+            if (playerID == 0)
+            {
+                ChooseCharacterCard2 ccc = (ChooseCharacterCard2) cma;
+                state.setP1Character2(ccc.getTheChosenCharacterCard2());
+                if(ccc.getTheChosenCharacterCard2() == -1)
+                {
+
+                }
+                else
+                {
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
+                }
+
+            } else if (playerID == 1)
+            {
+                ChooseCharacterCard2 ccc = (ChooseCharacterCard2) cma;
+                state.setP2Character2(ccc.getTheChosenCharacterCard2());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
+            } else if (playerID == 2)
+            {
+                ChooseCharacterCard2 ccc = (ChooseCharacterCard2) cma;
+                state.setP3Character2(ccc.getTheChosenCharacterCard2());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
             }
         }
         if (action instanceof EndTurn)
