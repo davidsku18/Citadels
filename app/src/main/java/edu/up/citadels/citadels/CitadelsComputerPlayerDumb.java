@@ -53,11 +53,15 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         int whatToDo = (int) (Math.random() * 2);
 
         //sends the correct action to the local game
-        if (whatToDo == 0) {
+        if (whatToDo == 0)
+        {
             game.sendAction(new ChooseDistrictCard(this));
-        } else {
+        }
+        else
+        {
             game.sendAction(new TakeGold(this));
         }
+
 
         //Determines which AI player is which
         if(myPlayer == 1)

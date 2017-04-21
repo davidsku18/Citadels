@@ -75,6 +75,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton merchantButton;
     private ImageButton architectButton;
     private ImageButton warlordButton;
+    private ImageView turn;
 
     private HorizontalScrollView horizontalScrollView;
 
@@ -188,7 +189,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
-            //cardInfo.setText(state.getAction());
         }
     }
 
@@ -431,6 +431,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player3Score = (TextView) myActivity.findViewById(R.id.p3_Score);
         player2DistrictCards = (TextView) myActivity.findViewById(R.id.p2_dc);
         player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
+
+        turn = (ImageView)myActivity.findViewById(R.id.Turn);
 
        /**
         * @Author Victor Nguyen
@@ -1373,6 +1375,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             //cardInfo.setText("It is your turn.");
             actionSpinner.setVisibility(View.VISIBLE);
+            turn.setVisibility(View.VISIBLE);
             /*
             I will be putting a boolean in to check and see if we have received confirmation that it is our
             turn.
@@ -1386,6 +1389,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }else
         {
             actionSpinner.setVisibility(View.INVISIBLE);
+            turn.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -1496,10 +1500,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasGone = true;
                     cardInfo.setText("Added Two Gold.");
                     player1GoldCount.setText("Gold: " + state.getP1Gold());
+                    actionSpinner.setSelection(0);
                 }else
                 {
                     //do nothing because they are not allowed to go
-                    cardInfo.setText("You Have Already Gone.");
+                    cardInfo.setText("You Have Already Taken an Action.");
+                    actionSpinner.setSelection(0);
+
                 }
             }else if(position == 2)
             {
@@ -1513,11 +1520,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     p1HandAdapter.notifyDataSetChanged();
                     hasGone = true;
                     cardInfo.setText("District Card Aquired.");
+                    actionSpinner.setSelection(0);
                 }
                 else
                 {
                     //do nothing because they are not allowed to go
-                    cardInfo.setText("You Have Already Gone.");
+                    cardInfo.setText("You Have Already Taken an Action.");
+                    actionSpinner.setSelection(0);
+
                 }
             }
             else if(position == 3)
@@ -1534,6 +1544,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                        p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
                        p1HandAdapter.notifyDataSetChanged();
                        hasBuilt = true;
+                       actionSpinner.setSelection(0);
                    }else
                     {
                         cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
@@ -1544,6 +1555,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     //do nothing, they aren't allowed to build more
                     cardInfo.setText("You have already built a district");
+                    actionSpinner.setSelection(0);
+
                 }
             }
             else if(position == 4)
@@ -1554,11 +1567,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerUseAbility();
                     hasGoneAbility = true;
                     cardInfo.setText("Character Ability Used.");
+                    actionSpinner.setSelection(0);
                 }
                 else
                 {
                     //do nothing--- they cannot go
                     cardInfo.setText("You have already used your ability.");
+                    actionSpinner.setSelection(0);
+
                 }
             }else if(position == 5)
             {
@@ -1576,6 +1592,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     //do nothing because they must do something before ending their turn
                     cardInfo.setText("Must Take Turn First.");
+                    actionSpinner.setSelection(0);
+
                 }
             }
         }
@@ -1608,4 +1626,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         MenuInflater inflater = myActivity.getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
     }
+
+    /**
+     * Return's player's name
+     */
+    public String getPlayerName()
+    {
+        return this.name;
+    }
+
 }
