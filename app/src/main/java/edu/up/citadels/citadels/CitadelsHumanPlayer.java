@@ -1384,6 +1384,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
             Make infoText display winner at game end
 
+            Make sure computer player doesn't build district that doesn't exist
+
             Get checkIfGameOver to work
              */
         }else
