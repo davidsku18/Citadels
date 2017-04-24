@@ -144,6 +144,25 @@ public class CitadelsGameState extends GameState
     public void setP3Character1(int x) { this.p3Character1 = x; }
     public void setP3Character2(int x) { this.p3Character2 = x; }
 
+    public String getCharacterColor(int character)
+    {
+        String color = null;
+        if(character == 3)
+        {
+            color = "Yellow";
+        }else if(character == 4)
+        {
+            color = "Blue";
+        }else if(character == 5)
+        {
+            color = "Green";
+        }else if(character == 7)
+        {
+            color = "Red";
+        }
+        return color;
+    }
+
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
     public CitadelsDistrictCard drawCard()

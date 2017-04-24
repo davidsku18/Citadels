@@ -115,6 +115,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player3Score;
     private TextView player2DistrictCards;
     private TextView player3DistrictCards;
+    private TextView characterTurn;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -431,6 +432,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player3Score = (TextView) myActivity.findViewById(R.id.p3_Score);
         player2DistrictCards = (TextView) myActivity.findViewById(R.id.p2_dc);
         player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
+        characterTurn = (TextView) myActivity.findViewById(R.id.turnTextView);
 
         turn = (ImageView)myActivity.findViewById(R.id.Turn);
 
@@ -512,6 +514,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         player2DistrictCards.setText("Districts: " + state.getP2Hand().size());
         player3DistrictCards.setText("Districts: " + state.getP3Hand().size());
+
+        characterTurn.setText("Character " + state.getTurn() + "'s Turn.");
 
         this.p1HandArrayList = state.getP1HandNames();
         p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
@@ -1380,13 +1384,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             I will be putting a boolean in to check and see if we have received confirmation that it is our
             turn.
 
-            Maybe add a counter at the bottom that will show which character's turn it is
-
             Make infoText display winner at game end
 
             Make sure computer player doesn't build district that doesn't exist
 
             Get checkIfGameOver to work
+
+            What I have done: abilities, turn display, other character building things
              */
         }else
         {
