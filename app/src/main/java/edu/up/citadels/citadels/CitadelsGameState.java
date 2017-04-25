@@ -3,9 +3,7 @@ package edu.up.citadels.citadels;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
-import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.game.infoMsg.GameState;
 
 /**
@@ -19,9 +17,20 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsGameState extends GameState
 {
-
+    // Special ability Text
+    private String specialAbility = null;
+    public String getSpecialAbilityText()
+    {
+        return this.specialAbility;
+    }
+    public void setSpecialAbilityText(String x)
+    {
+        this.specialAbility = x;
+    }
     // if king is equal to the player's number, they are the king
     private int king;
+
+
 
     //scores for all the players
     private int p1Score;
@@ -128,6 +137,10 @@ public class CitadelsGameState extends GameState
     public void setRollKing()
     {
         king = (int)Math.random()*2;
+    }
+    public void setKing(int x)
+    {
+        this.king = x;
     }
 
     //Returns if the player is king or not
@@ -668,9 +681,9 @@ public class CitadelsGameState extends GameState
         this.addToP2City(this.p2Hand.get(1));
         this.addToP3City(this.p3Hand.get(0));
         this.addToP3City(this.p3Hand.get(1));*/
-
+        this.setKing(0);
         this.setTurn(0);
-        this.setRollKing();
+        //this.setRollKing();
 
         this.setP1Score(0);
         this.setP2Score(0);
@@ -686,6 +699,7 @@ public class CitadelsGameState extends GameState
         this.setP2Character2(4);
         this.setP3Character1(2);
         this.setP3Character2(5);
+
 
         this.removeCharacterCardFromDeck(0);
         this.removeCharacterCardFromDeck(1);

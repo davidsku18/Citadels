@@ -43,7 +43,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         int myPlayer = savedState.getPlayer(this);
 
-        sleep((int)(1 + Math.random() * 2000));
+        sleep(2000 + ( (int)(Math.random() * 2000) ) );
 
         int whatToDo = (int) (Math.random() * 2);
 

@@ -61,12 +61,31 @@ public class CitadelsLocalGame extends LocalGame {
      * Whether the specified player's ID can perform a move
      */
     @Override
-    protected boolean canMove(int playerIdx) {
-        if (playerIdx == state.getPlayerTurn()) {
+    protected boolean canMove(int playerIdx)
+    {
+        if (playerIdx == state.getPlayerTurn())
+        {
             return true;
-        } else {
+        }
+        else
+            {
             return false;
         }
+        /*if(playerIdx == state.getKing())
+        {
+            if(playerIdx == 0)
+            {
+                return true;
+            }
+            else if(playerIdx == 1)
+            {
+                return true;
+            }
+            else if (playerIdx == 2)
+            {
+                return true;
+            }
+        }*/
     }
 
     /**
@@ -230,8 +249,21 @@ public class CitadelsLocalGame extends LocalGame {
             }
             } else if (action instanceof UseSpecialAbility)
             {
+                if (playerID == 0)
+                {
+                    state.setP1Gold(state.getP1Gold() + 2);
+                    state.setSpecialAbilityText("Special Ability Used");
+                    return true;
+                } else if (playerID == 1) {
+                    state.setP2Gold(state.getP2Gold() + 2);
+                    return true;
+                } else if (playerID == 2) {
+                    state.setP3Gold(state.getP3Gold() + 2);
+                    return true;
+                }
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }

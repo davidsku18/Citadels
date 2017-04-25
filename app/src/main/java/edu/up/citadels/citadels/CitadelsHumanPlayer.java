@@ -2,8 +2,6 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,7 +40,7 @@ import static edu.up.citadels.R.array.p1Action;
  * @version 3/10/2017
  */
 
-public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnCreateContextMenuListener
+public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener
 {
     String name;
     private ImageButton player1_Card1;
@@ -315,6 +313,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     @Override
     public void setAsGui(GameMainActivity activity) {
 
+
         //remember the activity
         myActivity = activity;
 
@@ -425,6 +424,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         * Creates the floating menu
         * Must long press to open the menu
         */
+
         menu_Button = (Button) myActivity.findViewById(R.id.Menu);
         menu_Button.setOnClickListener(new View.OnClickListener()
         {
@@ -1356,10 +1356,21 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
+
+
         if(state.getPlayerTurn() == 0)
         {
             //cardInfo.setText("It is your turn.");
-            actionSpinner.setVisibility(View.VISIBLE);
+
+            if (state.getPlayerTurn() == 0 && (hasGone == true || hasBuilt == true || hasGoneAbility == true) )
+            {
+                actionSpinner.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                actionSpinner.setVisibility(View.VISIBLE);
+                actionSpinner.setSelection(0);
+            }
             /*
             I will be putting a boolean in to check and see if we have received confirmation that it is our
             turn.
@@ -1473,7 +1484,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                //cardInfo.setText("");
+                cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
                 if (! hasGone)
@@ -1557,12 +1568,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasBuilt = false;
                     hasGoneAbility = false;
                     cardInfo.setText("Turn Ended.");
-                    actionSpinner.setSelection(0);
                 }
                 else
                 {
                     //do nothing because they must do something before ending their turn
-                    cardInfo.setText("Must Take Turn First.");
+                    cardInfo.setText("Must Take Gold Or Draw Card First.");
+
                 }
             }
         }
@@ -1589,10 +1600,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
      *
      * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
      */
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    /*public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
+        Log.i("Vic", "text");
         myActivity.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = myActivity.getMenuInflater();
         inflater.inflate(R.menu.menu_ingame, menu);
-    }
+    }*/
 }
