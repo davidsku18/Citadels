@@ -135,156 +135,142 @@ public class CitadelsLocalGame extends LocalGame {
             }
         } else if (action instanceof ChooseCharacterCard) {
 
-
-            if (state.getTurn() > 9) {
+            if (playerID == 0 && state.getTurn() == 0)
+            {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                if (playerID == 0) {
-                    state.setP1Character1(ccc.getTheChosenCharacterCard1());
-                    if (ccc.getTheChosenCharacterCard1() == -1) {
+                state.setP1Character1(ccc.getTheChosenCharacterCard1());
+                if (ccc.getTheChosenCharacterCard1() == -1) {
 
-                    } else {
-                        state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
-                    }
-                } else if (playerID == 1) {
-                    state.setP2Character1(ccc.getTheChosenCharacterCard1());
-                    if (ccc.getTheChosenCharacterCard1() == -1) {
-
-                    } else {
-                        state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
-                    }
-                } else if (playerID == 2) {
-                    state.setP2Character1(ccc.getTheChosenCharacterCard1());
-                    if (ccc.getTheChosenCharacterCard1() == -1) {
-
-                    } else {
-                        state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
-                    }
                 }
-            } else {
-                return true;
+                else
+                {
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
+                }
+            } else if (playerID == 1 && state.getTurn() == 2)
+            {
+                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                state.setP2Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
+            } else if (playerID == 2)
+            {
+                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                state.setP3Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
             }
         } else if (action instanceof ChooseCharacterCard2) {
-            if (state.getTurn() > 9) {
+
+            state.setTurn(0);
+
+            if (playerID == 0 && state.getTurn() == 1)
+            {
                 ChooseCharacterCard2 ccc = (ChooseCharacterCard2) cma;
-                if (playerID == 0) {
-                    state.setP1Character2(ccc.getTheChosenCharacterCard2());
-                    if (ccc.getTheChosenCharacterCard2() == -1) {
+                state.setP1Character2(ccc.getTheChosenCharacterCard2());
+                if(ccc.getTheChosenCharacterCard2() == -1)
+                {
 
-                    } else {
-                        state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
-                    }
-                } else if (playerID == 1) {
-                    state.setP2Character2(ccc.getTheChosenCharacterCard2());
-                    if (ccc.getTheChosenCharacterCard2() == -1) {
-
-                    } else {
-                        state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
-                    }
-                } else if (playerID == 2) {
-                    state.setP2Character2(ccc.getTheChosenCharacterCard2());
-                    if (ccc.getTheChosenCharacterCard2() == -1) {
-
-                    } else {
-                        state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
-                    }
                 }
-            } else {
-                return true;
+                else
+                {
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
+                }
+
+            } else if (playerID == 1)
+            {
+                ChooseCharacterCard2 ccc = (ChooseCharacterCard2) cma;
+                state.setP2Character2(ccc.getTheChosenCharacterCard2());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
+            } else if (playerID == 2)
+            {
+                ChooseCharacterCard2 ccc = (ChooseCharacterCard2) cma;
+                state.setP3Character2(ccc.getTheChosenCharacterCard2());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard2());
             }
         }
-            if (action instanceof EndTurn) {
-                if (state.getTurn() < 7 || state.getTurn() > 9) {
-                    state.setTurn(state.getTurn() + 1);
-                    return true;
-                } else if (state.getTurn() == 7) {
-                    state.setTurn(10);
-                    state.initializeCharacterDeck();
-                    int takeOutCharacter1 = (int) Math.random() * 8;
-                    int takeOutCharacter2 = (int) Math.random() * 8;
-                    while (takeOutCharacter1 == takeOutCharacter2) {
-                        takeOutCharacter2 = (int) Math.random() * 8;
-                    }
-                    state.removeCharacterCardFromDeck(takeOutCharacter1);
-                    state.removeCharacterCardFromDeck(takeOutCharacter2);
-                    state.setCharacter1FaceUp(takeOutCharacter1);
-                    state.setCharacter2FaceUp(takeOutCharacter2);
-                    return true;
-                } else if (state.getTurn() == 15) {
-                    state.setTurn(0);
-                    return true;
-                }
-
-            } else if (action instanceof ChooseDistrictCard) {
-                if (playerID == 0) {
-                    state.addToP1Hand(state.drawDistrictCard());
-                    return true;
-                } else if (playerID == 1) {
-                    state.setAction("Player 2 Drew a District Card.");
-                    state.addToP2Hand(state.drawDistrictCard());
-                    return true;
-                } else if (playerID == 2) {
-                    state.setAction("Player 3 Drew a District Card.");
-                    state.addToP3Hand(state.drawDistrictCard());
-                    return true;
-                }
-                //return true;
-            } else if (action instanceof CitadelsBuildDistrictCard) {
-                CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
-                if (playerID == 0) {
-                    if (state.getP1Hand().size() != 0) {
-                        if (state.getP1Gold() >= cbdc.getCard().getCost()) {
-                            state.addToP1City(cbdc.getCard());
-                            int index = state.p1FindCard(cbdc.getCard());
-                            state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
-                            state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
-                            state.removeFromP1Hand(index);
-                            return true;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                } else if (playerID == 1) {
-                    if (state.getP2Hand().size() != 0) {
-                        if (state.getP2Gold() >= cbdc.getCard().getCost()) {
-                            state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
-                            state.addToP2City(cbdc.getCard());
-                            int index = state.p2FindCard(cbdc.getCard());
-                            state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
-                            state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
-                            state.removeFromP2Hand(index);
-                            return true;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                } else if (playerID == 2) {
-                    if (state.getP3Hand().size() != 0) {
-                        if (state.getP3Gold() >= cbdc.getCard().getCost()) {
-                            state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
-                            state.addToP3City(cbdc.getCard());
-                            int index = state.p3FindCard(cbdc.getCard());
-                            state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
-                            state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
-                            state.removeFromP3Hand(index);
-                            return true;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                }
-            } else if (action instanceof UseSpecialAbility) {
+        if (action instanceof EndTurn)
+        {
+            if(state.getTurn() < 5)
+            {
+                state.setTurn(state.getTurn() + 1);
                 return true;
-            } else {
+            }else if(state.getTurn() == 5)
+            {
+                state.setTurn(0);
+                return true;
+            }
+        } else if (action instanceof ChooseDistrictCard) {
+            if (playerID == 0) {
+                state.addToP1Hand(state.drawDistrictCard());
+                return true;
+            } else if (playerID == 1)
+            {
+                state.setAction("Player 2 Drew a District Card.");
+                state.addToP2Hand(state.drawDistrictCard());
+                return true;
+            } else if (playerID == 2)
+            {
+                state.setAction("Player 3 Drew a District Card.");
+                state.addToP3Hand(state.drawDistrictCard());
+                return true;
+            }
+            //return true;
+        } else if (action instanceof CitadelsBuildDistrictCard)
+        {
+            CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
+            if (playerID == 0)
+            {
+                if(state.getP1Hand().size() != 0) {
+                    if (state.getP1Gold() >= cbdc.getCard().getCost()) {
+                        state.addToP1City(cbdc.getCard());
+                        int index = state.p1FindCard(cbdc.getCard());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.removeFromP1Hand(index);
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else{  return true;    }
+            } else if (playerID == 1)
+            {
+                if(state.getP2Hand().size() != 0)
+                {
+                    if (state.getP2Gold() >= cbdc.getCard().getCost()) {
+                        state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
+                        state.addToP2City(cbdc.getCard());
+                        int index = state.p2FindCard(cbdc.getCard());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.removeFromP2Hand(index);
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else{  return true;    }
+            } else if (playerID == 2)
+            {
+                if(state.getP3Hand().size() != 0)
+                {
+                    if (state.getP3Gold() >= cbdc.getCard().getCost()) {
+                        state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
+                        state.addToP3City(cbdc.getCard());
+                        int index = state.p3FindCard(cbdc.getCard());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.removeFromP3Hand(index);
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else{  return true;    }
+            }
+            } else if (action instanceof UseSpecialAbility)
+            {
+                return true;
+            } else
+            {
                 return false;
             }
-
-        return true;
+            return true;
+        }
     }
-}
 
