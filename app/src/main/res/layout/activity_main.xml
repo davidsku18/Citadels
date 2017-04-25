@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4E6CA"
+    android:background="@drawable/vintage_wood_table_texture_qxunczdha"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -259,21 +259,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Score:" />
+                        android:text="Score:"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/p2_gold"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Gold:" />
+                        android:text="Gold:"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/p2_dc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Districts:" />
+                        android:text="Districts:"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -334,8 +343,9 @@
                         android:id="@+id/helpText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="#000000"
-                        android:textSize="18sp"/>
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -374,7 +384,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -395,8 +407,9 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="Character 0's Turn"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -593,21 +606,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        />
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/p3_Gold"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        />
+
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/p3_Dc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Districts:" />
+                        android:text="Districts:"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -649,7 +670,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -711,12 +739,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/p1_Gold"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Gold:" />
 
                     <ImageView
                         android:id="@+id/Gold_Icon"
@@ -897,9 +919,10 @@
 
                     <Spinner
                         android:id="@+id/player1HandSpinner"
-                        android:layout_width="match_parent"
+                        android:layout_width="288dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="4" />
+                        android:layout_gravity="center_horizontal"
+                        android:background="#ffffff"/>
 
                 </LinearLayout>
 
@@ -951,20 +974,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/Turn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right"
-                        android:layout_weight="0"
-                        android:background="#00C4FF">
-                    </ImageView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="top"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -972,7 +987,24 @@
                         android:id="@+id/P1_Score"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Score:" />
+                        android:layout_weight="1"
+                        android:text="Score:"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/p1_Gold"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Gold:"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -1007,9 +1039,10 @@
 
                     <Spinner
                         android:id="@+id/actionSpinner"
-                        android:layout_width="match_parent"
+                        android:layout_width="286dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"/>
+                        android:layout_gravity="right"
+                        android:background="#ffffff"/>
 
                 </LinearLayout>
 
