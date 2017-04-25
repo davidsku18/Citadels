@@ -67,6 +67,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton player3_Card1;
     private ImageButton player3_Card2;
 
+    private ImageButton face1_Up;
+    private ImageButton face2_Up;
+
     private ImageButton assassinButton;
     private ImageButton thiefButton;
     private ImageButton magicianButton;
@@ -124,6 +127,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean hasGone = false;
     private boolean hasGoneAbility = false;
     private boolean hasBuilt = false;
+    private boolean isTurnChar = false;
 
     private ArrayList<Bitmap> p1City;
     private ArrayList<Bitmap> p1HandImages;
@@ -345,6 +349,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player3_Card1 = (ImageButton) myActivity.findViewById(R.id.player3_card1);
         player3_Card2 = (ImageButton) myActivity.findViewById(R.id.player3_card2);
 
+        face1_Up = (ImageButton)  myActivity.findViewById(R.id.face1_Up);
+        face2_Up = (ImageButton)  myActivity.findViewById(R.id.face2_Up);
+
         //All of the built districts in the cities
         p1_D1 = (ImageButton) myActivity.findViewById(R.id.p1_D1);
         p1_D2 = (ImageButton) myActivity.findViewById(R.id.p1_D2);
@@ -526,6 +533,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         drawCharacterCard(player2_Card2, state.getP2Character2());
         drawCharacterCard(player3_Card1, state.getP3Character1());
         drawCharacterCard(player3_Card2, state.getP3Character2());
+        drawCharacterCard(face1_Up, state.getCharacter1FaceUp());
+        drawCharacterCard(face2_Up, state.getCharacter2FaceUp());
 
         //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)
@@ -651,33 +660,30 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterFromDeck(6) != null)
-                {
+                if (isTurnChar) {
+                    if (state.getCharacterFromDeck(0) != null) {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(0);
+                            chosenFirstCharacter = true;
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(0);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the assassin card");
+                    } else {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if (chosenFirstCharacter && chosenSecondCharacter) {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
+                }
 
-                    if (chosenFirstCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard1(6);
-                        chosenFirstCharacter = true;
-                    }
-                    else if (chosenSecondCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard2(6);
-                        chosenSecondCharacter = true;
-                    }
-                    cardInfo.setText("You've chosen the assassin card");
-                }
-                else
-                {
-                    if (chosenFirstCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard1(-1);
-                    }
-                    else if (chosenSecondCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard2(-1);
-                    }
-                    cardInfo.setText("This card is already taken");
-                }
             }
         });
         thiefButton.setOnClickListener(new View.OnClickListener()
@@ -685,28 +691,29 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterFromDeck(1) != null) {
-                    if (chosenFirstCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard1(7);
-                        chosenFirstCharacter = true;
+                if (isTurnChar) {
+                    if (state.getCharacterFromDeck(1) != null) {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(1);
+                            chosenFirstCharacter = true;
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(1);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the thief card");
+                    } else {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
                     }
-                    else if (chosenSecondCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard2(7);
-                        chosenSecondCharacter = true;
+
+                    if (chosenFirstCharacter && chosenSecondCharacter) {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
                     }
-                }
-                else
-                {
-                    if (chosenFirstCharacter == false) {
-                        humanPlayerChooseCharacterCard1(-1);
-                    }
-                    else if (chosenSecondCharacter == false)
-                    {
-                        humanPlayerChooseCharacterCard2(-1);
-                    }
-                    cardInfo.setText("This card is already taken");
                 }
 
             }
@@ -718,16 +725,29 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(2) != null)
-                {
-                    humanPlayerChooseCharacterCard(2);
-                    cardInfo.setText("You've chosen the magician card");
+                if (isTurnChar) {
+                    if (state.getCharacterFromDeck(2) != null) {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(2);
+                            chosenFirstCharacter = true;
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(2);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the magician card");
+                    } else {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if (chosenFirstCharacter && chosenSecondCharacter) {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
                 }
-                else
-                {
-                    humanPlayerChooseCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }*/
             }
         });
 
@@ -737,34 +757,59 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(3) != null)
-                {
-                    humanPlayerChooseCharacterCard(3);
-                    cardInfo.setText("You've chosen the king card");
+                if (isTurnChar) {
+                    if (state.getCharacterFromDeck(3) != null) {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(3);
+                            chosenFirstCharacter = true;
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(3);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the king card");
+                    } else {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if (chosenFirstCharacter && chosenSecondCharacter) {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
                 }
-                else
-                {
-                    humanPlayerChooseCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }*/
             }
         });
 
         bishopButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view)
-            {
-                /*if(state.getCharacterDeck(4) != null)
-                {
-                    humanPlayerChooseCharacterCard(4);
-                    cardInfo.setText("You've chosen the bishop card");
+            public void onClick(View view) {
+                if (isTurnChar) {
+                    if (state.getCharacterFromDeck(4) != null) {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(4);
+                            chosenFirstCharacter = true;
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(4);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the bishop card");
+                    } else {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        } else if (chosenSecondCharacter == false) {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if (chosenFirstCharacter && chosenSecondCharacter) {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
                 }
-                else
-                {
-                    humanPlayerChooseCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }*/
             }
         });
 
@@ -773,16 +818,37 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(5) != null)
-                {
-                    humanPlayerChooseCharacterCard(5);
-                    cardInfo.setText("You've chosen the merchant card");
+                if(isTurnChar) {
+                    if(state.getCharacterFromDeck(5) != null) {
+                        if (chosenFirstCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard1(5);
+                            chosenFirstCharacter = true;
+                        }
+                        else if (chosenSecondCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard2(5);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the merchant card");
+                    }
+                    else
+                    {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        }
+                        else if (chosenSecondCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if(chosenFirstCharacter && chosenSecondCharacter)
+                    {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
                 }
-                else
-                {
-                    humanPlayerChooseCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }*/
             }
         });
 
@@ -791,16 +857,37 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                /*if(state.getCharacterDeck(6) != null)
-                {
-                    humanPlayerChooseCharacterCard(6);
-                    cardInfo.setText("You've chosen the architect card");
+                if(isTurnChar){
+                    if(state.getCharacterFromDeck(6) != null) {
+                        if (chosenFirstCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard1(6);
+                            chosenFirstCharacter = true;
+                        }
+                        else if (chosenSecondCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard2(6);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the architect card");
+                    }
+                    else
+                    {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        }
+                        else if (chosenSecondCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if(chosenFirstCharacter && chosenSecondCharacter)
+                    {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
                 }
-                else
-                {
-                    humanPlayerChooseCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }*/
             }
         });
 
@@ -809,16 +896,37 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-               /* if(state.getCharacterDeck(7) != null)
-                {
-                    humanPlayerChooseCharacterCard(7);
-                    cardInfo.setText("You've chosen the warlord card");
+                if (isTurnChar){
+                    if(state.getCharacterFromDeck(7) != null) {
+                        if (chosenFirstCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard1(7);
+                            chosenFirstCharacter = true;
+                        }
+                        else if (chosenSecondCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard2(7);
+                            chosenSecondCharacter = true;
+                        }
+                        cardInfo.setText("You've chosen the warlord card");
+                    }
+                    else
+                    {
+                        if (chosenFirstCharacter == false) {
+                            humanPlayerChooseCharacterCard1(-1);
+                        }
+                        else if (chosenSecondCharacter == false)
+                        {
+                            humanPlayerChooseCharacterCard2(-1);
+                        }
+                        cardInfo.setText("This card is already taken");
+                    }
+                    if(chosenFirstCharacter && chosenSecondCharacter)
+                    {
+                        chosenFirstCharacter = false;
+                        chosenSecondCharacter = false;
+                    }
                 }
-                else
-                {
-                    humanPlayerChooseCharacterCard(-1);
-                    cardInfo.setText("This card is already taken");
-                }*/
             }
         });
 
@@ -1401,6 +1509,24 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
+        face1_Up.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
+
+        face2_Up.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
+
         if(state.getPlayerTurn() == 0)
         {
             //cardInfo.setText("It is your turn.");
@@ -1457,15 +1583,24 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         game.sendAction((new ChooseCharacterCard(this, theCharacterCard1)));
     }
 
-    public void humanPlayerChooseCharacterCard2(int theCharacterCard1)
+    public void humanPlayerChooseCharacterCard2(int theCharacterCard2)
     {
-        game.sendAction((new ChooseCharacterCard(this, theCharacterCard1)));
+        game.sendAction((new ChooseCharacterCard(this, theCharacterCard2)));
     }
 
     //gives us a reference to which district card is being built
     public void setWhichCard(CitadelsDistrictCard cdc)
     {
         this.cdc = cdc;
+    }
+
+    public boolean checkTurn()
+    {
+        if(state.getTurn() == 10 || state.getTurn() == 13)
+        {
+            isTurnChar = true;
+        }
+        return isTurnChar;
     }
 
     /**

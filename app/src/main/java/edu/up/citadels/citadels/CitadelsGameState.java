@@ -80,8 +80,8 @@ public class CitadelsGameState extends GameState
     private int buildLimit;
 
     //shows which cards were not drawn, are face up on table
-    private CharacterCard cardUp1;
-    private CharacterCard cardUp2;
+    private int cardUp1=0;
+    private int cardUp2=0;
 
     //list of character cards, there are 8 total
     private CharacterCard[] characterDeck = new CharacterCard[8];
@@ -350,7 +350,21 @@ public class CitadelsGameState extends GameState
     //Removes the characterCard from te deck after a player chooses their card
     public void removeCharacterCardFromDeck(int i) { this.characterDeck[i] = null; }
 
+    public void setCharacter1FaceUp(int character){
+        this.cardUp1 = character;
+    }
 
+    public void setCharacter2FaceUp(int character){
+        this.cardUp2 = character;
+    }
+
+    public int getCharacter1FaceUp(){
+        return this.cardUp1;
+    }
+
+    public int getCharacter2FaceUp(){
+        return this.cardUp2;
+    }
 ////////////////////////////////////Deals with Players district cards//////////////////////
 
     //Deprecated for now
@@ -640,6 +654,8 @@ public class CitadelsGameState extends GameState
 
         this.buildLimit = 1;
 
+        this.setTurn(10);
+
         this.initializeDistrictDeck();
         this.initializeCharacterDeck();
 
@@ -674,7 +690,7 @@ public class CitadelsGameState extends GameState
         this.addToP3City(this.p3Hand.get(0));
         this.addToP3City(this.p3Hand.get(1));*/
 
-        this.setTurn(0);
+        //this.setTurn(0);
         this.setRollKing();
 
         this.setP1Score(0);
@@ -685,19 +701,23 @@ public class CitadelsGameState extends GameState
         this.setP2Gold(2);
         this.setP3Gold(2);
 
-        this.setP1Character1(-1);
-        this.setP1Character2(-1);
-        this.setP2Character1(-1);
-        this.setP2Character2(-1);
-        this.setP3Character1(-1);
-        this.setP3Character2(-1);
+        /*
+        this.setP1Character1(0);
+        this.setP1Character2(1);
+        this.setP2Character1(2);
+        this.setP2Character2(3);
+        this.setP3Character1(4);
+        this.setP3Character2(5);
+        */
 
+        /*
         this.removeCharacterCardFromDeck(0);
         this.removeCharacterCardFromDeck(1);
         this.removeCharacterCardFromDeck(2);
         this.removeCharacterCardFromDeck(3);
         this.removeCharacterCardFromDeck(4);
         this.removeCharacterCardFromDeck(5);
+        */
     }
 
 
@@ -738,6 +758,9 @@ public class CitadelsGameState extends GameState
         p2Character2 = orig.p2Character2;
         p3Character1 = orig.p3Character1;
         p3Character2 = orig.p3Character2;
+
+        cardUp1 = orig.cardUp1;
+        cardUp2 = orig.cardUp2;
     }
 
     //Returns if Character is alive
