@@ -498,6 +498,35 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         return theCharacter;
     }
 
+    public void updateCharacterCounter()
+    {
+        if(state.getTurn() == 0)
+        {
+            characterTurn.setText("Assassin's Turn.");
+        }else if(state.getTurn() == 1)
+        {
+            characterTurn.setText("Thief's Turn.");
+        }else if(state.getTurn() == 2)
+        {
+            characterTurn.setText("Magician's Turn.");
+        }else if(state.getTurn() == 3)
+        {
+            characterTurn.setText("King's Turn.");
+        }else if(state.getTurn() == 4)
+        {
+            characterTurn.setText("Bishop's Turn.");
+        }else if(state.getTurn() == 5)
+        {
+            characterTurn.setText("Merchant's Turn.");
+        }else if(state.getTurn() == 6)
+        {
+            characterTurn.setText("Architect's Turn.");
+        }else if(state.getTurn() == 7)
+        {
+            characterTurn.setText("Warlord's Turn.");
+        }
+    }
+
     //this is called AFTER we have a reference to the state. It updates all info and initializes button listeners
     public void initializeEverything()
     {
@@ -513,7 +542,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2DistrictCards.setText("Districts: " + state.getP2Hand().size());
         player3DistrictCards.setText("Districts: " + state.getP3Hand().size());
 
-        characterTurn.setText("Character " + state.getTurn() + "'s Turn.");
+        if(state.getTurn() == state.getP1Character1() || state.getTurn() == state.getP1Character2())
+        {
+            characterTurn.setTextColor(0xFF00FF00);
+            updateCharacterCounter();
+        }else
+        {
+            characterTurn.setTextColor(0xFF000000);
+            updateCharacterCounter();
+        }
 
         this.p1HandArrayList = state.getP1HandNames();
         p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
@@ -1386,6 +1423,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             Make sure computer player doesn't build district that doesn't exist
 
             Get checkIfGameOver to work
+
+            Do warlord and assassin
 
             What I have done: abilities, turn display, other character building things
              */
