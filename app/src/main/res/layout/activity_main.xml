@@ -395,7 +395,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="Character 0's Turn"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 

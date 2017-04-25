@@ -448,7 +448,37 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                 }else if(state.getTurn() == 6)
                 {
-
+                    if(playerID == 0)
+                    {
+                        ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
+                        CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                        temp.add(cdc);
+                        state.removeCard();
+                        CitadelsDistrictCard cdc2 = state.getDeckOrderDistricts().get(0);
+                        temp.add(cdc2);
+                        state.removeCard();
+                        state.setP1Hand(temp);
+                    }else if(playerID == 1)
+                    {
+                        ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
+                        CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                        temp.add(cdc);
+                        state.removeCard();
+                        CitadelsDistrictCard cdc2 = state.getDeckOrderDistricts().get(0);
+                        temp.add(cdc2);
+                        state.removeCard();
+                        state.setP2Hand(temp);
+                    }else if(playerID == 2)
+                    {
+                        ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
+                        CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
+                        temp.add(cdc);
+                        state.removeCard();
+                        CitadelsDistrictCard cdc2 = state.getDeckOrderDistricts().get(0);
+                        temp.add(cdc2);
+                        state.removeCard();
+                        state.setP3Hand(temp);
+                    }
                 }else if(state.getTurn() == 7)
                 {
                     //warlord
