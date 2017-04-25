@@ -135,6 +135,7 @@ public class CitadelsLocalGame extends LocalGame {
             }
         } else if (action instanceof ChooseCharacterCard) {
 
+
             if (state.getTurn() > 9) {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                 if (playerID == 0) {
