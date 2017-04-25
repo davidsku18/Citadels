@@ -49,4 +49,5 @@ public class CitadelsGameStateTest {
         cgs.setP1Character1(4);
         assertEquals(cgs.getP1Character1(), 4);
     }
+
 }

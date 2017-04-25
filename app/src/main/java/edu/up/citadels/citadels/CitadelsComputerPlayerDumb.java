@@ -66,17 +66,23 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         //Determines which AI player is which
         if(myPlayer == 1)
         {
+            if(savedState.getP1Hand() != null)
+            {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
-
+            }
         }else if(myPlayer == 2)
         {
+            if(savedState.getP2Hand() != null)
+            {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
-
+            }
         }else if(myPlayer == 3)
         {
+            if (savedState.getP3Hand() != null)
+            {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+            }
         }
-
         game.sendAction(new EndTurn(this));
     }
 

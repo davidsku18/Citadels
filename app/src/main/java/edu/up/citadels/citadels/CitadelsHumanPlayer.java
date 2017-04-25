@@ -434,8 +434,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
         characterTurn = (TextView) myActivity.findViewById(R.id.turnTextView);
 
-        turn = (ImageView)myActivity.findViewById(R.id.Turn);
-
        /**
         * @Author Victor Nguyen
         *
@@ -1379,7 +1377,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             //cardInfo.setText("It is your turn.");
             actionSpinner.setVisibility(View.VISIBLE);
-            turn.setVisibility(View.VISIBLE);
             /*
             I will be putting a boolean in to check and see if we have received confirmation that it is our
             turn.
@@ -1395,7 +1392,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }else
         {
             actionSpinner.setVisibility(View.INVISIBLE);
-            turn.setVisibility(View.INVISIBLE);
         }
     }
 
