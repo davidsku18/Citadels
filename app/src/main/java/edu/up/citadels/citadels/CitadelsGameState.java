@@ -1,6 +1,7 @@
 package edu.up.citadels.citadels;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -17,7 +18,7 @@ import edu.up.citadels.game.infoMsg.GameState;
  * @version 3/10/2017
  */
 
-public class CitadelsGameState extends GameState
+public class CitadelsGameState extends GameState implements Serializable
 {
 
     // if king is equal to the player's number, they are the king
@@ -143,6 +144,25 @@ public class CitadelsGameState extends GameState
     public void setP2Character2(int x) { this.p2Character2 = x; }
     public void setP3Character1(int x) { this.p3Character1 = x; }
     public void setP3Character2(int x) { this.p3Character2 = x; }
+
+    public String getCharacterColor(int character)
+    {
+        String color = null;
+        if(character == 3)
+        {
+            color = "Yellow";
+        }else if(character == 4)
+        {
+            color = "Blue";
+        }else if(character == 5)
+        {
+            color = "Green";
+        }else if(character == 7)
+        {
+            color = "Red";
+        }
+        return color;
+    }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
