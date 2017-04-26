@@ -382,7 +382,7 @@ public class CitadelsLocalGame extends LocalGame {
      */
     @Override
     protected String checkIfGameOver() {
-        if (state.getTurn() == 15) {
+        if (state.getTurnCounter() == 6) {
             int p1Districts = state.getP1City().size();
             int p2Districts = state.getP2City().size();
             int p3Districts = state.getP3City().size();
@@ -816,10 +816,23 @@ public class CitadelsLocalGame extends LocalGame {
                 state.setTurnCounter(state.getTurnCounter()+1);
                 if (state.getTurnCounter()<6)
                 {
-                    state.setTurn(state.getTurn() + 1);
-                    Log.i("Turncount", "+1");
-                    return true;
-
+                    if (state.getCharacterDeck(state.getTurn()-5)!=null)
+                    {
+                        for(int i = state.getTurn() - 5; i<state.getCharacterDeck().length; ++i)
+                        {
+                            if(state.getCharacterDeck(i) == null)
+                            {
+                                state.setTurn(i + 6);
+                                return true;
+                            }
+                        }
+                    }
+                    else if(state.getCharacterDeck(state.getTurn()-5) == null)
+                    {
+                        state.setTurn(state.getTurn() + 1);
+                        Log.i("Turncount", "+1");
+                        return true;
+                    }
                 }
                 else if(state.getTurnCounter()==6)
                 {
@@ -833,7 +846,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
             else if(playerID == 1 && canMove(playerID) && state.getTurn()>5)
@@ -841,9 +854,23 @@ public class CitadelsLocalGame extends LocalGame {
                 state.setTurnCounter(state.getTurnCounter()+1);
                 if (state.getTurnCounter()<6)
                 {
+                    if (state.getCharacterDeck(state.getTurn()-5)!=null)
+                    {
+                        for(int i = state.getTurn() - 5; i<state.getCharacterDeck().length; ++i)
+                        {
+                            if(state.getCharacterDeck(i) == null)
+                            {
+                                state.setTurn(i + 6);
+                                return true;
+                            }
+                        }
+                    }
+                else if(state.getCharacterDeck(state.getTurn()-5) == null)
+                {
                     state.setTurn(state.getTurn() + 1);
                     Log.i("Turncount", "+1");
                     return true;
+                }
 
                 }
                 else if(state.getTurnCounter()==6)
@@ -858,7 +885,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
             else if(playerID == 2 && canMove(playerID) && state.getTurn()>5)
@@ -866,10 +893,23 @@ public class CitadelsLocalGame extends LocalGame {
                 state.setTurnCounter(state.getTurnCounter()+1);
                 if (state.getTurnCounter()<6)
                 {
-                    state.setTurn(state.getTurn() + 1);
-                    Log.i("Turncount", "+1");
-                    return true;
-
+                    if (state.getCharacterDeck(state.getTurn()-5)!=null)
+                    {
+                        for(int i = state.getTurn() - 5; i<state.getCharacterDeck().length; ++i)
+                        {
+                            if(state.getCharacterDeck(i) == null)
+                            {
+                                state.setTurn(i + 6);
+                                return true;
+                            }
+                        }
+                    }
+                    else if(state.getCharacterDeck(state.getTurn()-5) == null)
+                    {
+                        state.setTurn(state.getTurn() + 1);
+                        Log.i("Turncount", "+1");
+                        return true;
+                    }
                 }
                 else if(state.getTurnCounter()==6)
                 {
@@ -883,7 +923,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
         } else if (action instanceof ChooseDistrictCard) {

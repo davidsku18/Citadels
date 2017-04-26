@@ -503,8 +503,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
-
-
         for(int i = 0; i<2; ++i)
         {
             if (i == 0 && !state.getP1Chars().isEmpty())

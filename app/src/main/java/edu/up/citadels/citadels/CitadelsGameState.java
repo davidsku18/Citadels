@@ -219,7 +219,7 @@ public class CitadelsGameState extends GameState
     //Sets which player is king
     public void setRollKing()
     {
-        king = (int)Math.random()*3;
+        this.king = (int)Math.random()*3;
     }
     public void setKing(int x)
     {
@@ -786,7 +786,7 @@ public class CitadelsGameState extends GameState
 
 
         //player 2's starting district cards
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 9; ++i)
         {
             p2Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -794,23 +794,13 @@ public class CitadelsGameState extends GameState
 
 
         //player 3's starting district cards
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 9; ++i)
         {
             p3Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
         }
-
-        /*//TODO take this out- I just put these in to test functionality
-        this.addToP1City(this.p1Hand.get(0));
-        this.addToP1City(this.p1Hand.get(1));
-        this.addToP2City(this.p2Hand.get(0));
-        this.addToP2City(this.p2Hand.get(1));
-        this.addToP3City(this.p3Hand.get(0));
-        this.addToP3City(this.p3Hand.get(1));*/
-        //this.setKing(0);
-        //setKing();
         this.setTurn(0);
-        this.setKing(0);
+        this.setRollKing();
 
 
         this.setP1Score(0);

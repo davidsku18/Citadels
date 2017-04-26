@@ -79,6 +79,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
     public int getPlayerNum()
     {
-        return this.playerNum;
+        return this.player;
     }
 }
