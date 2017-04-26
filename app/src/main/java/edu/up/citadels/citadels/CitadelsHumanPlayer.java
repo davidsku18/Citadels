@@ -1557,6 +1557,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 //cardInfo.setText("");
             }else if(position == 1)
             {
+                //TakeGold
                 if (! hasGone)
                 {
                     //take gold
@@ -1574,9 +1575,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }else if(position == 2)
             {
-                if(! hasGone)
+                //Draw Card
+                if(! hasGone && state.getDeckOrderDistricts().size() != 0)
                 {
-                    //draw a card
                     CitadelsDistrictCard cdc = state.getTopCard();
                     setWhichCard(cdc);
                     humanPlayerTakeDistrictCard();
