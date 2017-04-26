@@ -297,6 +297,7 @@ public class CitadelsLocalGame extends LocalGame {
                     int p3HandSize = state.getP3Hand().size();
                     if(playerID == 0)
                     {
+                        //TODO go in here and find which character was selected, make sure it isn't null, find who owns it
                         if(p2HandSize >= p3HandSize)
                         {
                             ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();

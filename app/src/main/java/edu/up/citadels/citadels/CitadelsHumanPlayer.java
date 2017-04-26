@@ -127,16 +127,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private boolean hasGoneAbility = false;
     private boolean hasBuilt = false;
 
-    private ArrayList<Bitmap> p1City;
-    private ArrayList<Bitmap> p1HandImages;
-    private ArrayList<String> p1HandNames;
-    private ArrayList<String> p2HandNames;
-    private ArrayList<String> p3HandNames;
     private ArrayList<String> p1HandArrayList;
 
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
+    private Spinner characterSpinner;
 
     private CitadelsDistrictCard cdc;
 
@@ -157,6 +153,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private int layoutId;
     private int selectedCard;
+    private int selectedCharacter;
 
     /**
      * constructor
@@ -452,11 +449,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         //initializes the actions array with legal actions human player can take
         this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
+        this.characterSpinner = (Spinner) myActivity.findViewById(R.id.characterSpinner);
 
 
         // define a listener for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+        String[] characterSpinnerNames = myActivity.getResources().getStringArray(characterCardSpinnerHandName);
+        characterSpinner.setOnItemSelectedListener(new CharacterSpinnerListener());
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
@@ -464,6 +464,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
+
+        ArrayAdapter characterAdapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, characterSpinnerNames);
+        characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        characterSpinner.setAdapter(characterAdapter);
     }
 
     //this allows us to pass in a character and find a string representation of the name for display purposes
@@ -558,6 +563,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
+
+
 
         drawCharacterCard(player1_Card1, state.getP1Character1());
         drawCharacterCard(player1_Card2, state.getP1Character2());
@@ -1449,7 +1456,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     //This allows a player to use their special ability
     public void humanPlayerUseAbility()
     {
-        game.sendAction(new UseSpecialAbility(this));
+        game.sendAction(new UseSpecialAbility(this, selectedCharacter));
     }
 
     //This method allows the user to end their turn
@@ -1488,6 +1495,22 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     public void onClick(View v)
     {
         //nothing
+    }
+
+    private class CharacterSpinnerListener implements AdapterView.OnItemSelectedListener
+    {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            //doesn't do anything except let us know which character is selected to use ability on
+            selectedCharacter = position;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
     private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener

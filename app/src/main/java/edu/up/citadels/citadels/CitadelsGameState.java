@@ -1,6 +1,7 @@
 package edu.up.citadels.citadels;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -17,7 +18,7 @@ import edu.up.citadels.game.infoMsg.GameState;
  * @version 3/10/2017
  */
 
-public class CitadelsGameState extends GameState
+public class CitadelsGameState extends GameState implements Serializable
 {
 
     // if king is equal to the player's number, they are the king
