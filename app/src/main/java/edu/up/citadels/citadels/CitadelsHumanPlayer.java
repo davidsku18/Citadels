@@ -1692,12 +1692,5 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         inflater.inflate(R.menu.menu_ingame, menu);
     }
 
-    /**
-     * Return's player's name
-     */
-    public String getPlayerName()
-    {
-        return this.name;
-    }
 
 }
