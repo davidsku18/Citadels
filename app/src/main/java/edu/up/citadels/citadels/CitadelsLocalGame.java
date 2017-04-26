@@ -465,7 +465,7 @@ public class CitadelsLocalGame extends LocalGame {
                                 state.setP3Gold(state.getP3Gold() + 1);
                             }
                         }
-                        //merchant gets an extra
+                        //merchant gets one extra
                         state.setP3Gold(state.getP3Gold() + 1);
                         return true;
                     }
