@@ -37,27 +37,80 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 
         sleep((int)(1 + Math.random() * 2000));
 
-        int whatToDo = (int) (Math.random() * 2);
-
-        if (whatToDo == 0)
-        {
-            game.sendAction(new ChooseDistrictCard(this));
-        }else
-        {
-            game.sendAction(new TakeGold(this));
-        }
-
+        //AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
+        // in hand or if AI has more than 8 gold
         if(myPlayer == 1)
         {
-                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
-        }else if(myPlayer == 2)
+            if((savedState.getP1Gold() < 8) && (savedState.getP1Hand().size() != 0))
+            {
+                game.sendAction(new TakeGold(this));
+            }
+            else
+            {
+                game.sendAction(new ChooseDistrictCard(this));
+            }
+
+            sleep((int)(1 + Math.random() * 2000));
+
+            for(int i = 0; i < savedState.getP1Hand().size(); i++)
+           {
+               CitadelsDistrictCard temp = (CitadelsDistrictCard) savedState.getP1Hand().get(i);
+               if (temp.getCost() >= 3)
+               {
+                   game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(i)));
+                   break;
+               }
+           }
+        }
+        else if(myPlayer == 2)
         {
-                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
-        }else if(myPlayer == 3)
+            if((savedState.getP2Gold() < 8) && (savedState.getP2Hand().size() != 0))
+            {
+                game.sendAction(new TakeGold(this));
+            }
+            else
+            {
+                game.sendAction(new ChooseDistrictCard(this));
+            }
+
+            sleep((int)(1 + Math.random() * 2000));
+
+            for(int i = 0; i < savedState.getP2Hand().size(); i++)
+            {
+                CitadelsDistrictCard temp = (CitadelsDistrictCard) savedState.getP2Hand().get(i);
+                if (temp.getCost() >= 3)
+                {
+                    game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(i)));
+                    break;
+                }
+            }
+        }
+        else if(myPlayer == 3)
         {
-                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+            if((savedState.getP3Gold() < 8) && (savedState.getP3Hand().size() != 0))
+            {
+                game.sendAction(new TakeGold(this));
+            }
+            else
+            {
+                game.sendAction(new ChooseDistrictCard(this));
+            }
+
+            sleep((int)(1 + Math.random() * 2000));
+
+
+            for(int i = 0; i < savedState.getP3Hand().size(); i++)
+            {
+                CitadelsDistrictCard temp = (CitadelsDistrictCard) savedState.getP3Hand().get(i);
+                if (temp.getCost() >= 3)
+                {
+                    game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(i)));
+                    break;
+                }
+            }
         }
 
+        sleep((int)(1 + Math.random() * 2000));
 
         game.sendAction(new EndTurn(this));
     }

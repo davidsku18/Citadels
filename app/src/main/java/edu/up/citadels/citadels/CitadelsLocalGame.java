@@ -88,14 +88,15 @@ public class CitadelsLocalGame extends LocalGame {
             int p2Score = state.getP2Score();
             int p3Score = state.getP3Score();
 
+            //Changed code so that player names show up on the who wins text
             if (p1Districts > 7 || p2Districts > 7 || p3Districts > 7) {
 
                 if (p1Score >= p2Score && p1Score >= p3Score) {
-                    return "PLAYER 1 HAS WON! CONGRATULATIONS!";
+                    return this.playerNames[0] +" HAS WON!";
                 } else if (p2Score >= p1Score && p2Score >= p3Score) {
-                    return "PLAYER 2 HAS WON! BUMMER.";
+                    return this.playerNames[1] + "HAS WON!";
                 } else if (p3Score >= p2Score && p3Score >= p1Score) {
-                    return "PLAYER 3 HAS WON! BUMMER.";
+                    return this.playerNames[2] + " HAS WON! BUMMER.";
                 } else {
                     return "There was a tie!";
                 }
