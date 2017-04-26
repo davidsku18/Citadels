@@ -193,7 +193,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -213,7 +212,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -233,7 +231,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -253,7 +250,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -273,7 +269,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -293,7 +288,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -313,7 +307,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -333,7 +326,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -353,7 +345,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             else
             {
-                //state.setTurn(state.getTurn()+1);
                 return false;
             }
         }
@@ -362,16 +353,6 @@ public class CitadelsLocalGame extends LocalGame {
         {
             return false;
         }
-        /*
-        if (playerIdx == state.getPlayerTurn())
-        {
-            return true;
-        }
-        else
-            {
-            return false;
-        }*/
-
     }
 
     /**
@@ -382,7 +363,8 @@ public class CitadelsLocalGame extends LocalGame {
      */
     @Override
     protected String checkIfGameOver() {
-        if (state.getTurnCounter() == 6) {
+        if (state.getTurn() == 0)
+        {
             int p1Districts = state.getP1City().size();
             int p2Districts = state.getP2City().size();
             int p3Districts = state.getP3City().size();
@@ -391,21 +373,33 @@ public class CitadelsLocalGame extends LocalGame {
             int p2Score = state.getP2Score();
             int p3Score = state.getP3Score();
 
-            if (p1Districts > 7 || p2Districts > 7 || p3Districts > 7) {
+            if (p1Districts > 7 || p2Districts > 7 || p3Districts > 7)
+            {
 
-                if (p1Score >= p2Score && p1Score >= p3Score) {
+                if (p1Score >= p2Score && p1Score >= p3Score)
+                {
                     return "PLAYER 1 HAS WON! CONGRATULATIONS!";
-                } else if (p2Score >= p1Score && p2Score >= p3Score) {
+                }
+                else if (p2Score >= p1Score && p2Score >= p3Score)
+                {
                     return "PLAYER 2 HAS WON! BUMMER.";
-                } else if (p3Score >= p2Score && p3Score >= p1Score) {
+                }
+                else if (p3Score >= p2Score && p3Score >= p1Score)
+                {
                     return "PLAYER 3 HAS WON! BUMMER.";
-                } else {
+                }
+                else
+                {
                     return "There was a tie!";
                 }
-            } else {
+            }
+            else
+            {
                 return null;
             }
-        } else {
+        }
+        else
+        {
             return null;
         }
     }
@@ -452,124 +446,11 @@ public class CitadelsLocalGame extends LocalGame {
             {
                 return true;
             }
-            /*
-            if(state.getTurn() == 6)
-            {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP1Gold(state.getP1Gold() + 2);
-                    Log.i("Player 1" ,"Took Gold Success(6)");
-                    return true;
-                }
-                else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP2Gold(state.getP2Gold() + 2);
-                    Log.i("Player 2" ,"Took Gold Success(6)");
-                    return true;
-                }
-                else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP3Gold(state.getP3Gold() + 2);
-                    Log.i("Player 3" ,"Took Gold Success(6)");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if(state.getTurn() == 7)
-            {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP1Gold(state.getP1Gold() + 2);
-                    Log.i("Player 1" ,"Took Gold Success(7)");
-                    return true;
-                } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP2Gold(state.getP2Gold() + 2);
-                    Log.i("Player 2" ,"Took Gold Success(7)");
-                    return true;
-                } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP3Gold(state.getP3Gold() + 2);
-                    Log.i("Player 3" ,"Took Gold Success(7)");
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-            else if(state.getTurn() == 8)
-            {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP1Gold(state.getP1Gold() + 2);
-                    Log.i("Player 1" ,"Took Gold Success(8)");
-                    return true;
-                } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP2Gold(state.getP2Gold() + 2);
-                    Log.i("Player 2" ,"Took Gold Success(8)");
-                    return true;
-                } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP3Gold(state.getP3Gold() + 2);
-                    Log.i("Player 3" ,"Took Gold Success(8)");
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-            else if(state.getTurn() == 9)
-            {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP1Gold(state.getP1Gold() + 2);
-                    Log.i("Player 1" ,"Took Gold Success(9)");
-                    return true;
-                } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP2Gold(state.getP2Gold() + 2);
-                    Log.i("Player 2" ,"Took Gold Success(9)");
-                    return true;
-                } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-                {
-                    state.setP3Gold(state.getP3Gold() + 2);
-                    Log.i("Player 3" ,"Took Gold Success(9)");
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-            else if(state.getTurn() == 10)
-            {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() + 10 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 10 == state.getTurn()))
-                {
-                    state.setP1Gold(state.getP1Gold() + 2);
-                    Log.i("Player 1" ,"Took Gold Success(10)");
-                    return true;
-                } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() + 10 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 10 == state.getTurn()))
-                {
-                    state.setP2Gold(state.getP2Gold() + 2);
-                    Log.i("Player 2" ,"Took Gold Success(10)");
-                    return true;
-                } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() + 10 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 10 == state.getTurn()))
-                {
-                    state.setP3Gold(state.getP3Gold() + 2);
-                    Log.i("Player 3" ,"Took Gold Success (10)");
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }*/
+
 
         }
-        else if (action instanceof ChooseCharacterCard) {
-
+        else if (action instanceof ChooseCharacterCard)
+        {
             if(state.getTurn() == 0)
             {
                 if (playerID == 0 && playerID == state.getKing())
@@ -792,21 +673,7 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            /*else if (state.getTurn() == 1)
-            if (playerID == 0) {
-                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP1Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
 
-            } else if (playerID == 1) {
-                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP2Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
-            } else if (playerID == 2) {
-                ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP3Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
-            }*/
         }
         if (action instanceof EndTurn)
         {
@@ -844,10 +711,6 @@ public class CitadelsLocalGame extends LocalGame {
                     Log.i("Reset", "All reset");
                     return true;
                 }
-                else
-                {
-                    return true;
-                }
             }
             else if(playerID == 1 && canMove(playerID) && state.getTurn()>5)
             {
@@ -881,10 +744,6 @@ public class CitadelsLocalGame extends LocalGame {
                     Log.i("Reset", "Turn = 0");
                     state.initializeCharacterDeck();
                     Log.i("Reset", "All reset");
-                    return true;
-                }
-                else
-                {
                     return true;
                 }
             }
@@ -921,12 +780,10 @@ public class CitadelsLocalGame extends LocalGame {
                     Log.i("Reset", "All reset");
                     return true;
                 }
-                else
-                {
-                    return true;
-                }
+
             }
-        } else if (action instanceof ChooseDistrictCard) {
+        }
+        else if (action instanceof ChooseDistrictCard) {
             if (playerID == 0) {
                 state.addToP1Hand(state.drawDistrictCard());
                 return true;

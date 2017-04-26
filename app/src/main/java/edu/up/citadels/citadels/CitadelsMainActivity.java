@@ -10,7 +10,9 @@ package edu.up.citadels.citadels;
 
 import android.view.ContextMenu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
@@ -40,23 +42,27 @@ public class CitadelsMainActivity extends GameMainActivity
     }
 
 
-    /*public boolean onContextItemSelected(MenuItem item)
+    public boolean onContextItemSelected(MenuItem item)
     {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId())
         {
             case R.id.rules_Tab:
                 View v = getLayoutInflater().inflate(R.layout.rules, null);
-                LayoutInflater rules = LayoutInflater.from(getContext());
-                rules.inflate(R.layout.rules, this);
+                //LayoutInflater rules = LayoutInflater.from(getContext());
+                //rules.inflate(R.layout.rules, this);
                 //LayoutInflater rules = getLayoutInflater();
                 //rules.inflate(R.layout.rules, null);
+                return true;
+
+            case R.id.exitgame_Tab:
+                setContentView(R.layout.game_config_main);
 
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
-    }*/
+    }
 
     public GameConfig createDefaultConfig()
     {
