@@ -691,8 +691,16 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
-                    state.setTurn(state.getTurn()+1);
-                    return true;
+                    if (state.getP3Chars(0).getWhichCharacter()!=0 || state.getP3Chars(1).getWhichCharacter()!=0 || state.getP2Chars(0).getWhichCharacter()!=0 || state.getP2Chars(1).getWhichCharacter()!=0 )
+                    {
+                        state.setTurn(state.getTurn() + 2);
+                    }
+                    else
+                    {
+                        state.setTurn(state.getTurn() + 1);
+                        Log.i("Turncount", "+1");
+                        return true;
+                    }
                 }
                 else if (playerID == 1 && state.getKing() == 2)
                 {
@@ -701,8 +709,16 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
-                    state.setTurn(state.getTurn()+1);
-                    return true;
+                    if (state.getP3Chars(0).getWhichCharacter()!=0 || state.getP3Chars(1).getWhichCharacter()!=0 || state.getP1Chars(0).getWhichCharacter()!=0 || state.getP1Chars(1).getWhichCharacter()!=0 )
+                    {
+                        state.setTurn(state.getTurn() + 2);
+                    }
+                    else
+                    {
+                        state.setTurn(state.getTurn() + 1);
+                        Log.i("Turncount", "+1");
+                        return true;
+                    }
                 }
                 else if (playerID == 2 && state.getKing() == 0)
                 {
@@ -711,8 +727,16 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char2");
-                    state.setTurn(state.getTurn()+1);
-                    return true;
+                    if (state.getP1Chars(0).getWhichCharacter()!=0 || state.getP1Chars(1).getWhichCharacter()!=0 || state.getP2Chars(0).getWhichCharacter()!=0 || state.getP2Chars(1).getWhichCharacter()!=0 )
+                    {
+                        state.setTurn(state.getTurn() + 2);
+                    }
+                    else
+                    {
+                        state.setTurn(state.getTurn() + 1);
+                        Log.i("Turncount", "+1");
+                        return true;
+                    }
                 }
                 else
                 {
@@ -960,7 +984,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             } else if (action instanceof UseSpecialAbility)
             {
-<<<<<<< Temporary merge branch 1
                 UseSpecialAbility usa = (UseSpecialAbility)cma;
                 int theCharacter = usa.getCharacter();
                 if(state.getTurn() > 6)
