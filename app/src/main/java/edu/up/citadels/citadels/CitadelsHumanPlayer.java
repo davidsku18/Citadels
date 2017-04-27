@@ -373,6 +373,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
 
+        //if(sta)
         
         //scales the images so they show up in the designated buttons
         player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -500,18 +501,33 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             if(state.getKing()==0)
             {
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText("Player 1 Choose A Character To Remove!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText("Player 2 Choose A Character To Remove!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText("Player 3 Choose A Character To Remove!");
             }
         }
-        else if(state.getTurn()==1)
+        else if(state.getTurn()== 1)
+        {
+            if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 1 Choose A Character To Remove!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 2 Choose A Character To Remove!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 3 Choose A Character To Remove!");
+            }
+        }
+        else if(state.getTurn()==2)
         {
             if(state.getKing()==2)
             {
@@ -526,7 +542,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn()==2)
+        else if(state.getTurn()==3)
         {
             if(state.getKing()==1)
             {
@@ -541,7 +557,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn()==3)
+        else if(state.getTurn()==4)
         {
             if(state.getKing()==0)
             {
@@ -556,7 +572,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn()==4)
+        else if(state.getTurn()==5)
         {
             if(state.getKing()==2)
             {
@@ -571,7 +587,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn()==5)
+        else if(state.getTurn()==6)
         {
             if(state.getKing()==1)
             {
@@ -586,28 +602,28 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn() == 6)
+        else if(state.getTurn() == 7)
         {
             characterTurn.setText("Assassin's Turn.");
-        }else if(state.getTurn() == 7)
-        {
-            characterTurn.setText("Thief's Turn.");
         }else if(state.getTurn() == 8)
         {
-            characterTurn.setText("Magician's Turn.");
+            characterTurn.setText("Thief's Turn.");
         }else if(state.getTurn() == 9)
         {
-            characterTurn.setText("King's Turn.");
+            characterTurn.setText("Magician's Turn.");
         }else if(state.getTurn() == 10)
         {
-            characterTurn.setText("Bishop's Turn.");
+            characterTurn.setText("King's Turn.");
         }else if(state.getTurn() == 11)
         {
-            characterTurn.setText("Merchant's Turn.");
+            characterTurn.setText("Bishop's Turn.");
         }else if(state.getTurn() == 12)
         {
-            characterTurn.setText("Architect's Turn.");
+            characterTurn.setText("Merchant's Turn.");
         }else if(state.getTurn() == 13)
+        {
+            characterTurn.setText("Architect's Turn.");
+        }else if(state.getTurn() == 14)
         {
             characterTurn.setText("Warlord's Turn.");
         }
@@ -824,12 +840,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(0) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(0));
+                    assassinButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the Assassin");
 
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -842,11 +858,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(1) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(1));
+                    thiefButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the Thief");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -861,11 +877,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(2) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(2));
+                    magicianButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the magician card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -880,11 +896,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(3) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(3));
+                    kingButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the king card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -898,11 +914,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(4) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(4));
+                    bishopButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the bishop card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -916,11 +932,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(5) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(5));
+                    merchantButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the merchant card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -934,11 +950,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(6) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(6));
+                    architectButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the architect card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -952,11 +968,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(7) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(7));
+                    warlordButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the warlord card");
                 }
                 else
                 {
-                    humanPlayerChooseCharacterCard(null);
                     cardInfo.setText("This card is already taken");
                 }
             }
@@ -1556,37 +1572,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     actionSpinner.setSelection(0);
                 }
             }
+            else
+            {
+                actionSpinner.setVisibility(View.INVISIBLE);
+            }
         }
         else
         {
             actionSpinner.setVisibility(View.INVISIBLE);
         }
-            //cardInfo.setText("It is your turn.");
-
-            /*if (state.getPlayerTurn() == 0 && (hasGone == true || hasBuilt == true || hasGoneAbility == true) )
-            {
-                actionSpinner.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                actionSpinner.setVisibility(View.VISIBLE);
-                actionSpinner.setSelection(0);
-            }*/
-            /*
-            I will be putting a boolean in to check and see if we have received confirmation that it is our
-            turn.
-
-            Make infoText display winner at game end
-
-            Make sure computer player doesn't build district that doesn't exist
-
-            Get checkIfGameOver to work
-
-            Do warlord and assassin
-
-            What I have done: abilities, turn display, other character building things
-             */
-
     }
 
     //This makes this player make a take gold action

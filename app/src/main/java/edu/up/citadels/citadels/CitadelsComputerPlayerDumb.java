@@ -50,7 +50,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         int myPlayer = savedState.getPlayer(this);
         int x = savedState.getTurn();
-
+        game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck((int)Math.random()*7)));
+        Log.i("Take Away", "Character Card");
         sleep(1000 + ((int) (Math.random() * 1000)));
         for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
         {

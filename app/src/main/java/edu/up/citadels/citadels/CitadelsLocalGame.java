@@ -82,7 +82,26 @@ public class CitadelsLocalGame extends LocalGame {
                 return false;
             }
         }
-        else if(state.getTurn() == 1)
+        if(state.getTurn() == 1)
+        {
+            if (playerIdx == 0 && playerIdx == state.getKing())
+            {
+                return true;
+            }
+            else if (playerIdx == 1 && playerIdx == state.getKing())
+            {
+                return true;
+            }
+            else if (playerIdx == 2 && playerIdx == state.getKing())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if(state.getTurn() == 2)
         {
             if (playerIdx == 0 && state.getKing()== 2)
             {
@@ -101,7 +120,7 @@ public class CitadelsLocalGame extends LocalGame {
                 return false;
             }
         }
-        else if(state.getTurn() == 2)
+        else if(state.getTurn() == 3)
         {
             if (playerIdx == 0 && state.getKing()== 1)
             {
@@ -120,7 +139,7 @@ public class CitadelsLocalGame extends LocalGame {
                 return false;
             }
         }
-        else if(state.getTurn() == 3)
+        else if(state.getTurn() == 4)
         {
             if (playerIdx == 0 && state.getKing()== 0)
             {
@@ -139,7 +158,7 @@ public class CitadelsLocalGame extends LocalGame {
                 return false;
             }
         }
-        else if(state.getTurn() == 4)
+        else if(state.getTurn() == 5)
         {
             if (playerIdx == 0 && state.getKing()== 2)
             {
@@ -158,7 +177,7 @@ public class CitadelsLocalGame extends LocalGame {
                 return false;
             }
         }
-        else if(state.getTurn() == 5)
+        else if(state.getTurn() == 6)
         {
             if (playerIdx == 0 && state.getKing()== 1)
             {
@@ -177,36 +196,17 @@ public class CitadelsLocalGame extends LocalGame {
                 return false;
             }
         }
-        else if(state.getTurn() == 6)
-        {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter()+ 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-            {
-                return true;
-            }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-            {
-                return true;
-            }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         else if(state.getTurn() == 7)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter()+ 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -217,15 +217,15 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 8)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -236,15 +236,15 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 9)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -255,15 +255,15 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 10)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -274,15 +274,15 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 11)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -293,15 +293,15 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 12)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -312,15 +312,15 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 13)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -331,15 +331,34 @@ public class CitadelsLocalGame extends LocalGame {
         }
         else if(state.getTurn() == 14)
         {
-            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
-            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 6 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 6 == state.getTurn()))
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if(state.getTurn() == 15)
+        {
+            if (playerIdx == 0 && (state.getP1Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP1Chars(1).getWhichCharacter() + 7 == state.getTurn()))
+            {
+                return true;
+            }
+            else if (playerIdx == 1 && (state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn()))
+            {
+                return true;
+            }
+            else if (playerIdx == 2 && (state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn() || state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn()))
             {
                 return true;
             }
@@ -410,19 +429,19 @@ public class CitadelsLocalGame extends LocalGame {
 
         if (action instanceof TakeGold)
         {
-            if(playerID == 0 && canMove(playerID) && state.getTurn()>5)
+            if(playerID == 0 && canMove(playerID) && state.getTurn()>6)
             {
                 state.setP1Gold(state.getP1Gold() + 2);
                 Log.i("Player 1" ,"Took Gold Success");
                 return true;
             }
-            else if(playerID == 1 && canMove(playerID) && state.getTurn()>5)
+            else if(playerID == 1 && canMove(playerID) && state.getTurn()>6)
             {
                 state.setP2Gold(state.getP2Gold() + 2);
                 Log.i("Player 2" ,"Took Gold Success");
                 return true;
             }
-            else if(playerID == 2 && canMove(playerID) && state.getTurn()>5)
+            else if(playerID == 2 && canMove(playerID) && state.getTurn()>6)
             {
                 state.setP3Gold(state.getP3Gold() + 2);
                 Log.i("Player 3" ,"Took Gold Success");
@@ -442,18 +461,13 @@ public class CitadelsLocalGame extends LocalGame {
                 if (playerID == 0 && playerID == state.getKing())
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                    state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
-                    Log.i("Player 1", "Took Char1 & Turn = 1");
                     state.setTurn(state.getTurn()+1);
                     return true;
                 }
                 else if (playerID == 1 && playerID == state.getKing())
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                    state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setTurn(state.getTurn()+1);
                     Log.i("Player2", "Actually Took Card");
@@ -462,8 +476,6 @@ public class CitadelsLocalGame extends LocalGame {
                 else if (playerID == 2 && playerID == state.getKing())
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                    state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setTurn(state.getTurn()+1);
                     Log.i("Player3", "Actually Took Card");
@@ -475,6 +487,39 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             }
             else if(state.getTurn() == 1)
+            {
+                if (playerID == 0 && playerID == state.getKing())
+                {
+                    ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                    state.addp1Chars(ccc.getTheChosenCharacterCard());
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
+                    state.setTurn(state.getTurn()+1);
+                    return true;
+                }
+                else if (playerID == 1 && playerID == state.getKing())
+                {
+                    ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                    state.addp2Chars(ccc.getTheChosenCharacterCard());
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
+                    state.setTurn(state.getTurn()+1);
+                    Log.i("Player2", "Actually Took Card");
+                    return true;
+                }
+                else if (playerID == 2 && playerID == state.getKing())
+                {
+                    ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
+                    state.addp3Chars(ccc.getTheChosenCharacterCard());
+                    state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
+                    state.setTurn(state.getTurn()+1);
+                    Log.i("Player3", "Actually Took Card");
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else if(state.getTurn() == 2)
             {
                 if (playerID == 0 && state.getKing()== 2)
                 {
@@ -511,7 +556,7 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            else if(state.getTurn() == 2)
+            else if(state.getTurn() == 3)
             {
                 if (playerID == 0 && state.getKing()== 1)
                 {
@@ -548,7 +593,7 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            else if(state.getTurn() == 3)
+            else if(state.getTurn() == 4)
             {
                 if (playerID == 0 && state.getKing()== 0)
                 {
@@ -585,7 +630,7 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            else if(state.getTurn() == 4)
+            else if(state.getTurn() == 5)
             {
                 if (playerID == 0 && state.getKing()== 2)
                 {
@@ -622,7 +667,7 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            else if(state.getTurn() == 5)
+            else if(state.getTurn() == 6)
             {
                 if (playerID == 0 && state.getKing()== 1)
                 {
@@ -664,23 +709,23 @@ public class CitadelsLocalGame extends LocalGame {
         if (action instanceof EndTurn)
         {
 
-            if(playerID == 0 && canMove(playerID) && state.getTurn()>5)
+            if(playerID == 0 && canMove(playerID) && state.getTurn()>6)
             {
                 state.setTurnCounter(state.getTurnCounter()+1);
                 if (state.getTurnCounter()<6)
                 {
-                    if (state.getCharacterDeck(state.getTurn()-5)!=null)
+                    if (state.getCharacterDeck(state.getTurn()-6)!=null)
                     {
-                        for(int i = state.getTurn() - 5; i<state.getCharacterDeck().length; ++i)
+                        for(int i = state.getTurn() - 6; i<state.getCharacterDeck().length; ++i)
                         {
                             if(state.getCharacterDeck(i) == null)
                             {
-                                state.setTurn(i + 6);
+                                state.setTurn(i + 7);
                                 return true;
                             }
                         }
                     }
-                    else if(state.getCharacterDeck(state.getTurn()-5) == null)
+                    else if(state.getCharacterDeck(state.getTurn()-6) == null)
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");
@@ -689,6 +734,21 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else if(state.getTurnCounter()==6)
                 {
+                    if(state.getP1Chars(0).getWhichCharacter() == 3 || state.getP1Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(0);
+                        Log.i("King" , "0");
+                    }
+                    else if(state.getP2Chars(0).getWhichCharacter() == 3 || state.getP2Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(1);
+                        Log.i("King" , "1");
+                    }
+                    else if(state.getP3Chars(0).getWhichCharacter() == 3 || state.getP3Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(2);
+                        Log.i("King" , "2");
+                    }
                     state.clearallCharacters();
                     state.setTurnCounter(0);
                     state.setTurn(0);
@@ -698,23 +758,23 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            else if(playerID == 1 && canMove(playerID) && state.getTurn()>5)
+            else if(playerID == 1 && canMove(playerID) && state.getTurn()>6)
             {
                 state.setTurnCounter(state.getTurnCounter()+1);
                 if (state.getTurnCounter()<6)
                 {
-                    if (state.getCharacterDeck(state.getTurn()-5)!=null)
+                    if (state.getCharacterDeck(state.getTurn()-6)!=null)
                     {
                         for(int i = state.getTurn() - 5; i<state.getCharacterDeck().length; ++i)
                         {
                             if(state.getCharacterDeck(i) == null)
                             {
-                                state.setTurn(i + 6);
+                                state.setTurn(i + 7);
                                 return true;
                             }
                         }
                     }
-                else if(state.getCharacterDeck(state.getTurn()-5) == null)
+                else if(state.getCharacterDeck(state.getTurn()-6) == null)
                 {
                     state.setTurn(state.getTurn() + 1);
                     Log.i("Turncount", "+1");
@@ -724,6 +784,21 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else if(state.getTurnCounter()==6)
                 {
+                    if(state.getP1Chars(0).getWhichCharacter() == 3 || state.getP1Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(0);
+                        Log.i("King" , "0");
+                    }
+                    else if(state.getP2Chars(0).getWhichCharacter() == 3 || state.getP2Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(1);
+                        Log.i("King" , "1");
+                    }
+                    else if(state.getP3Chars(0).getWhichCharacter() == 3 || state.getP3Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(2);
+                        Log.i("King" , "2");
+                    }
                     state.clearallCharacters();
                     state.setTurnCounter(0);
                     state.setTurn(0);
@@ -733,23 +808,23 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            else if(playerID == 2 && canMove(playerID) && state.getTurn()>5)
+            else if(playerID == 2 && canMove(playerID) && state.getTurn()>6)
             {
                 state.setTurnCounter(state.getTurnCounter()+1);
                 if (state.getTurnCounter()<6)
                 {
-                    if (state.getCharacterDeck(state.getTurn()-5)!=null)
+                    if (state.getCharacterDeck(state.getTurn()-6)!=null)
                     {
                         for(int i = state.getTurn() - 5; i<state.getCharacterDeck().length; ++i)
                         {
                             if(state.getCharacterDeck(i) == null)
                             {
-                                state.setTurn(i + 6);
+                                state.setTurn(i + 7);
                                 return true;
                             }
                         }
                     }
-                    else if(state.getCharacterDeck(state.getTurn()-5) == null)
+                    else if(state.getCharacterDeck(state.getTurn()-6) == null)
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");
@@ -758,6 +833,21 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else if(state.getTurnCounter()==6)
                 {
+                    if(state.getP1Chars(0).getWhichCharacter() == 3 || state.getP1Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(0);
+                        Log.i("King" , "0");
+                    }
+                    else if(state.getP2Chars(0).getWhichCharacter() == 3 || state.getP2Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(1);
+                        Log.i("King" , "1");
+                    }
+                    else if(state.getP3Chars(0).getWhichCharacter() == 3 || state.getP3Chars(1).getWhichCharacter() == 3)
+                    {
+                        state.setKing(2);
+                        Log.i("King" , "2");
+                    }
                     state.clearallCharacters();
                     state.setTurnCounter(0);
                     state.setTurn(0);
@@ -788,7 +878,7 @@ public class CitadelsLocalGame extends LocalGame {
         } else if (action instanceof CitadelsBuildDistrictCard)
         {
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
-            if (playerID == 0 && canMove(playerID) && state.getTurn()>5)
+            if (playerID == 0 && canMove(playerID) && state.getTurn()>6)
             {
                 if(state.getP1Hand().size() != 0) {
                     if (state.getP1Gold() >= cbdc.getCard().getCost()) {
@@ -803,7 +893,7 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                 }else{  return true;    }
             }
-            else if (playerID == 1 && canMove(playerID) && state.getTurn()>5)
+            else if (playerID == 1 && canMove(playerID) && state.getTurn()>6)
             {
                 if(state.getP2Hand().size() != 0)
                 {
@@ -820,7 +910,7 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                 }else{  return true;    }
             }
-            else if (playerID == 2 && canMove(playerID) && state.getTurn()>5)
+            else if (playerID == 2 && canMove(playerID) && state.getTurn()>6)
             {
                 if(state.getP3Hand().size() != 0)
                 {
@@ -841,7 +931,7 @@ public class CitadelsLocalGame extends LocalGame {
             {
                 UseSpecialAbility usa = (UseSpecialAbility)cma;
                 int theCharacter = usa.getCharacter();
-                if(state.getTurn() == 1)
+                if(state.getTurn() > 6)
                 {
                     //thief
                     if(playerID == 0)
