@@ -1,7 +1,7 @@
 package edu.up.citadels.citadels;
 
 import android.util.Log;
-
+import java.util.ArrayList;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;

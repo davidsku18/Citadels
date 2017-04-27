@@ -2,15 +2,7 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,10 +10,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,15 +20,12 @@ import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
-import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.infoMsg.GameInfo;
-import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
-import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
 import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
@@ -510,7 +496,97 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     public void updateCharacterCounter()
     {
-        if(state.getTurn() == 6)
+        if(state.getTurn()==0)
+        {
+            if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn()==1)
+        {
+            if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn()==2)
+        {
+            if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn()==3)
+        {
+            if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn()==4)
+        {
+            if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn()==5)
+        {
+            if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==0)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn() == 6)
         {
             characterTurn.setText("Assassin's Turn.");
         }else if(state.getTurn() == 7)
@@ -568,6 +644,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
+
         for(int i = 0; i<2; ++i)
         {
             if (i == 0 && !state.getP1Chars().isEmpty())
@@ -1644,7 +1721,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     //do nothing because they are not allowed to go
                     cardInfo.setText("You Have Already Gone.");
-                    actionSpinner.setSelection(0;)
+                    actionSpinner.setSelection(0);
                 }
             }else if(position == 2)
             {
