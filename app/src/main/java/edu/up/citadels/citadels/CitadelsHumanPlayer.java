@@ -505,28 +505,28 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     public void updateCharacterCounter()
     {
-        if(state.getTurn() == 0)
+        if(state.getTurn() == 6)
         {
             characterTurn.setText("Assassin's Turn.");
-        }else if(state.getTurn() == 1)
+        }else if(state.getTurn() == 7)
         {
             characterTurn.setText("Thief's Turn.");
-        }else if(state.getTurn() == 2)
+        }else if(state.getTurn() == 8)
         {
             characterTurn.setText("Magician's Turn.");
-        }else if(state.getTurn() == 3)
+        }else if(state.getTurn() == 9)
         {
             characterTurn.setText("King's Turn.");
-        }else if(state.getTurn() == 4)
+        }else if(state.getTurn() == 10)
         {
             characterTurn.setText("Bishop's Turn.");
-        }else if(state.getTurn() == 5)
+        }else if(state.getTurn() == 11)
         {
             characterTurn.setText("Merchant's Turn.");
-        }else if(state.getTurn() == 6)
+        }else if(state.getTurn() == 12)
         {
             characterTurn.setText("Architect's Turn.");
-        }else if(state.getTurn() == 7)
+        }else if(state.getTurn() == 13)
         {
             characterTurn.setText("Warlord's Turn.");
         }
@@ -563,24 +563,41 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
-        for(int i = 0; i<2; ++i)
-        {
-            if (i == 0 && !state.getP1Chars().isEmpty())
-            {
+        for(int i = 0; i<2; ++i) {
+            if (i == 0 && !state.getP1Chars().isEmpty()) {
                 drawCharacterCard(player1_Card1, state.getP1Chars().get(0).getWhichCharacter());
-            }
-            else if (i == 0 && state.getP1Chars().isEmpty())
-            {
+            } else if (i == 0 && state.getP1Chars().isEmpty()) {
                 drawCharacterCard(player1_Card1, -1);
-            }
-            else if(i == 1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size()>1)
-            {
+            } else if (i == 1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size() > 1) {
                 drawCharacterCard(player1_Card2, state.getP1Chars().get(1).getWhichCharacter());
-            }
-            else if(i == 1 && state.getP1Chars().isEmpty())
-            {
+            } else if (i == 1 && state.getP1Chars().isEmpty()) {
                 drawCharacterCard(player1_Card2, -1);
             }
+        }
+
+        for(int i = 0; i<2; ++i) {
+            if (i == 0 && !state.getP2Chars().isEmpty()) {
+                drawCharacterCard(player2_Card1, state.getP2Chars().get(0).getWhichCharacter());
+            } else if (i == 0 && state.getP2Chars().isEmpty()) {
+                drawCharacterCard(player2_Card1, -1);
+            } else if (i == 1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size() > 1) {
+                drawCharacterCard(player2_Card2, state.getP2Chars().get(1).getWhichCharacter());
+            } else if (i == 1 && state.getP2Chars().isEmpty()) {
+                drawCharacterCard(player2_Card2, -1);
+            }
+        }
+
+        for(int i = 0; i<2; ++i) {
+            if (i == 0 && !state.getP3Chars().isEmpty()) {
+                drawCharacterCard(player3_Card1, state.getP3Chars().get(0).getWhichCharacter());
+            } else if (i == 0 && state.getP3Chars().isEmpty()) {
+                drawCharacterCard(player3_Card1, -1);
+            } else if (i == 1 && !state.getP3Chars().isEmpty() && state.getP3Chars().size() > 1) {
+                drawCharacterCard(player3_Card2, state.getP3Chars().get(1).getWhichCharacter());
+            } else if (i == 1 && state.getP3Chars().isEmpty()) {
+                drawCharacterCard(player3_Card2, -1);
+            }
+        }
 
         //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)

@@ -413,6 +413,24 @@ public class CitadelsGameState extends GameState
         return p3Chara2;
     }
 
+    public String getCharacterColor(int character)
+    {
+        String color = null;
+        if(character == 3)
+        {
+            color = "Yellow";
+        }else if(character == 4)
+        {
+            color = "Blue";
+        }else if(character == 5)
+        {
+            color = "Green";
+        }else if(character == 7)
+        {
+            color = "Red";
+        }
+        return color;
+    }
 
     //Get P1's Characters
     public int getP1Character1()
