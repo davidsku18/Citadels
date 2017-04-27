@@ -1,10 +1,11 @@
 package edu.up.citadels.citadels;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
+import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.game.infoMsg.GameState;
 
 /**
@@ -16,7 +17,7 @@ import edu.up.citadels.game.infoMsg.GameState;
  * @version 3/10/2017
  */
 
-public class CitadelsGameState extends GameState implements Serializable
+public class CitadelsGameState extends GameState
 {
     // Special ability Text
     private String specialAbility = null;
@@ -247,25 +248,6 @@ public class CitadelsGameState extends GameState implements Serializable
     public void setP3Character1(int name, int color) { this.p3Chara1 = new CharacterCard(name, color);  }
     public void setP3Character2(int name, int color) { this.p3Chara2 = new CharacterCard(name, color);  }
 
-    public String getCharacterColor(int character)
-    {
-        String color = null;
-        if(character == 3)
-        {
-            color = "Yellow";
-        }else if(character == 4)
-        {
-            color = "Blue";
-        }else if(character == 5)
-        {
-            color = "Green";
-        }else if(character == 7)
-        {
-            color = "Red";
-        }
-        return color;
-    }
-
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
     public CitadelsDistrictCard drawCard()
@@ -401,6 +383,11 @@ public class CitadelsGameState extends GameState implements Serializable
         }
     }
 
+    public CharacterCard getCharacterFromDeck(int theCharacter)
+    {
+        return characterDeck[theCharacter];
+    }
+
     public CharacterCard getP1Chara1()
     {
         return p1Chara1;
@@ -426,6 +413,24 @@ public class CitadelsGameState extends GameState implements Serializable
         return p3Chara2;
     }
 
+    public String getCharacterColor(int character)
+    {
+        String color = null;
+        if(character == 3)
+        {
+            color = "Yellow";
+        }else if(character == 4)
+        {
+            color = "Blue";
+        }else if(character == 5)
+        {
+            color = "Green";
+        }else if(character == 7)
+        {
+            color = "Red";
+        }
+        return color;
+    }
 
     //Get P1's Characters
     public int getP1Character1()
@@ -806,7 +811,7 @@ public class CitadelsGameState extends GameState implements Serializable
 
 
         //player 2's starting district cards
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p2Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
@@ -814,14 +819,22 @@ public class CitadelsGameState extends GameState implements Serializable
 
 
         //player 3's starting district cards
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             p3Hand.add(deckOrderDistricts.get(0));
             deckOrderDistricts.remove(0);
         }
+
+        /*//TODO take this out- I just put these in to test functionality
+        this.addToP1City(this.p1Hand.get(0));
+        this.addToP1City(this.p1Hand.get(1));
+        this.addToP2City(this.p2Hand.get(0));
+        this.addToP2City(this.p2Hand.get(1));
+        this.addToP3City(this.p3Hand.get(0));
+        this.addToP3City(this.p3Hand.get(1));*/
+
         this.setTurn(0);
         this.setRollKing();
-
 
         this.setP1Score(0);
         this.setP2Score(0);
