@@ -8,13 +8,19 @@
 
 package edu.up.citadels.citadels;
 
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+
 import java.util.ArrayList;
 
 import edu.up.citadels.R;
 import edu.up.citadels.game.GameMainActivity;
-import edu.up.citadels.game.config.GameConfig;
-import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.GamePlayer;
+import edu.up.citadels.game.LocalGame;
+import edu.up.citadels.game.config.GameConfig;
 import edu.up.citadels.game.config.GamePlayerType;
 
 /**
@@ -28,41 +34,71 @@ public class CitadelsMainActivity extends GameMainActivity
 {
     public static final int PORT_NUMBER = 4753;
 
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_ingame, menu);
+    }
+
+
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId())
+        {
+            case R.id.rules_Tab:
+                View v = getLayoutInflater().inflate(R.layout.rules, null);
+                //LayoutInflater rules = LayoutInflater.from(getContext());
+                //rules.inflate(R.layout.rules, this);
+                //LayoutInflater rules = getLayoutInflater();
+                //rules.inflate(R.layout.rules, null);
+                return true;
+
+            case R.id.exitgame_Tab:
+                setContentView(R.layout.game_config_main);
+
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
     public GameConfig createDefaultConfig()
     {
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        playerTypes.add(new GamePlayerType("human player")
+        playerTypes.add(new GamePlayerType("Human Player")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsHumanPlayer(name, R.layout.activity_main);
             }});
-        playerTypes.add(new GamePlayerType("human player")
+        playerTypes.add(new GamePlayerType("Human Player No GUI")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsHumanPlayer(name, R.layout.activity_main);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (dumb) 1")
+        playerTypes.add(new GamePlayerType("Easy Computer Player 1")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayerDumb(name, 1);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (dumb) 2")
+        playerTypes.add(new GamePlayerType("Easy Computer Player 2")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayerDumb(name, 2);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (smart) 1")
+        playerTypes.add(new GamePlayerType("Hard Computer Player 1")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayerSmart(name, 1);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (smart) 2")
+        playerTypes.add(new GamePlayerType("Hard Computer Player 2")
         {
             public GamePlayer createPlayer(String name) {
                 return new CitadelsComputerPlayerSmart(name, 2);
@@ -74,8 +110,8 @@ public class CitadelsMainActivity extends GameMainActivity
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
-        defaultConfig.addPlayer("Computer", 2);
-        defaultConfig.addPlayer("Computer2", 5);
+        defaultConfig.addPlayer("Computer", 2); //2
+        defaultConfig.addPlayer("Computer 2", 4);  //5
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Guest", "", 1);

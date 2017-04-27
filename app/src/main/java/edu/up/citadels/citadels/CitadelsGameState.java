@@ -1,7 +1,6 @@
 package edu.up.citadels.citadels;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -18,11 +17,94 @@ import edu.up.citadels.game.infoMsg.GameState;
  * @version 3/10/2017
  */
 
-public class CitadelsGameState extends GameState implements Serializable
+public class CitadelsGameState extends GameState
 {
-
+    // Special ability Text
+    private String specialAbility = null;
+    public String getSpecialAbilityText()
+    {
+        return this.specialAbility;
+    }
+    public void setSpecialAbilityText(String x)
+    {
+        this.specialAbility = x;
+    }
     // if king is equal to the player's number, they are the king
     private int king;
+
+    private int turnCounter;
+    public int getTurnCounter()
+    {
+        return this.turnCounter;
+    }
+    public void setTurnCounter(int i)
+    {
+        this.turnCounter = i;
+    }
+
+    private ArrayList<CharacterCard> p1Chars = new ArrayList<CharacterCard>();
+    private ArrayList<CharacterCard> p2Chars = new ArrayList<CharacterCard>();
+    private ArrayList<CharacterCard> p3Chars = new ArrayList<CharacterCard>();
+
+    public ArrayList<CharacterCard> getP1Chars()
+    {
+        return p1Chars;
+    }
+    public ArrayList<CharacterCard> getP2Chars()
+    {
+        return p2Chars;
+    }
+    public ArrayList<CharacterCard> getP3Chars()
+    {
+        return p3Chars;
+    }
+
+    public void addp1Chars(CharacterCard card)
+    {
+        p1Chars.add(card);
+    }
+    public void addp2Chars(CharacterCard card)
+    {
+        p2Chars.add(card);
+    }
+    public void addp3Chars(CharacterCard card)
+    {
+        p3Chars.add(card);
+    }
+    public void clearallCharacters()
+    {
+        p1Chars.clear();
+        //p1Chars.add(0,null);
+        //p1Chars.add(1,null);
+        p2Chars.clear();
+        p3Chars.clear();
+
+    }
+    public void removep1Chars(int i)
+    {
+        p1Chars.remove(i);
+    }
+    public void removep2Chars(int i)
+    {
+        p2Chars.remove(i);
+    }
+    public void removep3Chars(int i)
+    {
+        p3Chars.remove(i);
+    }
+
+    public CharacterCard getP1Chars(int i)
+    {
+        return p1Chars.get(i);
+    }
+    public CharacterCard getP2Chars(int i)
+    {
+        return p2Chars.get(i);
+    }
+    public CharacterCard getP3Chars(int i)
+    {
+        return p3Chars.get(i);
+    }
 
     //scores for all the players
     private int p1Score;
@@ -59,6 +141,13 @@ public class CitadelsGameState extends GameState implements Serializable
     private int p3Character1;
     private int p3Character2;
 
+    private CharacterCard p1Chara1;
+    private CharacterCard p1Chara2;
+    private CharacterCard p2Chara1;
+    private CharacterCard p2Chara2;
+    private CharacterCard p3Chara1;
+    private CharacterCard p3Chara2;
+
     //if a character has been assassinated //TODO
     private boolean characterIsAlive;
 
@@ -86,6 +175,10 @@ public class CitadelsGameState extends GameState implements Serializable
 
     //list of character cards, there are 8 total
     private CharacterCard[] characterDeck = new CharacterCard[8];
+    public CharacterCard getCharacterDeck(int x)
+    {
+        return characterDeck[x];
+    }
 
     //the character card that was chosen
     private int theChosenCharacterCard;
@@ -97,7 +190,7 @@ public class CitadelsGameState extends GameState implements Serializable
     //Sets the turn
     public void setTurn(int x)
     {
-        turn = x;
+        this.turn = x;
     }
 
     //Gets the current turn
@@ -128,7 +221,11 @@ public class CitadelsGameState extends GameState implements Serializable
     //Sets which player is king
     public void setRollKing()
     {
-        king = (int)Math.random()*2;
+        this.king = (int)Math.random()*3;
+    }
+    public void setKing(int x)
+    {
+        this.king = x;
     }
 
     //Returns if the player is king or not
@@ -138,31 +235,18 @@ public class CitadelsGameState extends GameState implements Serializable
     } // TODO need to implement who is king and who has the king character card
 
     //Sets the player's chosen character card
-    public void setP1Character1(int x) { this.p1Character1 = x; }
-    public void setP1Character2(int x) { this.p1Character2 = x; }
-    public void setP2Character1(int x) { this.p2Character1 = x; }
-    public void setP2Character2(int x) { this.p2Character2 = x; }
-    public void setP3Character1(int x) { this.p3Character1 = x; }
-    public void setP3Character2(int x) { this.p3Character2 = x; }
-
-    public String getCharacterColor(int character)
+    public void setP1Character1(int name, int color)
     {
-        String color = null;
-        if(character == 3)
-        {
-            color = "Yellow";
-        }else if(character == 4)
-        {
-            color = "Blue";
-        }else if(character == 5)
-        {
-            color = "Green";
-        }else if(character == 7)
-        {
-            color = "Red";
-        }
-        return color;
+        this.p1Chara1 = new CharacterCard(name, color);
     }
+    public void setP1Character2(int name, int color)
+    {
+        this.p1Chara2 = new CharacterCard(name, color);
+    }
+    public void setP2Character1(int name, int color) { this.p2Chara1 = new CharacterCard(name, color); }
+    public void setP2Character2(int name, int color) { this.p2Chara2 = new CharacterCard(name, color);  }
+    public void setP3Character1(int name, int color) { this.p3Chara1 = new CharacterCard(name, color);  }
+    public void setP3Character2(int name, int color) { this.p3Chara2 = new CharacterCard(name, color);  }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
@@ -270,6 +354,16 @@ public class CitadelsGameState extends GameState implements Serializable
 
 //////////////////////////////////Deals with character cards////////////////////////
 
+    public CharacterCard[] getCharacterDeck()
+    {
+        CharacterCard[] returnList = new CharacterCard[8];
+        for (int i = 0; i < characterDeck.length; ++i)
+        {
+            returnList[i] = characterDeck[i];
+        }
+        return returnList;
+    }
+
     //Creathes the Character deck
     public void initializeCharacterDeck()
     {
@@ -293,6 +387,32 @@ public class CitadelsGameState extends GameState implements Serializable
     {
         return characterDeck[theCharacter];
     }
+
+    public CharacterCard getP1Chara1()
+    {
+        return p1Chara1;
+    }
+    public CharacterCard getP1Chara2()
+    {
+        return p1Chara2;
+    }
+    public CharacterCard getP2Chara1()
+    {
+        return p2Chara1;
+    }
+    public CharacterCard getP2Chara2()
+    {
+        return p2Chara2;
+    }
+    public CharacterCard getP3Chara1()
+    {
+        return p3Chara1;
+    }
+    public CharacterCard getP3Chara2()
+    {
+        return p3Chara2;
+    }
+
 
     //Get P1's Characters
     public int getP1Character1()
@@ -658,6 +778,7 @@ public class CitadelsGameState extends GameState implements Serializable
         //sets all of the built districts for each player to null because no one will start
         //with a district built
 
+        this.setTurnCounter(0);
         this.buildLimit = 1;
 
         this.initializeDistrictDeck();
@@ -705,19 +826,20 @@ public class CitadelsGameState extends GameState implements Serializable
         this.setP2Gold(2);
         this.setP3Gold(2);
 
-        this.setP1Character1(-1);
-        this.setP1Character2(-1);
-        this.setP2Character1(-1);
-        this.setP2Character2(-1);
-        this.setP3Character1(-1);
-        this.setP3Character2(-1);
+        /*this.setP1Character1(null);
+        this.setP1Character2(3);
+        this.setP2Character1(1);
+        this.setP2Character2(4);
+        this.setP3Character1(2);
+        this.setP3Character2(5);*/
 
-        this.removeCharacterCardFromDeck(0);
-        this.removeCharacterCardFromDeck(1);
-        this.removeCharacterCardFromDeck(2);
-        this.removeCharacterCardFromDeck(3);
-        this.removeCharacterCardFromDeck(4);
-        this.removeCharacterCardFromDeck(5);
+
+        //this.removeCharacterCardFromDeck(0);
+        //this.removeCharacterCardFromDeck(1);
+        //this.removeCharacterCardFromDeck(2);
+        //this.removeCharacterCardFromDeck(3);
+        //this.removeCharacterCardFromDeck(4);
+        //this.removeCharacterCardFromDeck(5);
     }
 
 
@@ -727,37 +849,44 @@ public class CitadelsGameState extends GameState implements Serializable
         //TODO  Nux includes the "new" reserved word in his copy constructor, not sure if that's immportant
         //TODO  and I cannot check right now. Just didn't want to forget.
 
-        buildLimit = orig.buildLimit;
-        king = orig.king;
-        turn = orig.turn;
+        this.buildLimit = orig.buildLimit;
+        this.king = orig.king;
+        this.turn = orig.turn;
 
-        p1Gold = orig.p1Gold;
-        p2Gold = orig.p2Gold;
-        p3Gold = orig.p3Gold;
+        this.p1Gold = orig.p1Gold;
+        this.p2Gold = orig.p2Gold;
+        this.p3Gold = orig.p3Gold;
 
-        p1Score = orig.p1Score;
-        p2Score = orig.p2Score;
-        p3Score = orig.p3Score;
+        this.p1Score = orig.p1Score;
+        this.p2Score = orig.p2Score;
+        this.p3Score = orig.p3Score;
 
-        p1Hand = orig.p1Hand;
-        p2Hand = orig.p2Hand;
-        p3Hand = orig.p3Hand;
+        this.p1Hand = orig.p1Hand;
+        this.p2Hand = orig.p2Hand;
+        this.p3Hand = orig.p3Hand;
 
-        p1City = orig.p1City;
-        p2City = orig.p2City;
-        p3City = orig.p3City;
+        this.p1City = orig.p1City;
+        this.p2City = orig.p2City;
+        this.p3City = orig.p3City;
 
-        theChosenCharacterCard = orig.theChosenCharacterCard;
+        this.theChosenCharacterCard = orig.theChosenCharacterCard;
 
-        deckOrderDistricts = orig.deckOrderDistricts;
-        characterDeck = orig.characterDeck;
+        this.deckOrderDistricts = orig.deckOrderDistricts;
+        this.characterDeck = orig.characterDeck;
 
-        p1Character1 = orig.p1Character1;
-        p1Character2 = orig.p1Character2;
-        p2Character1 = orig.p2Character1;
-        p2Character2 = orig.p2Character2;
-        p3Character1 = orig.p3Character1;
-        p3Character2 = orig.p3Character2;
+        this.p1Chara1 = orig.p1Chara1;
+        this.p1Chara2 = orig.p1Chara2;
+        this.p2Chara1 = orig.p2Chara1;
+        this.p2Chara2 = orig.p2Chara2;
+        this.p3Chara1 = orig.p3Chara1;
+        this.p3Chara2 = orig.p3Chara2;
+
+        this.p1Chars = orig.p1Chars;
+        this.p2Chars = orig.p2Chars;
+        this.p3Chars = orig.p3Chars;
+
+        this.turnCounter = orig.turnCounter;
+
     }
 
     //Returns if Character is alive

@@ -1,9 +1,11 @@
 package edu.up.citadels.citadels;
 
+import android.util.Log;
+
+import edu.up.citadels.citadels.actions.ChooseCharacterCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
-import edu.up.citadels.citadels.actions.ChooseDistrictCard;
-import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
@@ -23,13 +25,10 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 
 public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 {
-    //game state for the computer player to use
     private CitadelsGameState savedState;
 
-    //the player number
     private int player;
 
-    //constructor for the dumb AI player
     public CitadelsComputerPlayerDumb(String initName, int myNumber)
     {
         super(initName);
@@ -37,58 +36,49 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
     }
 
     @Override
-    protected void receiveInfo(GameInfo info) {
-        if (!(info instanceof CitadelsGameState)) {
+    protected void receiveInfo(GameInfo info)
+    {
+        if (!(info instanceof CitadelsGameState))
+        {
             return;
         }
 
         savedState = (CitadelsGameState) info;
 
         int myPlayer = savedState.getPlayer(this);
+        int x = savedState.getTurn();
 
-        //AI sleeps for 2 to 3 seconds so it looks like it is thinking
-        sleep((int)(1 + Math.random() * 2000));
-
-        //random int to determine if it should draw gold or districts
-        int whatToDo = (int) (Math.random() * 2);
-
-        //sends the correct action to the local game
-        if (whatToDo == 0)
+        sleep(1000 + ((int) (Math.random() * 1000)));
+        for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
         {
-            game.sendAction(new ChooseDistrictCard(this));
+            if (savedState.getCharacterDeck(i) == null)
+            {
+                // Do nothing
+            } else if (savedState.getCharacterDeck(i) != null)
+            {
+                game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                Log.i("Player", "Attempt to Take Character Card");
+                break;
+            }
         }
-        else
+        game.sendAction(new TakeGold(this));
+        if (myPlayer == 1)
         {
-            game.sendAction(new TakeGold(this));
+
         }
-
-
-        //Determines which AI player is which
-        if(myPlayer == 1)
+        else if (myPlayer == 2)
         {
-            if(savedState.getP1Hand() != null)
-            {
-                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
-            }
-        }else if(myPlayer == 2)
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+        }
+        else if (myPlayer == 3)
         {
-            if(savedState.getP2Hand() != null)
-            {
-                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
-            }
-        }else if(myPlayer == 3)
-        {
-            if (savedState.getP3Hand() != null)
-            {
-                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
-            }
+            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
         }
         game.sendAction(new EndTurn(this));
     }
 
-    //returns the player number
     public int getPlayerNum()
     {
-        return this.playerNum;
+        return this.player;
     }
 }

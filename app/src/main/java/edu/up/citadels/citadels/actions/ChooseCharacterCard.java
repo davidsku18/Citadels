@@ -1,8 +1,6 @@
 package edu.up.citadels.citadels.actions;
 
 import edu.up.citadels.citadels.CharacterCard;
-import edu.up.citadels.citadels.CitadelsDistrictCard;
-import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
 /**
@@ -15,17 +13,16 @@ import edu.up.citadels.game.GamePlayer;
 
 public class ChooseCharacterCard extends CitadelsMoveAction
 {
-    private int theChosenCard1;
-
+    private CharacterCard theChosenCard;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *
      * @param player the player who created the action
      */
-    public ChooseCharacterCard(GamePlayer player, int initTheChosenCard1)
+    public ChooseCharacterCard(GamePlayer player, CharacterCard initTheChosenCard)
     {
         super(player);
-        this.theChosenCard1 = initTheChosenCard1;
+        this.theChosenCard = initTheChosenCard;
     }
 
     /**
@@ -34,5 +31,5 @@ public class ChooseCharacterCard extends CitadelsMoveAction
      */
     public boolean isChooseCharacterCard() { return true; }
 
-    public int getTheChosenCharacterCard1() { return this.theChosenCard1; }
+    public CharacterCard getTheChosenCharacterCard() { return this.theChosenCard; }
 }
