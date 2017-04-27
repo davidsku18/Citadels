@@ -805,7 +805,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         }
 
-
         assassinButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -816,7 +815,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(0));
                     assassinButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the Assassin");
-
+                    assassinButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -834,6 +833,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(1));
                     thiefButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the Thief");
+                    thiefButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -853,6 +853,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(2));
                     magicianButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the magician card");
+                    magicianButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -872,6 +873,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(3));
                     kingButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the king card");
+                    kingButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -890,6 +892,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(4));
                     bishopButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the bishop card");
+                    bishopButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -908,6 +911,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(5));
                     merchantButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the merchant card");
+                    merchantButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -926,6 +930,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(6));
                     architectButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the architect card");
+                    architectButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -944,6 +949,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(7));
                     warlordButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the warlord card");
+                    warlordButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -951,6 +957,52 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         });
+
+        if (state.getCharacterDeck(0) == null)
+        {
+            assassinButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(1) == null)
+        {
+            thiefButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(2) == null)
+        {
+            magicianButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(3) == null)
+        {
+            kingButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(4) == null)
+        {
+            bishopButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(5) == null)
+        {
+            merchantButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(6) == null)
+        {
+            architectButton.setVisibility(View.INVISIBLE);
+        }
+        if (state.getCharacterDeck(7) == null)
+        {
+            warlordButton.setVisibility(View.INVISIBLE);
+        }
+
+        // Sets character card's buttons visible when the next round starts
+        if (state.getTurn() == 0)
+        {
+            assassinButton.setVisibility(View.VISIBLE);
+            thiefButton.setVisibility(View.VISIBLE);
+            magicianButton.setVisibility(View.VISIBLE);
+            kingButton.setVisibility(View.VISIBLE);
+            bishopButton.setVisibility(View.VISIBLE);
+            merchantButton.setVisibility(View.VISIBLE);
+            architectButton.setVisibility(View.VISIBLE);
+            kingButton.setVisibility(View.VISIBLE);
+        }
 
         //the following listeners allow the user to get the names of all players' characters
         player1_Card1.setOnClickListener(new View.OnClickListener()

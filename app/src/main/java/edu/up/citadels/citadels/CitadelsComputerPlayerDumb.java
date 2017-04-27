@@ -69,11 +69,17 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         }
         else if (myPlayer == 2)
         {
-            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+            if(!savedState.getP2Hand().isEmpty())
+            {
+                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
+            }
         }
         else if (myPlayer == 3)
         {
-            game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+            if(!savedState.getP3Hand().isEmpty())
+            {
+                game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
+            }
         }
         game.sendAction(new EndTurn(this));
     }

@@ -1,5 +1,10 @@
 package edu.up.citadels.citadels;
 
+import android.util.Log;
+
+import java.io.Serializable;
+
+import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
@@ -11,7 +16,7 @@ import edu.up.citadels.game.infoMsg.GameInfo;
  * Created by bryce on 4/17/2017.
  */
 
-public class CitadelsComputerPlayerSmart extends GameComputerPlayer
+public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements Serializable
 {
     private CitadelsGameState savedState;
 
@@ -36,6 +41,18 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer
         int myPlayer = savedState.getPlayer(this);
 
         sleep((int)(1 + Math.random() * 2000));
+        for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+        {
+            if (savedState.getCharacterDeck(i) == null)
+            {
+                // Do nothing
+            } else if (savedState.getCharacterDeck(i) != null)
+            {
+                game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                Log.i("Player", "Attempt to Take Character Card");
+                break;
+            }
+        }
 
         //AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
         // in hand or if AI has more than 8 gold
