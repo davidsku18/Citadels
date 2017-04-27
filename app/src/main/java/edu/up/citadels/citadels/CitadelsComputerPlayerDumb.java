@@ -6,6 +6,8 @@ import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
@@ -25,10 +27,13 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 
 public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 {
+    //game state for the computer player to use
     private CitadelsGameState savedState;
 
+    //the player number
     private int player;
 
+    //constructor for the dumb AI player
     public CitadelsComputerPlayerDumb(String initName, int myNumber)
     {
         super(initName);
@@ -77,6 +82,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         game.sendAction(new EndTurn(this));
     }
 
+    //returns the player number
     public int getPlayerNum()
     {
         return this.player;

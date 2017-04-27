@@ -1,6 +1,7 @@
 package edu.up.citadels.citadels;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -15,7 +16,7 @@ import edu.up.citadels.game.infoMsg.GameState;
  * @version 3/10/2017
  */
 
-public class CitadelsGameState extends GameState
+public class CitadelsGameState extends GameState implements Serializable
 {
     // Special ability Text
     private String specialAbility = null;
@@ -245,6 +246,25 @@ public class CitadelsGameState extends GameState
     public void setP2Character2(int name, int color) { this.p2Chara2 = new CharacterCard(name, color);  }
     public void setP3Character1(int name, int color) { this.p3Chara1 = new CharacterCard(name, color);  }
     public void setP3Character2(int name, int color) { this.p3Chara2 = new CharacterCard(name, color);  }
+
+    public String getCharacterColor(int character)
+    {
+        String color = null;
+        if(character == 3)
+        {
+            color = "Yellow";
+        }else if(character == 4)
+        {
+            color = "Blue";
+        }else if(character == 5)
+        {
+            color = "Green";
+        }else if(character == 7)
+        {
+            color = "Red";
+        }
+        return color;
+    }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard

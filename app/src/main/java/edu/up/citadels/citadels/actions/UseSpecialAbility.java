@@ -14,14 +14,22 @@ import edu.up.citadels.game.GamePlayer;
 
 public class UseSpecialAbility extends CitadelsMoveAction
 {
+    private int character;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *
      * @param player the player who created the action
      */
-    public UseSpecialAbility(GamePlayer player)
+    public UseSpecialAbility(GamePlayer player, int initCharacter)
     {
         super(player);
+        this.character = initCharacter;
+    }
+
+
+    public int getCharacter()
+    {
+        return this.character;
     }
 
 

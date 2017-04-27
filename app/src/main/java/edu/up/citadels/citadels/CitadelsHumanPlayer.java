@@ -2,7 +2,15 @@ package edu.up.citadels.citadels;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.provider.ContactsContract;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,7 +18,10 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +31,17 @@ import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
+import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameHumanPlayer;
 import edu.up.citadels.game.GameMainActivity;
 import edu.up.citadels.game.infoMsg.GameInfo;
+import edu.up.citadels.game.infoMsg.IllegalMoveInfo;
+import edu.up.citadels.game.infoMsg.NotYourTurnInfo;
 
+import static edu.up.citadels.R.array.characterCardSpinnerHandName;
 import static edu.up.citadels.R.array.p1Action;
 
 /**
@@ -60,6 +75,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton merchantButton;
     private ImageButton architectButton;
     private ImageButton warlordButton;
+    private ImageView turn;
 
     private HorizontalScrollView horizontalScrollView;
 
@@ -99,6 +115,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player3Score;
     private TextView player2DistrictCards;
     private TextView player3DistrictCards;
+    private TextView characterTurn;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -120,6 +137,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Button menu_Button;
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
+    private Spinner characterSpinner;
 
     private CitadelsDistrictCard cdc;
 
@@ -140,6 +158,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private int layoutId;
     private int selectedCard;
+    private int selectedCharacter;
 
     /**
      * constructor
@@ -173,7 +192,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
-            //cardInfo.setText(state.getAction());
         }
     }
 
@@ -313,7 +331,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     @Override
     public void setAsGui(GameMainActivity activity) {
 
-
         //remember the activity
         myActivity = activity;
 
@@ -417,6 +434,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player3Score = (TextView) myActivity.findViewById(R.id.p3_Score);
         player2DistrictCards = (TextView) myActivity.findViewById(R.id.p2_dc);
         player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
+        characterTurn = (TextView) myActivity.findViewById(R.id.turnTextView);
 
        /**
         * @Author Victor Nguyen
@@ -424,7 +442,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         * Creates the floating menu
         * Must long press to open the menu
         */
-
         menu_Button = (Button) myActivity.findViewById(R.id.Menu);
         menu_Button.setOnClickListener(new View.OnClickListener()
         {
@@ -437,11 +454,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         //initializes the actions array with legal actions human player can take
         this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
         actionSpinner = (Spinner) myActivity.findViewById(R.id.actionSpinner);
+        this.characterSpinner = (Spinner) myActivity.findViewById(R.id.characterSpinner);
 
 
         // define a listener for the spinner
         String[] p1ActionSpinnerNames = myActivity.getResources().getStringArray(p1Action);
         actionSpinner.setOnItemSelectedListener(new P1ActionSpinnerListener());
+        String[] characterSpinnerNames = myActivity.getResources().getStringArray(characterCardSpinnerHandName);
+        characterSpinner.setOnItemSelectedListener(new CharacterSpinnerListener());
 
         //initialize the array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
@@ -449,6 +469,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //connect spinner to the adapter
         actionSpinner.setAdapter(adapter);
+
+        ArrayAdapter characterAdapter = new ArrayAdapter<String>(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, characterSpinnerNames);
+        characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        characterSpinner.setAdapter(characterAdapter);
     }
 
     //this allows us to pass in a character and find a string representation of the name for display purposes
@@ -483,6 +508,35 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         return theCharacter;
     }
 
+    public void updateCharacterCounter()
+    {
+        if(state.getTurn() == 6)
+        {
+            characterTurn.setText("Assassin's Turn.");
+        }else if(state.getTurn() == 7)
+        {
+            characterTurn.setText("Thief's Turn.");
+        }else if(state.getTurn() == 8)
+        {
+            characterTurn.setText("Magician's Turn.");
+        }else if(state.getTurn() == 9)
+        {
+            characterTurn.setText("King's Turn.");
+        }else if(state.getTurn() == 10)
+        {
+            characterTurn.setText("Bishop's Turn.");
+        }else if(state.getTurn() == 11)
+        {
+            characterTurn.setText("Merchant's Turn.");
+        }else if(state.getTurn() == 12)
+        {
+            characterTurn.setText("Architect's Turn.");
+        }else if(state.getTurn() == 13)
+        {
+            characterTurn.setText("Warlord's Turn.");
+        }
+    }
+
     //this is called AFTER we have a reference to the state. It updates all info and initializes button listeners
     public void initializeEverything()
     {
@@ -498,8 +552,19 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2DistrictCards.setText("Districts: " + state.getP2Hand().size());
         player3DistrictCards.setText("Districts: " + state.getP3Hand().size());
 
+        if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
+        {
+            characterTurn.setTextColor(0xFF00FF00);
+            updateCharacterCounter();
+        }else
+        {
+            characterTurn.setTextColor(0xFF000000);
+            updateCharacterCounter();
+        }
+
         this.p1HandArrayList = state.getP1HandNames();
-        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1, android.R.id.text1, p1HandArrayList);
+        p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
+                android.R.id.text1, p1HandArrayList);
         p1HandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
@@ -1434,11 +1499,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             I will be putting a boolean in to check and see if we have received confirmation that it is our
             turn.
 
-            Maybe add a counter at the bottom that will show which character's turn it is
-
             Make infoText display winner at game end
 
+            Make sure computer player doesn't build district that doesn't exist
+
             Get checkIfGameOver to work
+
+            Do warlord and assassin
+
+            What I have done: abilities, turn display, other character building things
              */
 
     }
@@ -1458,7 +1527,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     //This allows a player to use their special ability
     public void humanPlayerUseAbility()
     {
-        game.sendAction(new UseSpecialAbility(this));
+        game.sendAction(new UseSpecialAbility(this, selectedCharacter));
     }
 
     //This method allows the user to end their turn
@@ -1500,6 +1569,22 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     public void onClick(View v)
     {
         //nothing
+    }
+
+    private class CharacterSpinnerListener implements AdapterView.OnItemSelectedListener
+    {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            //doesn't do anything except let us know which character is selected to use ability on
+            selectedCharacter = position;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
     private class P1HandSpinnerListener implements AdapterView.OnItemSelectedListener
@@ -1546,6 +1631,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
+                //TakeGold
                 if (! hasGone)
                 {
                     //take gold
@@ -1553,14 +1639,16 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasGone = true;
                     cardInfo.setText("Added Two Gold.");
                     player1GoldCount.setText("Gold: " + state.getP1Gold());
+                    actionSpinner.setSelection(0);
                 }else
                 {
                     //do nothing because they are not allowed to go
                     cardInfo.setText("You Have Already Gone.");
+                    actionSpinner.setSelection(0;)
                 }
             }else if(position == 2)
             {
-                if(! hasGone)
+                if(! hasGone/*&&state.getDeckOrderDistrict().size()!=0*/)
                 {
                     //draw a card
                     CitadelsDistrictCard cdc = state.getTopCard();
@@ -1570,6 +1658,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     p1HandAdapter.notifyDataSetChanged();
                     hasGone = true;
                     cardInfo.setText("District Card Aquired.");
+                    actionSpinner.setSelection(0);
                 }
                 else
                 {
@@ -1591,6 +1680,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                        p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
                        p1HandAdapter.notifyDataSetChanged();
                        hasBuilt = true;
+                       actionSpinner.setSelection(0);
                    }else
                     {
                         cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
@@ -1601,6 +1691,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     //do nothing, they aren't allowed to build more
                     cardInfo.setText("You have already built a district");
+                    actionSpinner.setSelection(0);
+
                 }
             }
             else if(position == 4)
@@ -1611,11 +1703,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     humanPlayerUseAbility();
                     hasGoneAbility = true;
                     cardInfo.setText("Character Ability Used.");
+                    actionSpinner.setSelection(0);
                 }
                 else
                 {
                     //do nothing--- they cannot go
                     cardInfo.setText("You have already used your ability.");
+                    actionSpinner.setSelection(0);
+
                 }
             }else if(position == 5)
             {
