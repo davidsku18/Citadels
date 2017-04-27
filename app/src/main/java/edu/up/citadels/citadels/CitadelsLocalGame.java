@@ -141,17 +141,17 @@ public class CitadelsLocalGame extends LocalGame {
 
             if (playerID == 0) {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP1Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.setP1Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
 
             } else if (playerID == 1) {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP2Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.setP2Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
             } else if (playerID == 2) {
                 ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
-                state.setP3Character1(ccc.getTheChosenCharacterCard());
-                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard());
+                state.setP3Character1(ccc.getTheChosenCharacterCard1());
+                state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard1());
             }
         }
         if (action instanceof EndTurn)
