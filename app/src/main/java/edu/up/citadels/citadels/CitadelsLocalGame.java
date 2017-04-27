@@ -870,7 +870,6 @@ public class CitadelsLocalGame extends LocalGame {
             }
             } else if (action instanceof UseSpecialAbility)
             {
-<<<<<<< Temporary merge branch 1
                 UseSpecialAbility usa = (UseSpecialAbility)cma;
                 int theCharacter = usa.getCharacter();
                 if(state.getTurn() == 1)
