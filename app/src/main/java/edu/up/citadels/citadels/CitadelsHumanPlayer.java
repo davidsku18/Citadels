@@ -935,7 +935,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        // sets the visibility of the cards when they are chosen
         if (state.getCharacterDeck(0) == null)
         {
             assassinButton.setVisibility(View.INVISIBLE);
@@ -1067,7 +1066,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        /**
+        /*
         * @Author: Gavin Low
         * @Author: Bryce Amato
         *

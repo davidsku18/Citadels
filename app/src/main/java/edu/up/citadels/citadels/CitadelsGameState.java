@@ -531,7 +531,10 @@ public class CitadelsGameState extends GameState
     {
         this.p2Hand.remove(card);
     }
-    public void removeFromP3Hand(int card) { this.p3Hand.remove(card); }
+    public void removeFromP3Hand(int card)
+    {
+        this.p3Hand.remove(card);
+    }
 
     public ArrayList<String> getP1HandNames()
     {
