@@ -3,18 +3,16 @@ package edu.up.citadels.citadels;
 import android.util.Log;
 
 import java.util.ArrayList;
-
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
-import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
-import edu.up.citadels.game.GamePlayer;
-import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.actionMsg.GameAction;
+import edu.up.citadels.game.LocalGame;
+import edu.up.citadels.game.GamePlayer;
 
 /**
  * The LocalGame class for a Citadels game. Defines and enforces
@@ -442,7 +440,7 @@ public class CitadelsLocalGame extends LocalGame {
             else if(playerID == 2 && canMove(playerID) && state.getTurn()>5)
             {
                 state.setP3Gold(state.getP3Gold() + 2);
-                Log.i("Player 3", "Took Gold Success");
+                Log.i("Player 3" ,"Took Gold Success");
                 return true;
             }
             else
@@ -872,6 +870,7 @@ public class CitadelsLocalGame extends LocalGame {
             }
             } else if (action instanceof UseSpecialAbility)
             {
+<<<<<<< Temporary merge branch 1
                 UseSpecialAbility usa = (UseSpecialAbility)cma;
                 int theCharacter = usa.getCharacter();
                 if(state.getTurn() == 1)
@@ -1166,8 +1165,7 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                 }
                 return true;
-            }
-            else
+            } else
             {
                 return false;
             }
