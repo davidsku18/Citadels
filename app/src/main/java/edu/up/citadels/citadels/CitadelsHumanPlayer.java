@@ -1,7 +1,6 @@
 package edu.up.citadels.citadels;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
