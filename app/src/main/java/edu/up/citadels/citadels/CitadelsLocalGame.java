@@ -602,12 +602,20 @@ public class CitadelsLocalGame extends LocalGame
                     state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
+                    state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
                     // If Assassin is removed
-                    if (state.getCharacterDeck(0) == null)
+                    if (state.getCharacterDeck(state.getTurn() - 6) != null)
                     {
-                        // Set to Theif's turn
-                        state.setTurn(8);
-                    } else
+                        for (int i = state.getTurn() - 6; i < state.getCharacterDeck().length; ++i)
+                        {
+                            if (state.getCharacterDeck(i) == null)
+                            {
+                                state.setTurn(i + 7);
+                                return true;
+                            }
+                        }
+                    }
+                    else
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");
@@ -620,13 +628,20 @@ public class CitadelsLocalGame extends LocalGame
                     state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
-
+                    state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
                     // If Assassin is removed
-                    if (state.getCharacterDeck(0) == null)
+                    if (state.getCharacterDeck(state.getTurn() - 6) != null)
                     {
-                        // Set to Theif's turn
-                        state.setTurn(8);
-                    } else
+                        for (int i = state.getTurn() - 6; i < state.getCharacterDeck().length; ++i)
+                        {
+                            if (state.getCharacterDeck(i) == null)
+                            {
+                                state.setTurn(i + 7);
+                                return true;
+                            }
+                        }
+                    }
+                    else
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");
@@ -638,14 +653,22 @@ public class CitadelsLocalGame extends LocalGame
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
+                    state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
                     Log.i("Player 3", "Took Char2");
 
                     // If Assassin is removed
-                    if (state.getCharacterDeck(0) == null)
+                    if (state.getCharacterDeck(state.getTurn() - 6) != null)
                     {
-                        // Set to Theif's turn
-                        state.setTurn(8);
-                    } else
+                        for (int i = state.getTurn() - 6; i < state.getCharacterDeck().length; ++i)
+                        {
+                            if (state.getCharacterDeck(i) == null)
+                            {
+                                state.setTurn(i + 7);
+                                return true;
+                            }
+                        }
+                    }
+                    else
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");
@@ -677,7 +700,7 @@ public class CitadelsLocalGame extends LocalGame
                             }
                         }
                     }
-                    else if (state.getCharacterDeck(state.getTurn() - 6) == null && state.getRemovedCharacter().getWhichCharacter()==state.getTurn()-6)
+                    else if (state.getCharacterDeck(state.getTurn() - 6) == null)
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");
@@ -768,7 +791,7 @@ public class CitadelsLocalGame extends LocalGame
                                 return true;
                             }
                         }
-                    } else if (state.getCharacterDeck(state.getTurn() - 6) == null && (state.getP1Chars(0).getWhichCharacter()+7!=state.getTurn() ))
+                    } else if (state.getCharacterDeck(state.getTurn() - 6) == null )
                     {
                         state.setTurn(state.getTurn() + 1);
                         Log.i("Turncount", "+1");

@@ -19,22 +19,27 @@ public class CitadelsGameState extends GameState
 {
     // Special ability Text
     private String specialAbility = null;
+
     public String getSpecialAbilityText()
     {
         return this.specialAbility;
     }
+
     public void setSpecialAbilityText(String x)
     {
         this.specialAbility = x;
     }
+
     // if king is equal to the player's number, they are the king
     private int king;
 
     private int turnCounter;
+
     public int getTurnCounter()
     {
         return this.turnCounter;
     }
+
     public void setTurnCounter(int i)
     {
         this.turnCounter = i;
@@ -48,10 +53,12 @@ public class CitadelsGameState extends GameState
     {
         return p1Chars;
     }
+
     public ArrayList<CharacterCard> getP2Chars()
     {
         return p2Chars;
     }
+
     public ArrayList<CharacterCard> getP3Chars()
     {
         return p3Chars;
@@ -61,14 +68,17 @@ public class CitadelsGameState extends GameState
     {
         p1Chars.add(card);
     }
+
     public void addp2Chars(CharacterCard card)
     {
         p2Chars.add(card);
     }
+
     public void addp3Chars(CharacterCard card)
     {
         p3Chars.add(card);
     }
+
     public void clearallCharacters()
     {
         p1Chars.clear();
@@ -77,14 +87,17 @@ public class CitadelsGameState extends GameState
     }
 
     private CharacterCard removedCharacter;
+
     public CharacterCard getRemovedCharacter()
     {
         return this.removedCharacter;
     }
+
     public void setRemovedCharacter(CharacterCard c)
     {
         this.removedCharacter = c;
     }
+
     public void resetRemovedCharacter()
     {
         this.removedCharacter = null;
@@ -94,10 +107,12 @@ public class CitadelsGameState extends GameState
     {
         return p1Chars.get(i);
     }
+
     public CharacterCard getP2Chars(int i)
     {
         return p2Chars.get(i);
     }
+
     public CharacterCard getP3Chars(int i)
     {
         return p3Chars.get(i);
@@ -172,6 +187,7 @@ public class CitadelsGameState extends GameState
 
     //list of character cards, there are 8 total
     private CharacterCard[] characterDeck = new CharacterCard[8];
+
     public CharacterCard getCharacterDeck(int x)
     {
         return characterDeck[x];
@@ -182,7 +198,7 @@ public class CitadelsGameState extends GameState
 
     private int theChosenDistrict;
 
-/////////////////////////////Stuff to deal with player//////////////////////////////////////////////
+    /////////////////////////////Stuff to deal with player//////////////////////////////////////////////
 
     //Sets the turn
     public void setTurn(int x)
@@ -199,17 +215,16 @@ public class CitadelsGameState extends GameState
     //Gets the turn of the player based on their character
     public int getPlayerTurn()
     {
-        if((turn == this.p1Character1) || (turn == this.p1Character2))
+        if ((turn == this.p1Character1) || (turn == this.p1Character2))
         {
             return 0;
-        }else if((turn == this.p2Character1) || (turn == this.p2Character2))
+        } else if ((turn == this.p2Character1) || (turn == this.p2Character2))
         {
             return 1;
-        }else if((turn == this.p3Character1) || (turn == this.p3Character2))
+        } else if ((turn == this.p3Character1) || (turn == this.p3Character2))
         {
             return 2;
-        }
-        else
+        } else
         {
             return -1;
         }
@@ -218,8 +233,9 @@ public class CitadelsGameState extends GameState
     //Sets which player is king
     public void setRollKing()
     {
-        this.king = (int)Math.random()*3;
+        this.king = (int) Math.random() * 3;
     }
+
     public void setKing(int x)
     {
         this.king = x;
@@ -236,16 +252,33 @@ public class CitadelsGameState extends GameState
     {
         this.p1Chara1 = new CharacterCard(name, color);
     }
+
     public void setP1Character2(int name, int color)
     {
         this.p1Chara2 = new CharacterCard(name, color);
     }
-    public void setP2Character1(int name, int color) { this.p2Chara1 = new CharacterCard(name, color); }
-    public void setP2Character2(int name, int color) { this.p2Chara2 = new CharacterCard(name, color);  }
-    public void setP3Character1(int name, int color) { this.p3Chara1 = new CharacterCard(name, color);  }
-    public void setP3Character2(int name, int color) { this.p3Chara2 = new CharacterCard(name, color);  }
 
-///////////////////////////////////Deals with players stats/////////////////////////////////
+    public void setP2Character1(int name, int color)
+    {
+        this.p2Chara1 = new CharacterCard(name, color);
+    }
+
+    public void setP2Character2(int name, int color)
+    {
+        this.p2Chara2 = new CharacterCard(name, color);
+    }
+
+    public void setP3Character1(int name, int color)
+    {
+        this.p3Chara1 = new CharacterCard(name, color);
+    }
+
+    public void setP3Character2(int name, int color)
+    {
+        this.p3Chara2 = new CharacterCard(name, color);
+    }
+
+    ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
     public CitadelsDistrictCard drawCard()
     {
@@ -269,10 +302,12 @@ public class CitadelsGameState extends GameState
     {
         this.p1City.add(dc);
     }
+
     public void addToP2City(CitadelsDistrictCard dc)
     {
         this.p2City.add(dc);
     }
+
     public void addToP3City(CitadelsDistrictCard dc)
     {
         this.p3City.add(dc);
@@ -283,10 +318,12 @@ public class CitadelsGameState extends GameState
     {
         this.p1Score = newScore;
     }
+
     public void setP2Score(int newScore)
     {
         this.p2Score = newScore;
     }
+
     public void setP3Score(int newScore)
     {
         this.p3Score = newScore;
@@ -297,10 +334,12 @@ public class CitadelsGameState extends GameState
     {
         return p1Score;
     }
+
     public int getP2Score()
     {
         return p2Score;
     }
+
     public int getP3Score()
     {
         return p3Score;
@@ -311,10 +350,12 @@ public class CitadelsGameState extends GameState
     {
         this.p1Gold = newGold;
     }
+
     public void setP2Gold(int newGold)
     {
         this.p2Gold = newGold;
     }
+
     public void setP3Gold(int newGold)
     {
         this.p3Gold = newGold;
@@ -325,16 +366,18 @@ public class CitadelsGameState extends GameState
     {
         return p1Gold;
     }
+
     public int getP2Gold()
     {
         return p2Gold;
     }
+
     public int getP3Gold()
     {
         return p3Gold;
     }
 
-//////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////
 
 
     public String getAction()
@@ -348,8 +391,7 @@ public class CitadelsGameState extends GameState
     }
 
 
-
-//////////////////////////////////Deals with character cards////////////////////////
+    //////////////////////////////////Deals with character cards////////////////////////
 
     public CharacterCard[] getCharacterDeck()
     {
@@ -365,16 +407,22 @@ public class CitadelsGameState extends GameState
     public void initializeCharacterDeck()
     {
         // Making character cards
-        for (int i = 0; i < 8; ++i) {
-            if (i < 3 || i == 6) {
+        for (int i = 0; i < 8; ++i)
+        {
+            if (i < 3 || i == 6)
+            {
                 characterDeck[i] = new CharacterCard(i, 4); // non color characters
-            } else if (i == 3) {
+            } else if (i == 3)
+            {
                 characterDeck[i] = new CharacterCard(i, 3); // King
-            } else if (i == 4) {
+            } else if (i == 4)
+            {
                 characterDeck[i] = new CharacterCard(i, 2); // Bishop
-            } else if (i == 5) {
+            } else if (i == 5)
+            {
                 characterDeck[i] = new CharacterCard(i, 1); // Merchant
-            } else if (i == 7) {
+            } else if (i == 7)
+            {
                 characterDeck[i] = new CharacterCard(i, 0); // Warlord
             }
         }
@@ -389,22 +437,27 @@ public class CitadelsGameState extends GameState
     {
         return p1Chara1;
     }
+
     public CharacterCard getP1Chara2()
     {
         return p1Chara2;
     }
+
     public CharacterCard getP2Chara1()
     {
         return p2Chara1;
     }
+
     public CharacterCard getP2Chara2()
     {
         return p2Chara2;
     }
+
     public CharacterCard getP3Chara1()
     {
         return p3Chara1;
     }
+
     public CharacterCard getP3Chara2()
     {
         return p3Chara2;
@@ -413,16 +466,16 @@ public class CitadelsGameState extends GameState
     public String getCharacterColor(int character)
     {
         String color = null;
-        if(character == 3)
+        if (character == 3)
         {
             color = "Yellow";
-        }else if(character == 4)
+        } else if (character == 4)
         {
             color = "Blue";
-        }else if(character == 5)
+        } else if (character == 5)
         {
             color = "Green";
-        }else if(character == 7)
+        } else if (character == 7)
         {
             color = "Red";
         }
@@ -434,6 +487,7 @@ public class CitadelsGameState extends GameState
     {
         return p1Character1;
     }
+
     public int getP1Character2()
     {
         return p1Character2;
@@ -444,6 +498,7 @@ public class CitadelsGameState extends GameState
     {
         return p2Character1;
     }
+
     public int getP2Character2()
     {
         return p2Character2;
@@ -454,6 +509,7 @@ public class CitadelsGameState extends GameState
     {
         return p3Character1;
     }
+
     public int getP3Character2()
     {
         return p3Character2;
@@ -463,32 +519,38 @@ public class CitadelsGameState extends GameState
     public int getPlayer(CitadelsComputerPlayerDumb ccpd)
     {
         int num = ccpd.getPlayerNum();
-        if(num == 0)
+        if (num == 0)
         {
             return 1;
-        }else if(num == 1)
+        } else if (num == 1)
         {
             return 2;
-        }else if(num == 2)
+        } else if (num == 2)
         {
             return 3;
-        }else{  return -1;  }
+        } else
+        {
+            return -1;
+        }
     }
 
     //Allows the smart AI to know what player it is
     public int getPlayer(CitadelsComputerPlayerSmart ccps)
     {
         int num = ccps.getPlayerNum();
-        if(num == 0)
+        if (num == 0)
         {
             return 1;
-        }else if(num == 1)
+        } else if (num == 1)
         {
             return 2;
-        }else if(num == 2)
+        } else if (num == 2)
         {
             return 3;
-        }else{  return -1;  }
+        } else
+        {
+            return -1;
+        }
     }
 
     public void setChosenCharacterCardNum(int chosenCharacterCard)
@@ -496,6 +558,7 @@ public class CitadelsGameState extends GameState
         //characterDeck[chosenCharacterCard] = null;
         this.theChosenCharacterCard = chosenCharacterCard;
     }
+
     //returns the character card that the player chose
     public int getChosenCharacterCardNum()
     {
@@ -503,8 +566,15 @@ public class CitadelsGameState extends GameState
     }
 
     //Removes the characterCard from te deck after a player chooses their card
-    public void removeCharacterCardFromDeck(int i) { this.characterDeck[i] = null; }
+    public void removeCharacterCardFromDeck(int i)
+    {
+        this.characterDeck[i] = null;
+    }
 
+    public void setCharacterCardFromDeck(int i, CharacterCard c)
+    {
+        this.characterDeck[i] = c;
+    }
 
 ////////////////////////////////////Deals with Players district cards//////////////////////
 
