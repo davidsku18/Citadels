@@ -49,7 +49,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         Log.i("Take Away", "Character Card");
         sleep(1000 + ((int) (Math.random() * 1000)));
-        for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+        for (int i = 0; i < 8; i++)
         {
             if (savedState.getCharacterDeck(i) == null && savedState.getRemovedCharacter()!=null)
             {

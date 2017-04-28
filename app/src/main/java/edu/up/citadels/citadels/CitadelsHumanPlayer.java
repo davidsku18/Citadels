@@ -612,10 +612,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         hideallCharacterCards();
         if(state.getTurn() == 0)
         {
-            showCharacterCards();
+
             if(state.getKing()==0)
             {
-
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character To Remove!");
             }
             else if(state.getKing()==1)
@@ -1091,20 +1091,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-
-
-        // Sets character card's buttons visible when the next round starts
-        /*if (state.getTurn() == 0)
-        {
-            assassinButton.setVisibility(View.VISIBLE);
-            thiefButton.setVisibility(View.VISIBLE);
-            magicianButton.setVisibility(View.VISIBLE);
-            kingButton.setVisibility(View.VISIBLE);
-            bishopButton.setVisibility(View.VISIBLE);
-            merchantButton.setVisibility(View.VISIBLE);
-            architectButton.setVisibility(View.VISIBLE);
-            kingButton.setVisibility(View.VISIBLE);
-        }*/
 
         //the following listeners allow the user to get the names of all players' characters
         player1_Card1.setOnClickListener(new View.OnClickListener()
@@ -1687,7 +1673,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
 
 
-        if(state.getP1Chars().size()>0)
+        if(state.getP1Chars().size()>1)
         {
             if (state.getTurn() > 5 && (state.getTurn() == state.getP1Chars(0).getWhichCharacter() + 7 || state.getTurn() == state.getP1Chars(1).getWhichCharacter() + 7))
             {
@@ -1943,20 +1929,4 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         }
     }
-
-
-    /**
-     * @Author Victor Nguyen
-     *
-     * Implementing the method to create the floating menu
-     *
-     * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
-     */
-    /*public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-    {
-        Log.i("Vic", "text");
-        myActivity.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = myActivity.getMenuInflater();
-        inflater.inflate(R.menu.menu_ingame, menu);
-    }*/
 }
