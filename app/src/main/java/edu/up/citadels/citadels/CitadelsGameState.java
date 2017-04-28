@@ -643,6 +643,21 @@ public class CitadelsGameState extends GameState
         return p3City.get(i);
     }
 
+    public void removeFromP1City(int index)
+    {
+        this.getP2City().remove(index);
+    }
+
+    public void removeFromP2City(int index)
+    {
+        this.getP2City().remove(index);
+    }
+
+    public void removeFromP3City(int index)
+    {
+        this.getP2City().remove(index);
+    }
+
     //Get District Deck
     public ArrayList<CitadelsDistrictCard> getDeckOrderDistricts()
     {

@@ -985,7 +985,6 @@ public class CitadelsLocalGame extends LocalGame {
 
             if (state.getTurn() == 9) //Magician Ability
                 if (playerID == 0) {
-                    //TODO go in here and find which character was selected, make sure it isn't null, find who owns it
                     if ((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP1Hand());
@@ -1153,15 +1152,45 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (state.getTurn() == 14) {
                 //warlord
-                if (playerID == 0) {
-                    //TODO determine which district is chosen to be destroyed and make sure it's not a bishop district
-                    for (int i = 0; i < state.getP1City().size(); ++i) {
+                if (playerID == 0)
+                {
+                    for (int i = 0; i < state.getP1City().size(); ++i)
+                    {
                         CitadelsDistrictCard cdc = state.getP1City().get(i);
                         if (cdc.getColorString().equals("Red")) {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                     }
-                    return true;
+                    if((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter()))
+                    {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for(int i = 0; i < state.getP2City().size(); ++i)
+                        {
+                            if(state.getP2City().get(i).getCost() > cost)
+                            {
+                                cost = state.getP2City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.removeFromP2City(indexOfDistrict);
+                        return true;
+                    }else if((theCharacter == state.getP3Chara1().getWhichCharacter()) || (theCharacter == state.getP3Chara2().getWhichCharacter()))
+                    {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for(int i = 0; i < state.getP3City().size(); ++i)
+                        {
+                            if(state.getP3City().get(i).getCost() > cost)
+                            {
+                                cost = state.getP3City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.removeFromP3City(indexOfDistrict);
+                        return true;
+                    }
+                        //return true;
                 } else if (playerID == 1) {
                     for (int i = 0; i < state.getP2City().size(); ++i) {
                         CitadelsDistrictCard cdc = state.getP2City().get(i);

@@ -101,7 +101,17 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             }
         }
 
-        int whichCharacterToRuin = (int)(Math.random() * 3);
+        /*int whichCharacterToRuin = (int)(Math.random() * 3);
+        if (whichCharacterToRuin == 0)
+        {
+            game.sendAction(new UseSpecialAbility(this, savedState.getP1Character1()));
+        }else if(whichCharacterToRuin == 1)
+        {
+            game.sendAction(new UseSpecialAbility(this, savedState.getP2Character1()));
+        }else if(whichCharacterToRuin == 2)
+        {
+            game.sendAction(new UseSpecialAbility(this, savedState.getP3Character1()));
+        }*/
 
         game.sendAction(new EndTurn(this));
     }
