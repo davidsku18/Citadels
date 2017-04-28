@@ -1769,6 +1769,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
                     if(state.getP1Gold() >= cardToBuild.getCost())
                    {
+                        //TODO make sure you cant build 2 of the same district
                        //if p1 has enough gold, build a district card
                        cardInfo.setText(cardToBuild.getName() + " Built.");
                        humanPlayerBuildDistrict(cardToBuild);
