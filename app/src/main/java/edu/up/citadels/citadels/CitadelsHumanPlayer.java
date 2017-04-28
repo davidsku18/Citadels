@@ -758,10 +758,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     public void showPlayerCharacterCards()
     {
-        player2_Card1.setVisibility(View.INVISIBLE);
-        player2_Card2.setVisibility(View.INVISIBLE);
-        player3_Card1.setVisibility(View.INVISIBLE);
-        player3_Card2.setVisibility(View.INVISIBLE);
+        if (state.getTurn() < 7)
+        {
+            player2_Card1.setVisibility(View.INVISIBLE);
+            player2_Card2.setVisibility(View.INVISIBLE);
+            player3_Card1.setVisibility(View.INVISIBLE);
+            player3_Card2.setVisibility(View.INVISIBLE);
+        }
         if (state.getTurn() == 7)
         {
             if(state.getP2Chars(0).getWhichCharacter() == 0)
@@ -968,7 +971,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         for(int i = 0; i<2 ;++i)
         {
-            if (i==0 && !state.getP2Chars().isEmpty())
+            if (i==0 && !state.getP2Chars().isEmpty() && state.getP2Chars(0).getWhichCharacter()+7 >=state.getTurn())
             {
                 drawCharacterCard(player2_Card1, state.getP2Chars(0).getWhichCharacter());
             }
@@ -976,7 +979,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 drawCharacterCard(player2_Card1, -1);
             }
-            else if (i==1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size()>1)
+            else if (i==1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size()>1 && state.getP2Chars(1).getWhichCharacter()+7>=state.getTurn())
             {
                 drawCharacterCard(player2_Card2, state.getP2Chars(1).getWhichCharacter());
             }
@@ -987,24 +990,24 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         for(int i = 0; i<2 ;++i)
         {
-            if (i==0 && !state.getP3Chars().isEmpty())
+            if (i==0 && !state.getP3Chars().isEmpty() && state.getP3Chars(0).getWhichCharacter()+7 >= state.getTurn())
             {
                 drawCharacterCard(player3_Card1, state.getP3Chars(0).getWhichCharacter());
             }
-            else if (i==0 && state.getP3Chars().isEmpty() && state.getP3Chars().size()>1)
+            else if (i==0 && state.getP3Chars().isEmpty())
             {
                 drawCharacterCard(player3_Card1, -1);
             }
-            else if (i==1 && !state.getP3Chars().isEmpty())
+            else if (i==1 && !state.getP3Chars().isEmpty() && state.getP3Chars().size()>1 && state.getP3Chars(1).getWhichCharacter()+7>=state.getTurn())
             {
-                drawCharacterCard(player3_Card2, state.getP3Chars(0).getWhichCharacter());
+                drawCharacterCard(player3_Card2, state.getP3Chars(1).getWhichCharacter());
             }
             else if (i==1 && state.getP3Chars().isEmpty() && state.getP3Chars().size()>1)
             {
                 drawCharacterCard(player3_Card2, -1);
             }
         }
-        showPlayerCharacterCards();
+        //showPlayerCharacterCards();
 
         //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)
