@@ -822,16 +822,16 @@ public class CitadelsLocalGame extends LocalGame {
             }
         } else if (action instanceof ChooseDistrictCard)
         {
-            if (playerID == 0)
+            if (playerID == 0 && state.getTurn() > 6)
             {
                 state.addToP1Hand(state.drawDistrictCard());
                 return true;
-            } else if (playerID == 1)
+            } else if (playerID == 1 && state.getTurn() > 6)
             {
                 state.setAction("Player 2 Drew a District Card.");
                 state.addToP2Hand(state.drawDistrictCard());
                 return true;
-            } else if (playerID == 2)
+            } else if (playerID == 2 && state.getTurn() > 6)
             {
                 state.setAction("Player 3 Drew a District Card.");
                 state.addToP3Hand(state.drawDistrictCard());
