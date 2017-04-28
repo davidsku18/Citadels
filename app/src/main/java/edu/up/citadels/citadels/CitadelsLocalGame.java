@@ -872,17 +872,17 @@ public class CitadelsLocalGame extends LocalGame {
             {
                 UseSpecialAbility usa = (UseSpecialAbility)cma;
                 int theCharacter = usa.getCharacter();
-                if(state.getTurn() == 1)
+                if(state.getTurn() == 8)
                 {
                     //thief
                     if(playerID == 0)
                     {
-                        if((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter()))
+                        if((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
                         {
                             state.setP1Gold(state.getP1Gold() + state.getP2Gold());
                             state.setP2Gold(0);
                             return true;
-                        }else if((theCharacter == state.getP3Chara1().getWhichCharacter()) || (theCharacter == state.getP3Chara2().getWhichCharacter()))
+                        }else if((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
                         {
                             state.setP1Gold(state.getP1Gold() + state.getP3Gold());
                             state.setP3Gold(0);
@@ -918,7 +918,7 @@ public class CitadelsLocalGame extends LocalGame {
                     {
                         return true;
                     }
-                }else if(state.getTurn() == 2)
+                }else if(state.getTurn() == 9)
                 {
                     //magician
                     if(playerID == 0)
@@ -971,7 +971,7 @@ public class CitadelsLocalGame extends LocalGame {
                     {
                         return true;
                     }
-                }else if(state.getTurn() == 3)
+                }else if(state.getTurn() == 10)
                 {
                     //king
                     if(playerID == 0)
@@ -1008,7 +1008,7 @@ public class CitadelsLocalGame extends LocalGame {
                         }
                         return true;
                     }
-                }else if(state.getTurn() == 4)
+                }else if(state.getTurn() == 11)
                 {
                     //bishop
                     if(playerID == 0)
@@ -1045,7 +1045,7 @@ public class CitadelsLocalGame extends LocalGame {
                         }
                         return true;
                     }
-                }else if(state.getTurn() == 5)
+                }else if(state.getTurn() == 12)
                 {
                     //merchant
                     if(playerID == 0)
@@ -1088,7 +1088,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP3Gold(state.getP3Gold() + 1);
                         return true;
                     }
-                }else if(state.getTurn() == 6)
+                }else if(state.getTurn() == 13)
                 {
                     //architect
                     if(playerID == 0)
@@ -1125,7 +1125,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP3Hand(temp);
                         return true;
                     }
-                }else if(state.getTurn() == 7)
+                }else if(state.getTurn() == 14)
                 {
                     //warlord
                     if(playerID == 0)
