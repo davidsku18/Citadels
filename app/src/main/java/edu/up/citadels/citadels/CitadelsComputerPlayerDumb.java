@@ -46,21 +46,23 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         savedState = (CitadelsGameState) info;
 
         int myPlayer = savedState.getPlayer(this);
-        int x = savedState.getTurn();
 
         Log.i("Take Away", "Character Card");
         sleep(1000 + ((int) (Math.random() * 1000)));
         for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
         {
-            if (savedState.getCharacterDeck(i) == null)
+            if (savedState.getCharacterDeck(i) == null && savedState.getRemovedCharacter()!=null)
             {
                 // Do nothing
-            } else if (savedState.getCharacterDeck(i) != null)
+            }
+
+            else if( savedState.getCharacterDeck(i)!=null)
             {
                 game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
-                Log.i("Player", "Attempt to Take Character Card");
                 break;
+
             }
+
         }
         game.sendAction(new TakeGold(this));
         if (myPlayer == 1)

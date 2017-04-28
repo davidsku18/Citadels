@@ -457,6 +457,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         characterSpinner.setAdapter(characterAdapter);
     }
 
+
     //this allows us to pass in a character and find a string representation of the name for display purposes
     public String getStringName(int character)
     {
@@ -489,12 +490,132 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         return theCharacter;
     }
 
+    public void showCharacterCards()
+    {
+        if (state.getCharacterDeck(0) == null)
+        {
+            assassinButton.setVisibility(View.INVISIBLE);
+        }
+        else if(state.getCharacterDeck(0)!= null)
+        {
+            assassinButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(1) == null)
+        {
+            thiefButton.setVisibility(View.INVISIBLE);
+        }
+        else if(state.getCharacterDeck(1) != null)
+        {
+            thiefButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(2) == null)
+        {
+            magicianButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(2) != null)
+        {
+            magicianButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(3) == null)
+        {
+            kingButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(3) != null)
+        {
+            kingButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(4) == null)
+        {
+            bishopButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(4) != null)
+        {
+            bishopButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(5) == null)
+        {
+            merchantButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(5) != null)
+        {
+            merchantButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(6) == null)
+        {
+            architectButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(6) != null)
+        {
+            architectButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(7) == null)
+        {
+            warlordButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(7) != null)
+        {
+            warlordButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideRemovedCharacter()
+    {
+        if(state.getRemovedCharacter()!=null)
+        {
+            if (state.getRemovedCharacter().getWhichCharacter() == 0)
+            {
+                assassinButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 1)
+            {
+                thiefButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 2)
+            {
+                magicianButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 3)
+            {
+                kingButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 4)
+            {
+                bishopButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 5)
+            {
+                merchantButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 6)
+            {
+                architectButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 7)
+            {
+                warlordButton.setVisibility(View.INVISIBLE);
+            }
+        }
+        /*else
+        {
+            showCharacterCards();
+        }*/
+    }
+
+    public void hideallCharacterCards()
+    {
+        assassinButton.setVisibility(View.INVISIBLE);
+        thiefButton.setVisibility(View.INVISIBLE);
+        magicianButton.setVisibility(View.INVISIBLE);
+        kingButton.setVisibility(View.INVISIBLE);
+        bishopButton.setVisibility(View.INVISIBLE);
+        merchantButton.setVisibility(View.INVISIBLE);
+        architectButton.setVisibility(View.INVISIBLE);
+        warlordButton.setVisibility(View.INVISIBLE);
+
+    }
+
     public void updateCharacterCounter()
     {
+        hideallCharacterCards();
         if(state.getTurn() == 0)
         {
+            showCharacterCards();
             if(state.getKing()==0)
             {
+
                 characterTurn.setText("Player 1 Choose A Character To Remove!");
             }
             else if(state.getKing()==1)
@@ -508,23 +629,27 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()== 1)
         {
+
             if(state.getKing()==0)
             {
-                characterTurn.setText("Player 1 Choose A Character To Remove!");
+                showCharacterCards();
+                characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 2 Choose A Character To Remove!");
+                characterTurn.setText("Player 2 Choose A Character!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 3 Choose A Character To Remove!");
+                characterTurn.setText("Player 3 Choose A Character!");
             }
         }
         else if(state.getTurn()==2)
         {
+
             if(state.getKing()==2)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==0)
@@ -538,8 +663,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==3)
         {
+
             if(state.getKing()==1)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==2)
@@ -553,8 +680,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==4)
         {
+
             if(state.getKing()==0)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==1)
@@ -568,8 +697,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==5)
         {
+
             if(state.getKing()==2)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==0)
@@ -583,8 +714,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==6)
         {
+
             if(state.getKing()==1)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==2)
@@ -813,9 +946,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(0) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(0));
-                    assassinButton.setVisibility(View.INVISIBLE);
+                    //assassinButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the Assassin");
-                    assassinButton.setVisibility(View.INVISIBLE);
+                    //assassinButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -831,9 +964,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(1) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(1));
-                    thiefButton.setVisibility(View.INVISIBLE);
+                    //thiefButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the Thief");
-                    thiefButton.setVisibility(View.INVISIBLE);
+                    //thiefButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -851,9 +984,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(2) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(2));
-                    magicianButton.setVisibility(View.INVISIBLE);
+                    //magicianButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the magician card");
-                    magicianButton.setVisibility(View.INVISIBLE);
+                    //magicianButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -868,12 +1001,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(3) != null)
+                if(state.getCharacterDeck(3) != null )
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(3));
-                    kingButton.setVisibility(View.INVISIBLE);
+                    //kingButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the king card");
-                    kingButton.setVisibility(View.INVISIBLE);
+                    //kingButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -890,9 +1023,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(4) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(4));
-                    bishopButton.setVisibility(View.INVISIBLE);
+                    //bishopButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the bishop card");
-                    bishopButton.setVisibility(View.INVISIBLE);
+                    //bishopButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -909,9 +1042,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(5) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(5));
-                    merchantButton.setVisibility(View.INVISIBLE);
+                    //merchantButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the merchant card");
-                    merchantButton.setVisibility(View.INVISIBLE);
+                    //merchantButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -928,9 +1061,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(6) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(6));
-                    architectButton.setVisibility(View.INVISIBLE);
+                    //architectButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the architect card");
-                    architectButton.setVisibility(View.INVISIBLE);
+                    //architectButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -947,9 +1080,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if(state.getCharacterDeck(7) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(7));
-                    warlordButton.setVisibility(View.INVISIBLE);
+                    //warlordButton.setVisibility(View.INVISIBLE);
                     cardInfo.setText("You've chosen the warlord card");
-                    warlordButton.setVisibility(View.INVISIBLE);
+                    //warlordButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -958,41 +1091,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        if (state.getCharacterDeck(0) == null)
-        {
-            assassinButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(1) == null)
-        {
-            thiefButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(2) == null)
-        {
-            magicianButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(3) == null)
-        {
-            kingButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(4) == null)
-        {
-            bishopButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(5) == null)
-        {
-            merchantButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(6) == null)
-        {
-            architectButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(7) == null)
-        {
-            warlordButton.setVisibility(View.INVISIBLE);
-        }
+
 
         // Sets character card's buttons visible when the next round starts
-        if (state.getTurn() == 0)
+        /*if (state.getTurn() == 0)
         {
             assassinButton.setVisibility(View.VISIBLE);
             thiefButton.setVisibility(View.VISIBLE);
@@ -1002,7 +1104,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             merchantButton.setVisibility(View.VISIBLE);
             architectButton.setVisibility(View.VISIBLE);
             kingButton.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         //the following listeners allow the user to get the names of all players' characters
         player1_Card1.setOnClickListener(new View.OnClickListener()

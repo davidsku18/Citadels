@@ -477,6 +477,7 @@ public class CitadelsLocalGame extends LocalGame {
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
+                    Log.i("Player1", "Actually Removed Card");
                     state.setTurn(state.getTurn()+1);
                     return true;
                 }
@@ -485,7 +486,7 @@ public class CitadelsLocalGame extends LocalGame {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setTurn(state.getTurn()+1);
-                    Log.i("Player2", "Actually Took Card");
+                    Log.i("Player2", "Actually Removed Card");
                     return true;
                 }
                 else if (playerID == 2 && playerID == state.getKing())
@@ -493,7 +494,7 @@ public class CitadelsLocalGame extends LocalGame {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setTurn(state.getTurn()+1);
-                    Log.i("Player3", "Actually Took Card");
+                    Log.i("Player3", "Actually Removed Card");
                     return true;
                 }
                 else
@@ -691,9 +692,11 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
-                    if (state.getP3Chars(0).getWhichCharacter()!=0 || state.getP3Chars(1).getWhichCharacter()!=0 || state.getP2Chars(0).getWhichCharacter()!=0 || state.getP2Chars(1).getWhichCharacter()!=0 )
+                    // If Assassin is removed
+                    if ( state.getCharacterDeck(0) == null )
                     {
-                        state.setTurn(state.getTurn() + 2);
+                        // Set to Theif's turn
+                        state.setTurn(8);
                     }
                     else
                     {
@@ -709,9 +712,12 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
-                    if (state.getP3Chars(0).getWhichCharacter()!=0 || state.getP3Chars(1).getWhichCharacter()!=0 || state.getP1Chars(0).getWhichCharacter()!=0 || state.getP1Chars(1).getWhichCharacter()!=0 )
+
+                    // If Assassin is removed
+                    if (state.getCharacterDeck(0) == null)
                     {
-                        state.setTurn(state.getTurn() + 2);
+                        // Set to Theif's turn
+                        state.setTurn(8);
                     }
                     else
                     {
@@ -727,9 +733,12 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char2");
-                    if (state.getP1Chars(0).getWhichCharacter()!=0 || state.getP1Chars(1).getWhichCharacter()!=0 || state.getP2Chars(0).getWhichCharacter()!=0 || state.getP2Chars(1).getWhichCharacter()!=0 )
+
+                    // If Assassin is removed
+                    if (state.getCharacterDeck(0) == null)
                     {
-                        state.setTurn(state.getTurn() + 2);
+                        // Set to Theif's turn
+                        state.setTurn(8);
                     }
                     else
                     {
@@ -757,7 +766,7 @@ public class CitadelsLocalGame extends LocalGame {
                     {
                         for(int i = state.getTurn() - 6; i<state.getCharacterDeck().length; ++i)
                         {
-                            if(state.getCharacterDeck(i) == null)
+                            if(state.getCharacterDeck(i) == null )
                             {
                                 state.setTurn(i + 7);
                                 return true;
