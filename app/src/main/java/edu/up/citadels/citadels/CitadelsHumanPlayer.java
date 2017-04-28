@@ -1,6 +1,7 @@
 package edu.up.citadels.citadels;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -612,7 +613,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         hideallCharacterCards();
         if(state.getTurn() == 0)
         {
-
             if(state.getKing()==0)
             {
                 showCharacterCards();
@@ -663,7 +663,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==3)
         {
-
             if(state.getKing()==1)
             {
                 showCharacterCards();
@@ -680,7 +679,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==4)
         {
-
             if(state.getKing()==0)
             {
                 showCharacterCards();
@@ -697,7 +695,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==5)
         {
-
             if(state.getKing()==2)
             {
                 showCharacterCards();
@@ -714,7 +711,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else if(state.getTurn()==6)
         {
-
             if(state.getKing()==1)
             {
                 showCharacterCards();
@@ -935,11 +931,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
         {
-            characterTurn.setTextColor(0xFF00FF00);
+            //characterTurn.setTextColor(0xFF00FF00);
             updateCharacterCounter();
         }else
         {
-            characterTurn.setTextColor(0xFF000000);
+            //characterTurn.setTextColor(0xFF000000);
             updateCharacterCounter();
         }
 
@@ -1183,7 +1179,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                if(state.getCharacterDeck(3) != null )
+                if(state.getCharacterDeck(3) != null)
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(3));
                     //kingButton.setVisibility(View.INVISIBLE);
@@ -1995,7 +1991,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
                 if (! hasGone)
