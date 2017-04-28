@@ -1724,7 +1724,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                cardInfo.setText("It is your turn!");
+                //cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
                 if (! hasGone)
@@ -1769,6 +1769,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
                     if(state.getP1Gold() >= cardToBuild.getCost())
                    {
+                        //TODO make sure you cant build 2 of the same district
                        //if p1 has enough gold, build a district card
                        cardInfo.setText(cardToBuild.getName() + " Built.");
                        humanPlayerBuildDistrict(cardToBuild);
@@ -1816,7 +1817,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasGone = false;
                     hasBuilt = false;
                     hasGoneAbility = false;
-                    cardInfo.setText("Turn Ended.");
+                    cardInfo.setText("");
                 }
                 else
                 {
