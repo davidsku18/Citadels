@@ -756,6 +756,165 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
+    public void showPlayerCharacterCards()
+    {
+        player2_Card1.setVisibility(View.INVISIBLE);
+        player2_Card2.setVisibility(View.INVISIBLE);
+        player3_Card1.setVisibility(View.INVISIBLE);
+        player3_Card2.setVisibility(View.INVISIBLE);
+        if (state.getTurn() == 7)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 0)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 0)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 0)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 0)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 8)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 1)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 1)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 1)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 1)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 9)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 2)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 2)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 2)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 2)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 10)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 3)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 3)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 3)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 3)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 11)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 4)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 4)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 4)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 4)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 12)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 5)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 5)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 5)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 5)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 13)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 6)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 6)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 6)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 6)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 14)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 7)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 7)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 7)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 7)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+    }
     //this is called AFTER we have a reference to the state. It updates all info and initializes button listeners
     public void initializeEverything()
     {
@@ -788,44 +947,64 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
-        for(int i = 0; i<2; ++i)
+        for(int i = 0; i<2 ;++i)
         {
-            if (i == 0 && !state.getP1Chars().isEmpty())
+            if (i==0 && !state.getP1Chars().isEmpty())
             {
-                drawCharacterCard(player1_Card1, state.getP1Chars().get(0).getWhichCharacter());
-            } else if (i == 0 && state.getP1Chars().isEmpty()) {
+                drawCharacterCard(player1_Card1, state.getP1Chars(0).getWhichCharacter());
+            }
+            else if (i==0 && state.getP1Chars().isEmpty())
+            {
                 drawCharacterCard(player1_Card1, -1);
-            } else if (i == 1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size() > 1) {
-                drawCharacterCard(player1_Card2, state.getP1Chars().get(1).getWhichCharacter());
-            } else if (i == 1 && state.getP1Chars().isEmpty()) {
+            }
+            else if (i==1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size()>1)
+            {
+                drawCharacterCard(player1_Card2, state.getP1Chars(1).getWhichCharacter());
+            }
+            else if (i==1 && state.getP1Chars().isEmpty() && state.getP1Chars().size()>1)
+            {
                 drawCharacterCard(player1_Card2, -1);
             }
-
         }
-
-        for(int i = 0; i<2; ++i) {
-            if (i == 0 && !state.getP2Chars().isEmpty()) {
-                drawCharacterCard(player2_Card1, state.getP2Chars().get(0).getWhichCharacter());
-            } else if (i == 0 && state.getP2Chars().isEmpty()) {
+        for(int i = 0; i<2 ;++i)
+        {
+            if (i==0 && !state.getP2Chars().isEmpty())
+            {
+                drawCharacterCard(player2_Card1, state.getP2Chars(0).getWhichCharacter());
+            }
+            else if (i==0 && state.getP2Chars().isEmpty())
+            {
                 drawCharacterCard(player2_Card1, -1);
-            } else if (i == 1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size() > 1) {
-                drawCharacterCard(player2_Card2, state.getP2Chars().get(1).getWhichCharacter());
-            } else if (i == 1 && state.getP2Chars().isEmpty()) {
+            }
+            else if (i==1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size()>1)
+            {
+                drawCharacterCard(player2_Card2, state.getP2Chars(1).getWhichCharacter());
+            }
+            else if (i==1 && state.getP2Chars().isEmpty() && state.getP2Chars().size()>1)
+            {
                 drawCharacterCard(player2_Card2, -1);
             }
         }
-
-        for(int i = 0; i<2; ++i) {
-            if (i == 0 && !state.getP3Chars().isEmpty()) {
-                drawCharacterCard(player3_Card1, state.getP3Chars().get(0).getWhichCharacter());
-            } else if (i == 0 && state.getP3Chars().isEmpty()) {
+        for(int i = 0; i<2 ;++i)
+        {
+            if (i==0 && !state.getP3Chars().isEmpty())
+            {
+                drawCharacterCard(player3_Card1, state.getP3Chars(0).getWhichCharacter());
+            }
+            else if (i==0 && state.getP3Chars().isEmpty() && state.getP3Chars().size()>1)
+            {
                 drawCharacterCard(player3_Card1, -1);
-            } else if (i == 1 && !state.getP3Chars().isEmpty() && state.getP3Chars().size() > 1) {
-                drawCharacterCard(player3_Card2, state.getP3Chars().get(1).getWhichCharacter());
-            } else if (i == 1 && state.getP3Chars().isEmpty()) {
+            }
+            else if (i==1 && !state.getP3Chars().isEmpty())
+            {
+                drawCharacterCard(player3_Card2, state.getP3Chars(0).getWhichCharacter());
+            }
+            else if (i==1 && state.getP3Chars().isEmpty() && state.getP3Chars().size()>1)
+            {
                 drawCharacterCard(player3_Card2, -1);
             }
         }
+        showPlayerCharacterCards();
 
         //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)

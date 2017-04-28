@@ -922,41 +922,62 @@ public class CitadelsLocalGame extends LocalGame
         {
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
-            //thief
-            if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(2).getWhichCharacter() == 1))
+
+            if(state.getTurn() == 7)
             {
-                if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 0 || state.getP1Chars(2).getWhichCharacter() == 0))
                 {
-                    state.setP1Gold(state.getP1Gold() + state.getP2Gold());
-                    state.setP2Gold(0);
-                    return true;
-                } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
-                {
-                    state.setP1Gold(state.getP1Gold() + state.getP3Gold());
-                    state.setP3Gold(0);
-                    return true;
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    }
+                    else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    }
                 }
-            } else if (playerID == 1)
+            }
+            else if (state.getTurn() == 8)
             {
-                if ((theCharacter == state.getP1Character1()) || (theCharacter == state.getP1Character2()))
+                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(2).getWhichCharacter() == 1))
+                {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
+                        state.setP1Gold(state.getP1Gold() + state.getP2Gold());
+                        state.setP2Gold(0);
+                        return true;
+                    }   else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
+                        state.setP1Gold(state.getP1Gold() + state.getP3Gold());
+                        state.setP3Gold(0);
+                        return true;
+                    }
+            }
+            }
+            else if (playerID == 1)
+            {
+                if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
                 {
                     state.setP2Gold(state.getP2Gold() + state.getP1Gold());
                     state.setP1Gold(0);
                     return true;
-                } else if ((theCharacter == state.getP3Character1()) || (theCharacter == state.getP3Character2()))
+                } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
                 {
                     state.setP2Gold(state.getP2Gold() + state.getP3Gold());
                     state.setP3Gold(0);
                     return true;
                 }
-            } else if (playerID == 2)
+            }
+            else if (playerID == 2)
             {
-                if ((theCharacter == state.getP2Character1()) || (theCharacter == state.getP2Character2()))
+                if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
                 {
                     state.setP3Gold(state.getP3Gold() + state.getP2Gold());
                     state.setP2Gold(0);
                     return true;
-                } else if ((theCharacter == state.getP1Character1()) || (theCharacter == state.getP1Character2()))
+                } else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
                 {
                     state.setP3Gold(state.getP3Gold() + state.getP1Gold());
                     state.setP1Gold(0);
