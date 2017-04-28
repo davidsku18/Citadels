@@ -1724,7 +1724,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                cardInfo.setText("It is your turn!");
+                //cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
                 if (! hasGone)
@@ -1816,7 +1816,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasGone = false;
                     hasBuilt = false;
                     hasGoneAbility = false;
-                    cardInfo.setText("Turn Ended.");
+                    cardInfo.setText("");
                 }
                 else
                 {

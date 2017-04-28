@@ -893,6 +893,10 @@ public class CitadelsGameState extends GameState
 
     }
 
+    public void setBuildLimit(int newLimit)
+    {
+        this.buildLimit = newLimit;
+    }
     //Returns if Character is alive
     public boolean getCharacterIsAlive()
     {

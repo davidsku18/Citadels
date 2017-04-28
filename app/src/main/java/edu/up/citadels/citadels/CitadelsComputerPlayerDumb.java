@@ -7,6 +7,7 @@ import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
+import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
@@ -153,6 +154,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
             }
         }
+        //game.sendAction(new UseSpecialAbility(this,3)); //crashes game for some unknown reason
         game.sendAction(new EndTurn(this));
     }
 
