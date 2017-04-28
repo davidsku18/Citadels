@@ -923,6 +923,7 @@ public class CitadelsLocalGame extends LocalGame
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
 
+            // Assassin Ability
             if(state.getTurn() == 7)
             {
                 if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 0 || state.getP1Chars(2).getWhichCharacter() == 0))
@@ -939,6 +940,8 @@ public class CitadelsLocalGame extends LocalGame
                     }
                 }
             }
+
+
             else if (state.getTurn() == 8)
             {
                 if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(2).getWhichCharacter() == 1))
