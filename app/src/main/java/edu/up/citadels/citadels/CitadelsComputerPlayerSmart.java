@@ -40,24 +40,27 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
 
         int myPlayer = savedState.getPlayer(this);
 
-        sleep((int)(1 + Math.random() * 2000));
-        for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
-        {
-            if (savedState.getCharacterDeck(i) == null)
-            {
-                // Do nothing
-            } else if (savedState.getCharacterDeck(i) != null)
-            {
-                game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
-                Log.i("Player", "Attempt to Take Character Card");
-                break;
-            }
-        }
+
 
         //AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
         // in hand or if AI has more than 8 gold
         if(myPlayer == 1)
         {
+            //pick character
+            sleep((int)(1 + Math.random() * 2000));
+            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            {
+                if (savedState.getCharacterDeck(i) == null)
+                {
+                    // Do nothing
+                } else if (savedState.getCharacterDeck(i) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+            }
+
             if((savedState.getP1Gold() < 8) && (savedState.getP1Hand().size() != 0))
             {
                 game.sendAction(new TakeGold(this));
@@ -81,6 +84,21 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         }
         else if(myPlayer == 2)
         {
+            //pick character
+            sleep((int)(1 + Math.random() * 2000));
+            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            {
+                if (savedState.getCharacterDeck(i) == null)
+                {
+                    // Do nothing
+                } else if (savedState.getCharacterDeck(i) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+            }
+
             if((savedState.getP2Gold() < 8) && (savedState.getP2Hand().size() != 0))
             {
                 game.sendAction(new TakeGold(this));
@@ -104,6 +122,21 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         }
         else if(myPlayer == 3)
         {
+            //pick character
+            sleep((int)(1 + Math.random() * 2000));
+            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            {
+                if (savedState.getCharacterDeck(i) == null)
+                {
+                    // Do nothing
+                } else if (savedState.getCharacterDeck(i) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+            }
+
             if((savedState.getP3Gold() < 8) && (savedState.getP3Hand().size() != 0))
             {
                 game.sendAction(new TakeGold(this));
@@ -126,8 +159,6 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                 }
             }
         }
-
-        sleep((int)(1 + Math.random() * 2000));
 
         game.sendAction(new EndTurn(this));
     }
