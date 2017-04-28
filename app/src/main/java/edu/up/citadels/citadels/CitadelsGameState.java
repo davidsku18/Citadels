@@ -562,10 +562,7 @@ public class CitadelsGameState extends GameState
     {
         this.p1Hand.remove(card);
     }
-    public void removeFromP2Hand(int card)
-    {
-        this.p2Hand.remove(card);
-    }
+    public void removeFromP2Hand(int card) { this.p2Hand.remove(card); }
     public void removeFromP3Hand(int card)
     {
         this.p3Hand.remove(card);
@@ -875,14 +872,6 @@ public class CitadelsGameState extends GameState
             deckOrderDistricts.remove(0);
         }
 
-        /*//TODO take this out- I just put these in to test functionality
-        this.addToP1City(this.p1Hand.get(0));
-        this.addToP1City(this.p1Hand.get(1));
-        this.addToP2City(this.p2Hand.get(0));
-        this.addToP2City(this.p2Hand.get(1));
-        this.addToP3City(this.p3Hand.get(0));
-        this.addToP3City(this.p3Hand.get(1));*/
-
         this.setTurn(0);
         this.setRollKing();
 
@@ -893,13 +882,6 @@ public class CitadelsGameState extends GameState
         this.setP1Gold(2);
         this.setP2Gold(2);
         this.setP3Gold(2);
-
-        //this.removeCharacterCardFromDeck(0);
-        //this.removeCharacterCardFromDeck(1);
-        //this.removeCharacterCardFromDeck(2);
-        //this.removeCharacterCardFromDeck(3);
-        //this.removeCharacterCardFromDeck(4);
-        //this.removeCharacterCardFromDeck(5);
     }
 
 

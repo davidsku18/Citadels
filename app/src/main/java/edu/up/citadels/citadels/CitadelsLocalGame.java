@@ -985,6 +985,7 @@ public class CitadelsLocalGame extends LocalGame {
 
             if (state.getTurn() == 9) //Magician Ability
                 if (playerID == 0) {
+                    //TODO go in here and find which character was selected, make sure it isn't null, find who owns it
                     if ((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP1Hand());
