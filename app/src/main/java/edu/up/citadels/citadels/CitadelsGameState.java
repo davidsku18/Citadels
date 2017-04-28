@@ -235,18 +235,42 @@ public class CitadelsGameState extends GameState
     } // TODO need to implement who is king and who has the king character card
 
     //Sets the player's chosen character card
-    public void setP1Character1(int name, int color)
-    {
-        this.p1Chara1 = new CharacterCard(name, color);
-    }
-    public void setP1Character2(int name, int color)
-    {
-        this.p1Chara2 = new CharacterCard(name, color);
-    }
+    public void setP1Character1(int name, int color) { this.p1Chara1 = new CharacterCard(name, color); }
+    public void setP1Character2(int name, int color) { this.p1Chara2 = new CharacterCard(name, color); }
     public void setP2Character1(int name, int color) { this.p2Chara1 = new CharacterCard(name, color); }
-    public void setP2Character2(int name, int color) { this.p2Chara2 = new CharacterCard(name, color);  }
-    public void setP3Character1(int name, int color) { this.p3Chara1 = new CharacterCard(name, color);  }
-    public void setP3Character2(int name, int color) { this.p3Chara2 = new CharacterCard(name, color);  }
+    public void setP2Character2(int name, int color) { this.p2Chara2 = new CharacterCard(name, color); }
+    public void setP3Character1(int name, int color) { this.p3Chara1 = new CharacterCard(name, color); }
+    public void setP3Character2(int name, int color) { this.p3Chara2 = new CharacterCard(name, color); }
+
+    //Get P1's Characters
+    public int getP1Character1()
+    {
+        return p1Character1;
+    }
+    public int getP1Character2()
+    {
+        return p1Character2;
+    }
+
+    //Get P2's Characters
+    public int getP2Character1()
+    {
+        return p2Character1;
+    }
+    public int getP2Character2()
+    {
+        return p2Character2;
+    }
+
+    //Get P3's Characters
+    public int getP3Character1()
+    {
+        return p3Character1;
+    }
+    public int getP3Character2()
+    {
+        return p3Character2;
+    }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
@@ -430,36 +454,6 @@ public class CitadelsGameState extends GameState
             color = "Red";
         }
         return color;
-    }
-
-    //Get P1's Characters
-    public int getP1Character1()
-    {
-        return p1Character1;
-    }
-    public int getP1Character2()
-    {
-        return p1Character2;
-    }
-
-    //Get P2's Characters
-    public int getP2Character1()
-    {
-        return p2Character1;
-    }
-    public int getP2Character2()
-    {
-        return p2Character2;
-    }
-
-    //Get P3's Characters
-    public int getP3Character1()
-    {
-        return p3Character1;
-    }
-    public int getP3Character2()
-    {
-        return p3Character2;
     }
 
     //Allows the dumb AI to know what player it is
