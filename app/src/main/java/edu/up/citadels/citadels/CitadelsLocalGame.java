@@ -923,7 +923,7 @@ public class CitadelsLocalGame extends LocalGame
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
             //thief
-            if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(2).getWhichCharacter() == 1))
+            if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(1).getWhichCharacter() == 1))
             {
                 if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
                 {
@@ -936,7 +936,7 @@ public class CitadelsLocalGame extends LocalGame
                     state.setP3Gold(0);
                     return true;
                 }
-            } else if (playerID == 1)
+            } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() == 1 || state.getP2Chars(1).getWhichCharacter() == 1))
             {
                 if ((theCharacter == state.getP1Character1()) || (theCharacter == state.getP1Character2()))
                 {
@@ -949,7 +949,7 @@ public class CitadelsLocalGame extends LocalGame
                     state.setP3Gold(0);
                     return true;
                 }
-            } else if (playerID == 2)
+            } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() == 1 || state.getP3Chars(1).getWhichCharacter() == 1))
             {
                 if ((theCharacter == state.getP2Character1()) || (theCharacter == state.getP2Character2()))
                 {
