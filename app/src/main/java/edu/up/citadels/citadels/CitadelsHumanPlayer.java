@@ -769,11 +769,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
         {
-            characterTurn.setTextColor(0xFF00FF00);
+            //characterTurn.setTextColor(0xFF00FF00);
             updateCharacterCounter();
         }else
         {
-            characterTurn.setTextColor(0xFF000000);
+            //characterTurn.setTextColor(0xFF000000);
             updateCharacterCounter();
         }
 
@@ -1809,7 +1809,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
                 if (! hasGone)
