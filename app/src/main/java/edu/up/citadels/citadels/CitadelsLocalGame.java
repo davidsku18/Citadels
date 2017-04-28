@@ -918,12 +918,12 @@ public class CitadelsLocalGame extends LocalGame {
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
 
-            if (state.getTurn() == 6) //Assassin ability
+            if (state.getTurn() == 7) //Assassin ability
             {
                 //TODO implement a way to skip the turn of the player who is killed
             }
 
-            if (state.getTurn() == 7) //thief ability
+            if (state.getTurn() == 8) //thief ability
             {
                 if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1) || (state.getP1Chars(1).getWhichCharacter() == 1)) {
                     if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
@@ -960,7 +960,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             }
 
-            if (state.getTurn() == 8) //Magician Ability
+            if (state.getTurn() == 9) //Magician Ability
                 if (playerID == 0) {
                     //TODO go in here and find which character was selected, make sure it isn't null, find who owns it
                     if ((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter())) {
@@ -1001,7 +1001,7 @@ public class CitadelsLocalGame extends LocalGame {
                 } else {
                     return true;
                 }
-            if (state.getTurn() == 9) {
+            if (state.getTurn() == 10) {
                 //king
                 if (playerID == 0) {
                     for (int i = 0; i < state.getP1City().size(); ++i) {
@@ -1028,7 +1028,7 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                     return true;
                 }
-            } else if (state.getTurn() == 10) {
+            } else if (state.getTurn() == 11) {
                 //bishop
                 if (playerID == 0) {
                     for (int i = 0; i < state.getP1City().size(); ++i) {
@@ -1055,7 +1055,7 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                     return true;
                 }
-            } else if (state.getTurn() == 11) {
+            } else if (state.getTurn() == 12) {
                 //merchant
                 if (playerID == 0) {
                     for (int i = 0; i < state.getP1City().size(); ++i) {
@@ -1088,7 +1088,7 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP3Gold(state.getP3Gold() + 1);
                     return true;
                 }
-            } else if (state.getTurn() == 12) {
+            } else if (state.getTurn() == 13) {
                 //architect
                 if (playerID == 0) {
                     ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
@@ -1128,7 +1128,7 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP3Hand(temp);
                     return true;
                 }
-            } else if (state.getTurn() == 13) {
+            } else if (state.getTurn() == 14) {
                 //warlord
                 if (playerID == 0) {
                     //TODO determine which district is chosen to be destroyed and make sure it's not a bishop district

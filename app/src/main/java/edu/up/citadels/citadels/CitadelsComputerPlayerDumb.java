@@ -55,10 +55,22 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         //random int to determine if it should draw gold or districts
         int whatToDo;
 
+        for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+        {
+            if (savedState.getCharacterDeck(i) == null)
+            {
+                // Do nothing
+            } else if (savedState.getCharacterDeck(i) != null)
+            {
+                game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                Log.i("Player", "Attempt to Take Character Card");
+                break;
+            }
+        }
         if (myPlayer == 1)
         {
             sleep(1000 + ((int) (Math.random() * 1000)));
-            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            /*for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
             {
                 if (savedState.getCharacterDeck(i) == null)
                 {
@@ -69,7 +81,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                     Log.i("Player", "Attempt to Take Character Card");
                     break;
                 }
-            }
+            }*/
 
             sleep(1000 + ((int) (Math.random() * 1000)));
 
@@ -91,7 +103,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         else if (myPlayer == 2)
         {
             sleep(1000 + ((int) (Math.random() * 1000)));
-            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            /*for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
             {
                 if (savedState.getCharacterDeck(i) == null)
                 {
@@ -102,7 +114,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                     Log.i("Player", "Attempt to Take Character Card");
                     break;
                 }
-            }
+            }*/
 
             sleep(1000 + ((int) (Math.random() * 1000)));
 
@@ -124,7 +136,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         else if (myPlayer == 3)
         {
             sleep(1000 + ((int) (Math.random() * 1000)));
-            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            /*for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
             {
                 if (savedState.getCharacterDeck(i) == null)
                 {
@@ -135,7 +147,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                     Log.i("Player", "Attempt to Take Character Card");
                     break;
                 }
-            }
+            }*/
 
             sleep(1000 + ((int) (Math.random() * 1000)));
 
