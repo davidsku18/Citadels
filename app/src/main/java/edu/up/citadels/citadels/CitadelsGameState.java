@@ -3,9 +3,7 @@ package edu.up.citadels.citadels;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
-import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.game.infoMsg.GameState;
 
 /**
@@ -74,23 +72,22 @@ public class CitadelsGameState extends GameState
     public void clearallCharacters()
     {
         p1Chars.clear();
-        //p1Chars.add(0,null);
-        //p1Chars.add(1,null);
         p2Chars.clear();
         p3Chars.clear();
+    }
 
-    }
-    public void removep1Chars(int i)
+    private CharacterCard removedCharacter;
+    public CharacterCard getRemovedCharacter()
     {
-        p1Chars.remove(i);
+        return this.removedCharacter;
     }
-    public void removep2Chars(int i)
+    public void setRemovedCharacter(CharacterCard c)
     {
-        p2Chars.remove(i);
+        this.removedCharacter = c;
     }
-    public void removep3Chars(int i)
+    public void resetRemovedCharacter()
     {
-        p3Chars.remove(i);
+        this.removedCharacter = null;
     }
 
     public CharacterCard getP1Chars(int i)

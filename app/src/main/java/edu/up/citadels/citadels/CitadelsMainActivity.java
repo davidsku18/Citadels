@@ -34,6 +34,13 @@ public class CitadelsMainActivity extends GameMainActivity
 {
     public static final int PORT_NUMBER = 4753;
 
+    /**
+     * @Author Victor Nguyen
+     *
+     * Implementing the method to create the floating menu
+     *
+     * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
+     */
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -111,7 +118,7 @@ public class CitadelsMainActivity extends GameMainActivity
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
         defaultConfig.addPlayer("Computer", 2); //2
-        defaultConfig.addPlayer("Computer 2", 4);  //5
+        defaultConfig.addPlayer("Computer 2", 5);  //5
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Guest", "", 1);
