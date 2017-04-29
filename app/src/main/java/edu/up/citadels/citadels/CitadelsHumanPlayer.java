@@ -456,7 +456,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player1Name.setTextColor(Color.WHITE);
         player2Name.setTextColor(Color.WHITE);
         player3Name.setTextColor(Color.WHITE);
-
+        player1Name.setTextSize(25);
+        player2Name.setTextSize(25);
+        player3Name.setTextSize(25);
        /**
         * @Author Victor Nguyen
         *
@@ -620,15 +622,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==0)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character To Remove!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character To Remove!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 2 Choose A Character To Remove!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character To Remove!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 3 Choose A Character To Remove!");
+                characterTurn.setText(allPlayerNames[2] + " Choose A Character To Remove!");
             }
         }
         else if(state.getTurn()== 1)
@@ -637,15 +639,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==0)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText(allPlayerNames[2] + " Choose A Character!");
             }
         }
         else if(state.getTurn()==2)
@@ -654,15 +656,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==2)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character!");
             }
             else if(state.getKing()==0)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText(allPlayerNames[2]+ " Choose A Character!");
             }
         }
         else if(state.getTurn()==3)
@@ -670,15 +672,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==1)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==0)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText(allPlayerNames[2] + " Choose A Character!");
             }
         }
         else if(state.getTurn()==4)
@@ -686,15 +688,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==0)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText(allPlayerNames[2] + " Choose A Character!");
             }
         }
         else if(state.getTurn()==5)
@@ -702,15 +704,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==2)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character!");
             }
             else if(state.getKing()==0)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==1)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText(allPlayerNames[2] + " Choose A Character!");
             }
         }
         else if(state.getTurn()==6)
@@ -718,15 +720,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(state.getKing()==1)
             {
                 showCharacterCards();
-                characterTurn.setText("Player 1 Choose A Character!");
+                characterTurn.setText(allPlayerNames[0] + " Choose A Character!");
             }
             else if(state.getKing()==2)
             {
-                characterTurn.setText("Player 2 Choose A Character!");
+                characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==0)
             {
-                characterTurn.setText("Player 3 Choose A Character!");
+                characterTurn.setText(allPlayerNames[2] + " Choose A Character!");
             }
         }
         else if(state.getTurn() == 7)

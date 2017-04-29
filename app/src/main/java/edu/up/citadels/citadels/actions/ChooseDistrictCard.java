@@ -1,6 +1,5 @@
 package edu.up.citadels.citadels.actions;
 
-import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
 /**
@@ -13,6 +12,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class ChooseDistrictCard extends CitadelsMoveAction
 {
+    private static final long serialVersionUID = 2321488624386L;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *

@@ -378,7 +378,6 @@ public class CitadelsLocalGame extends LocalGame
 
         CitadelsMoveAction cma = (CitadelsMoveAction) action;
         int playerID = getPlayerIdx(cma.getPlayer());
-
         if (action instanceof TakeGold)
         {
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)

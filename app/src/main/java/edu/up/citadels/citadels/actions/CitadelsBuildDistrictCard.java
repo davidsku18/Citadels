@@ -1,7 +1,6 @@
 package edu.up.citadels.citadels.actions;
 
 import edu.up.citadels.citadels.CitadelsDistrictCard;
-import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
 /**
@@ -14,6 +13,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class CitadelsBuildDistrictCard extends CitadelsMoveAction
 {
+    private static final long serialVersionUID = 5213488624386L;
     private CitadelsDistrictCard cardBeingBuilt;
 
     /**

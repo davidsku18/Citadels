@@ -1,6 +1,5 @@
 package edu.up.citadels.citadels.actions;
 
-import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
 /**
@@ -14,6 +13,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class UseSpecialAbility extends CitadelsMoveAction
 {
+    private static final long serialVersionUID = 103488624386L;
     private int character;
     /**
      * constructor for edu.up.citadels.game.GameAction

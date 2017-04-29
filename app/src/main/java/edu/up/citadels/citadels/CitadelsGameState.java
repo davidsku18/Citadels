@@ -17,6 +17,7 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsGameState extends GameState
 {
+    private static final long serialVersionUID = 7552321013488624386L;
     // Special ability Text
     private String specialAbility = null;
     public String getSpecialAbilityText()

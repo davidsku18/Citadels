@@ -61,7 +61,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 break;
             }
         }
-        if (myPlayer == 1) {
+        if (myPlayer == 1)
+        {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
             if (whatToDo == 0) {
@@ -100,7 +101,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         }
 
         int whichCharacterToRuin = (int)(Math.random() * 3);
-
+        sleep(1000);
         game.sendAction(new EndTurn(this));
     }
 
