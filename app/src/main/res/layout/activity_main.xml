@@ -111,15 +111,18 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <Space
+                    <ImageView
+                        android:id="@+id/p2_Crown"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
 
-                    <ImageView
-                        android:id="@+id/p2_Crown"
+                    <TextView
+                        android:id="@+id/Player2Name"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="TextView"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -464,15 +467,18 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <Space
+                    <ImageView
+                        android:id="@+id/p3_Crown"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
 
-                    <ImageView
-                        android:id="@+id/p3_Crown"
+                    <TextView
+                        android:id="@+id/Player3Name"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="TextView"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -606,6 +612,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:text="Score"
                         android:textColor="#ffffff"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
@@ -616,6 +623,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
 
+                        android:text="Gold"
                         android:textColor="#ffffff"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
@@ -1015,15 +1023,18 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
                     <ImageView
                         android:id="@+id/p1_Crown"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/Player1Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="TextView"/>
                 </LinearLayout>
             </LinearLayout>
 

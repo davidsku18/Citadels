@@ -20,12 +20,12 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
 {
     private CitadelsGameState savedState;
 
-    private int playerNum;
+    //private int playerNum;
 
-    public CitadelsComputerPlayerSmart(String initName, int myNumber)
+    public CitadelsComputerPlayerSmart(String initName/*int myInt*/)
     {
         super(initName);
-        this.playerNum = myNumber;
+        //this.playerNum = myInt;
     }
 
     @Override

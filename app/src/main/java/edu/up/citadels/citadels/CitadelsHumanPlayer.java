@@ -1,6 +1,7 @@
 package edu.up.citadels.citadels;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -101,6 +102,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player2DistrictCards;
     private TextView player3DistrictCards;
     private TextView characterTurn;
+    private TextView player1Name;
+    private TextView player2Name;
+    private TextView player3Name;
     private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
@@ -135,6 +139,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     CitadelsDistrictCard card = null;
 
     List<String> player1DistrictsCards = new ArrayList<String>();
+
+    private ImageView p1Crown;
+    private ImageView p2Crown;
+    private ImageView p3Crown;
 
     private int layoutId;
     private int selectedCard;
@@ -300,6 +308,29 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     }
 
+    /*
+     *  Method to Show who is the King
+     *
+     *
+     */
+    public void showKing()
+    {
+        p1Crown.setVisibility(View.INVISIBLE);
+        p2Crown.setVisibility(View.INVISIBLE);
+        p3Crown.setVisibility(View.INVISIBLE);
+        if (state.getKing()== 0)
+        {
+            p1Crown.setVisibility(View.VISIBLE);
+        }
+        else if (state.getKing()== 1)
+        {
+            p2Crown.setVisibility(View.VISIBLE);
+        }
+        else if (state.getKing()== 2)
+        {
+            p3Crown.setVisibility(View.VISIBLE);
+        }
+    }
 
     /**
      * call-back method: called whenever the GUI has changed (e.g., at the beginning
@@ -367,8 +398,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
 
-        //if(sta)
-        
+
         //scales the images so they show up in the designated buttons
         player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
         player1_Card2.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -416,6 +446,16 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2DistrictCards = (TextView) myActivity.findViewById(R.id.p2_dc);
         player3DistrictCards = (TextView) myActivity.findViewById(R.id.p3_Dc);
         characterTurn = (TextView) myActivity.findViewById(R.id.turnTextView);
+        player1Name = (TextView) myActivity.findViewById(R.id.Player1Name);
+        player2Name = (TextView) myActivity.findViewById(R.id.Player2Name);
+        player3Name = (TextView) myActivity.findViewById(R.id.Player3Name);
+        p1Crown = (ImageView) myActivity.findViewById(R.id.p1_Crown);
+        p2Crown = (ImageView) myActivity.findViewById(R.id.p2_Crown);
+        p2Crown = (ImageView) myActivity.findViewById(R.id.p2_Crown);
+        p3Crown = (ImageView) myActivity.findViewById(R.id.p3_Crown);
+        player1Name.setTextColor(Color.WHITE);
+        player2Name.setTextColor(Color.WHITE);
+        player3Name.setTextColor(Color.WHITE);
 
        /**
         * @Author Victor Nguyen
@@ -558,41 +598,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
-    public void hideRemovedCharacter()
-    {
-        if(state.getRemovedCharacter()!=null)
-        {
-            if (state.getRemovedCharacter().getWhichCharacter() == 0)
-            {
-                assassinButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 1)
-            {
-                thiefButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 2)
-            {
-                magicianButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 3)
-            {
-                kingButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 4)
-            {
-                bishopButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 5)
-            {
-                merchantButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 6)
-            {
-                architectButton.setVisibility(View.INVISIBLE);
-            } else if (state.getRemovedCharacter().getWhichCharacter() == 7)
-            {
-                warlordButton.setVisibility(View.INVISIBLE);
-            }
-        }
-        /*else
-        {
-            showCharacterCards();
-        }*/
-    }
 
     public void hideallCharacterCards()
     {
@@ -928,15 +933,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2DistrictCards.setText("Districts: " + state.getP2Hand().size());
         player3DistrictCards.setText("Districts: " + state.getP3Hand().size());
 
-        if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
-        {
-            //characterTurn.setTextColor(0xFF00FF00);
-            updateCharacterCounter();
-        }else
-        {
-            //characterTurn.setTextColor(0xFF000000);
-            updateCharacterCounter();
-        }
+        player1Name.setText(allPlayerNames[0]);
+        player2Name.setText(allPlayerNames[1]);
+        player3Name.setText(allPlayerNames[2]);
+
+
+        updateCharacterCounter();
+
 
         this.p1HandArrayList = state.getP1HandNames();
         p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
@@ -954,6 +957,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             else if (i==0 && state.getP1Chars().isEmpty())
             {
                 drawCharacterCard(player1_Card1, -1);
+                drawCharacterCard(player1_Card2, -1);
             }
             else if (i==1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size()>1)
             {
@@ -1002,7 +1006,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 drawCharacterCard(player3_Card2, -1);
             }
         }
-        //showPlayerCharacterCards();
+        showPlayerCharacterCards();
 
         //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)

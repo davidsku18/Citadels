@@ -30,10 +30,10 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
     private int player;
 
-    public CitadelsComputerPlayerDumb(String initName, int myNumber)
+    public CitadelsComputerPlayerDumb(String initName/*int myNumber*/)
     {
         super(initName);
-        this.player = myNumber;
+        //this.player = myNumber;
     }
 
     @Override
@@ -45,9 +45,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         savedState = (CitadelsGameState) info;
 
         int myPlayer = savedState.getPlayer(this);
-        int x = savedState.getTurn();
 
-        //sleep((int) (1 + Math.random() * 2000));
+        sleep(1000 + (int) ( Math.random() * 2000));
 
         //random int to determine if it should draw gold or districts
         int whatToDo;
