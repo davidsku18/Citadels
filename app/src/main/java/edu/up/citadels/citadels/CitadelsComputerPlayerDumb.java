@@ -45,7 +45,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         savedState = (CitadelsGameState) info;
 
         int myPlayer = savedState.getPlayer(this);
-
         sleep(1000 + (int) ( Math.random() * 2000));
 
         //random int to determine if it should draw gold or districts

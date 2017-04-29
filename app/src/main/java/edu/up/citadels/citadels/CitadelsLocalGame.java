@@ -468,7 +468,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -477,7 +476,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -486,7 +484,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -501,7 +498,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -510,7 +506,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -519,7 +514,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -534,7 +528,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -543,7 +536,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -552,7 +544,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -567,7 +558,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -576,7 +566,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -585,7 +574,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -600,7 +588,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
                     state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
@@ -625,7 +612,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
                     state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
@@ -650,7 +636,6 @@ public class CitadelsLocalGame extends LocalGame
                 {
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
                     Log.i("Player 3", "Took Char2");
@@ -703,7 +688,8 @@ public class CitadelsLocalGame extends LocalGame
                         Log.i("Turncount", "+1");
                         return true;
                     }
-                } else if (state.getTurnCounter() == 6)
+                }
+                else if (state.getTurnCounter() == 6)
                 {
                     if (state.getP1Chars(0).getWhichCharacter() == 3 || state.getP1Chars(1).getWhichCharacter() == 3)
                     {
@@ -955,9 +941,33 @@ public class CitadelsLocalGame extends LocalGame
                         return true;
                     }
                 }
+                else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() == 0 || state.getP2Chars(1).getWhichCharacter() == 0))
+                {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    }
+                }
+                else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() == 0 || state.getP3Chars(1).getWhichCharacter() == 0))
+                {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    } else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    }
+                }
             }
 
-            // Merchant Ability
+            // Theif Ability
             else if (state.getTurn() == 8)
             {
                 if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(1).getWhichCharacter() == 1))
