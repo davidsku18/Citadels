@@ -1,19 +1,19 @@
 package edu.up.citadels.citadels;
 
 import android.util.Log;
-import android.view.MotionEvent;
 
 import java.util.ArrayList;
-import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
+
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
+import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsMoveAction;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
 import edu.up.citadels.citadels.actions.UseSpecialAbility;
-import edu.up.citadels.game.actionMsg.GameAction;
-import edu.up.citadels.game.LocalGame;
 import edu.up.citadels.game.GamePlayer;
+import edu.up.citadels.game.LocalGame;
+import edu.up.citadels.game.actionMsg.GameAction;
 
 /**
  * The LocalGame class for a Citadels game. Defines and enforces
@@ -26,11 +26,13 @@ import edu.up.citadels.game.GamePlayer;
  * @version 3/10/2017.
  */
 
-public class CitadelsLocalGame extends LocalGame {
+public class CitadelsLocalGame extends LocalGame
+{
     //the edu.up.citadels.game's state
     CitadelsGameState state;
 
-    public CitadelsLocalGame() {
+    public CitadelsLocalGame()
+    {
         Log.i("CitadelsLocalGame", "creating edu.up.citadels.game");
         // create the state for the beginning of the edu.up.citadels.game
         this.state = new CitadelsGameState();
@@ -45,8 +47,10 @@ public class CitadelsLocalGame extends LocalGame {
      * @param p the player to notify
      */
     @Override
-    protected void sendUpdatedStateTo(GamePlayer p) {
-        if (state == null) {
+    protected void sendUpdatedStateTo(GamePlayer p)
+    {
+        if (state == null)
+        {
             return;
         }
 
@@ -942,81 +946,107 @@ public class CitadelsLocalGame extends LocalGame {
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
 
-            if (state.getTurn() == 7) //Assassin ability
+            // Assassin Ability
+            if(state.getTurn() == 7)
             {
-                //TODO implement a way to skip the turn of the player who is killed
+                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 0 || state.getP1Chars(1).getWhichCharacter() == 0))
+                {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    }
+                    else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
+                        state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
+                        return true;
+                    }
+                }
             }
 
-            if (state.getTurn() == 8) //thief ability
+
+            else if (state.getTurn() == 8)
             {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1) || (state.getP1Chars(1).getWhichCharacter() == 1)) {
-                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(1).getWhichCharacter() == 1))
+                {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
                         state.setP1Gold(state.getP1Gold() + state.getP2Gold());
                         state.setP2Gold(0);
                         return true;
-                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    }   else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
                         state.setP1Gold(state.getP1Gold() + state.getP3Gold());
                         state.setP3Gold(0);
                         return true;
                     }
-                } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() == 1) || (state.getP2Chars(1).getWhichCharacter() == 1)) {
-                    if ((theCharacter == state.getP1Chara1().getWhichCharacter()) || (theCharacter == state.getP1Chara2().getWhichCharacter())) {
-                        state.setP2Gold(state.getP2Gold() + state.getP1Gold());
-                        state.setP1Gold(0);
-                        return true;
-                    } else if ((theCharacter == state.getP3Chara1().getWhichCharacter()) || (theCharacter == state.getP3Chara2().getWhichCharacter())) {
-                        state.setP2Gold(state.getP2Gold() + state.getP3Gold());
-                        state.setP3Gold(0);
-                        return true;
-                    }
-                } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() == 1) || (state.getP3Chars(1).getWhichCharacter() == 1)) {
-                    if ((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter())) {
-                        state.setP3Gold(state.getP3Gold() + state.getP2Gold());
-                        state.setP2Gold(0);
-                        return true;
-                    } else if ((theCharacter == state.getP1Chara1().getWhichCharacter()) || (theCharacter == state.getP1Chara2().getWhichCharacter())) {
-                        state.setP3Gold(state.getP3Gold() + state.getP1Gold());
-                        state.setP1Gold(0);
-                        return true;
-                    }
-                } else {
+            }
+            }
+            else if (playerID == 1)
+            {
+                if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                {
+                    state.setP2Gold(state.getP2Gold() + state.getP1Gold());
+                    state.setP1Gold(0);
+                    return true;
+                } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                {
+                    state.setP2Gold(state.getP2Gold() + state.getP3Gold());
+                    state.setP3Gold(0);
                     return true;
                 }
+            }
+            else if (playerID == 2)
+            {
+                if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                {
+                    state.setP3Gold(state.getP3Gold() + state.getP2Gold());
+                    state.setP2Gold(0);
+                    return true;
+                } else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                {
+                    state.setP3Gold(state.getP3Gold() + state.getP1Gold());
+                    state.setP1Gold(0);
+                    return true;
+                }
+            } else
+            {
+                return true;
             }
 
             if (state.getTurn() == 9) //Magician Ability
                 if (playerID == 0) {
                     //TODO go in here and find which character was selected, make sure it isn't null, find who owns it
-                    if ((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter())) {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP1Hand());
                         state.setP1Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP3Chara1().getWhichCharacter()) || (theCharacter == state.getP3Chara2().getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                         state.setP3Hand(state.getP1Hand());
                         state.setP1Hand(temp);
                         return true;
                     }
                 } else if (playerID == 1) {
-                    if ((theCharacter == state.getP1Chara1().getWhichCharacter()) || (theCharacter == state.getP1Chara2().getWhichCharacter())) {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                         state.setP1Hand(state.getP2Hand());
                         state.setP2Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP3Chara1().getWhichCharacter()) || (theCharacter == state.getP3Chara2().getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                         state.setP3Hand(state.getP2Hand());
                         state.setP2Hand(temp);
                         return true;
                     }
                 } else if (playerID == 2) {
-                    if ((theCharacter == state.getP1Chara1().getWhichCharacter()) || (theCharacter == state.getP1Chara2().getWhichCharacter())) {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                         state.setP1Hand(state.getP3Hand());
                         state.setP3Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP3Hand());
                         state.setP3Hand(temp);
