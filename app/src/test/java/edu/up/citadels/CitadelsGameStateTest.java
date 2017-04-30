@@ -46,7 +46,7 @@ public class CitadelsGameStateTest {
     @Test
     public void testGetP1Character() throws Exception {
         CitadelsGameState cgs = new CitadelsGameState();
-        cgs.setP1Character1(4);
+        cgs.setP1Character1(4, 4);
         assertEquals(cgs.getP1Character1(), 4);
     }
 

@@ -1,21 +1,24 @@
 package edu.up.citadels.citadels;
 
 /**
+ * The Character card object
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 2/22/2017
+ * @version 4/30/2017
  */
 
 public class CharacterCard
 {
-    private int red = 0;    // Codes for the 4 colors
+    // Ints for the 4 colors
+    private int red = 0;
     private int green = 1;
     private int blue = 2;
     private int yellow = 3;
     private int other = 4;
 
+    // Ints for the characters
     private int assassin = 0;
     private int thief = 1;
     private int magician = 2;
@@ -25,34 +28,28 @@ public class CharacterCard
     private int architect = 6;
     private int warlord = 7;
 
-    /*
-    private String char1 = "assassin";
-    private String char2 = "thief";
-    private String char3 = "magician";
-    private String char4 = "king";
-    private String char5 = "bishop";
-    private String char6 = "merchant";
-    private String char7 = "architect";
-    private String char8 = "warlord";
-    */
-
+    // The character card's values
     private int color;
     private int whichCharacter;
 
-    //regular constructor
+    /**
+     * Constructor for the character card
+     * @param initCharacter
+     *          the character's num
+     * @param initColor
+     *          the character's color
+     */
     public CharacterCard(int initCharacter, int initColor)
     {
         this.whichCharacter = initCharacter;
         this.color = initColor;
     }
 
-    //copy constructor
-    public CharacterCard(CharacterCard orig)
-    {
-        this(orig.whichCharacter, orig.color);
-    }
-
-
+    /**
+     * Returns the color of the character card
+     * @return color
+     *          the color of the character card
+     */
     public int getColor()
     {
         return color;
@@ -131,6 +128,12 @@ public class CharacterCard
         }
     }
 
+    /**
+     * Returns the character's name based on their
+     * whichCharacter int
+     * @return  name
+     *          The character's name
+     */
     public String getName()
     {
         String name = null;

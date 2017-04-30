@@ -19,11 +19,20 @@ import edu.up.citadels.game.actionMsg.GameAction;
  * The LocalGame class for a Citadels game. Defines and enforces
  * the game rules; handles interactions between players.
  *
+ * External Citation
+ * Date: 20 March 2017
+ * Problem: Didn't know how to implement rules correctly
+ * to change
+ * Resource:
+ * https://github.com/srvegdahl/TttGame/blob/master/app/src
+ * /main/java/edu/up/cs301/tictactoe/TTTLocalGame.java
+ * Solution: Used code as reference
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/10/2017.
+ * @version 4/30/2017.
  */
 
 public class CitadelsLocalGame extends LocalGame
@@ -318,6 +327,7 @@ public class CitadelsLocalGame extends LocalGame
 
     /**
      * Checks which player has 8 districts built and ends the game
+     * The winner is then determined by the player who has the highest score
      *
      * @return String
      * Specifies which player has 8 districts built
@@ -406,8 +416,10 @@ public class CitadelsLocalGame extends LocalGame
         {
             if (state.getTurn() == 0)
             {
+                //Checks the player's id and if they're king
                 if (playerID == 0 && playerID == state.getKing())
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setRemovedCharacter(ccc.getTheChosenCharacterCard());
@@ -416,6 +428,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 1 && playerID == state.getKing())
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setRemovedCharacter(ccc.getTheChosenCharacterCard());
@@ -424,6 +437,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 2 && playerID == state.getKing())
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setRemovedCharacter(ccc.getTheChosenCharacterCard());
@@ -438,6 +452,7 @@ public class CitadelsLocalGame extends LocalGame
             {
                 if (playerID == 0 && playerID == state.getKing())
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
@@ -445,6 +460,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 1 && playerID == state.getKing())
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
@@ -453,6 +469,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 2 && playerID == state.getKing())
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
@@ -467,6 +484,7 @@ public class CitadelsLocalGame extends LocalGame
             {
                 if (playerID == 0 && state.getKing() == 2)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
                     state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -476,6 +494,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 1 && state.getKing() == 0)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
                     state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -485,6 +504,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 2 && state.getKing() == 1)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -500,6 +520,7 @@ public class CitadelsLocalGame extends LocalGame
             {
                 if (playerID == 0 && state.getKing() == 1)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
                     state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -509,6 +530,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 1 && state.getKing() == 2)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
                     state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -518,6 +540,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 2 && state.getKing() == 0)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -533,6 +556,7 @@ public class CitadelsLocalGame extends LocalGame
             {
                 if (playerID == 0 && state.getKing() == 0)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
                     state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -542,6 +566,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 1 && state.getKing() == 1)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
                     state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -551,6 +576,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 2 && state.getKing() == 2)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -566,6 +592,7 @@ public class CitadelsLocalGame extends LocalGame
             {
                 if (playerID == 0 && state.getKing() == 2)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
                     state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -575,6 +602,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 1 && state.getKing() == 0)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
                     state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -584,6 +612,7 @@ public class CitadelsLocalGame extends LocalGame
                     return true;
                 } else if (playerID == 2 && state.getKing() == 1)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -599,6 +628,7 @@ public class CitadelsLocalGame extends LocalGame
             {
                 if (playerID == 0 && state.getKing() == 1)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
                     state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -625,6 +655,7 @@ public class CitadelsLocalGame extends LocalGame
                     }
                 } else if (playerID == 1 && state.getKing() == 2)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
                     state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -651,6 +682,7 @@ public class CitadelsLocalGame extends LocalGame
                     }
                 } else if (playerID == 2 && state.getKing() == 0)
                 {
+                    // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
                     state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
@@ -685,7 +717,6 @@ public class CitadelsLocalGame extends LocalGame
         }
         if (action instanceof EndTurn)
         {
-
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {
                 state.setTurnCounter(state.getTurnCounter() + 1);
@@ -801,15 +832,18 @@ public class CitadelsLocalGame extends LocalGame
                     }
                 } else if (state.getTurnCounter() == 6)
                 {
-                    if (state.getP1Chars(0).getWhichCharacter() == 3 || state.getP1Chars(1).getWhichCharacter() == 3)
+                    if (state.getP1Chars(0).getWhichCharacter() == 3 ||
+                            state.getP1Chars(1).getWhichCharacter() == 3)
                     {
                         state.setKing(0);
                         Log.i("King", "0");
-                    } else if (state.getP2Chars(0).getWhichCharacter() == 3 || state.getP2Chars(1).getWhichCharacter() == 3)
+                    } else if (state.getP2Chars(0).getWhichCharacter() == 3 ||
+                            state.getP2Chars(1).getWhichCharacter() == 3)
                     {
                         state.setKing(1);
                         Log.i("King", "1");
-                    } else if (state.getP3Chars(0).getWhichCharacter() == 3 || state.getP3Chars(1).getWhichCharacter() == 3)
+                    } else if (state.getP3Chars(0).getWhichCharacter() == 3 ||
+                            state.getP3Chars(1).getWhichCharacter() == 3)
                     {
                         state.setKing(2);
                         Log.i("King", "2");
@@ -827,6 +861,7 @@ public class CitadelsLocalGame extends LocalGame
             }
         } else if (action instanceof ChooseDistrictCard)
         {
+            // checks the player's id and gives them a district card
             if (playerID == 0 && state.getTurn() > 6)
             {
                 state.addToP1Hand(state.drawDistrictCard());
@@ -844,6 +879,7 @@ public class CitadelsLocalGame extends LocalGame
             }
         } else if (action instanceof CitadelsBuildDistrictCard)
         {
+            // checks the player's id build's their specified district card
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {

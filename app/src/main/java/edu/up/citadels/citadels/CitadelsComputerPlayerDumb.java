@@ -13,11 +13,19 @@ import edu.up.citadels.game.infoMsg.GameInfo;
 /**
  * Computer player that will make guesses whenever it is its turn
  *
+ * External Citation
+ * Date: 20 March 2017
+ * Problem: Could not get AI to take an action and to sleep
+ * Resource:
+ * https://github.com/srvegdahl/TttGame/blob/master/app
+ * /src/main/java/edu/up/cs301/tictactoe/TTTComputerPlayer1.java
+ * Solution: Used as reference
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/3/2017
+ * @version 4/30/2017
  *
  * TODO the way we have it right now the computer is doing multiple things every time the computer
  * TODO is called. We need to differentiate between a regular turn and a computer choosing a character card
@@ -30,6 +38,11 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
     private int player;
 
+    /**
+     * The dumb computer player's constructor
+     * @param initName
+     * @param myNumber
+     */
     public CitadelsComputerPlayerDumb(String initName, int myNumber)
     {
         super(initName);
@@ -104,7 +117,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         game.sendAction(new EndTurn(this));
     }
-
 
     public int getPlayerNum()
     {
