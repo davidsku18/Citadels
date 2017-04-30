@@ -1162,7 +1162,6 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                     }
-
                     return true;
                 } else if (playerID == 1) {
                     for (int i = 0; i < state.getP2City().size(); ++i) {
