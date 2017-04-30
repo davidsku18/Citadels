@@ -24,6 +24,7 @@ import edu.up.citadels.game.config.GameConfig;
 import edu.up.citadels.game.config.GamePlayerType;
 
 /**
+ * This is the primary activity for Citadels
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
