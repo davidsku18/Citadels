@@ -25,11 +25,20 @@ import edu.up.citadels.game.config.GamePlayerType;
 
 /**
  * This is the primary activity for Citadels
+ *
+ * External Citation
+ * Date: 10 March 2017
+ * Problem: Could not implement MainActivity
+ * Resource:
+ * https://github.com/srvegdahl/TttGame/blob/master/app
+ * /src/main/java/edu/up/cs301/tictactoe/TTTMainActivity.java
+ * Solution: Used as reference for implementation
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/10/2017
+ * @version 4/30/2017
  */
 public class CitadelsMainActivity extends GameMainActivity
 {
