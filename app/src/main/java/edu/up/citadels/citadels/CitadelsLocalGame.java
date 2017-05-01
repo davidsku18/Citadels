@@ -996,7 +996,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP1Gold(state.getP1Gold() + 1);
                     }
                 }
-                if(theCharacter == 4)
+                if(theCharacter == 4)//cannot destroy bishop
                 {
                     return true;
                 }else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
@@ -1035,7 +1035,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP2Gold(state.getP2Gold() + 1);
                     }
                 }
-                if (theCharacter == 4)
+                if (theCharacter == 4)//cannot destroy bishop
                 {
                     return true;
                 }else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
@@ -1074,7 +1074,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP3Gold(state.getP3Gold() + 1);
                     }
                 }
-                if (theCharacter == 4)
+                if (theCharacter == 4)//cannot destroy bishop
                 {
                     return true;
                 }else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
