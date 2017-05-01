@@ -61,12 +61,6 @@ public class CitadelsGameState extends GameState
     private int p3Character1;
     private int p3Character2;
 
-    private CharacterCard p1Chara1;
-    private CharacterCard p1Chara2;
-    private CharacterCard p2Chara1;
-    private CharacterCard p2Chara2;
-    private CharacterCard p3Chara1;
-    private CharacterCard p3Chara2;
 
     private CharacterCard removedCharacter;
 
@@ -156,137 +150,6 @@ public class CitadelsGameState extends GameState
         return king;
     } // TODO need to implement who is king and who has the king character card
 
-    /**
-     * Gets player 1's first character
-     * @return p1Character1
-     *          the player's first character
-     */
-    public int getP1Character1()
-    {
-        return p1Character1;
-    }
-
-    /**
-     * Gets player 1's second character
-     * @return p1Character2
-     *          the player's second character
-     */
-    public int getP1Character2()
-    {
-        return p1Character2;
-    }
-
-    /**
-     * Gets player 2's first character
-     * @return p2Character1
-     *          the player's first character
-     */
-    public int getP2Character1()
-    {
-        return p2Character1;
-    }
-
-    /**
-     * Gets player 2's second character
-     * @return p2Character2
-     *          the player's second character
-     */
-    public int getP2Character2()
-    {
-        return p2Character2;
-    }
-
-    /**
-     * Gets player 3's first character
-     * @return p3Character1
-     *          the player's first character
-     */
-    public int getP3Character1()
-    {
-        return p3Character1;
-    }
-
-    /**
-     * Gets player 3's second character
-     * @return p3Character2
-     *          the player's second character
-     */
-    public int getP3Character2()
-    {
-        return p3Character2;
-    }
-
-    /**
-     * Sets player 1's character 1 to the chosen character
-     * @param name
-     *          the character's name
-     * @param color
-     *          the character's color
-     */
-    public void setP1Character1(int name, int color)
-    {
-        this.p1Chara1 = new CharacterCard(name, color);
-    }
-
-    /**
-     * Sets player 1's character 2 to the chosen character
-     * @param name
-     *          the character's name
-     * @param color
-     *          the character's color
-     */
-    public void setP1Character2(int name, int color)
-    {
-        this.p1Chara2 = new CharacterCard(name, color);
-    }
-
-    /**
-     * Sets player 2's character 1 to the chosen character
-     * @param name
-     *          the character's name
-     * @param color
-     *          the character's color
-     */
-    public void setP2Character1(int name, int color)
-    {
-        this.p2Chara1 = new CharacterCard(name, color);
-    }
-
-    /**
-     * Sets player 2's character 2 to the chosen character
-     * @param name
-     *          the character's name
-     * @param color
-     *          the character's color
-     */
-    public void setP2Character2(int name, int color)
-    {
-        this.p2Chara2 = new CharacterCard(name, color);
-    }
-
-    /**
-     * Sets player 3's character 1 to the chosen character
-     * @param name
-     *          the character's name
-     * @param color
-     *          the character's color
-     */
-    public void setP3Character1(int name, int color)
-    {
-        this.p3Chara1 = new CharacterCard(name, color);
-    }
-
-    /**
-     * Sets player 3's character 2 to the chosen character
-     * @param name
-     *          the character's name
-     * @param color
-     *          the character's color
-     */
-    public void setP3Character2(int name, int color)
-    {
-        this.p3Chara2 = new CharacterCard(name, color);
-    }
 
 ///////////////////////////////////Deals with players stats/////////////////////////////////
     // TODO can combine CitadelsDistrictCard and removeDistrictCard
@@ -682,65 +545,6 @@ public class CitadelsGameState extends GameState
         return p3Chars.get(i);
     }
 
-    /**
-     * Gets player 1's character 1
-     * @return plChara1
-     *          the player's character
-     */
-    public CharacterCard getP1Chara1()
-    {
-        return p1Chara1;
-    }
-
-    /**
-     * Gets player 1's character 2
-     * @return plChara2
-     *          the player's character
-     */
-    public CharacterCard getP1Chara2()
-    {
-        return p1Chara2;
-    }
-
-    /**
-     * Gets player 2's character 1
-     * @return p2Chara1
-     *          the player's character
-     */
-    public CharacterCard getP2Chara1()
-    {
-        return p2Chara1;
-    }
-
-    /**
-     * Gets player 2's character 2
-     * @return p2Chara2
-     *          the player's character
-     */
-    public CharacterCard getP2Chara2()
-    {
-        return p2Chara2;
-    }
-
-    /**
-     * Gets player 3's character 1
-     * @return p3Chara1
-     *          the player's character
-     */
-    public CharacterCard getP3Chara1()
-    {
-        return p3Chara1;
-    }
-
-    /**
-     * Gets player 3's character 2
-     * @return p3Chara2
-     *          the player's character
-     */
-    public CharacterCard getP3Chara2()
-    {
-        return p3Chara2;
-    }
 
     /**
      * Gets the character's color
@@ -1409,13 +1213,6 @@ public class CitadelsGameState extends GameState
         this.deckOrderDistricts = orig.deckOrderDistricts;
         this.characterDeck = orig.characterDeck;
 
-        //passes the players characters
-        this.p1Chara1 = orig.p1Chara1;
-        this.p1Chara2 = orig.p1Chara2;
-        this.p2Chara1 = orig.p2Chara1;
-        this.p2Chara2 = orig.p2Chara2;
-        this.p3Chara1 = orig.p3Chara1;
-        this.p3Chara2 = orig.p3Chara2;
 
         //passes the players character arrays
         this.p1Chars = orig.p1Chars;
