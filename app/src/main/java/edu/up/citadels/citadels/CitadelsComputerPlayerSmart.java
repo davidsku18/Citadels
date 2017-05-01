@@ -64,27 +64,54 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
 
         int whichCharacter;
 
-        //pick character
-        sleep((int)(1 + Math.random() * 2000));
-        for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
-        {
-            if (savedState.getCharacterDeck(i) == null)
-            {
-                // Do nothing
-            } else if (savedState.getCharacterDeck(i) != null)
-            {
-                game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
-                Log.i("Player", "Attempt to Take Character Card");
-                break;
-            }
-        }
+        int chooseCharacter;
 
-        //AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
+        // AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
         // in hand or if AI has more than 8 gold
         if(myPlayer == 1)
         {
+
             ability = (int) (Math.random() * 2);
             whichCharacter = (int) (Math.random() * 8);
+            chooseCharacter = (int) (Math.random() * 8);
+
+            //pick character
+            sleep((int)(1 + Math.random() * 2000));
+            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            {
+                if (savedState.getCharacterDeck(i) == null)
+                {
+                    // Do nothing
+                }
+                // choose magician if the opposing players hand is greater or equal to 10
+                else if (savedState.getP2Hand().size() >= 10 && savedState.getCharacterDeck(2) != null ||
+                        savedState.getP3Hand().size() >= 10 && savedState.getCharacterDeck(2) != null )
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(2)) );
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                // choose warlord if opposing players have more equal to 6 districts
+                else if (savedState.getP2City().size() >= 6 && savedState.getCharacterDeck(7) != null ||
+                        savedState.getP3City().size() >= 6 && savedState.getCharacterDeck(7) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(7)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                else if (savedState.getCharacterDeck(chooseCharacter) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(chooseCharacter)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                else if (savedState.getCharacterDeck(i) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+            }
 
             if((savedState.getP1Gold() < 8) && (savedState.getP1Hand().size() != 0))
             {
@@ -166,6 +193,18 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                         if (savedState.getP1Chars(0).getWhichCharacter() == 6 ||
                                 savedState.getP1Chars(1).getWhichCharacter() == 6) {
                             game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                            //checks the hand and then builds a district card if the cost is greater than 3
+                            if (!(savedState.getP1Hand().isEmpty()))
+                            {
+                                for (int i = 0; i <= savedState.getP1Hand().size(); i++)
+                                {
+                                    CitadelsDistrictCard cdc = (CitadelsDistrictCard) savedState.getP1Hand().get(i);
+                                    if (cdc.getCost() > 3)
+                                    {
+                                        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
+                                    }
+                                }
+                            }
                         }
                         //warlord
                         if (savedState.getP1Chars(0).getWhichCharacter() == 7 ||
@@ -191,10 +230,51 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
             }
 
         }
+        // AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
+        // in hand or if AI has more than 8 gold
         else if(myPlayer == 2)
         {
             ability = (int) (Math.random() * 2);
             whichCharacter = (int) (Math.random() * 8);
+            chooseCharacter = (int) (Math.random() * 8);
+
+            //pick character
+            sleep((int)(1 + Math.random() * 2000));
+            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            {
+                if (savedState.getCharacterDeck(i) == null)
+                {
+                    // Do nothing
+                }
+                // choose magician if the opposing players hand is greater or equal to 10
+                else if (savedState.getP1Hand().size() >= 10 && savedState.getCharacterDeck(2) != null ||
+                        savedState.getP3Hand().size() >= 10 && savedState.getCharacterDeck(2) != null )
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(2)) );
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                // choose warlord if opposing players have more equal to 6 districts
+                else if (savedState.getP1City().size() >= 6 && savedState.getCharacterDeck(7) != null ||
+                        savedState.getP3City().size() >= 6 && savedState.getCharacterDeck(7) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(7)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                else if (savedState.getCharacterDeck(chooseCharacter) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(chooseCharacter)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                else if (savedState.getCharacterDeck(i) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+            }
 
             if((savedState.getP2Gold() < 8) && (savedState.getP2Hand().size() != 0))
             {
@@ -274,6 +354,18 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                         if (savedState.getP2Chars(0).getWhichCharacter() == 6 ||
                                 savedState.getP2Chars(1).getWhichCharacter() == 6) {
                             game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                            //checks the hand and then builds a district card if the cost is greater than 3
+                            if (!(savedState.getP2Hand().isEmpty()))
+                            {
+                                for (int i = 0; i <= savedState.getP2Hand().size(); i++)
+                                {
+                                    CitadelsDistrictCard cdc = (CitadelsDistrictCard) savedState.getP2Hand().get(i);
+                                    if (cdc.getCost() > 3)
+                                    {
+                                        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
+                                    }
+                                }
+                            }
                         }
                         //warlord
                         if (savedState.getP2Chars(0).getWhichCharacter() == 7 ||
@@ -298,10 +390,51 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
             }
 
         }
+        // AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
+        // in hand or if AI has more than 8 gold
         else if(myPlayer == 3)
         {
             ability = (int) (Math.random() * 2);
             whichCharacter = (int) (Math.random() * 8);
+            chooseCharacter = (int) (Math.random() * 8);
+
+            //pick character
+            sleep((int)(1 + Math.random() * 2000));
+            for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
+            {
+                if (savedState.getCharacterDeck(i) == null)
+                {
+                    // Do nothing
+                }
+                // choose magician if the opposing players hand is greater or equal to 10
+                else if (savedState.getP1Hand().size() >= 10 && savedState.getCharacterDeck(2) != null ||
+                        savedState.getP2Hand().size() >= 10 && savedState.getCharacterDeck(2) != null )
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(2)) );
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                // choose warlord if opposing players have more equal to 6 districts
+                else if (savedState.getP1City().size() >= 6 && savedState.getCharacterDeck(7) != null ||
+                        savedState.getP2City().size() >= 6 && savedState.getCharacterDeck(7) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(7)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                else if (savedState.getCharacterDeck(chooseCharacter) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(chooseCharacter)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+                else if (savedState.getCharacterDeck(i) != null)
+                {
+                    game.sendAction(new ChooseCharacterCard(this, savedState.getCharacterDeck(i)));
+                    Log.i("Player", "Attempt to Take Character Card");
+                    break;
+                }
+            }
 
             if((savedState.getP3Gold() < 8) && (savedState.getP3Hand().size() != 0))
             {
@@ -381,6 +514,18 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                         if (savedState.getP3Chars(0).getWhichCharacter() == 6 ||
                                 savedState.getP3Chars(1).getWhichCharacter() == 6) {
                             game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                            //checks the hand and then builds a district card if the cost is greater than 3
+                            if (!(savedState.getP3Hand().isEmpty()))
+                            {
+                                for (int i = 0; i <= savedState.getP3Hand().size(); i++)
+                                {
+                                    CitadelsDistrictCard cdc = (CitadelsDistrictCard) savedState.getP3Hand().get(i);
+                                    if (cdc.getCost() > 3)
+                                    {
+                                        game.sendAction(new CitadelsBuildDistrictCard(this, cdc));
+                                    }
+                                }
+                            }
                         }
                         //warlord
                         if (savedState.getP3Chars(0).getWhichCharacter() == 7 ||
