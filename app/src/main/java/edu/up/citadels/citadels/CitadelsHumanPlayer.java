@@ -110,7 +110,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     private boolean hasGone = false;
     private boolean hasGoneAbility = false;
-    private boolean hasBuilt = false;
+    private int hasBuilt = 0;
 
     private ArrayList<String> p1HandArrayList;
 
@@ -942,9 +942,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
         {
+            //characterTurn.setTextColor(0xFF00FF00);
             updateCharacterCounter();
         }else
         {
+            //characterTurn.setTextColor(0xFF000000);
             updateCharacterCounter();
         }
 
@@ -1233,7 +1235,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1249,7 +1251,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1267,7 +1269,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1285,7 +1287,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1302,7 +1304,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1319,7 +1321,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1336,7 +1338,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1353,7 +1355,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken.");
+                    cardInfo.setText("This card is already taken");
                 }
             }
         });
@@ -1944,7 +1946,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             if (state.getTurn() > 5 && (state.getTurn() == state.getP1Chars(0).getWhichCharacter() + 7 || state.getTurn() == state.getP1Chars(1).getWhichCharacter() + 7))
             {
-                if (hasGone == true || hasBuilt == true || hasGoneAbility == true)
+                if (hasGone == true || hasBuilt == state.getBuildLimit() || hasGoneAbility == true)
                 {
                     actionSpinner.setVisibility(View.VISIBLE);
                 } else
@@ -2119,19 +2121,38 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             else if(position == 3)
             {
                 //make sure there is something in the district card array
-                if (hasBuilt == false && state.getP1Hand().size() != 0)
+                if (hasBuilt != state.getBuildLimit() && state.getP1Hand().size() != 0)
                 {
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
+                    boolean unique = true;
+                    for(int i = 0; i < state.getP1City().size(); ++i)
+                    {
+                        if(state.getP1City().get(i).getName().equals(cardToBuild.getName()))
+                        {
+                            unique = false;
+                        }
+                    }
                     if(state.getP1Gold() >= cardToBuild.getCost())
                    {
-                       //if p1 has enough gold, build a district card
-                       cardInfo.setText(cardToBuild.getName() + " Built.");
-                       humanPlayerBuildDistrict(cardToBuild);
-                       p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
-                       p1HandAdapter.notifyDataSetChanged();
-                       hasBuilt = true;
-                       actionSpinner.setSelection(0);
-                   }else
+                       if(unique)
+                       {
+                           //if p1 has enough gold and district is unique, build a district card
+                           cardInfo.setText(cardToBuild.getName() + " Built.");
+                           humanPlayerBuildDistrict(cardToBuild);
+                           p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
+                           p1HandAdapter.notifyDataSetChanged();
+                           hasBuilt++;
+                           actionSpinner.setSelection(0);
+                       }
+                       //tells the player to choose a new district if the current one is not unique
+                       else
+                       {
+                           cardInfo.setText("Can't build multiple of the same district \n Please choose a new one");
+                           actionSpinner.setSelection(0);
+                       }
+                   }
+                   //tells the player that they can't afford that current district
+                   else
                     {
                         cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
                         actionSpinner.setSelection(0);
@@ -2169,7 +2190,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     //end the turn
                     humanPlayerEndTurn();
                     hasGone = false;
-                    hasBuilt = false;
+                    hasBuilt = 0;
                     hasGoneAbility = false;
                     cardInfo.setText("Turn Ended.");
                 }
