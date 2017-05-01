@@ -1155,7 +1155,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             {
                 if(state.getP3City().get(i) != null)
                 {
-                    drawCityCard(p3_D3, state.getP3CityCard(i).getName());
+                    drawCityCard(p3_D2, state.getP3CityCard(i).getName());
                 }else
                 {
                     p3_D3.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);

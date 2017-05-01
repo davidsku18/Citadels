@@ -92,9 +92,10 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
             }
 
+
             try
             {
-                if (savedState.getP1Chars(0) != null && savedState.getP1Chars(1) != null) {
+                if (savedState.getTurn() >= 7) {
                     if (ability == 1) {
                         if (savedState.getP1Chars(0).getWhichCharacter() == 0 || savedState.getP1Chars(1).getWhichCharacter() == 0) {
                             game.sendAction(new UseSpecialAbility(this, whichCharacter));
@@ -130,6 +131,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             }
 
 
+
         } else if (myPlayer == 2) {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
@@ -146,8 +148,9 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
             }
 
+
             try {
-                if (savedState.getP2Chars(0) != null && savedState.getP2Chars(1) != null) {
+                if (savedState.getTurn() >= 7) {
                     if (ability == 1) {
                         if (savedState.getP2Chars(0).getWhichCharacter() == 0 || savedState.getP2Chars(1).getWhichCharacter() == 0) {
                             game.sendAction(new UseSpecialAbility(this, whichCharacter));
@@ -181,6 +184,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 //do nothing
             }
 
+
         } else if (myPlayer == 3) {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
@@ -197,8 +201,9 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
             }
 
+
             try {
-                if (savedState.getP3Chars(0) != null && savedState.getP3Chars(1) != null) {
+                if (savedState.getTurn() >= 7) {
                     if (ability == 1) {
                         if (savedState.getP3Chars(0).getWhichCharacter() == 0 || savedState.getP3Chars(1).getWhichCharacter() == 0) {
                             game.sendAction(new UseSpecialAbility(this, whichCharacter));

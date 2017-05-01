@@ -23,7 +23,6 @@ public class CitadelsGameState extends GameState
     // if king is equal to the player's number, they are the king
     private int king;
 
-
     private int turnCounter;
 
     private ArrayList<CharacterCard> p1Chars = new ArrayList<CharacterCard>();
@@ -1036,11 +1035,21 @@ public class CitadelsGameState extends GameState
         return p3City.get(i);
     }
 
+    /**
+     * Removes a district from the player 1's city
+     * @param index
+     *           the index of the city that specifies the district
+     */
     public void removeFromP1City(int index)
     {
         this.getP2City().remove(index);
     }
 
+    /**
+     * Removes a district from the player 2's city
+     * @param index
+     *          the index of the city that specifies the district
+     */
     public void removeFromP2City(int index)
     {
         ArrayList<CitadelsDistrictCard> temp = this.p2City;
@@ -1048,13 +1057,18 @@ public class CitadelsGameState extends GameState
         this.p2City = temp;
     }
 
+    /**
+     * Removes a district from the player 3's city
+     * @param index
+     *           the index of the city that specifies the district
+     */
     public void removeFromP3City(int index)
     {
         ArrayList<CitadelsDistrictCard> temp = this.p3City;
         temp.remove(index);
-        this.p3City = temp;    }
+        this.p3City = temp;
+    }
 
-    //Get District Deck
     /**
      * Gets the district deck
      * @return returnList
