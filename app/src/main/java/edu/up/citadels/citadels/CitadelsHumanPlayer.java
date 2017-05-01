@@ -948,8 +948,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         }
     }
-
-
     /**
      * Sets the visibility of the character card's buttons
      */
