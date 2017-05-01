@@ -1054,7 +1054,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         //draws images
         for(int i = 0; i < state.getP2City().size(); ++i)
         {
-            if( i == 0)
+            if(i == 0)
             {
                 drawCityCard(p2_D1, state.getP2CityCard(i).getName());
             }
