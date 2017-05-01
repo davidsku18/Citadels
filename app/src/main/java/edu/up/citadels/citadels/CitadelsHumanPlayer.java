@@ -1000,6 +1000,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
             else if(state.getKing()==2)
             {
+
                 characterTurn.setText(allPlayerNames[2] + " Choose A Character!");
             }
         }
@@ -1013,10 +1014,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
             else if(state.getKing()==0)
             {
+
                 characterTurn.setText(allPlayerNames[1] + " Choose A Character!");
             }
             else if(state.getKing()==1)
             {
+
                 characterTurn.setText(allPlayerNames[2]+ " Choose A Character!");
             }
         }

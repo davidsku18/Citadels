@@ -17,6 +17,7 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsGameState extends GameState
 {
+    private static final long serialVersionUID = 4532523L;
     // if king is equal to the player's number, they are the king
     private int king;
 

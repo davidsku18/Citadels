@@ -36,7 +36,6 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
 {
     private CitadelsGameState savedState;
 
-    private int playerNum;
 
     /**
      * The smart computer player's constructor
@@ -295,7 +294,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                 game.sendAction(new TakeGold(this));
             }
 
-            else if (savedState.getP2Hand().size()>=4)
+            else if (savedState.getP2Hand().size()>=3)
             {
                 game.sendAction(new TakeGold(this));
             }
@@ -465,7 +464,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                 game.sendAction(new TakeGold(this));
             }
 
-            else if (savedState.getP3Hand().size()>=4)
+            else if (savedState.getP3Hand().size()>=3)
             {
                 game.sendAction(new TakeGold(this));
             }

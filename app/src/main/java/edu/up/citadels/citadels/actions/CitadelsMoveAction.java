@@ -23,8 +23,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public abstract class CitadelsMoveAction extends GameAction {
 
-    private static final long serialVersionUID = 7101849L;
-
+    private static final long serialVersionUID = 4532523L;
     /**
      * Constructor for SJMoveAction
      *

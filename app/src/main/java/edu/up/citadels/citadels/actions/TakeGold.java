@@ -21,7 +21,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class TakeGold extends CitadelsMoveAction
 {
-    private static final long serialVersionUID = 528372L;
+    private static final long serialVersionUID = 4532523L;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *

@@ -21,7 +21,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class EndTurn extends CitadelsMoveAction
 {
-    private static final long serialVersionUID = 8624386L;
+    private static final long serialVersionUID = 4532523L;
     /**
      * constructor for edu.up.citadels.game.GameAction
      *

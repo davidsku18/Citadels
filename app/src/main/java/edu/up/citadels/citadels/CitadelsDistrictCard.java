@@ -15,7 +15,7 @@ import java.io.Serializable;
 
 public class CitadelsDistrictCard implements Serializable
 {
-    private static final long serialVersionUID = 1938515L;
+    private static final long serialVersionUID = 4532523L;
     // The district card's values
     private final String name;
     private final int color;

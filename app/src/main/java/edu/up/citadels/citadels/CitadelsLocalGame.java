@@ -1088,7 +1088,7 @@ public class CitadelsLocalGame extends LocalGame {
                         }
                         state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
                         state.addToP2City(cbdc.getCard());
-                        int index = state.p2FindCard(cbdc.getCard());
+                        int index = state.getP2City().indexOf(cbdc.getCard());
                         state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());//update score
                         state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());//update gold
                         try
@@ -1133,7 +1133,7 @@ public class CitadelsLocalGame extends LocalGame {
                         }
                         state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
                         state.addToP3City(cbdc.getCard());
-                        int index = state.p3FindCard(cbdc.getCard());
+                        int index = state.getP3City().indexOf(cbdc.getCard());
                         state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
                         state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
                         try
@@ -1426,7 +1426,7 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                     }
-                    if((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()) && (4 == state.getP2Chars(0).getWhichCharacter()) || (4 == state.getP2Chars(1).getWhichCharacter()))
+                    if((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()) && (4 != state.getP2Chars(0).getWhichCharacter()) && (4 != state.getP2Chars(1).getWhichCharacter()))
                     {
                         int goldAmount = state.getP1Gold();
                         int cost = 0;
@@ -1444,7 +1444,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.removeFromP2City(indexOfDistrict);
                         return true;
                     }else if((theCharacter == state.getP3Chars(0).getWhichCharacter()) ||
-                            (theCharacter == state.getP3Chars(1).getWhichCharacter()) && (4 == state.getP3Chars(0).getWhichCharacter()) || (4 == state.getP3Chars(1).getWhichCharacter()))
+                            (theCharacter == state.getP3Chars(1).getWhichCharacter()) && (4 != state.getP3Chars(0).getWhichCharacter()) && (4 != state.getP3Chars(1).getWhichCharacter()))
                     {
                         int goldAmount = state.getP1Gold();
                         int cost = 0;
@@ -1470,7 +1470,7 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP2Gold(state.getP2Gold() + 1);
                         }
                     }
-                    if ((state.getP1Chars(0).getWhichCharacter() == theCharacter || state.getP1Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP1Chars(0).getWhichCharacter()) || (4 == state.getP1Chars(1).getWhichCharacter()))
+                    if ((state.getP1Chars(0).getWhichCharacter() == theCharacter || state.getP1Chars(1).getWhichCharacter() == theCharacter) && (4 != state.getP1Chars(0).getWhichCharacter()) && (4 != state.getP1Chars(1).getWhichCharacter()))
                     {
                         int goldAmount = state.getP2Gold();
                         int cost = 0;
@@ -1488,7 +1488,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.removeFromP1City(indexOfDistrict);
                         return true;
                     }
-                    else if ((state.getP3Chars(0).getWhichCharacter() == theCharacter || state.getP3Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP3Chars(0).getWhichCharacter()) || (4 == state.getP3Chars(1).getWhichCharacter()))
+                    else if ((state.getP3Chars(0).getWhichCharacter() == theCharacter || state.getP3Chars(1).getWhichCharacter() == theCharacter) && (4 != state.getP3Chars(0).getWhichCharacter()) && (4 != state.getP3Chars(1).getWhichCharacter()))
                     {
                         int goldAmount = state.getP2Gold();
                         int cost = 0;
@@ -1515,7 +1515,7 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP3Gold(state.getP3Gold() + 1);
                         }
                     }
-                    if ((state.getP1Chars(0).getWhichCharacter() == theCharacter || state.getP1Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP1Chars(0).getWhichCharacter()) || (4 == state.getP1Chars(1).getWhichCharacter()))
+                    if ((state.getP1Chars(0).getWhichCharacter() == theCharacter || state.getP1Chars(1).getWhichCharacter() == theCharacter) && (4 != state.getP1Chars(0).getWhichCharacter()) && (4 != state.getP1Chars(1).getWhichCharacter()))
                     {
                         int goldAmount = state.getP3Gold();
                         int cost = 0;
@@ -1533,7 +1533,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.removeFromP1City(indexOfDistrict);
                         return true;
                     }
-                    else if ((state.getP2Chars(0).getWhichCharacter() == theCharacter || state.getP2Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP2Chars(0).getWhichCharacter()) || (4 == state.getP2Chars(1).getWhichCharacter()))
+                    else if ((state.getP2Chars(0).getWhichCharacter() == theCharacter || state.getP2Chars(1).getWhichCharacter() == theCharacter) && (4 != state.getP2Chars(0).getWhichCharacter()) && (4 != state.getP2Chars(1).getWhichCharacter()))
                     {
                         int goldAmount = state.getP3Gold();
                         int cost = 0;
