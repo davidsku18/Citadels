@@ -7,6 +7,7 @@ import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
+import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
@@ -26,9 +27,6 @@ import edu.up.citadels.game.infoMsg.GameInfo;
  * @author Victor Nguyen
  * @author Kurtis Davidson
  * @version 4/30/2017
- *
- * TODO the way we have it right now the computer is doing multiple things every time the computer
- * TODO is called. We need to differentiate between a regular turn and a computer choosing a character card
  *
  */
 
@@ -67,6 +65,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         int ability;
 
+        int whichCharacter;
 
         for (int i = 0; i < savedState.getCharacterDeck().length; ++i) {
             if (savedState.getCharacterDeck(i) == null) {
@@ -81,6 +80,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
             ability = (int) (Math.random() * 2);
+            whichCharacter = (int) (Math.random() * 8);
 
             if (whatToDo == 0) {
                 game.sendAction(new ChooseDistrictCard(this));
@@ -92,10 +92,50 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
             }
 
+            try
+            {
+                if (savedState.getP1Chars(0) != null && savedState.getP1Chars(1) != null) {
+                    if (ability == 1) {
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 0 || savedState.getP1Chars(1).getWhichCharacter() == 0) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 1 || savedState.getP1Chars(1).getWhichCharacter() == 1) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 2 || savedState.getP1Chars(1).getWhichCharacter() == 2) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 3 || savedState.getP1Chars(1).getWhichCharacter() == 3) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 4 || savedState.getP1Chars(1).getWhichCharacter() == 4) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 5 || savedState.getP1Chars(1).getWhichCharacter() == 5) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 6 || savedState.getP1Chars(1).getWhichCharacter() == 6) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP1Chars(0).getWhichCharacter() == 7 || savedState.getP1Chars(1).getWhichCharacter() == 7) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                    }
+                }
+
+            }
+            catch (IndexOutOfBoundsException iob)
+            {
+                //do nothing
+            }
+
 
         } else if (myPlayer == 2) {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
+            ability = (int) (Math.random() * 2);
+            whichCharacter = (int) (Math.random() * 8);
+
             if (whatToDo == 0) {
                 game.sendAction(new ChooseDistrictCard(this));
             } else {
@@ -105,9 +145,48 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             if (!savedState.getP2Hand().isEmpty()) {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
             }
+
+            try {
+                if (savedState.getP2Chars(0) != null && savedState.getP2Chars(1) != null) {
+                    if (ability == 1) {
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 0 || savedState.getP2Chars(1).getWhichCharacter() == 0) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 1 || savedState.getP2Chars(1).getWhichCharacter() == 1) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 2 || savedState.getP2Chars(1).getWhichCharacter() == 2) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 3 || savedState.getP2Chars(1).getWhichCharacter() == 3) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 4 || savedState.getP2Chars(1).getWhichCharacter() == 4) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 5 || savedState.getP2Chars(1).getWhichCharacter() == 5) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 6 || savedState.getP2Chars(1).getWhichCharacter() == 6) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP2Chars(0).getWhichCharacter() == 7 || savedState.getP2Chars(1).getWhichCharacter() == 7) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                    }
+                }
+            }
+            catch (IndexOutOfBoundsException iob)
+            {
+                //do nothing
+            }
+
         } else if (myPlayer == 3) {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
+            ability = (int) (Math.random() * 2);
+            whichCharacter = (int) (Math.random() * 8);
+
             if (whatToDo == 0) {
                 game.sendAction(new ChooseDistrictCard(this));
             } else {
@@ -117,20 +196,43 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             if (!savedState.getP3Hand().isEmpty()) {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
             }
+
+            try {
+                if (savedState.getP3Chars(0) != null && savedState.getP3Chars(1) != null) {
+                    if (ability == 1) {
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 0 || savedState.getP3Chars(1).getWhichCharacter() == 0) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 1 || savedState.getP3Chars(1).getWhichCharacter() == 1) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 2 || savedState.getP3Chars(1).getWhichCharacter() == 2) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 3 || savedState.getP3Chars(1).getWhichCharacter() == 3) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 4 || savedState.getP3Chars(1).getWhichCharacter() == 4) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 5 || savedState.getP3Chars(1).getWhichCharacter() == 5) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 6 || savedState.getP3Chars(1).getWhichCharacter() == 6) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                        if (savedState.getP3Chars(0).getWhichCharacter() == 7 || savedState.getP3Chars(1).getWhichCharacter() == 7) {
+                            game.sendAction(new UseSpecialAbility(this, whichCharacter));
+                        }
+                    }
+                }
+            }
+            catch (IndexOutOfBoundsException iob)
+            {
+                //do nothing
+            }
+
         }
-
-        /*int whichCharacterToRuin = (int)(Math.random() * 3);
-        if (whichCharacterToRuin == 0)
-        {
-            game.sendAction(new UseSpecialAbility(this, savedState.getP1Character1()));
-        }else if(whichCharacterToRuin == 1)
-        {
-            game.sendAction(new UseSpecialAbility(this, savedState.getP2Character1()));
-        }else if(whichCharacterToRuin == 2)
-        {
-            game.sendAction(new UseSpecialAbility(this, savedState.getP3Character1()));
-        }*/
-
         game.sendAction(new EndTurn(this));
     }
 
