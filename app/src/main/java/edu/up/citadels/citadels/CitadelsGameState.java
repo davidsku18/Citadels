@@ -647,13 +647,16 @@ public class CitadelsGameState extends GameState
 
     public void removeFromP2City(int index)
     {
-        this.getP2City().remove(index);
+        ArrayList<CitadelsDistrictCard> temp = this.p2City;
+        temp.remove(index);
+        this.p2City = temp;
     }
 
     public void removeFromP3City(int index)
     {
-        this.getP2City().remove(index);
-    }
+        ArrayList<CitadelsDistrictCard> temp = this.p3City;
+        temp.remove(index);
+        this.p3City = temp;    }
 
     //Get District Deck
     public ArrayList<CitadelsDistrictCard> getDeckOrderDistricts()
