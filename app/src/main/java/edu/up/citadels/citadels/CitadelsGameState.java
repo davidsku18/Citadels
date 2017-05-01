@@ -841,6 +841,24 @@ public class CitadelsGameState extends GameState
     ////////////////////////////////////Deals with Players district cards//////////////////////
 
     /**
+     * Initializes the starting 4 district cards for each player
+     */
+    public void initializeStartingDistricts()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            p1Hand.add(deckOrderDistricts.get(0));
+            deckOrderDistricts.remove(0);
+
+            p2Hand.add(deckOrderDistricts.get(0));
+            deckOrderDistricts.remove(0);
+
+            p3Hand.add(deckOrderDistricts.get(0));
+            deckOrderDistricts.remove(0);
+        }
+    }
+
+    /**
      * Adds district card to player 1's hand
      * @param dc
      *          The district card to be added to the hand
@@ -1322,31 +1340,14 @@ public class CitadelsGameState extends GameState
         this.setTurnCounter(0);
         this.setBuildLimit(1);
 
+        // Initializes the district deck
         this.initializeDistrictDeck();
+
+        // Initializes the character deck
         this.initializeCharacterDeck();
 
-        //player 1's starting district cards
-        for (int i = 0; i < 4; ++i)
-        {
-            p1Hand.add(deckOrderDistricts.get(0));
-            deckOrderDistricts.remove(0);
-        }
-
-
-        //player 2's starting district cards
-        for (int i = 0; i < 4; ++i)
-        {
-            p2Hand.add(deckOrderDistricts.get(0));
-            deckOrderDistricts.remove(0);
-        }
-
-
-        //player 3's starting district cards
-        for (int i = 0; i < 4; ++i)
-        {
-            p3Hand.add(deckOrderDistricts.get(0));
-            deckOrderDistricts.remove(0);
-        }
+        // Initializes the starting district cards
+        this.initializeStartingDistricts();
 
         this.setRollKing();
 
