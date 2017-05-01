@@ -2,14 +2,11 @@ package edu.up.citadels.citadels;
 
 import android.util.Log;
 
-import java.io.Serializable;
-
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
-import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
@@ -17,16 +14,14 @@ import edu.up.citadels.game.infoMsg.GameInfo;
  * Created by bryce on 4/17/2017.
  */
 
-public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements Serializable
+public class CitadelsComputerPlayerSmart extends GameComputerPlayer
 {
+
     private CitadelsGameState savedState;
 
-    //private int playerNum;
-
-    public CitadelsComputerPlayerSmart(String initName/*int myInt*/)
+    public CitadelsComputerPlayerSmart(String initName)
     {
         super(initName);
-        //this.playerNum = myInt;
     }
 
     @Override
@@ -48,7 +43,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         if(myPlayer == 1)
         {
             //pick character
-            sleep((int)(1 + Math.random() * 2000));
+            sleep(1000 + (int)(Math.random() * 2000));
             for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
             {
                 if (savedState.getCharacterDeck(i) == null)
@@ -71,7 +66,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                 game.sendAction(new ChooseDistrictCard(this));
             }
 
-            sleep((int)(1 + Math.random() * 2000));
+            sleep(1000 + (int)(Math.random() * 2000));
 
             for(int i = 0; i < savedState.getP1Hand().size(); i++)
            {
@@ -86,7 +81,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         else if(myPlayer == 2)
         {
             //pick character
-            sleep((int)(1 + Math.random() * 2000));
+            sleep(1000 + (int)(Math.random() * 2000));
             for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
             {
                 if (savedState.getCharacterDeck(i) == null)
@@ -109,7 +104,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                 game.sendAction(new ChooseDistrictCard(this));
             }
 
-            sleep((int)(1 + Math.random() * 2000));
+            sleep(1000 + (int)(Math.random() * 2000));
 
             for(int i = 0; i < savedState.getP2Hand().size(); i++)
             {
@@ -124,7 +119,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         else if(myPlayer == 3)
         {
             //pick character
-            sleep((int)(1 + Math.random() * 2000));
+            sleep(1000 + (int)(Math.random() * 2000));
             for (int i = 0; i < savedState.getCharacterDeck().length; ++i)
             {
                 if (savedState.getCharacterDeck(i) == null)
@@ -147,7 +142,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                 game.sendAction(new ChooseDistrictCard(this));
             }
 
-            sleep((int)(1 + Math.random() * 2000));
+            sleep(1000 + (int)(Math.random() * 2000));
 
 
             for(int i = 0; i < savedState.getP3Hand().size(); i++)

@@ -17,7 +17,7 @@ import edu.up.citadels.game.infoMsg.GameState;
 
 public class CitadelsGameState extends GameState
 {
-    private static final long serialVersionUID = 7552321013488624386L;
+    private static final long serialVersionUID = 58153321L;
     // Special ability Text
     private String specialAbility = null;
     public String getSpecialAbilityText()
@@ -131,13 +131,7 @@ public class CitadelsGameState extends GameState
     //there are 52 district cards in the deck
     private ArrayList<CitadelsDistrictCard> deckOrderDistricts = new ArrayList<CitadelsDistrictCard>();
 
-    //which characters are assigned to each player
-    private int p1Character1;
-    private int p1Character2;
-    private int p2Character1;
-    private int p2Character2;
-    private int p3Character1;
-    private int p3Character2;
+
 
     private CharacterCard p1Chara1;
     private CharacterCard p1Chara2;
@@ -197,24 +191,6 @@ public class CitadelsGameState extends GameState
         return this.turn;
     }
 
-    //Gets the turn of the player based on their character
-    public int getPlayerTurn()
-    {
-        if((turn == this.p1Character1) || (turn == this.p1Character2))
-        {
-            return 0;
-        }else if((turn == this.p2Character1) || (turn == this.p2Character2))
-        {
-            return 1;
-        }else if((turn == this.p3Character1) || (turn == this.p3Character2))
-        {
-            return 2;
-        }
-        else
-        {
-            return -1;
-        }
-    }
 
     //Sets which player is king
     public void setRollKing()
@@ -408,31 +384,6 @@ public class CitadelsGameState extends GameState
         return characterDeck[theCharacter];
     }
 
-    public CharacterCard getP1Chara1()
-    {
-        return p1Chara1;
-    }
-    public CharacterCard getP1Chara2()
-    {
-        return p1Chara2;
-    }
-    public CharacterCard getP2Chara1()
-    {
-        return p2Chara1;
-    }
-    public CharacterCard getP2Chara2()
-    {
-        return p2Chara2;
-    }
-    public CharacterCard getP3Chara1()
-    {
-        return p3Chara1;
-    }
-    public CharacterCard getP3Chara2()
-    {
-        return p3Chara2;
-    }
-
     public String getCharacterColor(int character)
     {
         String color = null;
@@ -450,39 +401,6 @@ public class CitadelsGameState extends GameState
             color = "Red";
         }
         return color;
-    }
-
-    //Get P1's Characters
-    public int getP1Character1()
-    {
-        return p1Character1;
-    }
-
-    public int getP1Character2()
-    {
-        return p1Character2;
-    }
-
-    //Get P2's Characters
-    public int getP2Character1()
-    {
-        return p2Character1;
-    }
-
-    public int getP2Character2()
-    {
-        return p2Character2;
-    }
-
-    //Get P3's Characters
-    public int getP3Character1()
-    {
-        return p3Character1;
-    }
-
-    public int getP3Character2()
-    {
-        return p3Character2;
     }
 
     //Allows the dumb AI to know what player it is
@@ -599,67 +517,47 @@ public class CitadelsGameState extends GameState
     //Get P1 City
     public ArrayList<CitadelsDistrictCard> getP1City()
     {
-        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
-        for (int i = 0; i < p1City.size(); ++i)
-        {
-            returnList.add(p1City.get(i));
-        }
-        return returnList;
+        return this.p1City;
     }
     public CitadelsDistrictCard getP1CityCard(int i)
     {
-        return p1City.get(i);
+        return this.p1City.get(i);
     }
 
     //Get P2 City
     public ArrayList<CitadelsDistrictCard> getP2City()
     {
-        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
-        for (int i = 0; i < p2City.size(); ++i)
-        {
-            returnList.add(p2City.get(i));
-        }
-        return returnList;
+        return this.p2City;
     }
     public CitadelsDistrictCard getP2CityCard(int i)
     {
-        return p2City.get(i);
+        return this.p2City.get(i);
     }
 
     //Get P3 City
     public ArrayList<CitadelsDistrictCard> getP3City()
     {
-        ArrayList<CitadelsDistrictCard> returnList = new ArrayList<CitadelsDistrictCard>();
-        for (int i = 0; i < p3City.size(); ++i)
-        {
-            returnList.add(p3City.get(i));
-        }
-        return returnList;
+        return this.p3City;
     }
     public CitadelsDistrictCard getP3CityCard(int i)
     {
-        return p3City.get(i);
+        return this.p3City.get(i);
     }
 
     public void removeFromP1City(int index)
     {
-        ArrayList<CitadelsDistrictCard> temp = this.p1City;
-        temp.remove(index);
-        this.p1City = temp;
+        this.p1City.remove(index);
     }
 
     public void removeFromP2City(int index)
     {
-        ArrayList<CitadelsDistrictCard> temp = this.p2City;
-        temp.remove(index);
-        this.p2City = temp;
+        this.p2City.remove(index);
     }
 
     public void removeFromP3City(int index)
     {
-        ArrayList<CitadelsDistrictCard> temp = this.p3City;
-        temp.remove(index);
-        this.p3City = temp;    }
+        this.p3City.remove(index);
+    }
 
     //Get District Deck
     public ArrayList<CitadelsDistrictCard> getDeckOrderDistricts()
@@ -921,13 +819,6 @@ public class CitadelsGameState extends GameState
 
         this.deckOrderDistricts = orig.deckOrderDistricts;
         this.characterDeck = orig.characterDeck;
-
-        this.p1Chara1 = orig.p1Chara1;
-        this.p1Chara2 = orig.p1Chara2;
-        this.p2Chara1 = orig.p2Chara1;
-        this.p2Chara2 = orig.p2Chara2;
-        this.p3Chara1 = orig.p3Chara1;
-        this.p3Chara2 = orig.p3Chara2;
 
         this.p1Chars = orig.p1Chars;
         this.p2Chars = orig.p2Chars;

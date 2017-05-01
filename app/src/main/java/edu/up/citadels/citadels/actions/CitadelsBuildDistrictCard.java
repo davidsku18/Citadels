@@ -13,7 +13,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class CitadelsBuildDistrictCard extends CitadelsMoveAction
 {
-    private static final long serialVersionUID = 5213488624386L;
+    private static final long serialVersionUID = 52134386L;
     private CitadelsDistrictCard cardBeingBuilt;
 
     /**

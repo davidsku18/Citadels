@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 public class CharacterCard implements Serializable
 {
-    private static final long serialVersionUID = 3223463263L;
+    private static final long serialVersionUID = 3263263L;
     private int red = 0;    // Codes for the 4 colors
     private int green = 1;
     private int blue = 2;

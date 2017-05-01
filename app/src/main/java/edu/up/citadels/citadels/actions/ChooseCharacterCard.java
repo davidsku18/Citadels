@@ -13,7 +13,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class ChooseCharacterCard extends CitadelsMoveAction
 {
-    private static final long serialVersionUID = -7552313488624386L;
+    private static final long serialVersionUID = 288624386L;
     private CharacterCard theChosenCard;
     /**
      * constructor for edu.up.citadels.game.GameAction

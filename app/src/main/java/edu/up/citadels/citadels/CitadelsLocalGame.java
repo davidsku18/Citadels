@@ -923,7 +923,11 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            } else if (action instanceof UseSpecialAbility) {
+
+        }
+
+        else if (action instanceof UseSpecialAbility)
+        {
             //TODO: Change the state turn numbers to current turn number + 1 when victor implements the remove character from deck as first turn!!!!!
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
@@ -942,8 +946,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
                         return true;
                     }
-                }
-                else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() == 0 || state.getP2Chars(1).getWhichCharacter() == 0))
+                } else if (playerID == 1 && (state.getP2Chars(0).getWhichCharacter() == 0 || state.getP2Chars(1).getWhichCharacter() == 0))
                 {
                     if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
                     {
@@ -954,8 +957,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
                         return true;
                     }
-                }
-                else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() == 0 || state.getP3Chars(1).getWhichCharacter() == 0))
+                } else if (playerID == 2 && (state.getP3Chars(0).getWhichCharacter() == 0 || state.getP3Chars(1).getWhichCharacter() == 0))
                 {
                     if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
                     {
@@ -972,8 +974,10 @@ public class CitadelsLocalGame extends LocalGame {
             // Theif Ability
             else if (state.getTurn() == 8)
             {
-                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1) || (state.getP1Chars(1).getWhichCharacter() == 1)) {
-                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1) || (state.getP1Chars(1).getWhichCharacter() == 1))
+                {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
                         state.setP1Gold(state.getP1Gold() + state.getP2Gold());
                         state.setP2Gold(0);
                         return true;
@@ -983,8 +987,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP3Gold(0);
                         return true;
                     }
-                }
-                else if (playerID == 1)
+                } else if (playerID == 1)
                 {
                     if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
                     {
@@ -997,8 +1000,7 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP3Gold(0);
                         return true;
                     }
-                }
-                else if (playerID == 2)
+                } else if (playerID == 2)
                 {
                     if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
                     {
@@ -1011,150 +1013,191 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP1Gold(0);
                         return true;
                     }
-                }
-                else
+                } else
                 {
                     return true;
                 }
-            } else if (state.getTurn() == 9) { //Magician Ability
+            }
+            else if (state.getTurn() == 9)
+            { //Magician Ability
             /*
             The magician replaces his deck with a player of his choice's. First, we figure out which player is the magician, then find the character that
             the magician is swapping with, then swapping their hands.
              */
-                if (playerID == 0) {
-                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                if (playerID == 0)
+                {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP1Hand());
                         state.setP1Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                         state.setP3Hand(state.getP1Hand());
                         state.setP1Hand(temp);
                         return true;
                     }
-                } else if (playerID == 1) {
-                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                } else if (playerID == 1)
+                {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                         state.setP1Hand(state.getP2Hand());
                         state.setP2Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                         state.setP3Hand(state.getP2Hand());
                         state.setP2Hand(temp);
                         return true;
                     }
-                } else if (playerID == 2) {
-                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                } else if (playerID == 2)
+                {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                         state.setP1Hand(state.getP3Hand());
                         state.setP3Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP3Hand());
                         state.setP3Hand(temp);
                         return true;
                     }
                 }
-            } else if (state.getTurn() == 10)//King
-                {
+            }
+            else if (state.getTurn() == 10)//King
+            {
                 //The king just gets extra gold for each yellow bulding in his district
-                if (playerID == 0) {
-                    for (int i = 0; i < state.getP1City().size(); ++i) {
+                if (playerID == 0)
+                {
+                    for (int i = 0; i < state.getP1City().size(); ++i)
+                    {
                         CitadelsDistrictCard cdc = state.getP1City().get(i);
-                        if (cdc.getColorString().equals("Yellow")) {
+                        if (cdc.getColorString().equals("Yellow"))
+                        {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                     }
                     return true;
-                } else if (playerID == 1) {
-                    for (int i = 0; i < state.getP2City().size(); ++i) {
+                } else if (playerID == 1)
+                {
+                    for (int i = 0; i < state.getP2City().size(); ++i)
+                    {
                         CitadelsDistrictCard cdc = state.getP2City().get(i);
-                        if (cdc.getColorString().equals("Yellow")) {
+                        if (cdc.getColorString().equals("Yellow"))
+                        {
                             state.setP2Gold(state.getP2Gold() + 1);
                         }
                     }
                     return true;
-                } else if (playerID == 2) {
-                    for (int i = 0; i < state.getP3City().size(); ++i) {
+                } else if (playerID == 2)
+                {
+                    for (int i = 0; i < state.getP3City().size(); ++i)
+                    {
                         CitadelsDistrictCard cdc = state.getP3City().get(i);
-                        if (cdc.getColorString().equals("Yellow")) {
+                        if (cdc.getColorString().equals("Yellow"))
+                        {
                             state.setP3Gold(state.getP3Gold() + 1);
                         }
                     }
                     return true;
-                }else
-                    {
-                        return true;
-                    }
-        }   else if (state.getTurn() == 11) {//bishop
-                //Like the king, the bishop only gets an extra gold for blue districts
-            if (playerID == 0)
-            {
-                for (int i = 0; i < state.getP1City().size(); ++i) {
-                    CitadelsDistrictCard cdc = state.getP1City().get(i);
-                    if (cdc.getColorString().equals("Blue")) {
-                        state.setP1Gold(state.getP1Gold() + 1);
-                    }
                 }
-                return true;
-            } else if (playerID == 1) {
-                for (int i = 0; i < state.getP2City().size(); ++i) {
-                    CitadelsDistrictCard cdc = state.getP2City().get(i);
-                    if (cdc.getColorString().equals("Blue")) {
-                        state.setP2Gold(state.getP2Gold() + 1);
-                    }
+                else
+                {
+                    return true;
                 }
-                return true;
-            } else if (playerID == 2) {
-                for (int i = 0; i < state.getP3City().size(); ++i) {
-                    CitadelsDistrictCard cdc = state.getP3City().get(i);
-                    if (cdc.getColorString().equals("Blue")) {
-                        state.setP3Gold(state.getP3Gold() + 1);
-                    }
-                }
-                return true;
             }
-        } else if (state.getTurn() == 12) {
-            //merchant
-            //merchant gets an extra gold for each green district and an extra gold just for being the merchant
-            if (playerID == 0) {
-                for (int i = 0; i < state.getP1City().size(); ++i) {
-                    CitadelsDistrictCard cdc = state.getP1City().get(i);
-                    if (cdc.getColorString().equals("Green")) {
-                        state.setP1Gold(state.getP1Gold() + 1);
+
+
+            else if (state.getTurn() == 11)
+            {//bishop
+                //Like the king, the bishop only gets an extra gold for blue districts
+                if (playerID == 0)
+                {
+                    for (int i = 0; i < state.getP1City().size(); ++i) {
+                        CitadelsDistrictCard cdc = state.getP1City().get(i);
+                        if (cdc.getColorString().equals("Blue")) {
+                            state.setP1Gold(state.getP1Gold() + 1);
+                        }
                     }
+                    return true;
+                }   else if (playerID == 1) {
+                    for (int i = 0; i < state.getP2City().size(); ++i) {
+                        CitadelsDistrictCard cdc = state.getP2City().get(i);
+                        if (cdc.getColorString().equals("Blue"))
+                        {
+                            state.setP2Gold(state.getP2Gold() + 1);
+                        }
+                    }
+                    return true;
+                }      else if (playerID == 2) {
+                    for (int i = 0; i < state.getP3City().size(); ++i)
+                    {
+                        CitadelsDistrictCard cdc = state.getP3City().get(i);
+                        if (cdc.getColorString().equals("Blue"))
+                        {
+                        state.setP3Gold(state.getP3Gold() + 1);
+                        }
+                    }
+                    return true;
                 }
+            }
+            else if (state.getTurn() == 12)
+            {
+                //merchant
+                //merchant gets an extra gold for each green district and an extra gold just for being the merchant
+                if (playerID == 0)
+                {
+                    for (int i = 0; i < state.getP1City().size(); ++i)
+                    {
+                        CitadelsDistrictCard cdc = state.getP1City().get(i);
+                        if (cdc.getColorString().equals("Green"))
+                        {
+                            state.setP1Gold(state.getP1Gold() + 1);
+                        }
+                    }
                 //merchant gets 1 extra
                 state.setP1Gold(state.getP1Gold() + 1);
                 return true;
-            } else if (playerID == 1) {
-                for (int i = 0; i < state.getP2City().size(); ++i) {
-                    CitadelsDistrictCard cdc = state.getP2City().get(i);
-                    if (cdc.getColorString().equals("Green")) {
-                        state.setP2Gold(state.getP2Gold() + 1);
-                    }
                 }
+                else if (playerID == 1)
+                {
+                    for (int i = 0; i < state.getP2City().size(); ++i)
+                    {
+                        CitadelsDistrictCard cdc = state.getP2City().get(i);
+                        if (cdc.getColorString().equals("Green"))
+                        {
+                            state.setP2Gold(state.getP2Gold() + 1);
+                        }
+                    }
                 //merchant gets 1 extra
                 state.setP2Gold(state.getP2Gold() + 1);
                 return true;
-            } else if (playerID == 2) {
-                for (int i = 0; i < state.getP3City().size(); ++i) {
-                    CitadelsDistrictCard cdc = state.getP3City().get(i);
-                    if (cdc.getColorString().equals("Green")) {
-                        state.setP3Gold(state.getP3Gold() + 1);
-                    }
                 }
-                //merchant gets one extra
-                state.setP3Gold(state.getP3Gold() + 1);
-                return true;
+                else if (playerID == 2) {
+                    for (int i = 0; i < state.getP3City().size(); ++i) {
+                        CitadelsDistrictCard cdc = state.getP3City().get(i);
+                        if (cdc.getColorString().equals("Green"))
+                        {
+                            state.setP3Gold(state.getP3Gold() + 1);
+                        }
+                    }
+                    //merchant gets one extra
+                    state.setP3Gold(state.getP3Gold() + 1);
+                    return true;
+                }
             }
-        } else if (state.getTurn() == 13) {
-            //architect
-            //architect gets 2 extra district cards added to his hand and gets to build 2 extra districts
-            if (playerID == 0) {
+            else if (state.getTurn() == 13)
+            {
+                //architect
+                //architect gets 2 extra district cards added to his hand and gets to build 2 extra districts
+                if (playerID == 0) {
                 ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                 CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                 temp.add(cdc);
@@ -1169,7 +1212,8 @@ public class CitadelsLocalGame extends LocalGame {
                 // seems a tad not intuitive here... must use ability before building districts
                 //state.setBuildLimit(3);
                 return true;
-            } else if (playerID == 1) {
+                }
+                 else if (playerID == 1) {
                 ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                 CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                 temp.add(cdc);
@@ -1179,7 +1223,8 @@ public class CitadelsLocalGame extends LocalGame {
                 state.removeCard();
                 state.setP2Hand(temp);
                 return true;
-            } else if (playerID == 2) {
+                }
+                else if (playerID == 2) {
                 ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                 CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                 temp.add(cdc);
@@ -1189,8 +1234,10 @@ public class CitadelsLocalGame extends LocalGame {
                 state.removeCard();
                 state.setP3Hand(temp);
                 return true;
+                 }
             }
-        } else if (state.getTurn() == 14) {
+            else if (state.getTurn() == 14)
+            {
             //warlord
             //warlord gets to destroy a district from another player
             if (playerID == 0) {
@@ -1201,31 +1248,33 @@ public class CitadelsLocalGame extends LocalGame {
                     }
                 }
                 if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
-                    int cost = 0;
-                    int indexOfDistrict = 0;
                     for (int i = 0; i < state.getP2City().size(); ++i)
                     {
-                        if (state.getP2City().get(i).getCost() > cost)
+                        if (state.getP1Gold() >= state.getP2City().get(i).getCost()-1)
                         {
-                            cost = state.getP2City().get(i).getCost();
-                            indexOfDistrict = i;
+                            state.setP1Gold(state.getP1Gold()-(state.getP2City().get(i).getCost()-1));
+                            state.setP2Score(state.getP2Score()-state.getP2City().get(i).getCost());
+                            state.removeFromP2City(i);
+                            break;
                         }
                     }
-                    state.getP2City().remove(indexOfDistrict);
-                    return true;
-                } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                }
+                else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
                     int cost = 0;
                     int indexOfDistrict = 0;
                     for (int i = 0; i < state.getP3City().size(); ++i) {
-                        if (state.getP3City().get(i).getCost() > cost) {
-                            cost = state.getP3City().get(i).getCost();
-                            indexOfDistrict = i;
+                        if (state.getP1Gold() >= state.getP3City().get(i).getCost()-1) {
+                            /*cost = state.getP3City().get(i).getCost();
+                            indexOfDistrict = i;*/
+                            state.setP1Gold(state.getP1Gold()-(state.getP3City().get(i).getCost()-1));
+                            state.setP3Score(state.getP3Score()-state.getP3City().get(i).getCost());
+                            state.removeFromP3City(i);
+                            break;
                         }
                     }
-                    state.removeFromP3City(indexOfDistrict);
-                    return true;
+                    //state.removeFromP3City(indexOfDistrict);
                 }
-                //return true;
+                return true;
             } else if (playerID == 1) {
                 for (int i = 0; i < state.getP2City().size(); ++i) {
                     CitadelsDistrictCard cdc = state.getP2City().get(i);
@@ -1233,18 +1282,71 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP2Gold(state.getP2Gold() + 1);
                     }
                 }
+                if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                    for (int i = 0; i < state.getP1City().size(); ++i)
+                    {
+                        if (state.getP2Gold() >= state.getP1City().get(i).getCost()-1)
+                        {
+                            state.setP2Gold(state.getP2Gold()-(state.getP1City().get(i).getCost()-1));
+                            state.setP1Score(state.getP1Score()-state.getP1City().get(i).getCost());
+                            state.removeFromP1City(i);
+                            break;
+                        }
+                    }
+                }
+                else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    int cost = 0;
+                    int indexOfDistrict = 0;
+                    for (int i = 0; i < state.getP3City().size(); ++i) {
+                        if (state.getP2Gold() >= state.getP3City().get(i).getCost() -1) {
+                            /*cost = state.getP3City().get(i).getCost();
+                            indexOfDistrict = i;*/
+                            state.setP2Gold(state.getP2Gold()-(state.getP3City().get(i).getCost()-1));
+                            state.setP3Score(state.getP3Score()-state.getP3City().get(i).getCost());
+                            state.removeFromP3City(i);
+                            break;
+                        }
+                    }
+                    //state.removeFromP3City(indexOfDistrict);
+                }
                 return true;
-            } else if (playerID == 2) {
+            }
+            else if (playerID == 2) {
                 for (int i = 0; i < state.getP3City().size(); ++i) {
                     CitadelsDistrictCard cdc = state.getP3City().get(i);
                     if (cdc.getColorString().equals("Red")) {
                         state.setP3Gold(state.getP3Gold() + 1);
                     }
                 }
+                if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                    for (int i = 0; i < state.getP2City().size(); ++i)
+                    {
+                        if (state.getP3Gold() >= state.getP2City().get(i).getCost() - 1)
+                        {
+                            state.setP3Gold(state.getP3Gold()-(state.getP2City().get(i).getCost()-1));
+                            state.setP2Score(state.getP2Score()-state.getP2City().get(i).getCost());
+                            state.removeFromP2City(i);
+                            break;
+                        }
+                    }
+                }
+                else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                    int cost = 0;
+                    int indexOfDistrict = 0;
+                    for (int i = 0; i < state.getP3City().size(); ++i) {
+                        if (state.getP3Gold() >= state.getP1City().get(i).getCost() - 1) {
+                            /*cost = state.getP3City().get(i).getCost();
+                            indexOfDistrict = i;*/
+                            state.setP3Gold(state.getP3Gold()-(state.getP1City().get(i).getCost()-1));
+                            state.setP1Score(state.getP1Score()-state.getP1City().get(i).getCost());
+                            state.removeFromP1City(i);
+                            break;
+                        }
+                    }
+                }
                 return true;
             }
         }
-        return true;
     }
     return true;
     }
