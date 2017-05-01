@@ -37,6 +37,11 @@ public class CitadelsBuildDistrictCard extends CitadelsMoveAction
         this.cardBeingBuilt = cardToBuild;
     }
 
+    /**
+     * Returns the card that the player is specifying to be built
+     * @return cardBeingBuilt
+     *          the card that will be built
+     */
     public CitadelsDistrictCard getCard()
     {
         return this.cardBeingBuilt;

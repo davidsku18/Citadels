@@ -33,6 +33,11 @@ public class ChooseDistrictCard extends CitadelsMoveAction
         super(player);
     }
 
+    /**
+     * whether a district card was taken or not
+     * @return
+     *          whether the district card was taken
+     */
     public boolean isChooseDistrictCard()
     {
         return true;
