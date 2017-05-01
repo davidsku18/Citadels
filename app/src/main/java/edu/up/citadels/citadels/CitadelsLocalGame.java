@@ -996,46 +996,115 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP1Gold(state.getP1Gold() + 1);
                     }
                 }
-                if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
-                    int cost = 0;
-                    int indexOfDistrict = 0;
-                    for (int i = 0; i < state.getP2City().size(); ++i) {
-                        if (state.getP2City().get(i).getCost() > cost) {
-                            cost = state.getP2City().get(i).getCost();
-                            indexOfDistrict = i;
+                if(theCharacter == 4)//cannot destroy bishop
+                {
+                    return true;
+                }else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                    if(state.getP2City().size() > 0) {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP2City().size(); ++i) {
+                            if (state.getP2City().get(i).getCost() > cost) {
+                                cost = state.getP2City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
                         }
+                        state.removeFromP2City(indexOfDistrict);
                     }
-                    state.removeFromP2City(indexOfDistrict);
                     return true;
                 } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
-                    int cost = 0;
-                    int indexOfDistrict = 0;
-                    for (int i = 0; i < state.getP3City().size(); ++i) {
-                        if (state.getP3City().get(i).getCost() > cost) {
-                            cost = state.getP3City().get(i).getCost();
-                            indexOfDistrict = i;
+                    if(state.getP3City().size() > 0)
+                    {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP3City().size(); ++i) {
+                            if (state.getP3City().get(i).getCost() > cost) {
+                                cost = state.getP3City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
                         }
+                        state.removeFromP3City(indexOfDistrict);
                     }
-                    state.removeFromP3City(indexOfDistrict);
                     return true;
                 }
-                //return true;
-            } else if (playerID == 1) {
+            } else if (playerID == 1)
+            {
                 for (int i = 0; i < state.getP2City().size(); ++i) {
                     CitadelsDistrictCard cdc = state.getP2City().get(i);
                     if (cdc.getColorString().equals("Red")) {
                         state.setP2Gold(state.getP2Gold() + 1);
                     }
                 }
-                return true;
-            } else if (playerID == 2) {
+                if (theCharacter == 4)//cannot destroy bishop
+                {
+                    return true;
+                }else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                    if(state.getP1City().size() > 0) {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP1City().size(); ++i) {
+                            if (state.getP1City().get(i).getCost() > cost) {
+                                cost = state.getP1City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.removeFromP1City(indexOfDistrict);
+                    }
+                    return true;
+                } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    if(state.getP3City().size() > 0)
+                    {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP3City().size(); ++i) {
+                            if (state.getP3City().get(i).getCost() > cost) {
+                                cost = state.getP3City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.removeFromP3City(indexOfDistrict);
+                    }
+                    return true;
+                }
+            } else if (playerID == 2)
+            {
                 for (int i = 0; i < state.getP3City().size(); ++i) {
                     CitadelsDistrictCard cdc = state.getP3City().get(i);
                     if (cdc.getColorString().equals("Red")) {
                         state.setP3Gold(state.getP3Gold() + 1);
                     }
                 }
-                return true;
+                if (theCharacter == 4)//cannot destroy bishop
+                {
+                    return true;
+                }else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                    if(state.getP2City().size() > 0) {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP2City().size(); ++i) {
+                            if (state.getP2City().get(i).getCost() > cost) {
+                                cost = state.getP2City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.removeFromP2City(indexOfDistrict);
+                    }
+                    return true;
+                } else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                    if(state.getP1City().size() > 0)
+                    {
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP1City().size(); ++i) {
+                            if (state.getP1City().get(i).getCost() > cost) {
+                                cost = state.getP1City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.removeFromP3City(indexOfDistrict);
+                    }
+                    return true;
+                }
             }
         }
         return true;
