@@ -161,6 +161,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
             }
         }
 
+
         game.sendAction(new EndTurn(this));
     }
 

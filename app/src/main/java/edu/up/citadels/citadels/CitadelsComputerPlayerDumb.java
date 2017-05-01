@@ -7,6 +7,7 @@ import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
 import edu.up.citadels.citadels.actions.EndTurn;
 import edu.up.citadels.citadels.actions.TakeGold;
+import edu.up.citadels.citadels.actions.UseSpecialAbility;
 import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
@@ -103,15 +104,15 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         /*int whichCharacterToRuin = (int)(Math.random() * 3);
         if (whichCharacterToRuin == 0)
         {
-            game.sendAction(new UseSpecialAbility(this, savedState.getP1Character1()));
+            game.sendAction(new UseSpecialAbility(this, savedState.getP1Chars(0).getWhichCharacter()));
         }else if(whichCharacterToRuin == 1)
         {
-            game.sendAction(new UseSpecialAbility(this, savedState.getP2Character1()));
+            game.sendAction(new UseSpecialAbility(this, savedState.getP2Chars(0).getWhichCharacter()));
         }else if(whichCharacterToRuin == 2)
         {
-            game.sendAction(new UseSpecialAbility(this, savedState.getP3Character1()));
-        }*/
-
+            game.sendAction(new UseSpecialAbility(this, savedState.getP3Chars(0).getWhichCharacter()));
+        }
+*/
         game.sendAction(new EndTurn(this));
     }
 

@@ -863,72 +863,168 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             if(i == 0)
             {
-                drawCityCard(p2_D1, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D1, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D1.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 1)
             {
-                drawCityCard(p2_D2, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D2, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D2.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 2)
             {
-                drawCityCard(p2_D3, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D3, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D3.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 3)
             {
-                drawCityCard(p2_D4, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D4, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D4.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 4)
             {
-                drawCityCard(p2_D5, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D5, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D5.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 5)
             {
-                drawCityCard(p2_D6, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D6, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D6.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 6)
             {
-                drawCityCard(p2_D7, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D7, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D7.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 7)
             {
-                drawCityCard(p2_D8, state.getP2CityCard(i).getName());
+                if(state.getP2City().get(i) != null)
+                {
+                    drawCityCard(p2_D8, state.getP2CityCard(i).getName());
+                }else
+                {
+                    p2_D8.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
         }
 
         //draws images
         for(int i = 0; i < state.getP3City().size(); ++i)
         {
-            if( i == 0)
+            if(i == 0)
             {
-                drawCityCard(p3_D1, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D1, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D1.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 1)
             {
-                drawCityCard(p3_D2, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D3, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D3.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 2)
             {
-                drawCityCard(p3_D3, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D3, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D3.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 3)
             {
-                drawCityCard(p3_D4, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D4, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D4.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 4)
             {
-                drawCityCard(p3_D5, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D5, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D5.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 5)
             {
-                drawCityCard(p3_D6, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D6, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D6.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 6)
             {
-                drawCityCard(p3_D7, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D7, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D7.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
             else if (i == 7)
             {
-                drawCityCard(p3_D8, state.getP3CityCard(i).getName());
+                if(state.getP3City().get(i) != null)
+                {
+                    drawCityCard(p3_D8, state.getP3CityCard(i).getName());
+                }else
+                {
+                    p3_D8.setImageResource(R.drawable.vintage_wood_table_texture_qxunczdha);
+                }
             }
         }
 
