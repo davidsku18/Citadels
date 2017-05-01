@@ -717,6 +717,7 @@ public class CitadelsLocalGame extends LocalGame
         }
         if (action instanceof EndTurn)
         {
+            state.setBuildLimit(1); //resets the build limit to 1
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {
                 state.setTurnCounter(state.getTurnCounter() + 1);
@@ -1178,9 +1179,13 @@ public class CitadelsLocalGame extends LocalGame
                     state.setP3Gold(state.getP3Gold() + 1);
                     return true;
                 }
-            } else if (state.getTurn() == 13) {
+            }
+            else if (state.getTurn() == 13) {
                 //architect
-                if (playerID == 0) {
+                if (playerID == 0)
+                {
+                    state.setBuildLimit(3);
+
                     ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                     CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                     temp.add(cdc);
@@ -1190,14 +1195,12 @@ public class CitadelsLocalGame extends LocalGame
                     state.removeCard();
                     state.setP1Hand(temp);
 
-                    //TODO determine how to know when 3 districts are built and set the build limit back to 1
-                    //allows architect to build 3 districts... possibly move to after choosing architect card
-                    // seems a tad not intuitive here... must use ability before building districts
-                    //state.setBuildLimit(3);
                     return true;
 
 
-                } else if (playerID == 1) {
+                }
+                else if (playerID == 1)
+                {
                     ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                     CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                     temp.add(cdc);
@@ -1207,7 +1210,9 @@ public class CitadelsLocalGame extends LocalGame
                     state.removeCard();
                     state.setP2Hand(temp);
                     return true;
-                } else if (playerID == 2) {
+                }
+                else if (playerID == 2)
+                {
                     ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                     CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                     temp.add(cdc);

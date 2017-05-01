@@ -1279,6 +1279,16 @@ public class CitadelsGameState extends GameState
     }
 
     /**
+     * gets the current build limit for the turn
+     * @return buildLimit
+     *          The abmount of districts that can be built in a turn
+     */
+    public int getBuildLimit()
+    {
+        return this.buildLimit;
+    }
+
+    /**
      * Sets the buildLimit to account for the architect card
      * @param newLimit
      *          the new limit
@@ -1295,7 +1305,7 @@ public class CitadelsGameState extends GameState
     {
         this.setTurn(0);
         this.setTurnCounter(0);
-        this.buildLimit = 1;
+        this.setBuildLimit(1);
 
         this.initializeDistrictDeck();
         this.initializeCharacterDeck();
@@ -1331,7 +1341,7 @@ public class CitadelsGameState extends GameState
         this.setP3Score(0);
 
         // sets the player's initial gold values
-        this.setP1Gold(2);
+        this.setP1Gold(50);
         this.setP2Gold(2);
         this.setP3Gold(2);
     }
