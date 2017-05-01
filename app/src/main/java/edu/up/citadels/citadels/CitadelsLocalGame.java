@@ -1042,7 +1042,7 @@ public class CitadelsLocalGame extends LocalGame {
                             //if the color of the district corresponds to the color of your characters, you get an extra gold!
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
-                        int index = state.p1FindCard(cbdc.getCard());
+                        int index = state.getP1City().indexOf(cbdc.getCard());
                         state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());//update score
                         state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());//update gold count
                         try
