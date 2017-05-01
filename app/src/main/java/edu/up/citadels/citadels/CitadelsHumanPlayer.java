@@ -942,11 +942,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
         {
-            //characterTurn.setTextColor(0xFF00FF00);
             updateCharacterCounter();
         }else
         {
-            //characterTurn.setTextColor(0xFF000000);
             updateCharacterCounter();
         }
 
@@ -1139,7 +1137,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1155,7 +1153,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1173,7 +1171,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1191,7 +1189,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1208,7 +1206,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1225,7 +1223,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1242,7 +1240,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1259,7 +1257,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
