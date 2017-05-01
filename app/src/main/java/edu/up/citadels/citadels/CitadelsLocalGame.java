@@ -953,13 +953,14 @@ public class CitadelsLocalGame extends LocalGame {
                     {
                         if ((cbdc.getCard().getColorString().equals(state.getP3Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP3Chars(1).getCharacterColorString())))
                         {
+                            //get an extra gold if character and district color are the same
                             state.setP3Gold(state.getP3Gold() + 1);
                         }
                         state.setAction("Player 3 Built a " + cbdc.getCard().getName() + ".");
                         state.addToP3City(cbdc.getCard());
                         int index = state.p3FindCard(cbdc.getCard());
-                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());
-                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());
+                        state.setP3Score(state.getP3Score() + cbdc.getCard().getCost());//update score
+                        state.setP3Gold(state.getP3Gold() - cbdc.getCard().getCost());//update gold
                         try
                         {
                             state.removeFromP3Hand(index);
@@ -979,7 +980,6 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             }
             } else if (action instanceof UseSpecialAbility) {
-            //TODO: Change the state turn numbers to current turn number + 1 when victor implements the remove character from deck as first turn!!!!!
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
 
