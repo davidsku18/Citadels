@@ -344,9 +344,112 @@ public class CitadelsLocalGame extends LocalGame {
             int p2Score = state.getP2Score();
             int p3Score = state.getP3Score();
 
+            //booleans for having each colored district for bonus points
+            boolean p1Red = false;
+            boolean p1Blue = false;
+            boolean p1Green = false;
+            boolean p1Yellow = false;
+
+            boolean p2Red = false;
+            boolean p2Blue = false;
+            boolean p2Green = false;
+            boolean p2Yellow = false;
+
+            boolean p3Red = false;
+            boolean p3Blue = false;
+            boolean p3Green = false;
+            boolean p3Yellow = false;
+
             if (p1Districts > 7 || p2Districts > 7 || p3Districts > 7)
             {
+                //Checks to see if there is a districts that are red,blue,green, and yellow
+                for(int i=0; i < p1Districts; i++)
+                {
+                    CitadelsDistrictCard temp = state.getP1City().get(i);
+                    String tempColor = temp.getColorString();
+                    if(tempColor.equals("Red"))
+                    {
+                        p1Red = true;
+                    }
+                    else if(tempColor.equals("Blue"))
+                    {
+                        p1Blue = true;
+                    }
+                    else if(tempColor.equals("Green"))
+                    {
+                        p1Green = true;
+                    }
+                    else if(tempColor.equals("Yellow"))
+                    {
+                        p1Yellow = true;
+                    }
+                }
 
+                //Checks to see if there is a districts that are red,blue,green, and yellow
+                for(int i=0; i < p2Districts; i++)
+                {
+                    CitadelsDistrictCard temp = state.getP2City().get(i);
+                    String tempColor = temp.getColorString();
+                    if(tempColor.equals("Red"))
+                    {
+                        p2Red = true;
+                    }
+                    else if(tempColor.equals("Blue"))
+                    {
+                        p2Blue = true;
+                    }
+                    else if(tempColor.equals("Green"))
+                    {
+                        p2Green = true;
+                    }
+                    else if(tempColor.equals("Yellow"))
+                    {
+                        p2Yellow = true;
+                    }
+                }
+
+                //Checks to see if there is a districts that are red,blue,green, and yellow
+                for(int i=0; i < p3Districts; i++)
+                {
+                    CitadelsDistrictCard temp = state.getP3City().get(i);
+                    String tempColor = temp.getColorString();
+                    if(tempColor.equals("Red"))
+                    {
+                        p3Red = true;
+                    }
+                    else if(tempColor.equals("Blue"))
+                    {
+                        p3Blue = true;
+                    }
+                    else if(tempColor.equals("Green"))
+                    {
+                        p3Green = true;
+                    }
+                    else if(tempColor.equals("Yellow"))
+                    {
+                        p3Yellow = true;
+                    }
+                }
+
+                //Adds 3 bonus points to P1 if they have a district of each color
+                if(p1Blue && p1Green && p1Red && p1Yellow)
+                {
+                    state.setP1Score(state.getP1Score() + 3);
+                }
+
+                //Adds 3 bonus points to P2 if they have a district of each color
+                if(p2Blue && p2Green && p2Red && p2Yellow)
+                {
+                    state.setP2Score(state.getP2Score() + 3);
+                }
+
+                //Adds 3 bonus points to P3 if they have a district of each color
+                if(p3Blue && p3Green && p3Red && p3Yellow)
+                {
+                    state.setP3Score(state.getP3Score() + 3);
+                }
+
+                //Checks to see who has the highest score
                 if (p1Score >= p2Score && p1Score >= p3Score)
                 {
                     return "PLAYER 1 HAS WON! CONGRATULATIONS!";
@@ -1017,13 +1120,14 @@ public class CitadelsLocalGame extends LocalGame {
                     return true;
                 }
             }
-            } else if (action instanceof UseSpecialAbility) {
+            } else if (action instanceof UseSpecialAbility)
+        {
             //TODO: Change the state turn numbers to current turn number + 1 when victor implements the remove character from deck as first turn!!!!!
             UseSpecialAbility usa = (UseSpecialAbility) cma;
             int theCharacter = usa.getCharacter();
 
             // Assassin Ability
-            if(state.getTurn() == 7)
+            if (state.getTurn() == 7)
             {
                 if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 0 || state.getP1Chars(1).getWhichCharacter() == 0))
                 {
@@ -1031,17 +1135,13 @@ public class CitadelsLocalGame extends LocalGame {
                     {
                         state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
                         return true;
-                    }
-                    else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
                     {
                         state.setCharacterCardFromDeck(theCharacter, state.getP1Chars(0));
                         return true;
                     }
                 }
-            }
-
-
-            else if (state.getTurn() == 8)
+            } else if (state.getTurn() == 8)
             {
                 if (playerID == 0 && (state.getP1Chars(0).getWhichCharacter() == 1 || state.getP1Chars(1).getWhichCharacter() == 1))
                 {
@@ -1050,88 +1150,88 @@ public class CitadelsLocalGame extends LocalGame {
                         state.setP1Gold(state.getP1Gold() + state.getP2Gold());
                         state.setP2Gold(0);
                         return true;
-                    }   else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
                     {
                         state.setP1Gold(state.getP1Gold() + state.getP3Gold());
                         state.setP3Gold(0);
                         return true;
                     }
-            }
-            }
-            else if (playerID == 1)
-            {
-                if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                } else if (playerID == 1)
                 {
-                    state.setP2Gold(state.getP2Gold() + state.getP1Gold());
-                    state.setP1Gold(0);
-                    return true;
-                } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
+                        state.setP2Gold(state.getP2Gold() + state.getP1Gold());
+                        state.setP1Gold(0);
+                        return true;
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
+                        state.setP2Gold(state.getP2Gold() + state.getP3Gold());
+                        state.setP3Gold(0);
+                        return true;
+                    }
+                } else if (playerID == 2)
                 {
-                    state.setP2Gold(state.getP2Gold() + state.getP3Gold());
-                    state.setP3Gold(0);
-                    return true;
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
+                        state.setP3Gold(state.getP3Gold() + state.getP2Gold());
+                        state.setP2Gold(0);
+                        return true;
+                    } else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
+                        state.setP3Gold(state.getP3Gold() + state.getP1Gold());
+                        state.setP1Gold(0);
+                        return true;
+                    }
                 }
-            }
-            else if (playerID == 2)
-            {
-                if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+            } else if (state.getTurn() == 9) {//Magician Ability
+                if (playerID == 0)
                 {
-                    state.setP3Gold(state.getP3Gold() + state.getP2Gold());
-                    state.setP2Gold(0);
-                    return true;
-                } else if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
-                {
-                    state.setP3Gold(state.getP3Gold() + state.getP1Gold());
-                    state.setP1Gold(0);
-                    return true;
-                }
-            } else
-            {
-                return true;
-            }
-
-            if (state.getTurn() == 9) //Magician Ability
-                if (playerID == 0) {
                     //TODO go in here and find which character was selected, make sure it isn't null, find who owns it
-                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                    if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP1Hand());
                         state.setP1Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                         state.setP3Hand(state.getP1Hand());
                         state.setP1Hand(temp);
                         return true;
                     }
-                } else if (playerID == 1) {
-                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                } else if (playerID == 1)
+                {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                         state.setP1Hand(state.getP2Hand());
                         state.setP2Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP3Chars(0).getWhichCharacter()) || (theCharacter == state.getP3Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                         state.setP3Hand(state.getP2Hand());
                         state.setP2Hand(temp);
                         return true;
                     }
-                } else if (playerID == 2) {
-                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter())) {
+                } else if (playerID == 2)
+                {
+                    if ((theCharacter == state.getP1Chars(0).getWhichCharacter()) || (theCharacter == state.getP1Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP1Hand();
                         state.setP1Hand(state.getP3Hand());
                         state.setP3Hand(temp);
                         return true;
-                    } else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter())) {
+                    } else if ((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()))
+                    {
                         ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                         state.setP2Hand(state.getP3Hand());
                         state.setP3Hand(temp);
                         return true;
                     }
-                } else {
-                    return true;
                 }
-            if (state.getTurn() == 10) {
+        }else if (state.getTurn() == 10) {
                 //king
                 if (playerID == 0) {
                     for (int i = 0; i < state.getP1City().size(); ++i) {
@@ -1218,8 +1318,7 @@ public class CitadelsLocalGame extends LocalGame {
                     state.setP3Gold(state.getP3Gold() + 1);
                     return true;
                 }
-            }
-            else if (state.getTurn() == 13) {
+            } else if (state.getTurn() == 13) {
                 //architect
                 if (playerID == 0)
                 {
@@ -1277,7 +1376,6 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                     }
-                    return true;
                     if((theCharacter == state.getP2Chara1().getWhichCharacter()) || (theCharacter == state.getP2Chara2().getWhichCharacter()))
                     {
                         int cost = 0;

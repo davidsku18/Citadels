@@ -1341,7 +1341,7 @@ public class CitadelsGameState extends GameState
         this.setP3Score(0);
 
         // sets the player's initial gold values
-        this.setP1Gold(50);
+        this.setP1Gold(2);
         this.setP2Gold(2);
         this.setP3Gold(2);
     }
@@ -1395,5 +1395,13 @@ public class CitadelsGameState extends GameState
 
         this.turnCounter = orig.turnCounter;
 
+    }
+
+    public void removeFromP2City(int indexOfDistrict)
+    {
+    }
+
+    public void removeFromP3City(int indexOfDistrict)
+    {
     }
 }

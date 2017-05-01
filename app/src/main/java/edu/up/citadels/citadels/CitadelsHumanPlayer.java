@@ -2028,16 +2028,35 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 if (hasBuilt != state.getBuildLimit() && state.getP1Hand().size() != 0)
                 {
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
+                    boolean unique = true;
+                    for(int i = 0; i < state.getP1City().size(); ++i)
+                    {
+                        if(state.getP1City().get(i).getName().equals(cardToBuild.getName()))
+                        {
+                            unique = false;
+                        }
+                    }
                     if(state.getP1Gold() >= cardToBuild.getCost())
                    {
-                       //if p1 has enough gold, build a district card
-                       cardInfo.setText(cardToBuild.getName() + " Built.");
-                       humanPlayerBuildDistrict(cardToBuild);
-                       p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
-                       p1HandAdapter.notifyDataSetChanged();
-                       hasBuilt++;
-                       actionSpinner.setSelection(0);
-                   }else
+                       if(unique)
+                       {
+                           //if p1 has enough gold and district is unique, build a district card
+                           cardInfo.setText(cardToBuild.getName() + " Built.");
+                           humanPlayerBuildDistrict(cardToBuild);
+                           p1HandAdapter.remove(p1HandAdapter.getItem(selectedCard));
+                           p1HandAdapter.notifyDataSetChanged();
+                           hasBuilt++;
+                           actionSpinner.setSelection(0);
+                       }
+                       //tells the player to choose a new district if the current one is not unique
+                       else
+                       {
+                           cardInfo.setText("Can't build multiple of the same district \n Please choose a new one");
+                           actionSpinner.setSelection(0);
+                       }
+                   }
+                   //tells the player that they can't afford that current district
+                   else
                     {
                         cardInfo.setText("Sorry, You Cannot Afford That.\nPlease Select Another Action.");
                         actionSpinner.setSelection(0);
