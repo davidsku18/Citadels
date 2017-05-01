@@ -478,13 +478,13 @@ public class CitadelsLocalGame extends LocalGame {
                 //Checks to see who has the highest score
                 if (p1Score >= p2Score && p1Score >= p3Score)
                 {
-                    return "PLAYER 1 HAS WON! CONGRATULATIONS!";
+                    return playerNames[0] + " has won!";
                 } else if (p2Score >= p1Score && p2Score >= p3Score)
                 {
-                    return "PLAYER 2 HAS WON! BUMMER.";
+                    return playerNames[1] + " has won!";
                 } else if (p3Score >= p2Score && p3Score >= p1Score)
                 {
-                    return "PLAYER 3 HAS WON! BUMMER.";
+                    return playerNames[2] + " has won!";
                 } else
                 {
                     return "There was a tie!";
@@ -622,7 +622,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -632,7 +631,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -642,7 +640,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -658,7 +655,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -668,7 +664,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -678,7 +673,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character1(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char1");
                     state.setTurn(state.getTurn() + 1);
@@ -694,7 +688,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -704,7 +697,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -714,7 +706,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -730,7 +721,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -740,7 +730,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -750,7 +739,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 3", "Took Char2");
                     state.setTurn(state.getTurn() + 1);
@@ -766,7 +754,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp1Chars(ccc.getTheChosenCharacterCard());
-                    state.setP1Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 1", "Took Char2");
                     state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
@@ -793,7 +780,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp2Chars(ccc.getTheChosenCharacterCard());
-                    state.setP2Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     Log.i("Player 2", "Took Char2");
                     state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
@@ -820,7 +806,6 @@ public class CitadelsLocalGame extends LocalGame {
                     // Sets the player's character card to the card they chose
                     ChooseCharacterCard ccc = (ChooseCharacterCard) cma;
                     state.addp3Chars(ccc.getTheChosenCharacterCard());
-                    state.setP3Character2(ccc.getTheChosenCharacterCard().getWhichCharacter(), ccc.getTheChosenCharacterCard().getColor());
                     state.removeCharacterCardFromDeck(ccc.getTheChosenCharacterCard().getWhichCharacter());
                     state.setCharacterCardFromDeck(state.getRemovedCharacter().getWhichCharacter(), state.getRemovedCharacter());
                     Log.i("Player 3", "Took Char2");
@@ -1396,16 +1381,15 @@ public class CitadelsLocalGame extends LocalGame {
                     state.removeCard();
                     state.setP1Hand(temp);
 
-                    //TODO determine how to know when 3 districts are built and set the build limit back to 1
-                    //allows architect to build 3 districts... possibly move to after choosing architect card
-                    // seems a tad not intuitive here... must use ability before building districts
-                    //state.setBuildLimit(3);
                     return true;
 
 
                 }
                 else if (playerID == 1)
                 {
+                    state.setBuildLimit(3);
+
+
                     ArrayList<CitadelsDistrictCard> temp = state.getP2Hand();
                     CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                     temp.add(cdc);
@@ -1418,6 +1402,9 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 else if (playerID == 2)
                 {
+                    state.setBuildLimit(3);
+
+
                     ArrayList<CitadelsDistrictCard> temp = state.getP3Hand();
                     CitadelsDistrictCard cdc = state.getDeckOrderDistricts().get(0);
                     temp.add(cdc);
@@ -1439,34 +1426,39 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                     }
-                    if((theCharacter == state.getP2Chara1().getWhichCharacter()) ||
-                            (theCharacter == state.getP2Chara2().getWhichCharacter()))
+                    if((theCharacter == state.getP2Chars(0).getWhichCharacter()) || (theCharacter == state.getP2Chars(1).getWhichCharacter()) && (4 == state.getP2Chars(0).getWhichCharacter()) || (4 == state.getP2Chars(1).getWhichCharacter()))
                     {
+                        int goldAmount = state.getP1Gold();
                         int cost = 0;
                         int indexOfDistrict = 0;
                         for(int i = 0; i < state.getP2City().size(); ++i)
                         {
-                            if(state.getP2City().get(i).getCost() > cost)
+                            if(state.getP2City().get(i).getCost()-1 < goldAmount && state.getP2City().get(i).getCost()>cost)
                             {
                                 cost = state.getP2City().get(i).getCost();
                                 indexOfDistrict = i;
                             }
                         }
+                        state.setP1Gold(state.getP1Gold()-(state.getP2City().get(indexOfDistrict).getCost()-1));
+                        state.setP2Score(state.getP2Score()-state.getP2City().get(indexOfDistrict).getCost());
                         state.removeFromP2City(indexOfDistrict);
                         return true;
-                    }else if((theCharacter == state.getP3Chara1().getWhichCharacter()) ||
-                            (theCharacter == state.getP3Chara2().getWhichCharacter()))
+                    }else if((theCharacter == state.getP3Chars(0).getWhichCharacter()) ||
+                            (theCharacter == state.getP3Chars(1).getWhichCharacter()) && (4 == state.getP3Chars(0).getWhichCharacter()) || (4 == state.getP3Chars(1).getWhichCharacter()))
                     {
+                        int goldAmount = state.getP1Gold();
                         int cost = 0;
                         int indexOfDistrict = 0;
                         for(int i = 0; i < state.getP3City().size(); ++i)
                         {
-                            if(state.getP3City().get(i).getCost() > cost)
+                            if(state.getP3City().get(i).getCost()-1 < goldAmount && state.getP3City().get(i).getCost()>cost)
                             {
                                 cost = state.getP3City().get(i).getCost();
                                 indexOfDistrict = i;
                             }
                         }
+                        state.setP1Gold(state.getP1Gold()-(state.getP3City().get(indexOfDistrict).getCost()-1));
+                        state.setP3Score(state.getP3Score()-state.getP3City().get(indexOfDistrict).getCost());
                         state.removeFromP3City(indexOfDistrict);
                         return true;
                     }
@@ -1478,7 +1470,44 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP2Gold(state.getP2Gold() + 1);
                         }
                     }
-                    return true;
+                    if ((state.getP1Chars(0).getWhichCharacter() == theCharacter || state.getP1Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP1Chars(0).getWhichCharacter()) || (4 == state.getP1Chars(1).getWhichCharacter()))
+                    {
+                        int goldAmount = state.getP2Gold();
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP1City().size(); ++i)
+                        {
+                            if (state.getP1City().get(i).getCost() - 1 < goldAmount && state.getP1City().get(i).getCost() > cost)
+                            {
+                                cost = state.getP1City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.setP2Gold(state.getP2Gold() - (state.getP1City().get(indexOfDistrict).getCost() - 1));
+                        state.setP1Score(state.getP1Score() - state.getP1City().get(indexOfDistrict).getCost());
+                        state.removeFromP1City(indexOfDistrict);
+                        return true;
+                    }
+                    else if ((state.getP3Chars(0).getWhichCharacter() == theCharacter || state.getP3Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP3Chars(0).getWhichCharacter()) || (4 == state.getP3Chars(1).getWhichCharacter()))
+                    {
+                        int goldAmount = state.getP2Gold();
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP3City().size(); ++i)
+                        {
+                            if (state.getP3City().get(i).getCost() - 1 < goldAmount && state.getP3City().get(i).getCost() > cost)
+                            {
+                                cost = state.getP3City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.setP2Gold(state.getP2Gold() - (state.getP3City().get(indexOfDistrict).getCost() - 1));
+                        state.setP3Score(state.getP1Score() - state.getP3City().get(indexOfDistrict).getCost());
+                        state.removeFromP3City(indexOfDistrict);
+                        return true;
+                    }
+
+
                 } else if (playerID == 2) {
                     for (int i = 0; i < state.getP3City().size(); ++i) {
                         CitadelsDistrictCard cdc = state.getP3City().get(i);
@@ -1486,7 +1515,42 @@ public class CitadelsLocalGame extends LocalGame {
                             state.setP3Gold(state.getP3Gold() + 1);
                         }
                     }
-                    return true;
+                    if ((state.getP1Chars(0).getWhichCharacter() == theCharacter || state.getP1Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP1Chars(0).getWhichCharacter()) || (4 == state.getP1Chars(1).getWhichCharacter()))
+                    {
+                        int goldAmount = state.getP3Gold();
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP1City().size(); ++i)
+                        {
+                            if (state.getP1City().get(i).getCost() - 1 < goldAmount && state.getP1City().get(i).getCost() > cost)
+                            {
+                                cost = state.getP1City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.setP3Gold(state.getP3Gold() - (state.getP1City().get(indexOfDistrict).getCost() - 1));
+                        state.setP1Score(state.getP1Score() - state.getP1City().get(indexOfDistrict).getCost());
+                        state.removeFromP1City(indexOfDistrict);
+                        return true;
+                    }
+                    else if ((state.getP2Chars(0).getWhichCharacter() == theCharacter || state.getP2Chars(1).getWhichCharacter() == theCharacter) && (4 == state.getP2Chars(0).getWhichCharacter()) || (4 == state.getP2Chars(1).getWhichCharacter()))
+                    {
+                        int goldAmount = state.getP3Gold();
+                        int cost = 0;
+                        int indexOfDistrict = 0;
+                        for (int i = 0; i < state.getP2City().size(); ++i)
+                        {
+                            if (state.getP2City().get(i).getCost() - 1 < goldAmount && state.getP2City().get(i).getCost() > cost)
+                            {
+                                cost = state.getP2City().get(i).getCost();
+                                indexOfDistrict = i;
+                            }
+                        }
+                        state.setP3Gold(state.getP3Gold() - (state.getP2City().get(indexOfDistrict).getCost() - 1));
+                        state.setP2Score(state.getP2Score() - state.getP2City().get(indexOfDistrict).getCost());
+                        state.removeFromP2City(indexOfDistrict);
+                        return true;
+                    }
                 }
             }
             return true;

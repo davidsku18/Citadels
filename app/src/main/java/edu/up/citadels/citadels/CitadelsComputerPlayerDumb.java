@@ -57,7 +57,7 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         sleep(1500 + (int) ( Math.random() * 2000));
 
         //random int to determine if it should draw gold or districts
-        int whatToDo;
+        double whatToDo;
 
         int ability;
 
@@ -75,11 +75,11 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         if (myPlayer == 1)
         {
             sleep(1000 + ((int) (Math.random() * 1000)));
-            whatToDo = (int) (Math.random() * 2);
+            whatToDo = (Math.random());
             ability = (int) (Math.random() * 2);
             whichCharacter = (int) (Math.random() * 8);
 
-            if (whatToDo == 0) {
+            if (whatToDo < .33) {
                 game.sendAction(new ChooseDistrictCard(this));
             } else {
                 game.sendAction(new TakeGold(this));
@@ -130,11 +130,11 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         } else if (myPlayer == 2) {
             sleep(1000 + ((int) (Math.random() * 1000)));
-            whatToDo = (int) (Math.random() * 2);
+            whatToDo = (Math.random());
             ability = (int) (Math.random() * 2);
             whichCharacter = (int) (Math.random() * 8);
 
-            if (whatToDo == 0) {
+            if (whatToDo < .33) {
                 game.sendAction(new ChooseDistrictCard(this));
             } else {
                 game.sendAction(new TakeGold(this));
@@ -182,11 +182,11 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
         } else if (myPlayer == 3) {
             sleep(1000 + ((int) (Math.random() * 1000)));
-            whatToDo = (int) (Math.random() * 2);
+            whatToDo =  (Math.random());
             ability = (int) (Math.random() * 2);
             whichCharacter = (int) (Math.random() * 8);
 
-            if (whatToDo == 0) {
+            if (whatToDo <.33) {
                 game.sendAction(new ChooseDistrictCard(this));
             } else {
                 game.sendAction(new TakeGold(this));
@@ -238,6 +238,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
     public int getPlayerNum()
     {
-        return this.player;
+        return this.playerNum;
     }
 }
