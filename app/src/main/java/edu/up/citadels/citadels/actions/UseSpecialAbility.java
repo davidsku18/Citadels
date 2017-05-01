@@ -22,7 +22,7 @@ import edu.up.citadels.game.GamePlayer;
 
 public class UseSpecialAbility extends CitadelsMoveAction
 {
-    private static final long serialVersionUID = 103488624386L;
+    private static final long serialVersionUID = 108624386L;
     private int character;
     /**
      * constructor for edu.up.citadels.game.GameAction
