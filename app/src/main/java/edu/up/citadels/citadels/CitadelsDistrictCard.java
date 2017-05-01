@@ -1,21 +1,31 @@
 package edu.up.citadels.citadels;
 
 /**
+ * The district card object used for building
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/10/2017
+ * @version 4/30/2017
  */
 
 public class CitadelsDistrictCard {
 
-
+    // The district card's values
     private final String name;
     private final int color;
     private final int cost;
 
-    //original constructor
+    /**
+     * Constructor for the CitadelsDistrictCard
+     * @param theCard
+     *          the card's name
+     * @param theColor
+     *          the card's color
+     * @param theCost
+     *          the card's cost
+     */
     public CitadelsDistrictCard(String theCard, int theColor, int theCost)
     {
         name = theCard;
@@ -23,33 +33,40 @@ public class CitadelsDistrictCard {
         cost = theCost;
     }
 
-    //copy constructor
-    public CitadelsDistrictCard(CitadelsDistrictCard orig)
-    {
-        this(orig.name, orig.color, orig.cost);
-    }
-
-    //Getter Methods
-
-    //Get CitadelsCard Name
+    /**
+     * Gets the district card's name
+     * @return
+     */
     public String getName()
     {
         return this.name;
     }
 
-    //Get CitadelsCard Color
+    /**
+     * Gets the district card's color
+     * @return
+     */
     public int getColor()
     {
         return this.color;
     }
 
+    /**
+     * Gets the district card's info
+     * @param cdc
+     * @return
+     */
     public String getInfo(CitadelsDistrictCard cdc)
     {
         String info = cdc.getName() + " Cost: " + cdc.getCost() + " Color: " + cdc.getColorString();
         return info;
     }
 
-    //Gets DistrictCard Color in String form
+    /**
+     * Gets the color of the district card
+     * @return String
+     *          the district card's color
+     */
     public String getColorString()
     {
         if(color == 0)
@@ -71,7 +88,11 @@ public class CitadelsDistrictCard {
 
     }
 
-    //Get CitadelsCard Cost
+    /**
+     * Gets the district card's cost
+     * @return cost
+     *          the district card's cost
+     */
     public int getCost()
     {
         return cost;

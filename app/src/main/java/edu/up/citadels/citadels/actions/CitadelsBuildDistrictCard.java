@@ -5,11 +5,21 @@ import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
 /**
+ * A ChooseBuildDistrictCard is an action that represents choosing a district
+ * card to be built in the player's city
+ * External Citation
+ * Date: 12 March 2017
+ * Problem: Didn't know how to implement actions correctly
+ * Resource:
+ * https://github.com/srvegdahl/SlapJack/blob/master/app
+ * /src/main/java/edu/up/cs301/slapjack/SJSlapAction.java
+ * Solution: Used the example code from this post.
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/10/2017
+ * @version 4/30/2017
  */
 
 public class CitadelsBuildDistrictCard extends CitadelsMoveAction

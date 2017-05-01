@@ -13,7 +13,22 @@ import edu.up.citadels.game.GameComputerPlayer;
 import edu.up.citadels.game.infoMsg.GameInfo;
 
 /**
- * Created by bryce on 4/17/2017.
+ * Computer player that will try to win the game
+ *
+ * External Citation
+ * Date: 20 March 2017
+ * Problem: Could not get AI to take an action and to sleep
+ * Resource:
+ * https://github.com/srvegdahl/TttGame/blob/master/app
+ * /src/main/java/edu/up/cs301/tictactoe/TTTComputerPlayer1.java
+ * Solution: Used as reference
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 4/30/2017
+ *
  */
 
 public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements Serializable
@@ -22,6 +37,13 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
 
     private int playerNum;
 
+    /**
+     * The smart computer player's constructor
+     * @param initName
+     *          the computer player's name
+     * @param myNumber
+     *          the comoputer player's number
+     */
     public CitadelsComputerPlayerSmart(String initName, int myNumber)
     {
         super(initName);
@@ -39,8 +61,6 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         savedState = (CitadelsGameState) info;
 
         int myPlayer = savedState.getPlayer(this);
-
-
 
         //AI attempts to stockpile 8 gold and only draws district cards when there are no district cards
         // in hand or if AI has more than 8 gold
@@ -163,6 +183,11 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
         game.sendAction(new EndTurn(this));
     }
 
+    /**
+     * Gets the player's num
+     * @return player num
+     *          the player's num
+     */
     public int getPlayerNum()
     {
         return this.playerNum;

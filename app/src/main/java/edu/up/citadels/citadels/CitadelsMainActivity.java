@@ -24,16 +24,33 @@ import edu.up.citadels.game.config.GameConfig;
 import edu.up.citadels.game.config.GamePlayerType;
 
 /**
+ * This is the primary activity for Citadels
+ *
+ * External Citation
+ * Date: 10 March 2017
+ * Problem: Could not implement MainActivity
+ * Resource:
+ * https://github.com/srvegdahl/TttGame/blob/master/app
+ * /src/main/java/edu/up/cs301/tictactoe/TTTMainActivity.java
+ * Solution: Used as reference for implementation
+ *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/10/2017
+ * @version 4/30/2017
  */
 public class CitadelsMainActivity extends GameMainActivity
 {
     public static final int PORT_NUMBER = 4753;
 
+    /**
+     * @Author Victor Nguyen
+     *
+     * Implementing the method to create the floating menu
+     *
+     * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
+     */
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -111,7 +128,7 @@ public class CitadelsMainActivity extends GameMainActivity
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
         defaultConfig.addPlayer("Computer", 2); //2
-        defaultConfig.addPlayer("Computer 2", 4);  //5
+        defaultConfig.addPlayer("Computer 2", 5);  //5
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Guest", "", 1);

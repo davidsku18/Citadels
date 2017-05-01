@@ -4,7 +4,20 @@ import edu.up.citadels.game.actionMsg.GameAction;
 import edu.up.citadels.game.GamePlayer;
 
 /**
- * Created by kurtisdavidson on 3/31/17.
+ * A CitadelsMoveAction is an action that represents an action that is done
+ * External Citation
+ * Date: 12 March 2017
+ * Problem: Didn't know how to implement actions correctly
+ * Resource:
+ * https://github.com/srvegdahl/SlapJack/blob/master/app
+ * /src/main/java/edu/up/cs301/slapjack/SJSlapAction.java
+ * Solution: Used the example code from this post.
+ *
+ * @author Bryce Amato
+ * @author Gavin Low
+ * @author Victor Nguyen
+ * @author Kurtis Davidson
+ * @version 4/30/2017
  */
 
 

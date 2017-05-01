@@ -1,7 +1,6 @@
 package edu.up.citadels.citadels;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.up.citadels.R;
-import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
@@ -38,12 +36,14 @@ import static edu.up.citadels.R.array.p1Action;
  * @author Victor Nguyen
  * @author Kurtis Davidson
  *
- * @version 3/10/2017
+ * @version 4/30/2017
  */
 
 public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener
 {
     String name;
+
+    // The GUI's image buttons for the players
     private ImageButton player1_Card1;
     private ImageButton player1_Card2;
 
@@ -53,6 +53,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton player3_Card1;
     private ImageButton player3_Card2;
 
+    // The GUI's image buttons for the character cards
     private ImageButton assassinButton;
     private ImageButton thiefButton;
     private ImageButton magicianButton;
@@ -61,11 +62,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton merchantButton;
     private ImageButton architectButton;
     private ImageButton warlordButton;
-    private ImageView turn;
 
     private HorizontalScrollView horizontalScrollView;
 
-    // Image Buttons for player1
+    // Image Buttons for the players
     private ImageButton p1_D1;
     private ImageButton p1_D2;
     private ImageButton p1_D3;
@@ -102,7 +102,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player2DistrictCards;
     private TextView player3DistrictCards;
     private TextView characterTurn;
-    private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
     private boolean d1_Info = false; //initializes d1_Info Boolean
     private boolean d2_Info = false; //initializes d2_Info Boolean
@@ -126,9 +125,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     // Our activity
     private Activity myActivity;
-
-    // Our surface view
-    CardChooserSurfaceView ccsv;
 
     // Our edu.up.citadels.game state
     protected CitadelsGameState state;  //= new CitadelsGameState();
@@ -223,7 +219,14 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     }
 
-    //this will take in the district card and find the corresponding background at set the cities accordingly
+    /**
+     * This will take in the district card and find the corresponding
+     * background at set the cities accordingly
+     * @param button
+     *          the button to set the background of
+     * @param cardName
+     *          the district card's name
+     */
     public void drawCityCard(ImageButton button, String cardName)
     {
         if (cardName.toLowerCase().equals("battlefield"))
@@ -294,13 +297,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         {
             button.setBackgroundResource(R.drawable.watchtower);
         }
-        else // Sets image to nothing TODO set to empty
+        else // Sets image to nothing
         {
             button.setBackgroundResource(0);
         }
 
     }
-
 
     /**
      * call-back method: called whenever the GUI has changed (e.g., at the beginning
@@ -368,6 +370,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         architectButton = (ImageButton) myActivity.findViewById(R.id.architectButton);
         warlordButton = (ImageButton) myActivity.findViewById(R.id.warlordButton);
 
+        //if(sta)
         
         //scales the images so they show up in the designated buttons
         player1_Card1.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -457,6 +460,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         characterSpinner.setAdapter(characterAdapter);
     }
 
+
     //this allows us to pass in a character and find a string representation of the name for display purposes
     public String getStringName(int character)
     {
@@ -489,12 +493,154 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         return theCharacter;
     }
 
+    /**
+     * Display's the character cards buttons based on their value in the character deck
+     */
+    public void showCharacterCards()
+    {
+        if (state.getCharacterDeck(0) == null)
+        {
+            assassinButton.setVisibility(View.INVISIBLE);
+        }
+        else if(state.getCharacterDeck(0)!= null)
+        {
+            assassinButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(1) == null)
+        {
+            thiefButton.setVisibility(View.INVISIBLE);
+        }
+        else if(state.getCharacterDeck(1) != null)
+        {
+            thiefButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(2) == null)
+        {
+            magicianButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(2) != null)
+        {
+            magicianButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(3) == null)
+        {
+            kingButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(3) != null)
+        {
+            kingButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(4) == null)
+        {
+            bishopButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(4) != null)
+        {
+            bishopButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(5) == null)
+        {
+            merchantButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(5) != null)
+        {
+            merchantButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(6) == null)
+        {
+            architectButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(6) != null)
+        {
+            architectButton.setVisibility(View.VISIBLE);
+        }
+        if (state.getCharacterDeck(7) == null)
+        {
+            warlordButton.setVisibility(View.INVISIBLE);
+        }
+        else if (state.getCharacterDeck(7) != null)
+        {
+            warlordButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * Hides the removed character card
+     */
+    public void hideRemovedCharacter()
+    {
+        if(state.getRemovedCharacter()!=null)
+        {
+            if (state.getRemovedCharacter().getWhichCharacter() == 0)
+            {
+                assassinButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 1)
+            {
+                thiefButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 2)
+            {
+                magicianButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 3)
+            {
+                kingButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 4)
+            {
+                bishopButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 5)
+            {
+                merchantButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 6)
+            {
+                architectButton.setVisibility(View.INVISIBLE);
+            } else if (state.getRemovedCharacter().getWhichCharacter() == 7)
+            {
+                warlordButton.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    /**
+     * Sets the visibility of the character card's buttons
+     */
+    public void hideallCharacterCards()
+    {
+        assassinButton.setVisibility(View.INVISIBLE);
+        thiefButton.setVisibility(View.INVISIBLE);
+        magicianButton.setVisibility(View.INVISIBLE);
+        kingButton.setVisibility(View.INVISIBLE);
+        bishopButton.setVisibility(View.INVISIBLE);
+        merchantButton.setVisibility(View.INVISIBLE);
+        architectButton.setVisibility(View.INVISIBLE);
+        warlordButton.setVisibility(View.INVISIBLE);
+
+    }
+
+    // Updates the character card's counter to account for the king
     public void updateCharacterCounter()
     {
+        hideallCharacterCards();
         if(state.getTurn() == 0)
         {
             if(state.getKing()==0)
             {
+                showCharacterCards();
+                characterTurn.setText("Player 1 Choose A Character To Remove!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 2 Choose A Character To Remove!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 3 Choose A Character To Remove!");
+            }
+        }
+        else if(state.getTurn()== 1)
+        {
+
+            if(state.getKing()==0)
+            {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==1)
@@ -502,59 +648,64 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 2 Choose A Character!");
             }
             else if(state.getKing()==2)
-            {
-                characterTurn.setText("Player 3 Choose A Character!");
-            }
-        }
-        else if(state.getTurn()==1)
-        {
-            if(state.getKing()==2)
-            {
-                characterTurn.setText("Player 1 Choose A Character!");
-            }
-            else if(state.getKing()==0)
-            {
-                characterTurn.setText("Player 2 Choose A Character!");
-            }
-            else if(state.getKing()==1)
             {
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
         else if(state.getTurn()==2)
         {
-            if(state.getKing()==1)
+
+            if(state.getKing()==2)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
-            else if(state.getKing()==2)
+            else if(state.getKing()==0)
             {
                 characterTurn.setText("Player 2 Choose A Character!");
             }
-            else if(state.getKing()==0)
+            else if(state.getKing()==1)
             {
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
         else if(state.getTurn()==3)
         {
-            if(state.getKing()==0)
+            if(state.getKing()==1)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
-            else if(state.getKing()==1)
+            else if(state.getKing()==2)
             {
                 characterTurn.setText("Player 2 Choose A Character!");
             }
-            else if(state.getKing()==2)
+            else if(state.getKing()==0)
             {
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
         else if(state.getTurn()==4)
         {
+            if(state.getKing()==0)
+            {
+                showCharacterCards();
+                characterTurn.setText("Player 1 Choose A Character!");
+            }
+            else if(state.getKing()==1)
+            {
+                characterTurn.setText("Player 2 Choose A Character!");
+            }
+            else if(state.getKing()==2)
+            {
+                characterTurn.setText("Player 3 Choose A Character!");
+            }
+        }
+        else if(state.getTurn()==5)
+        {
             if(state.getKing()==2)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==0)
@@ -566,10 +717,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn()==5)
+        else if(state.getTurn()==6)
         {
             if(state.getKing()==1)
             {
+                showCharacterCards();
                 characterTurn.setText("Player 1 Choose A Character!");
             }
             else if(state.getKing()==2)
@@ -581,33 +733,198 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 characterTurn.setText("Player 3 Choose A Character!");
             }
         }
-        else if(state.getTurn() == 6)
+        else if(state.getTurn() == 7)
         {
             characterTurn.setText("Assassin's Turn.");
-        }else if(state.getTurn() == 7)
-        {
-            characterTurn.setText("Thief's Turn.");
         }else if(state.getTurn() == 8)
         {
-            characterTurn.setText("Magician's Turn.");
+            characterTurn.setText("Thief's Turn.");
         }else if(state.getTurn() == 9)
         {
-            characterTurn.setText("King's Turn.");
+            characterTurn.setText("Magician's Turn.");
         }else if(state.getTurn() == 10)
         {
-            characterTurn.setText("Bishop's Turn.");
+            characterTurn.setText("King's Turn.");
         }else if(state.getTurn() == 11)
         {
-            characterTurn.setText("Merchant's Turn.");
+            characterTurn.setText("Bishop's Turn.");
         }else if(state.getTurn() == 12)
         {
-            characterTurn.setText("Architect's Turn.");
+            characterTurn.setText("Merchant's Turn.");
         }else if(state.getTurn() == 13)
+        {
+            characterTurn.setText("Architect's Turn.");
+        }else if(state.getTurn() == 14)
         {
             characterTurn.setText("Warlord's Turn.");
         }
     }
 
+    /**
+     * Shows the player's character cards
+     */
+    public void showPlayerCharacterCards()
+    {
+        if (state.getTurn() < 7)
+        {
+            player2_Card1.setVisibility(View.INVISIBLE);
+            player2_Card2.setVisibility(View.INVISIBLE);
+            player3_Card1.setVisibility(View.INVISIBLE);
+            player3_Card2.setVisibility(View.INVISIBLE);
+        }
+        if (state.getTurn() == 7)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 0)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 0)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 0)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 0)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 8)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 1)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 1)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 1)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 1)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 9)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 2)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 2)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 2)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 2)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 10)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 3)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 3)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 3)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 3)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 11)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 4)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 4)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 4)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 4)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 12)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 5)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 5)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 5)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 5)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 13)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 6)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 6)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 6)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 6)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+        else if (state.getTurn() == 14)
+        {
+            if(state.getP2Chars(0).getWhichCharacter() == 7)
+            {
+                player2_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP2Chars(1).getWhichCharacter() == 7)
+            {
+                player2_Card2.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(0).getWhichCharacter() == 7)
+            {
+                player3_Card1.setVisibility(View.VISIBLE);
+            }
+            else if(state.getP3Chars(1).getWhichCharacter() == 7)
+            {
+                player3_Card2.setVisibility(View.VISIBLE);
+            }
+        }
+    }
     //this is called AFTER we have a reference to the state. It updates all info and initializes button listeners
     public void initializeEverything()
     {
@@ -625,11 +942,11 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
         {
-            characterTurn.setTextColor(0xFF00FF00);
+            //characterTurn.setTextColor(0xFF00FF00);
             updateCharacterCounter();
         }else
         {
-            characterTurn.setTextColor(0xFF000000);
+            //characterTurn.setTextColor(0xFF000000);
             updateCharacterCounter();
         }
 
@@ -640,44 +957,64 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         this.player1HandSpinner.setAdapter(p1HandAdapter);
         this.player1HandSpinner.setOnItemSelectedListener(new P1HandSpinnerListener());
 
-        for(int i = 0; i<2; ++i)
+        for(int i = 0; i<2 ;++i)
         {
-            if (i == 0 && !state.getP1Chars().isEmpty())
+            if (i==0 && !state.getP1Chars().isEmpty())
             {
-                drawCharacterCard(player1_Card1, state.getP1Chars().get(0).getWhichCharacter());
-            } else if (i == 0 && state.getP1Chars().isEmpty()) {
+                drawCharacterCard(player1_Card1, state.getP1Chars(0).getWhichCharacter());
+            }
+            else if (i==0 && state.getP1Chars().isEmpty())
+            {
                 drawCharacterCard(player1_Card1, -1);
-            } else if (i == 1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size() > 1) {
-                drawCharacterCard(player1_Card2, state.getP1Chars().get(1).getWhichCharacter());
-            } else if (i == 1 && state.getP1Chars().isEmpty()) {
+            }
+            else if (i==1 && !state.getP1Chars().isEmpty() && state.getP1Chars().size()>1)
+            {
+                drawCharacterCard(player1_Card2, state.getP1Chars(1).getWhichCharacter());
+            }
+            else if (i==1 && state.getP1Chars().isEmpty() && state.getP1Chars().size()>1)
+            {
                 drawCharacterCard(player1_Card2, -1);
             }
-
         }
-
-        for(int i = 0; i<2; ++i) {
-            if (i == 0 && !state.getP2Chars().isEmpty()) {
-                drawCharacterCard(player2_Card1, state.getP2Chars().get(0).getWhichCharacter());
-            } else if (i == 0 && state.getP2Chars().isEmpty()) {
+        for(int i = 0; i<2 ;++i)
+        {
+            if (i==0 && !state.getP2Chars().isEmpty() && state.getP2Chars(0).getWhichCharacter()+7 >=state.getTurn())
+            {
+                drawCharacterCard(player2_Card1, state.getP2Chars(0).getWhichCharacter());
+            }
+            else if (i==0 && state.getP2Chars().isEmpty())
+            {
                 drawCharacterCard(player2_Card1, -1);
-            } else if (i == 1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size() > 1) {
-                drawCharacterCard(player2_Card2, state.getP2Chars().get(1).getWhichCharacter());
-            } else if (i == 1 && state.getP2Chars().isEmpty()) {
+            }
+            else if (i==1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size()>1 && state.getP2Chars(1).getWhichCharacter()+7>=state.getTurn())
+            {
+                drawCharacterCard(player2_Card2, state.getP2Chars(1).getWhichCharacter());
+            }
+            else if (i==1 && state.getP2Chars().isEmpty() && state.getP2Chars().size()>1)
+            {
                 drawCharacterCard(player2_Card2, -1);
             }
         }
-
-        for(int i = 0; i<2; ++i) {
-            if (i == 0 && !state.getP3Chars().isEmpty()) {
-                drawCharacterCard(player3_Card1, state.getP3Chars().get(0).getWhichCharacter());
-            } else if (i == 0 && state.getP3Chars().isEmpty()) {
+        for(int i = 0; i<2 ;++i)
+        {
+            if (i==0 && !state.getP3Chars().isEmpty() && state.getP3Chars(0).getWhichCharacter()+7 >= state.getTurn())
+            {
+                drawCharacterCard(player3_Card1, state.getP3Chars(0).getWhichCharacter());
+            }
+            else if (i==0 && state.getP3Chars().isEmpty())
+            {
                 drawCharacterCard(player3_Card1, -1);
-            } else if (i == 1 && !state.getP3Chars().isEmpty() && state.getP3Chars().size() > 1) {
-                drawCharacterCard(player3_Card2, state.getP3Chars().get(1).getWhichCharacter());
-            } else if (i == 1 && state.getP3Chars().isEmpty()) {
+            }
+            else if (i==1 && !state.getP3Chars().isEmpty() && state.getP3Chars().size()>1 && state.getP3Chars(1).getWhichCharacter()+7>=state.getTurn())
+            {
+                drawCharacterCard(player3_Card2, state.getP3Chars(1).getWhichCharacter());
+            }
+            else if (i==1 && state.getP3Chars().isEmpty() && state.getP3Chars().size()>1)
+            {
                 drawCharacterCard(player3_Card2, -1);
             }
         }
+        //showPlayerCharacterCards();
 
         //draws images
         for(int i = 0; i < state.getP1City().size(); ++i)
@@ -799,7 +1136,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(0));
                     cardInfo.setText("You've chosen the Assassin");
-                    assassinButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -816,7 +1152,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(1));
                     cardInfo.setText("You've chosen the Thief");
-                    thiefButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -835,7 +1170,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(2));
                     cardInfo.setText("You've chosen the magician card");
-                    magicianButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -854,7 +1188,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(3));
                     cardInfo.setText("You've chosen the king card");
-                    kingButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -872,7 +1205,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(4));
                     cardInfo.setText("You've chosen the bishop card");
-                    bishopButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -890,7 +1222,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(5));
                     cardInfo.setText("You've chosen the merchant card");
-                    merchantButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -908,7 +1239,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(6));
                     cardInfo.setText("You've chosen the architect card");
-                    architectButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -926,7 +1256,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(7));
                     cardInfo.setText("You've chosen the warlord card");
-                    warlordButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -935,51 +1264,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        if (state.getCharacterDeck(0) == null)
-        {
-            assassinButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(1) == null)
-        {
-            thiefButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(2) == null)
-        {
-            magicianButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(3) == null)
-        {
-            kingButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(4) == null)
-        {
-            bishopButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(5) == null)
-        {
-            merchantButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(6) == null)
-        {
-            architectButton.setVisibility(View.INVISIBLE);
-        }
-        if (state.getCharacterDeck(7) == null)
-        {
-            warlordButton.setVisibility(View.INVISIBLE);
-        }
-
-        // Sets character card's buttons visible when the next round starts
-        if (state.getTurn() == 0)
-        {
-            assassinButton.setVisibility(View.VISIBLE);
-            thiefButton.setVisibility(View.VISIBLE);
-            magicianButton.setVisibility(View.VISIBLE);
-            kingButton.setVisibility(View.VISIBLE);
-            bishopButton.setVisibility(View.VISIBLE);
-            merchantButton.setVisibility(View.VISIBLE);
-            architectButton.setVisibility(View.VISIBLE);
-            kingButton.setVisibility(View.VISIBLE);
-        }
 
         //the following listeners allow the user to get the names of all players' characters
         player1_Card1.setOnClickListener(new View.OnClickListener()
@@ -1066,7 +1350,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         });
 
-        /*
+        /**
         * @Author: Gavin Low
         * @Author: Bryce Amato
         *
@@ -1562,9 +1846,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
 
 
-        if(state.getP1Chars().size()>0)
+        if(state.getP1Chars().size()>1)
         {
-            if (state.getTurn() > 5 && (state.getTurn() == state.getP1Chars(0).getWhichCharacter() + 6 || state.getTurn() == state.getP1Chars(1).getWhichCharacter() + 6))
+            if (state.getTurn() > 5 && (state.getTurn() == state.getP1Chars(0).getWhichCharacter() + 7 || state.getTurn() == state.getP1Chars(1).getWhichCharacter() + 7))
             {
                 if (hasGone == true || hasBuilt == true || hasGoneAbility == true)
                 {
@@ -1575,37 +1859,15 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     actionSpinner.setSelection(0);
                 }
             }
+            else
+            {
+                actionSpinner.setVisibility(View.INVISIBLE);
+            }
         }
         else
         {
             actionSpinner.setVisibility(View.INVISIBLE);
         }
-            //cardInfo.setText("It is your turn.");
-
-            /*if (state.getPlayerTurn() == 0 && (hasGone == true || hasBuilt == true || hasGoneAbility == true) )
-            {
-                actionSpinner.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                actionSpinner.setVisibility(View.VISIBLE);
-                actionSpinner.setSelection(0);
-            }*/
-            /*
-            I will be putting a boolean in to check and see if we have received confirmation that it is our
-            turn.
-
-            Make infoText display winner at game end
-
-            Make sure computer player doesn't build district that doesn't exist
-
-            Get checkIfGameOver to work
-
-            Do warlord and assassin
-
-            What I have done: abilities, turn display, other character building things
-             */
-
     }
 
     //This makes this player make a take gold action
@@ -1724,7 +1986,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if(position == 0)
             {
                 //do nothing
-                //cardInfo.setText("It is your turn!");
             }else if(position == 1)
             {
                 if (! hasGone)
@@ -1769,7 +2030,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     CitadelsDistrictCard cardToBuild = (CitadelsDistrictCard)state.getP1Hand().get(selectedCard);
                     if(state.getP1Gold() >= cardToBuild.getCost())
                    {
-                        //TODO make sure you cant build 2 of the same district
                        //if p1 has enough gold, build a district card
                        cardInfo.setText(cardToBuild.getName() + " Built.");
                        humanPlayerBuildDistrict(cardToBuild);
@@ -1817,7 +2077,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                     hasGone = false;
                     hasBuilt = false;
                     hasGoneAbility = false;
-                    cardInfo.setText("");
+                    cardInfo.setText("Turn Ended.");
                 }
                 else
                 {
@@ -1827,9 +2087,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 }
             }
         }
-
-
-
 
         /**
          * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(
@@ -1841,20 +2098,4 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         }
     }
-
-
-    /**
-     * @Author Victor Nguyen
-     *
-     * Implementing the method to create the floating menu
-     *
-     * Sources: https://developer.android.com/guide/topics/ui/menus.html#PopupMenu
-     */
-    /*public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-    {
-        Log.i("Vic", "text");
-        myActivity.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = myActivity.getMenuInflater();
-        inflater.inflate(R.menu.menu_ingame, menu);
-    }*/
 }
