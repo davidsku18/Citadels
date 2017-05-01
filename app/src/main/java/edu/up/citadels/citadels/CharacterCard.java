@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class CharacterCard implements Serializable
 {
     private static final long serialVersionUID = 3223463263L;
+
     // Ints for the 4 colors
     private int red = 0;
     private int green = 1;
@@ -102,6 +103,11 @@ public class CharacterCard implements Serializable
         }
     }
 
+    /**
+     * Gets the character and returns a string based on color's int value
+     * @return color
+     *          the character's color
+     */
     public String getCharacterColorString()
     {
         String color = null;
@@ -121,47 +127,11 @@ public class CharacterCard implements Serializable
         return color;
     }
 
-
-    public int getCharacter(int who)
-    {
-        if (who == assassin)
-        {
-            return assassin;
-        }
-        else if (who == thief)
-        {
-            return thief;
-        }
-        else if (who == magician)
-        {
-            return magician;
-        }
-        else if (who == king)
-        {
-            return king;
-        }
-        else if (who == bishop)
-        {
-            return bishop;
-        }
-        else if (who == merchant)
-        {
-            return merchant;
-        }
-        else if (who == architect)
-        {
-            return architect;
-        }
-        else if (who == warlord)
-        {
-            return warlord;
-        }
-        else
-        {
-            return -1;
-        }
-    }
-
+    /**
+     * Gets the name of the character card based on its int value
+     * @return name
+     *          the character's name
+     */
     public String getName()
     {
         String name = null;
