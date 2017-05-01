@@ -219,13 +219,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             cbutton.setBackgroundResource(R.drawable.warlord);
         }
         else if( charNum == -1)
-        {
+        {p1Crown.setBackgroundResource(R.mipmap.crown);
             // when no one has a character
             cbutton.setBackgroundResource(0);
         }
         else //TODO Change to back of card
         {
-            cbutton.setBackgroundResource(R.drawable.watchtower);
+            cbutton.setBackgroundResource(R.mipmap.back);
         }
 
     }
@@ -759,51 +759,10 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
     }
 
-    public void drawOtherPlayerCharacters()
-    {
-        for(int i = 0; i<2 ;++i)
-        {
-            if (i==0 && !state.getP2Chars().isEmpty() && state.getP2Chars(0).getWhichCharacter()+7 >=state.getTurn())
-            {
-                drawCharacterCard(player2_Card1, state.getP2Chars(0).getWhichCharacter());
-            }
-            else if (i==0 && state.getP2Chars().isEmpty())
-            {
-                drawCharacterCard(player2_Card1, -1);
-            }
-            else if (i==1 && !state.getP2Chars().isEmpty() && state.getP2Chars().size()>1 && state.getP2Chars(1).getWhichCharacter()+7>=state.getTurn())
-            {
-                drawCharacterCard(player2_Card2, state.getP2Chars(1).getWhichCharacter());
-            }
-            else if (i==1 && state.getP2Chars().isEmpty() && state.getP2Chars().size()>1)
-            {
-                drawCharacterCard(player2_Card2, -1);
-            }
-        }
-        for(int i = 0; i<2 ;++i)
-        {
-            if (i==0 && !state.getP3Chars().isEmpty() && state.getP3Chars(0).getWhichCharacter()+7 >= state.getTurn())
-            {
-                drawCharacterCard(player3_Card1, state.getP3Chars(0).getWhichCharacter());
-            }
-            else if (i==0 && state.getP3Chars().isEmpty())
-            {
-                drawCharacterCard(player3_Card1, -1);
-            }
-            else if (i==1 && !state.getP3Chars().isEmpty() && state.getP3Chars().size()>1 && state.getP3Chars(1).getWhichCharacter()+7>=state.getTurn())
-            {
-                drawCharacterCard(player3_Card2, state.getP3Chars(1).getWhichCharacter());
-            }
-            else if (i==1 && state.getP3Chars().isEmpty() && state.getP3Chars().size()>1)
-            {
-                drawCharacterCard(player3_Card2, -1);
-            }
-        }
-    }
-
+    // Method to reveal the other players' characters when it is their turn
     public void showPlayerCharacterCards()
     {
-        if (state.getTurn() < 7)
+        if (state.getTurn() <= 6)
         {
             player2_Card1.setVisibility(View.INVISIBLE);
             player2_Card2.setVisibility(View.INVISIBLE);
@@ -815,7 +774,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 drawCharacterCard(player2_Card1, 99);
                 player2_Card1.setVisibility(View.VISIBLE);
             }
-            if (state.getP2Chars().size()==2 && !state.getP2Chars().isEmpty())
+            if (state.getP2Chars().size() > 1)
             {
                 drawCharacterCard(player2_Card2, 99);
                 player2_Card2.setVisibility(View.VISIBLE);
@@ -825,7 +784,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 drawCharacterCard(player3_Card1, 99);
                 player3_Card1.setVisibility(View.VISIBLE);
             }
-            if (state.getP3Chars().size()==2 && !state.getP3Chars().isEmpty())
+            if (state.getP3Chars().size() > 1)
             {
                 drawCharacterCard(player3_Card2, 99);
                 player3_Card2.setVisibility(View.VISIBLE);

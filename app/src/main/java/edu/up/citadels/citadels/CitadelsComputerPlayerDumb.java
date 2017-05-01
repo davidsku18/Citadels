@@ -30,10 +30,9 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
 
     private int player;
 
-    public CitadelsComputerPlayerDumb(String initName/*int myNumber*/)
+    public CitadelsComputerPlayerDumb(String initName)
     {
         super(initName);
-        //this.player = myNumber;
     }
 
     @Override

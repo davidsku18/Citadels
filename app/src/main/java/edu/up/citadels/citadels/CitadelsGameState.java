@@ -859,7 +859,7 @@ public class CitadelsGameState extends GameState
         }
 
         this.setTurn(0);
-        this.setRollKing();
+        this.setKing((int)Math.random()*3);
 
         this.setP1Score(0);
         this.setP2Score(0);
