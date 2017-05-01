@@ -125,6 +125,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                         //magician
                         if (savedState.getP1Chars(0).getWhichCharacter() == 2 ||
                                 savedState.getP1Chars(1).getWhichCharacter() == 2) {
+                            // if the AI knows if the other players have an assassin or thief use the ability
                             if (savedState.getTurn() >= 9)
                             {
                                 if (savedState.getP1Chars(0).getWhichCharacter() == 0 ||
@@ -233,6 +234,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                         //magician
                         if (savedState.getP2Chars(0).getWhichCharacter() == 2 ||
                                 savedState.getP2Chars(1).getWhichCharacter() == 2) {
+                            // if the AI knows if the other players have an assassin or thief use the ability
                             if (savedState.getTurn() >= 9)
                             {
                                 if (savedState.getP1Chars(0).getWhichCharacter() == 0 ||
@@ -340,6 +342,7 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                         //magician
                         if (savedState.getP3Chars(0).getWhichCharacter() == 2 ||
                                 savedState.getP3Chars(1).getWhichCharacter() == 2) {
+                            // if the AI knows if the other players have an assassin or thief use the ability
                             if (savedState.getTurn() >= 9)
                             {
                                 if (savedState.getP1Chars(0).getWhichCharacter() == 0 ||

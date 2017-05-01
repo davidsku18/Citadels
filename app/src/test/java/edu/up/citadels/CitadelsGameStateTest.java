@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
  */
 public class CitadelsGameStateTest {
 
+    @Test
     public void testGetPlayerScore() throws Exception {
         CitadelsGameState gameState = new CitadelsGameState();
         int testP1Score = gameState.getP1Score();
@@ -23,6 +24,7 @@ public class CitadelsGameStateTest {
         assertEquals(testP3Score, 0, 0.00);
     }
 
+    @Test
     public void testSetP2Gold() throws Exception {
         CitadelsGameState cgs = new CitadelsGameState();
         cgs.setP2Gold(7);

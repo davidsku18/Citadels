@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,7 +12,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.up.citadels.R;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
@@ -42,8 +40,6 @@ import static edu.up.citadels.R.array.p1Action;
 
 public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClickListener
 {
-    String name;
-
     // The GUI's image buttons for the players
     private ImageButton player1_Card1;
     private ImageButton player1_Card2;
@@ -94,6 +90,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p3_D7;
     private ImageButton p3_D8;
 
+    // TextViews to displayt the player's info
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
@@ -106,20 +103,17 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private TextView player1Name;
     private TextView player2Name;
     private TextView player3Name;
-    private int p1Gold = 2;
     private TextView cardInfo; //initializes cardInfo TextView
-    private boolean d1_Info = false; //initializes d1_Info Boolean
-    private boolean d2_Info = false; //initializes d2_Info Boolean
-    private boolean d3_Info = false; //initializes d3_Info Boolean
-    private boolean d4_Info = false; //initializes d4_Info Boolean
 
+    //to check if the player has done their turn
     private boolean hasGone = false;
     private boolean hasGoneAbility = false;
     private int hasBuilt = 0;
 
+    // Array list for the district card in the hand
     private ArrayList<String> p1HandArrayList;
 
-    private Button menu_Button;
+    // Spinners for the player to interact with to play the game
     private Spinner actionSpinner;
     private Spinner player1HandSpinner;
     private Spinner characterSpinner;
@@ -132,11 +126,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private Activity myActivity;
 
     // Our edu.up.citadels.game state
-    protected CitadelsGameState state;  //= new CitadelsGameState();
+    protected CitadelsGameState state;
 
     CitadelsDistrictCard card = null;
-
-    List<String> player1DistrictsCards = new ArrayList<String>();
 
     private ImageView p1Crown;
     private ImageView p2Crown;
@@ -173,9 +165,6 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             return;
         }
         else {
-            // it's a game-state object: update the state. Since we have an animation
-            // going, there is no need to explicitly display anything. That will happen
-            // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
         }
@@ -1251,10 +1240,8 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2Name.setText(allPlayerNames[1]);
         player3Name.setText(allPlayerNames[2]);
 
-
         showKing();
         updateCharacterCounter();
-
 
         this.p1HandArrayList = state.getP1HandNames();
         p1HandAdapter = new ArrayAdapter(myActivity, android.R.layout.simple_list_item_1,
@@ -1284,7 +1271,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             }
         }
 
+        // shows th player's character cards after their turn has gone
         showPlayerCharacterCards();
+        // draws the districts in the player's city
         drawCities();
 
         assassinButton.setOnClickListener(new View.OnClickListener()
