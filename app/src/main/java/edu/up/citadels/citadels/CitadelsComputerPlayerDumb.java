@@ -85,10 +85,9 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new TakeGold(this));
             }
 
-            if (!savedState.getP1Hand().isEmpty()) {
+            if (!(savedState.getP1Hand().isEmpty())) {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
             }
-
 
             try
             {
@@ -145,7 +144,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP2Hand().get(0)));
             }
 
-
             try {
                 if (savedState.getTurn() >= 7) {
                     if (ability == 1) {
@@ -197,7 +195,6 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             if (!savedState.getP3Hand().isEmpty()) {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP3Hand().get(0)));
             }
-
 
             try {
                 if (savedState.getTurn() >= 7) {

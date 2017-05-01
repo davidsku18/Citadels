@@ -172,12 +172,16 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                                 {
                                     game.sendAction(new UseSpecialAbility(this, 1));
                                 }
-                                if (savedState.getP2Chars(0).getWhichCharacter() == 0 ||
+                                else if (savedState.getP2Chars(0).getWhichCharacter() == 0 ||
                                         savedState.getP3Chars(1).getWhichCharacter() == 0 ||
                                         savedState.getP3Chars(0).getWhichCharacter() == 1 ||
                                         savedState.getP3Chars(1).getWhichCharacter() == 1)
                                 {
                                     game.sendAction(new UseSpecialAbility(this, 1));
+                                }
+                                else
+                                {
+                                    game.sendAction(new UseSpecialAbility(this, whichCharacter));
                                 }
 
                             }
@@ -223,10 +227,14 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                                 game.sendAction(new UseSpecialAbility(this,
                                         savedState.getP1Chars(0).getWhichCharacter()));
                             }
-                            if (savedState.getP3Score() >= savedState.getP1Score())
+                            else if (savedState.getP3Score() >= savedState.getP1Score())
                             {
                                 game.sendAction(new UseSpecialAbility(this,
                                         savedState.getP1Chars(0).getWhichCharacter()));
+                            }
+                            else
+                            {
+                                game.sendAction(new UseSpecialAbility(this, whichCharacter));
                             }
                         }
                     }
@@ -344,12 +352,16 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                                 {
                                     game.sendAction(new UseSpecialAbility(this, 1));
                                 }
-                                if (savedState.getP3Chars(0).getWhichCharacter() == 0 ||
+                                else if (savedState.getP3Chars(0).getWhichCharacter() == 0 ||
                                         savedState.getP3Chars(1).getWhichCharacter() == 0 ||
                                         savedState.getP3Chars(0).getWhichCharacter() == 1 ||
                                         savedState.getP3Chars(1).getWhichCharacter() == 1)
                                 {
                                     game.sendAction(new UseSpecialAbility(this, 1));
+                                }
+                                else
+                                {
+                                    game.sendAction(new UseSpecialAbility(this, whichCharacter));
                                 }
 
                             }
@@ -394,10 +406,14 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                                 game.sendAction(new UseSpecialAbility(this,
                                         savedState.getP1Chars(0).getWhichCharacter()));
                             }
-                            if (savedState.getP2Score() >= savedState.getP2Score())
+                            else if (savedState.getP2Score() >= savedState.getP2Score())
                             {
                                 game.sendAction(new UseSpecialAbility(this,
                                         savedState.getP1Chars(0).getWhichCharacter()));
+                            }
+                            else
+                            {
+                                game.sendAction(new UseSpecialAbility(this, whichCharacter));
                             }
                         }
                     }
@@ -514,12 +530,16 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                                 {
                                     game.sendAction(new UseSpecialAbility(this, 1));
                                 }
-                                if (savedState.getP3Chars(0).getWhichCharacter() == 0 ||
+                                else if (savedState.getP3Chars(0).getWhichCharacter() == 0 ||
                                         savedState.getP2Chars(1).getWhichCharacter() == 0 ||
                                         savedState.getP2Chars(0).getWhichCharacter() == 1 ||
                                         savedState.getP2Chars(1).getWhichCharacter() == 1)
                                 {
                                     game.sendAction(new UseSpecialAbility(this, 1));
+                                }
+                                else
+                                {
+                                    game.sendAction(new UseSpecialAbility(this, whichCharacter));
                                 }
                             }
                         }
@@ -563,10 +583,14 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
                                 game.sendAction(new UseSpecialAbility(this,
                                         savedState.getP1Chars(0).getWhichCharacter()));
                             }
-                            if (savedState.getP2Score() >= savedState.getP3Score())
+                            else if (savedState.getP2Score() >= savedState.getP3Score())
                             {
                                 game.sendAction(new UseSpecialAbility(this,
                                         savedState.getP1Chars(0).getWhichCharacter()));
+                            }
+                            else
+                            {
+                                game.sendAction(new UseSpecialAbility(this, whichCharacter));
                             }
                         }
                     }
