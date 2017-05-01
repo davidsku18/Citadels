@@ -90,7 +90,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     private ImageButton p3_D7;
     private ImageButton p3_D8;
 
-    // TextViews to displayt the player's info
+    // TextViews to display the player's info
     private TextView player1GoldCount;
     private TextView player2GoldCount;
     private TextView player3GoldCount;
