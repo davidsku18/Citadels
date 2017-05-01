@@ -643,7 +643,9 @@ public class CitadelsGameState extends GameState
 
     public void removeFromP1City(int index)
     {
-        this.getP2City().remove(index);
+        ArrayList<CitadelsDistrictCard> temp = this.p1City;
+        temp.remove(index);
+        this.p1City = temp;
     }
 
     public void removeFromP2City(int index)

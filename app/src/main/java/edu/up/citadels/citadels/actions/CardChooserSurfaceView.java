@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.citadels.R;
@@ -16,8 +17,9 @@ import edu.up.citadels.R;
  * Created by kurtisdavidson on 4/9/17.
  */
 
-public class CardChooserSurfaceView extends SurfaceView
+public class CardChooserSurfaceView extends SurfaceView implements Serializable
 {
+    private static final long serialVersionUID = 3141L;
     private Paint defaultPaint = new Paint();
     ArrayList<Bitmap> characterCards;
     private int width = this.getWidth();

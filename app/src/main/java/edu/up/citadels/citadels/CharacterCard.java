@@ -1,5 +1,7 @@
 package edu.up.citadels.citadels;
 
+import java.io.Serializable;
+
 /**
  * @author Bryce Amato
  * @author Gavin Low
@@ -8,7 +10,7 @@ package edu.up.citadels.citadels;
  * @version 2/22/2017
  */
 
-public class CharacterCard
+public class CharacterCard implements Serializable
 {
     private static final long serialVersionUID = 3223463263L;
     private int red = 0;    // Codes for the 4 colors

@@ -1,5 +1,7 @@
 package edu.up.citadels.citadels;
 
+import java.io.Serializable;
+
 /**
  * @author Bryce Amato
  * @author Gavin Low
@@ -8,9 +10,9 @@ package edu.up.citadels.citadels;
  * @version 3/10/2017
  */
 
-public class CitadelsDistrictCard {
-
-
+public class CitadelsDistrictCard implements Serializable
+{
+    private static final long serialVersionUID = 1938515L;
     private final String name;
     private final int color;
     private final int cost;

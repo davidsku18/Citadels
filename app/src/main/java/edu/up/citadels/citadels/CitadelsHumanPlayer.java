@@ -162,7 +162,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
     /**
-     * callback method: we have received a message from the game
+     * callk method: we have received a message from the game
      *
      * @param info
      * 		the message we have received from the game
@@ -181,6 +181,121 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             this.state = (CitadelsGameState)info;
             this.initializeEverything();
         }
+    }
+
+    public void drawCities()
+    {
+        // Draw All the cards in p1's city
+        for(int i = 0; i < state.getP1City().size(); ++i)
+        {
+            if( i == 0)
+            {
+                drawCityCard(p1_D1, state.getP1CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawCityCard(p1_D2, state.getP1CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawCityCard(p1_D3, state.getP1CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawCityCard(p1_D4, state.getP1CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawCityCard(p1_D5, state.getP1CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawCityCard(p1_D6, state.getP1CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawCityCard(p1_D7, state.getP1CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawCityCard(p1_D8, state.getP1CityCard(i).getName());
+            }
+        }
+
+        // Draws all the cards in p2's city
+        for(int i = 0; i < state.getP2City().size(); ++i)
+        {
+            if( i == 0)
+            {
+                drawCityCard(p2_D1, state.getP2CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawCityCard(p2_D2, state.getP2CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawCityCard(p2_D3, state.getP2CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawCityCard(p2_D4, state.getP2CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawCityCard(p2_D5, state.getP2CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawCityCard(p2_D6, state.getP2CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawCityCard(p2_D7, state.getP2CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawCityCard(p2_D8, state.getP2CityCard(i).getName());
+            }
+        }
+
+        // Draws all of p3's city
+        for(int i = 0; i < state.getP3City().size(); ++i)
+        {
+            if( i == 0)
+            {
+                drawCityCard(p3_D1, state.getP3CityCard(i).getName());
+            }
+            else if (i == 1)
+            {
+                drawCityCard(p3_D2, state.getP3CityCard(i).getName());
+            }
+            else if (i == 2)
+            {
+                drawCityCard(p3_D3, state.getP3CityCard(i).getName());
+            }
+            else if (i == 3)
+            {
+                drawCityCard(p3_D4, state.getP3CityCard(i).getName());
+            }
+            else if (i == 4)
+            {
+                drawCityCard(p3_D5, state.getP3CityCard(i).getName());
+            }
+            else if (i == 5)
+            {
+                drawCityCard(p3_D6, state.getP3CityCard(i).getName());
+            }
+            else if (i == 6)
+            {
+                drawCityCard(p3_D7, state.getP3CityCard(i).getName());
+            }
+            else if (i == 7)
+            {
+                drawCityCard(p3_D8, state.getP3CityCard(i).getName());
+            }
+        }
+
     }
 
     //this will find the character that each player is and draw it in the designated image button
@@ -219,13 +334,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             cbutton.setBackgroundResource(R.drawable.warlord);
         }
         else if( charNum == -1)
-        {p1Crown.setBackgroundResource(R.mipmap.crown);
+        {
             // when no one has a character
             cbutton.setBackgroundResource(0);
         }
         else //TODO Change to back of card
         {
-            cbutton.setBackgroundResource(R.mipmap.back);
+            cbutton.setBackgroundResource(R.mipmap.back6);
         }
 
     }
@@ -315,9 +430,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
      */
     public void showKing()
     {
-        p1Crown.setBackgroundResource(R.mipmap.crown);
-        p2Crown.setBackgroundResource(R.mipmap.crown);
-        p3Crown.setBackgroundResource(R.mipmap.crown);
+        p1Crown.setBackgroundResource(R.mipmap.crown2);
+        p2Crown.setBackgroundResource(R.mipmap.crown2);
+        p3Crown.setBackgroundResource(R.mipmap.crown2);
         p1Crown.setVisibility(View.INVISIBLE);
         p2Crown.setVisibility(View.INVISIBLE);
         p3Crown.setVisibility(View.INVISIBLE);
@@ -465,14 +580,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         * Creates the floating menu
         * Must long press to open the menu
         */
-        menu_Button = (Button) myActivity.findViewById(R.id.Menu);
-        menu_Button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                myActivity.registerForContextMenu(menu_Button);
-            }
-        });
+
 
         //initializes the actions array with legal actions human player can take
         this.player1HandSpinner = (Spinner) myActivity.findViewById(R.id.player1HandSpinner);
@@ -762,7 +870,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     // Method to reveal the other players' characters when it is their turn
     public void showPlayerCharacterCards()
     {
-        if (state.getTurn() <= 6)
+        if (state.getTurn() <= 8)
         {
             player2_Card1.setVisibility(View.INVISIBLE);
             player2_Card2.setVisibility(View.INVISIBLE);
@@ -774,7 +882,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 drawCharacterCard(player2_Card1, 99);
                 player2_Card1.setVisibility(View.VISIBLE);
             }
-            if (state.getP2Chars().size() > 1)
+            if (state.getP2Chars().size()>1)
             {
                 drawCharacterCard(player2_Card2, 99);
                 player2_Card2.setVisibility(View.VISIBLE);
@@ -784,7 +892,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 drawCharacterCard(player3_Card1, 99);
                 player3_Card1.setVisibility(View.VISIBLE);
             }
-            if (state.getP3Chars().size() > 1)
+            if (state.getP3Chars().size()>1)
             {
                 drawCharacterCard(player3_Card2, 99);
                 player3_Card2.setVisibility(View.VISIBLE);
@@ -795,15 +903,19 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
             if (!state.getP2Chars().isEmpty() && state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player2_Card1, state.getP2Chars(0).getWhichCharacter());
+                player2_Card1.setVisibility(View.VISIBLE);
             } else if (state.getP2Chars().size() > 1 && state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player2_Card2, state.getP2Chars(1).getWhichCharacter());
+                player2_Card2.setVisibility(View.VISIBLE);
             } else if (!state.getP3Chars().isEmpty() && state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player3_Card1, state.getP3Chars(0).getWhichCharacter());
+                player3_Card1.setVisibility(View.VISIBLE);
             } else if (state.getP3Chars().size() > 1 && state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player3_Card2, state.getP3Chars(1).getWhichCharacter());
+                player3_Card2.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -826,6 +938,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player1Name.setText(allPlayerNames[0]);
         player2Name.setText(allPlayerNames[1]);
         player3Name.setText(allPlayerNames[2]);
+
 
         showKing();
         updateCharacterCounter();
@@ -860,117 +973,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
 
         showPlayerCharacterCards();
-
-        // Draw All the cards in p1's city
-        for(int i = 0; i < state.getP1City().size(); ++i)
-        {
-            if( i == 0)
-            {
-                drawCityCard(p1_D1, state.getP1CityCard(i).getName());
-            }
-            else if (i == 1)
-            {
-                drawCityCard(p1_D2, state.getP1CityCard(i).getName());
-            }
-            else if (i == 2)
-            {
-                drawCityCard(p1_D3, state.getP1CityCard(i).getName());
-            }
-            else if (i == 3)
-            {
-                drawCityCard(p1_D4, state.getP1CityCard(i).getName());
-            }
-            else if (i == 4)
-            {
-                drawCityCard(p1_D5, state.getP1CityCard(i).getName());
-            }
-            else if (i == 5)
-            {
-                drawCityCard(p1_D6, state.getP1CityCard(i).getName());
-            }
-            else if (i == 6)
-            {
-                drawCityCard(p1_D7, state.getP1CityCard(i).getName());
-            }
-            else if (i == 7)
-            {
-                drawCityCard(p1_D8, state.getP1CityCard(i).getName());
-            }
-        }
-
-        // Draws all the cards in p2's city
-        for(int i = 0; i < state.getP2City().size(); ++i)
-        {
-            if( i == 0)
-            {
-                drawCityCard(p2_D1, state.getP2CityCard(i).getName());
-            }
-            else if (i == 1)
-            {
-                drawCityCard(p2_D2, state.getP2CityCard(i).getName());
-            }
-            else if (i == 2)
-            {
-                drawCityCard(p2_D3, state.getP2CityCard(i).getName());
-            }
-            else if (i == 3)
-            {
-                drawCityCard(p2_D4, state.getP2CityCard(i).getName());
-            }
-            else if (i == 4)
-            {
-                drawCityCard(p2_D5, state.getP2CityCard(i).getName());
-            }
-            else if (i == 5)
-            {
-                drawCityCard(p2_D6, state.getP2CityCard(i).getName());
-            }
-            else if (i == 6)
-            {
-                drawCityCard(p2_D7, state.getP2CityCard(i).getName());
-            }
-            else if (i == 7)
-            {
-                drawCityCard(p2_D8, state.getP2CityCard(i).getName());
-            }
-        }
-
-        // Draws all of p3's city
-        for(int i = 0; i < state.getP3City().size(); ++i)
-        {
-            if( i == 0)
-            {
-                drawCityCard(p3_D1, state.getP3CityCard(i).getName());
-            }
-            else if (i == 1)
-            {
-                drawCityCard(p3_D2, state.getP3CityCard(i).getName());
-            }
-            else if (i == 2)
-            {
-                drawCityCard(p3_D3, state.getP3CityCard(i).getName());
-            }
-            else if (i == 3)
-            {
-                drawCityCard(p3_D4, state.getP3CityCard(i).getName());
-            }
-            else if (i == 4)
-            {
-                drawCityCard(p3_D5, state.getP3CityCard(i).getName());
-            }
-            else if (i == 5)
-            {
-                drawCityCard(p3_D6, state.getP3CityCard(i).getName());
-            }
-            else if (i == 6)
-            {
-                drawCityCard(p3_D7, state.getP3CityCard(i).getName());
-            }
-            else if (i == 7)
-            {
-                drawCityCard(p3_D8, state.getP3CityCard(i).getName());
-            }
-        }
+        drawCities();
 
         assassinButton.setOnClickListener(new View.OnClickListener()
         {
