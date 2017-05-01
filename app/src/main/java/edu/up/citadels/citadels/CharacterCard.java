@@ -16,7 +16,6 @@ public class CharacterCard implements Serializable
     private static final long serialVersionUID = 3223463263L;
     // Ints for the 4 colors
     private int red = 0;
-    private int red = 0;    // Codes for the 4 colors
     private int green = 1;
     private int blue = 2;
     private int yellow = 3;

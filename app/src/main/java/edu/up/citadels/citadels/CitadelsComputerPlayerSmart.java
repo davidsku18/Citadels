@@ -42,10 +42,8 @@ public class CitadelsComputerPlayerSmart extends GameComputerPlayer implements S
      * The smart computer player's constructor
      * @param initName
      *          the computer player's name
-     * @param myNumber
-     *          the comoputer player's number
      */
-    public CitadelsComputerPlayerSmart(String initName, int myNumber)
+    public CitadelsComputerPlayerSmart(String initName)
     {
         super(initName);
     }

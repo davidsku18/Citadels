@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.up.citadels.R;
-import edu.up.citadels.citadels.actions.CardChooserSurfaceView;
 import edu.up.citadels.citadels.actions.ChooseCharacterCard;
 import edu.up.citadels.citadels.actions.ChooseDistrictCard;
 import edu.up.citadels.citadels.actions.CitadelsBuildDistrictCard;
