@@ -65,6 +65,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         //random int to determine if it should draw gold or districts
         int whatToDo;
 
+        int ability;
+
 
         for (int i = 0; i < savedState.getCharacterDeck().length; ++i) {
             if (savedState.getCharacterDeck(i) == null) {
@@ -78,6 +80,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
         if (myPlayer == 1) {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
+            ability = (int) (Math.random() * 2);
+
             if (whatToDo == 0) {
                 game.sendAction(new ChooseDistrictCard(this));
             } else {
@@ -87,6 +91,8 @@ public class CitadelsComputerPlayerDumb extends GameComputerPlayer
             if (!savedState.getP1Hand().isEmpty()) {
                 game.sendAction(new CitadelsBuildDistrictCard(this, (CitadelsDistrictCard) savedState.getP1Hand().get(0)));
             }
+
+
         } else if (myPlayer == 2) {
             sleep(1000 + ((int) (Math.random() * 1000)));
             whatToDo = (int) (Math.random() * 2);
