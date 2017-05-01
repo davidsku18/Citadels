@@ -3,12 +3,21 @@ package edu.up.citadels.citadels.actions;
 import edu.up.citadels.game.GamePlayer;
 
 /**
+ * A UseSpecialAbility is an action that represents using specified character's
+ * ability
+ * External Citation
+ * Date: 12 March 2017
+ * Problem: Didn't know how to implement actions correctly
+ * Resource:
+ * https://github.com/srvegdahl/SlapJack/blob/master/app
+ * /src/main/java/edu/up/cs301/slapjack/SJSlapAction.java
+ * Solution: I used the example code from this post.
  *
  * @author Bryce Amato
  * @author Gavin Low
  * @author Victor Nguyen
  * @author Kurtis Davidson
- * @version 3/6/17.
+ * @version 4/30/2017
  */
 
 public class UseSpecialAbility extends CitadelsMoveAction
@@ -26,7 +35,11 @@ public class UseSpecialAbility extends CitadelsMoveAction
         this.character = initCharacter;
     }
 
-
+    /**
+     * Returns the character card of the player
+     * @return character
+     *          The character card
+     */
     public int getCharacter()
     {
         return this.character;
