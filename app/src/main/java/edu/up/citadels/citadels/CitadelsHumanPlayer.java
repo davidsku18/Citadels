@@ -769,11 +769,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
         if(state.getTurn() == state.getP1Character1() + 6 || state.getTurn() == state.getP1Character2() + 6)
         {
-            //characterTurn.setTextColor(0xFF00FF00);
             updateCharacterCounter();
         }else
         {
-            //characterTurn.setTextColor(0xFF000000);
             updateCharacterCounter();
         }
 
@@ -943,12 +941,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(0));
                     //assassinButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the Assassin");
+                    cardInfo.setText("You've chosen the Assassin!");
                     //assassinButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -961,12 +959,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(1));
                     //thiefButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the Thief");
+                    cardInfo.setText("You've chosen the Thief!");
                     //thiefButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -981,12 +979,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(2));
                     //magicianButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the magician card");
+                    cardInfo.setText("You've chosen the Magician!");
                     //magicianButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1001,12 +999,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(3));
                     //kingButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the king card");
+                    cardInfo.setText("You've chosen the King!");
                     //kingButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1020,12 +1018,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(4));
                     //bishopButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the bishop card");
+                    cardInfo.setText("You've chosen the Bishop!");
                     //bishopButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1039,12 +1037,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(5));
                     //merchantButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the merchant card");
+                    cardInfo.setText("You've chosen the Merchant!");
                     //merchantButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1058,12 +1056,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(6));
                     //architectButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the architect card");
+                    cardInfo.setText("You've chosen the Architect!");
                     //architectButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });
@@ -1077,12 +1075,12 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
                 {
                     humanPlayerChooseCharacterCard(state.getCharacterDeck(7));
                     //warlordButton.setVisibility(View.INVISIBLE);
-                    cardInfo.setText("You've chosen the warlord card");
+                    cardInfo.setText("You've chosen the Warlord!");
                     //warlordButton.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
-                    cardInfo.setText("This card is already taken");
+                    cardInfo.setText("This card is already taken.");
                 }
             }
         });

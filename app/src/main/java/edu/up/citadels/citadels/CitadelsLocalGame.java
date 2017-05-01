@@ -842,12 +842,20 @@ public class CitadelsLocalGame extends LocalGame {
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {
-                if (state.getP1Hand().size() != 0)
+                boolean unique = true;
+                for(int i = 0; i < state.getP1City().size(); ++i)
+                {
+                    if(state.getP1City().get(i).getName().equals(cbdc.getCard().getName()))
+                    {
+                        unique = false;
+                    }
+                }
+                if (state.getP1Hand().size() != 0 && unique)
                 {
                     if (state.getP1Gold() >= cbdc.getCard().getCost())
                     {
                         state.addToP1City(cbdc.getCard());
-                        if ((cbdc.getCard().getColorString().equals(state.getCharacterColor(state.getP1Character1()))) || (cbdc.getCard().getColorString().equals(state.getCharacterColor(state.getP1Character2()))))
+                        if ((cbdc.getCard().getColorString().equals(state.getP1Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP1Chars(1).getCharacterColorString())))
                         {
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
@@ -873,11 +881,19 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (playerID == 1 && canMove(playerID) && state.getTurn() > 6)
             {
-                if (state.getP2Hand().size() != 0)
+                boolean unique = true;
+                for(int i = 0; i < state.getP2City().size(); ++i)
+                {
+                    if(state.getP2City().get(i).getName().equals(cbdc.getCard().getName()))
+                    {
+                        unique = false;
+                    }
+                }
+                if (state.getP2Hand().size() != 0 && unique)
                 {
                     if (state.getP2Gold() >= cbdc.getCard().getCost())
                     {
-                        if ((cbdc.getCard().getColorString().equals(state.getCharacterColor(state.getP2Character1()))) || (cbdc.getCard().getColorString().equals(state.getCharacterColor(state.getP2Character2()))))
+                        if ((cbdc.getCard().getColorString().equals(state.getP2Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP2Chars(1).getCharacterColorString())))
                         {
                             state.setP2Gold(state.getP2Gold() + 1);
                         }
@@ -905,11 +921,19 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (playerID == 2 && canMove(playerID) && state.getTurn() > 6)
             {
-                if (state.getP3Hand().size() != 0)
+                boolean unique = true;
+                for(int i = 0; i < state.getP3City().size(); ++i)
+                {
+                    if(state.getP3City().get(i).getName().equals(cbdc.getCard().getName()))
+                    {
+                        unique = false;
+                    }
+                }
+                if (state.getP3Hand().size() != 0 && unique)
                 {
                     if (state.getP3Gold() >= cbdc.getCard().getCost())
                     {
-                        if ((cbdc.getCard().getColorString().equals(state.getCharacterColor(state.getP3Character1()))) || (cbdc.getCard().getColorString().equals(state.getCharacterColor(state.getP3Character2()))))
+                        if ((cbdc.getCard().getColorString().equals(state.getP3Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP3Chars(1).getCharacterColorString())))
                         {
                             state.setP3Gold(state.getP3Gold() + 1);
                         }

@@ -91,6 +91,26 @@ public class CharacterCard
         }
     }
 
+    public String getCharacterColorString()
+    {
+        String color = null;
+        if(this.color == red)
+        {
+            color = "Red";
+        }else if(this.color == green)
+        {
+            color = "Green";
+        }else if(this.color == blue)
+        {
+            color = "Blue";
+        }else if(this.color == yellow)
+        {
+            color = "Yellow";
+        }
+        return color;
+    }
+
+
     public int getCharacter(int who)
     {
         if (who == assassin)
