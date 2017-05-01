@@ -536,7 +536,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         else //TODO Change to back of card
         {
-            cbutton.setBackgroundResource(R.mipmap.back6);
+            cbutton.setBackgroundResource(R.drawable.charactercardback);
         }
 
     }
@@ -633,9 +633,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
      */
     public void showKing()
     {
-        p1Crown.setBackgroundResource(R.mipmap.crown2);
-        p2Crown.setBackgroundResource(R.mipmap.crown2);
-        p3Crown.setBackgroundResource(R.mipmap.crown2);
+        p1Crown.setBackgroundResource(R.drawable.crown);
+        p2Crown.setBackgroundResource(R.drawable.crown);
+        p3Crown.setBackgroundResource(R.drawable.crown);
         p1Crown.setVisibility(View.INVISIBLE);
         p2Crown.setVisibility(View.INVISIBLE);
         p3Crown.setVisibility(View.INVISIBLE);
