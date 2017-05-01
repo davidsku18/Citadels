@@ -66,6 +66,7 @@ public class CitadelsLocalGame extends LocalGame {
     {
         if (state.getTurn() == 0)
         {
+            //Our turns do not go clockwise or counterclockwise, they depend on the kind and your characters' number
             if (playerIdx == 0 && playerIdx == state.getKing())
             {
                 return true;
@@ -322,10 +323,12 @@ public class CitadelsLocalGame extends LocalGame {
     {
         if (state.getTurn() == 0)
         {
+            //we need to check and see if anyone has build 8 districts
             int p1Districts = state.getP1City().size();
             int p2Districts = state.getP2City().size();
             int p3Districts = state.getP3City().size();
 
+            //who has the most points when the 8th district is built?
             int p1Score = state.getP1Score();
             int p2Score = state.getP2Score();
             int p3Score = state.getP3Score();
@@ -366,7 +369,7 @@ public class CitadelsLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action)
     {
-        if (!(action instanceof CitadelsMoveAction))
+        if (!(action instanceof CitadelsMoveAction))//we don't care
         {
             return false;
         }
@@ -376,6 +379,7 @@ public class CitadelsLocalGame extends LocalGame {
 
         if (action instanceof TakeGold)
         {
+            //Make sure the turn is above 6 (so we aren't choosing character cards)
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {
                 state.setP1Gold(state.getP1Gold() + 2);
@@ -399,6 +403,10 @@ public class CitadelsLocalGame extends LocalGame {
 
         } else if (action instanceof ChooseCharacterCard)
         {
+            /*
+            So in here, the king will choose a card to be removed from the deck. This is turn 0. The king is decided every round so theoretically a new
+            King will remove the card every turn. Turns 0-6 are removing and choosing characters, and 7-14 are the characters, so they are normal turns.
+             */
             if (state.getTurn() == 0)
             {
                 if (playerID == 0 && playerID == state.getKing())
@@ -680,7 +688,11 @@ public class CitadelsLocalGame extends LocalGame {
         }
         if (action instanceof EndTurn)
         {
-
+            /*
+            Depending on what turn we are on, end turn will be placing the next turn to one of many different things. If we are in turns 0-6, we are just going
+            up by 1. If we are 7-14, we are going up by 1 unless the next turn's character is null (no one selected it). In this case we will just go up again.
+            When the turn gets to 14 we will just set it back to 0 and reselect characters.
+             */
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {
                 state.setTurnCounter(state.getTurnCounter() + 1);
@@ -822,6 +834,7 @@ public class CitadelsLocalGame extends LocalGame {
             }
         } else if (action instanceof ChooseDistrictCard)
         {
+            //Just take the top district card and add it to the appropriate player's hand. Also, the game state checks to make sure there are cards in the deck
             if (playerID == 0 && state.getTurn() > 6)
             {
                 state.addToP1Hand(state.drawDistrictCard());
@@ -842,6 +855,7 @@ public class CitadelsLocalGame extends LocalGame {
             CitadelsBuildDistrictCard cbdc = (CitadelsBuildDistrictCard) cma;
             if (playerID == 0 && canMove(playerID) && state.getTurn() > 6)
             {
+                //this will ensure that the specific card is not yet in the city because we are not allowed to build more than 1 of the same district
                 boolean unique = true;
                 for(int i = 0; i < state.getP1City().size(); ++i)
                 {
@@ -852,16 +866,17 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 if (state.getP1Hand().size() != 0 && unique)
                 {
-                    if (state.getP1Gold() >= cbdc.getCard().getCost())
+                    if (state.getP1Gold() >= cbdc.getCard().getCost())//if we can afford it
                     {
                         state.addToP1City(cbdc.getCard());
                         if ((cbdc.getCard().getColorString().equals(state.getP1Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP1Chars(1).getCharacterColorString())))
                         {
+                            //if the color of the district corresponds to the color of your characters, you get an extra gold!
                             state.setP1Gold(state.getP1Gold() + 1);
                         }
                         int index = state.p1FindCard(cbdc.getCard());
-                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());
-                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());
+                        state.setP1Score(state.getP1Score() + cbdc.getCard().getCost());//update score
+                        state.setP1Gold(state.getP1Gold() - cbdc.getCard().getCost());//update gold count
                         try
                         {
                             state.removeFromP1Hand(index);
@@ -881,6 +896,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (playerID == 1 && canMove(playerID) && state.getTurn() > 6)
             {
+                //this will ensure that the specific card is not yet in the city because we are not allowed to build more than 1 of the same district
                 boolean unique = true;
                 for(int i = 0; i < state.getP2City().size(); ++i)
                 {
@@ -891,17 +907,18 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 if (state.getP2Hand().size() != 0 && unique)
                 {
-                    if (state.getP2Gold() >= cbdc.getCard().getCost())
+                    if (state.getP2Gold() >= cbdc.getCard().getCost())//make sure they can afford it
                     {
                         if ((cbdc.getCard().getColorString().equals(state.getP2Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP2Chars(1).getCharacterColorString())))
                         {
+                            //get an extra gold if your district and character color are the same
                             state.setP2Gold(state.getP2Gold() + 1);
                         }
                         state.setAction("Player 2 Built a " + cbdc.getCard().getName() + ".");
                         state.addToP2City(cbdc.getCard());
                         int index = state.p2FindCard(cbdc.getCard());
-                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());
-                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());
+                        state.setP2Score(state.getP2Score() + cbdc.getCard().getCost());//update score
+                        state.setP2Gold(state.getP2Gold() - cbdc.getCard().getCost());//update gold
                         try
                         {
                             state.removeFromP2Hand(index);
@@ -921,6 +938,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
             } else if (playerID == 2 && canMove(playerID) && state.getTurn() > 6)
             {
+                //this will ensure that the specific card is not yet in the city because we are not allowed to build more than 1 of the same district
                 boolean unique = true;
                 for(int i = 0; i < state.getP3City().size(); ++i)
                 {
@@ -931,7 +949,7 @@ public class CitadelsLocalGame extends LocalGame {
                 }
                 if (state.getP3Hand().size() != 0 && unique)
                 {
-                    if (state.getP3Gold() >= cbdc.getCard().getCost())
+                    if (state.getP3Gold() >= cbdc.getCard().getCost())//make sre they can afford it
                     {
                         if ((cbdc.getCard().getColorString().equals(state.getP3Chars(0).getCharacterColorString())) || (cbdc.getCard().getColorString().equals(state.getP3Chars(1).getCharacterColorString())))
                         {
