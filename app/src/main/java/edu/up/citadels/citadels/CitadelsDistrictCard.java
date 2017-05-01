@@ -9,7 +9,6 @@ package edu.up.citadels.citadels;
  * @author Kurtis Davidson
  * @version 4/30/2017
  */
-
 public class CitadelsDistrictCard {
 
     // The district card's values
