@@ -315,6 +315,9 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
      */
     public void showKing()
     {
+        p1Crown.setBackgroundResource(R.mipmap.crown);
+        p2Crown.setBackgroundResource(R.mipmap.crown);
+        p3Crown.setBackgroundResource(R.mipmap.crown);
         p1Crown.setVisibility(View.INVISIBLE);
         p2Crown.setVisibility(View.INVISIBLE);
         p3Crown.setVisibility(View.INVISIBLE);
@@ -598,6 +601,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
     }
 
 
+
     public void hideallCharacterCards()
     {
         assassinButton.setVisibility(View.INVISIBLE);
@@ -799,12 +803,13 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
 
     public void showPlayerCharacterCards()
     {
-        if (state.getTurn() <= 7)
+        if (state.getTurn() < 7)
         {
             player2_Card1.setVisibility(View.INVISIBLE);
             player2_Card2.setVisibility(View.INVISIBLE);
             player3_Card1.setVisibility(View.INVISIBLE);
             player3_Card2.setVisibility(View.INVISIBLE);
+
             if(!state.getP2Chars().isEmpty())
             {
                 drawCharacterCard(player2_Card1, 99);
@@ -828,174 +833,22 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         }
         if (state.getTurn() >= 7)
         {
-            if( !state.getP2Chars().isEmpty() && state.getP2Chars(0).getWhichCharacter()+7 == state.getTurn())
+            if (!state.getP2Chars().isEmpty() && state.getP2Chars(0).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player2_Card1, state.getP2Chars(0).getWhichCharacter());
-            }
-            else if( state.getP2Chars().size() > 1 && state.getP2Chars(1).getWhichCharacter()+7 == state.getTurn())
+            } else if (state.getP2Chars().size() > 1 && state.getP2Chars(1).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player2_Card2, state.getP2Chars(1).getWhichCharacter());
-            }
-            else if(!state.getP3Chars().isEmpty() && state.getP3Chars(0).getWhichCharacter()+7 == state.getTurn())
+            } else if (!state.getP3Chars().isEmpty() && state.getP3Chars(0).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player3_Card1, state.getP3Chars(0).getWhichCharacter());
-            }
-            else if(state.getP3Chars().size()>1 && state.getP3Chars(1).getWhichCharacter()+7 == state.getTurn())
+            } else if (state.getP3Chars().size() > 1 && state.getP3Chars(1).getWhichCharacter() + 7 == state.getTurn())
             {
                 drawCharacterCard(player3_Card2, state.getP3Chars(1).getWhichCharacter());
             }
-            /*
-            if(state.getP2Chars(0).getWhichCharacter() == 0)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 0)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 0)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 0)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 8)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 1)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 1)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 1)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 1)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 9)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 2)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 2)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 2)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 2)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 10)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 3)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 3)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 3)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 3)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 11)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 4)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 4)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 4)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 4)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 12)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 5)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 5)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 5)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 5)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 13)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 6)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 6)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 6)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 6)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }
-        }
-        else if (state.getTurn() == 14)
-        {
-            if(state.getP2Chars(0).getWhichCharacter() == 7)
-            {
-                player2_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP2Chars(1).getWhichCharacter() == 7)
-            {
-                player2_Card2.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(0).getWhichCharacter() == 7)
-            {
-                player3_Card1.setVisibility(View.VISIBLE);
-            }
-            else if(state.getP3Chars(1).getWhichCharacter() == 7)
-            {
-                player3_Card2.setVisibility(View.VISIBLE);
-            }*/
         }
     }
+
     //this is called AFTER we have a reference to the state. It updates all info and initializes button listeners
     public void initializeEverything()
     {
@@ -1015,7 +868,7 @@ public class CitadelsHumanPlayer extends GameHumanPlayer implements View.OnClick
         player2Name.setText(allPlayerNames[1]);
         player3Name.setText(allPlayerNames[2]);
 
-
+        showKing();
         updateCharacterCounter();
 
 

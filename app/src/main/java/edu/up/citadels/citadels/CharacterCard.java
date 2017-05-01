@@ -10,6 +10,7 @@ package edu.up.citadels.citadels;
 
 public class CharacterCard
 {
+    private static final long serialVersionUID = 3223463263L;
     private int red = 0;    // Codes for the 4 colors
     private int green = 1;
     private int blue = 2;
